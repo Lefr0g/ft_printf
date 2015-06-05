@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/14 14:09:12 by amulin            #+#    #+#             */
-/*   Updated: 2014/11/20 17:28:38 by amulin           ###   ########.fr       */
+/*   Updated: 2015/02/13 17:28:38 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 	if (dst != NULL && src != NULL)
 	{
-		tmp = (void*)malloc(sizeof(*src) * len);
+		tmp = ft_memalloc(len);
+		if (!tmp)
+			return (NULL);
 		ft_memcpy(tmp, src, len);
 		ft_memcpy(dst, tmp, len);
 		return (dst);

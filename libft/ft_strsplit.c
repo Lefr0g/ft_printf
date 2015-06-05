@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/01 20:10:47 by amulin            #+#    #+#             */
-/*   Updated: 2014/12/04 16:25:29 by amulin           ###   ########.fr       */
+/*   Updated: 2015/02/13 16:25:29 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char			**ft_strsplit(char const *s, char c)
 	while (i[3] <= i[0])
 	{
 		i[2] = my_strlenchar(s, c, &i[1]);
-		buff[i[3]] = (char*)malloc(sizeof(char) * (i[2] + 1));
+		buff[i[3]] = ft_strnew(i[2]);
 		if (buff[i[3]] == NULL)
 			return (NULL);
 		if (i[3] == i[0])

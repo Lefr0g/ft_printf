@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/28 13:06:01 by amulin            #+#    #+#             */
-/*   Updated: 2014/11/28 18:14:17 by amulin           ###   ########.fr       */
+/*   Updated: 2015/02/13 18:14:17 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,17 @@ static void	my_process(int n, char *result, int i)
 	result[index] = '\0';
 }
 
+char		*my_exception(void)
+{
+	char	*result;
+
+	result = ft_strnew(12);
+	if (!result)
+		return (NULL);
+	ft_strcpy(result, "-2147483648");
+	return (result);
+}
+
 char		*ft_itoa(int n)
 {
 	size_t	j;
@@ -44,11 +55,7 @@ char		*ft_itoa(int n)
 	buf = n;
 	j = 1;
 	if (buf == -2147483648LL)
-	{
-		result = (char*)malloc(sizeof(char) * 12);
-		ft_strcpy(result, "-2147483648");
-		return (result);
-	}
+		return (my_exception());
 	if (buf < 0)
 		buf = -buf;
 	while (buf > 9)
@@ -57,7 +64,9 @@ char		*ft_itoa(int n)
 		i = i * 10;
 		j++;
 	}
-	result = (char*)malloc(sizeof(char) * (j + 1));
+	result = ft_strnew(j + 1);
+	if (!result)
+		return (NULL);
 	my_process(n, result, i);
 	return (result);
 }

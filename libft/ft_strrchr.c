@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 17:51:09 by amulin            #+#    #+#             */
-/*   Updated: 2014/12/10 12:32:25 by amulin           ###   ########.fr       */
+/*   Updated: 2015/02/13 12:32:25 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	*ft_strrchr(const char *s, int c)
 	const char	*new;
 
 	i = ft_strlen(s);
-	new = (const char*)malloc(i);
 	while (i >= 0)
 	{
 		if (s[i] == c)

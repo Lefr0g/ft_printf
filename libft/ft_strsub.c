@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/28 12:28:53 by amulin            #+#    #+#             */
-/*   Updated: 2014/12/04 16:57:42 by amulin           ###   ########.fr       */
+/*   Updated: 2015/02/13 16:57:42 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	char	*buf;
 	size_t	i;
 
-	buf = (char*)malloc(sizeof(char) * (len + 1));
-	if (buf == NULL)
+	buf = ft_strnew(len + 1);
+	if (!buf)
 		return (NULL);
 	i = 0;
 	while (i < len && s[start + i] != '\0')

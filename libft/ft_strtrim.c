@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/28 12:28:07 by amulin            #+#    #+#             */
-/*   Updated: 2014/12/05 17:57:48 by amulin           ###   ########.fr       */
+/*   Updated: 2015/02/13 17:57:48 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ char		*ft_strtrim(char const *s)
 
 	if (s == NULL)
 		return (NULL);
-	buf = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (buf == NULL)
+	buf = ft_strnew(ft_strlen(s));
+	if (!buf)
 		return (NULL);
 	ft_strcpy(buf, s);
 	my_blankremove(buf);

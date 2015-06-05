@@ -6,13 +6,14 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 15:26:47 by amulin            #+#    #+#             */
-/*   Updated: 2014/12/10 12:57:54 by amulin           ###   ########.fr       */
+/*   Updated: 2015/02/17 13:29:16 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# define BUFF_SIZE 32
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
@@ -82,5 +83,9 @@ void				ft_lstdel(t_list **alst, void (*del)(void*, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+
+int					ft_abs(int i);
+
+int					get_next_line(int const fd, char **line);
 
 #endif

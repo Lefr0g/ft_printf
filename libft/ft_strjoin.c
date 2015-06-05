@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/28 12:27:27 by amulin            #+#    #+#             */
-/*   Updated: 2014/12/04 15:26:53 by amulin           ###   ########.fr       */
+/*   Updated: 2015/02/13 15:26:53 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	lens[0] = ft_strlen(s1);
 	lens[1] = ft_strlen(s2);
 	i = 0;
-	buf = (char*)malloc(sizeof(char) * (lens[0] + lens[1] + 1));
-	if (buf == NULL)
+	buf = ft_strnew(lens[0] + lens[1]);
+	if (!buf)
 		return (NULL);
 	while (i < lens[0])
 	{

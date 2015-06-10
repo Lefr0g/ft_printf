@@ -6,7 +6,7 @@
 #    By: amulin <amulin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 16:56:12 by amulin            #+#    #+#              #
-#    Updated: 2015/02/13 11:19:02 by amulin           ###   ########.fr        #
+#    Updated: 2015/06/10 17:57:17 by amulin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 	ar rcs $(NAME) $(OBJECTS)
 
-$(OBJECTS):
+$(OBJECTS): $(SRCS)
 	gcc $(FLAGS) -c $(SRCS) -I includes
 
 clean:

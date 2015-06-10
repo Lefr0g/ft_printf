@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 13:51:49 by amulin            #+#    #+#             */
-/*   Updated: 2015/06/10 17:57:40 by amulin           ###   ########.fr       */
+/*   Created: 2014/11/03 15:58:55 by amulin            #+#    #+#             */
+/*   Updated: 2015/06/10 19:30:13 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_putchar(char c)
+void	ft_putstr(char const *s)
 {
-	write(1, &c, 1);
+	int	i;
+
+	i = 0;
+	if (s != NULL)
+	{
+		while (s[i] != '\0')
+		{
+			ft_putchar(s[i]);
+			i++;
+		}
+	}
 }

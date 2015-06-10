@@ -6,12 +6,17 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:52 by amulin            #+#    #+#             */
-/*   Updated: 2015/06/05 15:51:23 by amulin           ###   ########.fr       */
+/*   Updated: 2015/06/10 17:36:17 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+
+int		check_diff(void	elem_a, void elem_b)
+{
+
+}
 
 void	my_center_str(char *str, int width, char spacer)
 {

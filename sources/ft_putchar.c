@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2015/06/05 16:05:44 by amulin           ###   ########.fr       */
+/*   Created: 2014/11/03 13:51:49 by amulin            #+#    #+#             */
+/*   Updated: 2015/06/10 19:29:23 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include "libft.h"
-# include <stdarg.h>
-
-typedef union	u_param
+void	ft_putchar(char c)
 {
-	int		d;
-	long	l;
-	char	c;
-	char	*s;
-}				t_param;
-
-int				ft_printf(const char *restrict format, ...);
-
-#endif
+	write(1, &c, 1);
+}

@@ -20,7 +20,8 @@ INCLUDIR = includes/
 
 HEADERS = $(addprefix $(INCLUDIR), $(HDRS))
 
-SRCS = ft_printf.c ft_putchar.c ft_putstr.c ft_putnbr.c
+SRCS = ft_printf.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_strcmp.c \
+	   ft_puthex.c
 
 SRCDIR = sources/
 

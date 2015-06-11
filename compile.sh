@@ -1,8 +1,8 @@
 #!/bin/sh
 
+make  fclean
 make -C libft/ fclean
-rm *.o
+make
 make -C libft/
-clang -Wall -Werror -Wextra -I libft/includes/ ft_printf.c -c -std=c99
-clang -Wall -Werror -Wextra -I libft/includes/ main.c -c
-clang -Wall -Werror -Wextra main.o ft_printf.o -L libft/ -lft
+clang -Wall -Werror -Wextra main.c -L . -lftprintf \
+	-I includes/ -L libft/ -lft -I libft/includes/ -o a.out

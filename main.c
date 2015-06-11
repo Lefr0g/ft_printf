@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 #include <stdio.h>
-
+/*
 int		check_diff(void	elem_a, void elem_b)
 {
 
 }
-
+*/
 void	my_center_str(char *str, int width, char spacer)
 {
 	int	offset;

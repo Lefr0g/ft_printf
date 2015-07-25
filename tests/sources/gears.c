@@ -44,6 +44,7 @@ char	*file_to_str(char *filename)
 		ft_putendl("<< ERROR >> file_to_str() : close() fail");
 		exit(1);
 	}
+//	ft_putendl(str);
 	return (str);
 }
 

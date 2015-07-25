@@ -18,6 +18,8 @@
 # include "ft_printf.h"
 # include <fcntl.h>
 
+# include <limits.h>
+
 # include <wchar.h>
 # include <locale.h>
 
@@ -30,11 +32,20 @@
  * main_test.c functions
 */
 int		single_test_run(char *str, void *arg, char *type);
+int		run_all_tests(void);
 
-int		run_single_string_test(int *index, int tests_in_sequence);
+/*
+ * test_sequences.c functions
+*/
 int		run_all_conversion_test(int *index);
+int		run_single_string_test(int *index, int tests_in_sequence);
 int		run_c_conversion_test(int *index);
 int		run_s_conversion_test(int *index, int tests_in_sequence);
+int		run_d_conversion_test(int *index, int tests_in_sequence);
+int		run_u_conversion_test(int *index, int tests_in_sequence);
+int		run_x_conversion_test(int *index, int tests_in_sequence);
+int		run_X_conversion_test(int *index, int tests_in_sequence);
+int		run_o_conversion_test(int *index, int tests_in_sequence);
 
 /*
  * gears.c functions

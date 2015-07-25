@@ -6,7 +6,7 @@
 #    By: amulin <amulin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 16:56:12 by amulin            #+#    #+#              #
-#    Updated: 2015/06/10 17:57:17 by amulin           ###   ########.fr        #
+#    Updated: 2015/02/13 11:19:02 by amulin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,12 @@ SRCS = ft_putchar.c ft_putstr.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c \
 	   ft_lstmap.c ft_lstadd.c get_next_line.c \
 	   ft_abs.c
 
+HEADERS = libft.h
+
+INCLUDIR = includes/
+
+INCLUDES = $(addsuffix $(INCLUDIR), $(HEADERS))
+
 OBJECTS = $(subst .c,.o,$(SRCS))
 
 .PHONY: all, clean, fclean, re
@@ -38,8 +44,8 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 	ar rcs $(NAME) $(OBJECTS)
 
-$(OBJECTS): $(SRCS)
-	gcc $(FLAGS) -c $(SRCS) -I includes
+$(OBJECTS): $(SRCS) $(INLUDES)
+	clang $(FLAGS) -c $(SRCS) -I $(INCLUDIR)
 
 clean:
 	rm -f $(OBJECTS)

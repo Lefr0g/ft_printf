@@ -16,26 +16,45 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-
+# include "linkto_libft.h"
 
 typedef union	u_param
 {
-	int		d;
-	long	l;
-	char	c;
-	char	*s;
+	int				d;
+	unsigned int	u;
+	long			l;
+	char			c;
+	char			*s;
 }				t_param;
+
+typedef struct	s_env
+{
+	int			index;
+	char		*lenmods;
+	char		*conversions;
+	int			alt;
+	int			zero;
+	int			neg;
+	int			space;
+	int			plus;
+	int			field_width;
+	int			precision;
+	char		lenght;
+	char		conversion;
+}				t_env;
 
 int				ft_printf(const char *restrict format, ...);
 
-int				convert(const char *restrict format, va_list ap);
+int				ft_printf_init(t_env *e);
+int				directives(const char *restrict format, va_list *ap, t_env *e);
+int				convert(va_list *ap, t_env *e);
 
-void			ft_puthex(long n, char *mode);
+void			ft_puthex(unsigned int n, char *mode);
+void			ft_puthex_ull(unsigned long long int n, char *mode);
+void			ft_putoctal(unsigned int n);
 
-void			ft_putchar(char c);
-void			ft_putstr(char const *s);
-void			ft_putendl(char const *s);
-void			ft_putnbr(int n);
-int				ft_strcmp(const char *s1, const char *s2);
+void			ft_putnbr_ull(unsigned long long int n);
+
+int				ft_charinstr(const char *str, char c);
 
 #endif

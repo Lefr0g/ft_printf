@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 11:04:13 by amulin            #+#    #+#             */
-/*   Updated: 2015/02/13 15:54:48 by amulin           ###   ########.fr       */
+/*   Updated: 2015/02/07 15:54:48 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		gnl_write(char **tmp, char **line, char **keep)
 	int	i;
 
 	i = gnl_lenline(*tmp);
-	*line = NULL;
+	ft_strdel(line);
 	if (i != -1)
 	{
 		*line = ft_strsub(*tmp, 0, i);
@@ -86,7 +86,7 @@ int		get_next_line(int const fd, char **line)
 		return (-1);
 	ft_strdel(&keep);
 	gnl_write(&tmp, line, &keep);
-	if (ret != BUFF_SIZE && keep == NULL)
+	if (ret != BUFF_SIZE && !ft_strlen(*line))
 		return (0);
 	else
 		return (1);

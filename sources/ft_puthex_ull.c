@@ -12,12 +12,12 @@
 
 #include "ft_printf.h"
 
-void	ft_puthex(unsigned int n, char *mode)
+void	ft_puthex_ull(unsigned long long int n, char *mode)
 {
 	if (n > 15)
 	{
-		ft_puthex(n / 16, mode);
-		ft_puthex(n % 16, mode);
+		ft_puthex_ull(n / 16, mode);
+		ft_puthex_ull(n % 16, mode);
 	}
 	else
 	{

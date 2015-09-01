@@ -46,6 +46,7 @@ int		run_u_conversion_test(int *index, int tests_in_sequence);
 int		run_x_conversion_test(int *index, int tests_in_sequence);
 int		run_X_conversion_test(int *index, int tests_in_sequence);
 int		run_o_conversion_test(int *index, int tests_in_sequence);
+int		run_p_conversion_test(int *index, int tests_in_sequence);
 
 /*
  * gears.c functions

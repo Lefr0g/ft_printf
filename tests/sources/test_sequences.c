@@ -235,6 +235,37 @@ int	run_o_conversion_test(int *index, int tests_in_sequence)
 	return (0);
 }
 
+int	run_p_conversion_test(int *index, int tests_in_sequence)
+{
+	int		c;
+	int		j;
+	void	*val;
+
+	c = 0;
+	while (c < tests_in_sequence)
+	{
+		j = 0;
+		printf("\n   \033[33m%.2d\033[0m -  \033[33m%%p\033[0m conversion :\t",
+				*index);	
+		while (j < TESTS_PER_LINE && c < tests_in_sequence)
+		{
+			if (c == tests_in_sequence - 1)
+				val = NULL;
+			else
+				val = (void*)malloc(sizeof(void));
+			single_test_run("%p", &val, "int");
+			free(val);
+			j++;
+			if (!(j % 5) && j != TESTS_PER_LINE && j != tests_in_sequence)
+				printf(". ");
+			c++;
+		}
+		(*index)++;
+	}
+	printf("\n");
+	return (0);
+}
+
 int	run_single_string_test(int *index, int tests_in_sequence)
 {
 	char	*str;
@@ -274,5 +305,6 @@ int	run_all_conversion_test(int *index)
 	run_x_conversion_test(index, 40);
 	run_X_conversion_test(index, 40);
 	run_o_conversion_test(index, 40);
+	run_p_conversion_test(index, 80);
 	return (0);
 }

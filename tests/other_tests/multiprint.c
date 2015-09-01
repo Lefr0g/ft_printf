@@ -57,12 +57,16 @@ int		main(int argc, char **argv)
 	unsigned int		u;
 	int					smallpos;
 	int					smallneg;
+	int					zero;
 	long int			l;
 	unsigned long int	ul;
 	char				c;
 	char				*str;
 	wchar_t				str_w[20] = L"Hello Wide h\xe9h\xe9 ! \x03bb";
+	void				*null;
 
+	null = NULL;
+	zero = 0;
 	setlocale(LC_ALL, "");
 	termlen = 90;
 	i = -1425364793;
@@ -138,20 +142,34 @@ int		main(int argc, char **argv)
 	ft_putendl("\n");
 	printf("printf\t| \tFlags %%d\t a = %d,\t b = %d.\n", smallpos, smallneg);	
 	printf("printf\t| \tFlags %%x\t a = %x,\t b = %x.\n", smallpos, smallneg);
-	printf("printf\t| \tFlags %%#x\t a = %#x,\t b = %#x.\n", smallpos, smallneg);;
+	printf("printf\t| \tFlags %%#x\t a = %#x,\t b = %#x.\n", smallpos, smallneg);
+	printf("printf\t| \tFlags %%#x\t 0 = %#x\n", zero);
 	printf("printf\t| \tFlags %%o\t a = %o,\t b = %o.\n", smallpos, smallneg);
 	printf("printf\t| \tFlags %%#o\t a = %#o,\t b = %#o.\n", smallpos, smallneg);
+	printf("printf\t| \tFlags %%#o\t 0 = %#o\n", zero);
 
 	ft_putchar('\n');
+	printf("printf\t| \tFlags %%0d\t a = %0d,\t b = %0d.\n", smallpos, smallneg);	
 	printf("printf\t| \tFlags %%5d\t a = %5d,\t b = %5d.\n", smallpos, smallneg);	
 	printf("printf\t| \tFlags %%-5d\t a = %-5d,\t b = %-5d.\n", smallpos, smallneg);
 	printf("printf\t| \tFlags %%05d\t a = %05d,\t b = %05d.\n", smallpos, smallneg);
 	printf("printf\t| \tFlags %%' '5d\t a = % 5d,\t b = % 5d.\n", smallpos, smallneg);
 	printf("printf\t| \tFlags %%+5d\t a = %+5d,\t b = %+5d.\n", smallpos, smallneg);
+	printf("printf\t| \tFlags %%+05d\t a = %+05d,\t b = %+05d.\n", smallpos, smallneg);
 	ft_putchar('\n');
 	printf("printf\t| \tFlags %%d\t a = %d,\t b = %d.\n", smallpos, smallneg);	
 	printf("printf\t| \tFlags %%' 'd\t a = % d,\t b = % d.\n", smallpos, smallneg);
 	printf("printf\t| \tFlags %%+d\t a = %+d,\t b = %+d.\n", smallpos, smallneg);
+	ft_putchar('\n');
+	printf("printf\t| \tFlags %%1d\t a = %1d,\t b = %1d.\n", smallpos, smallneg);
+	printf("printf\t| \tFlags %%.1d\t a = %.1d,\t b = %.1d.\n", smallpos, smallneg);
+	printf("printf\t| \tFlags %%.5d\t a = %.5d,\t b = %.5d.\n", smallpos, smallneg);
+	printf("printf\t| \tFlags %%' '.5d\t a = % .5d,\t b = % .5d.\n", smallpos, smallneg);
+	printf("printf\t| \tFlags %%+.5d\t a = %+.5d,\t b = %+.5d.\n", smallpos, smallneg);
+	ft_putchar('\n');
+	printf("printf\t| \tFlags %%#x\t NULL = %#x\n", (unsigned int)null);
+	printf("printf\t| \tFlags %%#lx\t NULL = %#lx\n", (unsigned long)null);
+	printf("printf\t| \tFlags %%p\t NULL = %p\n", null);
 
 	ft_putendl("\n");
 

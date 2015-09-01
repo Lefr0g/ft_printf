@@ -21,8 +21,10 @@
 typedef union	u_param
 {
 	int				d;
+	short			sh;
 	unsigned int	u;
 	long			l;
+	long long		ll;
 	char			c;
 	char			*s;
 }				t_param;
@@ -38,14 +40,17 @@ typedef struct	s_env
 	int			space;
 	int			plus;
 	int			field_width;
+	int			precisflag;
 	int			precision;
-	char		lenght;
+	char		*mod;
 	char		conversion;
+	char		spacer;
 }				t_env;
 
 int				ft_printf(const char *restrict format, ...);
 
 int				ft_printf_init(t_env *e);
+int				ft_printf_reinit(t_env *e);
 int				directives(const char *restrict format, va_list *ap, t_env *e);
 int				convert(va_list *ap, t_env *e);
 
@@ -54,7 +59,13 @@ void			ft_puthex_ull(unsigned long long int n, char *mode);
 void			ft_putoctal(unsigned int n);
 
 void			ft_putnbr_ull(unsigned long long int n);
+char			*ft_itoa_ll(long long int n, unsigned int base);
 
-int				ft_charinstr(const char *str, char c);
+int				manage_field_width(int outputlen, t_env *e);
+int				manage_precision(void *value, int outputlen, int isneg, t_env *e);
+char			*manage_precision_s(char *str, t_env *e);
+
+int				get_max(int a, int b);
+// int				ft_charinstr(const char *str, char c);
 
 #endif

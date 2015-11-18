@@ -10,6 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
+# OS detection (Linux / OSX)
+#
+OS_NAME = $(shell uname -s)
+ifeq ($(OS_NAME),Linux)
+	CC = gcc
+endif
+ifeq ($(OS_NAME),Darwin)
+	CC = clang
+endif
+
 NAME = libftprintf.a
 
 FLAGS = -Wall -Werror -Wextra
@@ -59,7 +69,7 @@ $(NAME): $(OBJECTS)
 	ar rcs $(NAME) $(OBJECTS)
 
 $(OBJECTS): $(SOURCES) $(HEADERS) $(LIBFT)
-	clang $(FLAGS) -c $(SOURCES) -I $(PRINTINCLUDIR) -I $(LIBFTINCLUDIR)
+	$(CC) $(FLAGS) -c $(SOURCES) -I $(PRINTINCLUDIR) -I $(LIBFTINCLUDIR)
 
 clean:
 	rm -f $(OBJECTS)

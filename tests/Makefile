@@ -1,6 +1,14 @@
-NAME = run_tests.out
+# OS detection (Linux / OSX)
+#
+OS_NAME = $(shell uname -s)
+ifeq ($(OS_NAME),Linux)
+	CC = gcc
+endif
+ifeq ($(OS_NAME),Darwin)
+	CC = clang
+endif
 
-CC = clang
+NAME = run_tests.out
 
 FLAGS = -Wall -Werror -Wextra
 

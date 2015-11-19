@@ -14,12 +14,16 @@
 
 #include <stdio.h>
 
+/*
+**	Compares 2 ints, returns the biggest
+*/
 int	get_max(int a, int b)
 {
 	if (a <= b)
 		return (b);
 	return (a);
 }
+
 
 void	apply_lenmod(t_env *e, void *arg)
 {
@@ -120,6 +124,15 @@ int		manage_field_width(int outputlen, t_env *e)
 	return (0);
 }
 
+/*
+**	This function, called from the directive() function, implements the conversion
+**	according to the env parameters, taking into account the rules and exceptions
+**	specified in the printf(3) manual.
+**	A call to va_arg() fetches the value of the next printf() argument into the
+**	relevant variable in the param structure according to its type.
+**	Then the field width and precision management functions are called, before
+**	printing the value on the standard output.
+*/
 int		convert(va_list *ap, t_env *e)
 {
 	t_param	param;
@@ -196,6 +209,11 @@ int		convert(va_list *ap, t_env *e)
 	return (0);
 }
 
+/*
+**	Sets the env parameters according to the given flags, and increments the
+**	format[] index upon success.
+**	Called from the directive() function.
+*/
 int	check_flags(const char *restrict format, t_env *e)
 {
 	int	i;
@@ -218,6 +236,16 @@ int	check_flags(const char *restrict format, t_env *e)
 	return (0);
 }
 
+/*
+**	This function sets the env variables according to the relevant flags,
+**	field width, precision, lenght modifiers and conversion specifications.
+**	It also checks for invalid directive character, and writes a message on
+**	stderr in this case.
+**	If the next directive is NOT a conversion specifier, the function calls
+**	itself on the next format char and adds the relevant env parameters.
+**	Othervise, the flow continues by calling the convert() function.
+**	The function returns its current position on the format string.
+*/
 int	directives(const char *restrict format, va_list *ap, t_env *e)
 {
 	check_flags(format, e);
@@ -252,8 +280,8 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 	}
 	else if (!ft_strchr(e->conversions, format[e->index]))
 	{
-		ft_putendl("\nError : invalid conversion identifier");
-		exit (1);
+		ft_putendl_fd("\nError : invalid conversion identifier", 2);
+		exit(1);
 	}
 
 	if (ft_strchr(e->conversions, format[e->index]))
@@ -268,6 +296,22 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 	return (e->index);
 }
 
+/*
+**	ft_printf() entry point
+**	Uses stdarg library for variable arguments list
+**	Calls to va_arg() are made within the convert() function, which is itself
+**	called from the directives() function.
+**	The main loop works as follow :
+**		1/ The env structure and the ap va_list are initialized
+**		2/ The loop runs for each char in the format string
+**			2.1/ Any character except the conversion specifier % are printed as is
+**			2.2/ If % is encountered, the directive() function is called on the
+**				 next character.
+**			2.3/ If the directive() function has been called, then env is
+**				 reinitialized.
+**		3/ Once the entire format string has been parsed, va_end() is called,
+**		   and the function ends.
+*/
 int	ft_printf(const char *restrict format, ...)
 {
 	t_env	e;

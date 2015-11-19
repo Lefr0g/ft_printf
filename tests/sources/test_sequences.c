@@ -249,7 +249,9 @@ int	run_p_conversion_test(int *index, int tests_in_sequence)
 				*index);	
 		while (j < TESTS_PER_LINE && c < tests_in_sequence)
 		{
-			if (c == tests_in_sequence - 1)
+			if (c == tests_in_sequence - 2)
+				val = NULL;
+			else if (c == tests_in_sequence - 1)
 				val = NULL;
 			else
 				val = (void*)malloc(sizeof(void));

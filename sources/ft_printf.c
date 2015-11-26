@@ -199,8 +199,13 @@ int		convert(va_list *ap, t_env *e)
 	else if (e->conversion == 'p')
 	{
 		param.l = (unsigned long long int)va_arg(*ap, void*);
-		ft_putstr("0x");
-		ft_puthex_ull(param.l, "min");
+		if (!param.l)
+			ft_putstr("(nil)");
+		else
+		{
+			ft_putstr("0x");
+			ft_puthex_ull(param.l, "min");
+		}
 	}
 	else if (e->conversion == '%')
 		ft_putchar('%');

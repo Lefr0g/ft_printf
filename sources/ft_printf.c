@@ -191,6 +191,11 @@ int		convert(va_list *ap, t_env *e)
 		e->param->c = (unsigned char)va_arg(*ap, int);
 		ft_putchar(e->param->c);
 	}
+	else if (e->conversion == 'C')
+	{
+		e->param->c = (unsigned char)va_arg(*ap, int);
+		ft_putchar(e->param->c);
+	}
 	else if (e->conversion == 's')
 	{
 		if (e->plus)

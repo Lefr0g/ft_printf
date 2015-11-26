@@ -26,6 +26,7 @@ typedef union	u_param
 	long			l;
 	long long		ll;
 	char			c;
+//	unsigned char	c;
 	char			*s;
 }				t_param;
 

@@ -46,9 +46,25 @@ int	main(void)
 	visu_compare("%+d", &i);
 	visu_compare("%+5d", &i);
 
-	visu_compare("%#5x", &i);
-	i = 0;
-	visu_compare("%#5x", &i);
+	ft_putstr("=================================================\n");
+	
+//	printf("%+s", "check\n");
+//	visu_compare("%+s", &i);
+//	visu_compare("%+S", &i);
+	visu_compare("%+p", &i);
+	visu_compare("%+d", &i);
+	visu_compare("%+D", &i);
+	visu_compare("%+i", &i);
+	visu_compare("%+o", &i);
+	visu_compare("%+O", &i);
+	visu_compare("%+u", &i);
+	visu_compare("%+U", &i);
+	visu_compare("%+x", &i);
+	visu_compare("%+X", &i);
+	visu_compare("%+c", &i);
+	visu_compare("%+C", &i);
+
+//	visu_compare("%#5x", &i);
 
 	return (0);
 }

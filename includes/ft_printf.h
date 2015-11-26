@@ -31,6 +31,7 @@ typedef union	u_param
 
 typedef struct	s_env
 {
+	t_param		*param;
 	int			index;
 	char		*lenmods;
 	char		*conversions;
@@ -67,7 +68,7 @@ char			*ft_itoa_ll(long long int n, unsigned int base);
 int				manage_field_width(t_env *e);
 int				manage_precision(void *value, int isneg, t_env *e);
 //	NEW
-int				manage_flags(t_env *e);
+int				manage_flags(int ispos, t_env *e);
 
 
 char			*manage_precision_s(char *str, t_env *e);

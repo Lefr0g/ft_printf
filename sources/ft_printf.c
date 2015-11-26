@@ -96,7 +96,7 @@ int		manage_precision(void *value, int isneg, t_env *e)
 	return (0);
 }
 
-int		manage_flags(t_env *e)
+int		manage_flags(int ispos, t_env *e)
 {
 	if (e->zero)
 	{
@@ -108,6 +108,12 @@ int		manage_flags(t_env *e)
 		if (e->conversion == 'x' || e->conversion == 'X')
 			e->outputlen += 2;
 		else if (e->conversion == 'o')
+			e->outputlen++;
+	}
+	if (e->plus && (e->conversion == 'd' || e->conversion == 'i' 
+			|| e->conversion == 'p'))
+	{
+		if (ispos)
 			e->outputlen++;
 	}
 	return (0);
@@ -146,95 +152,99 @@ int		manage_field_width(t_env *e)
 **	conversion according to the env parameters, taking into account the rules and
 **	exceptions specified in the printf(3) manual.
 **	A call to va_arg() fetches the value of the next printf() argument into the
-**	relevant variable in the param structure according to its type.
+**	relevant variable in the e->param->structure according to its type.
 **	Then the field width and precision management functions are called, before
 **	printing the value on the standard output.
 */
 int		convert(va_list *ap, t_env *e)
 {
-	t_param	param;
-
 	if (e->conversion == 'd' || e->conversion == 'i')
 	{
-		param.d = (int)va_arg(*ap, int);
-		e->outputlen = ft_strlen(ft_itoa(param.d));
+		e->param->d = (int)va_arg(*ap, int);
+		e->outputlen = ft_strlen(ft_itoa(e->param->d));
 
-//		printf("\nAddress param.d = %p\n", &(param.d));
+//		printf("\nAddress e->param->d = %p\n", &(e->param->d));
 //		Experimental
-		apply_lenmod(e, &(param.d));	
-//		printf("param.d = %d\n", param.d);
-//		printf("Address param.d = %p\n", &(param.d));
+		apply_lenmod(e, &(e->param->d));	
+//		printf("e->param->d = %d\n", e->param->d);
+//		printf("Address e->param->d = %p\n", &(e->param->d));
 
 //		NEW
-		manage_flags(e);
+		manage_flags((e->param->d > 0), e);
 
 		manage_field_width(e);
-		manage_precision(&(param.d), (param.d < 0), e);
-		ft_putnbr(param.d);
+		manage_precision(&(e->param->d), (e->param->d < 0), e);
+		if (e->plus && e->param->d > 0)
+			ft_putchar('+');
+		ft_putnbr(e->param->d);
 	}
 	else if (e->conversion == 'u')
 	{
-		param.u = (unsigned int)va_arg(*ap, int);
-		e->outputlen = ft_strlen(ft_itoa_ll(param.u, 10));
+		e->param->u = (unsigned int)va_arg(*ap, int);
+		e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 10));
 		manage_field_width(e);
-		manage_precision(&(param.u), 0, e);
-		ft_putnbr_ull(param.u);
+		manage_precision(&(e->param->u), 0, e);
+		ft_putnbr_ull(e->param->u);
 	}
 	else if (e->conversion == 'c')
 	{
-		param.c = (unsigned char)va_arg(*ap, int);
-		ft_putchar(param.c);
+		e->param->c = (unsigned char)va_arg(*ap, int);
+		ft_putchar(e->param->c);
 	}
 	else if (e->conversion == 's')
 	{
-		param.s = (char*)va_arg(*ap, char*);
-		e->outputlen = ft_strlen(param.s);
+		if (e->plus)
+			ft_putendl_fd("\nError : '+' flag used with '%s'", 2);
+		e->param->s = (char*)va_arg(*ap, char*);
+		e->outputlen = ft_strlen(e->param->s);
 		if (e->outputlen < e->field_width)
 			manage_field_width(e);
 		if (e->precisflag)
-			param.s = manage_precision_s(param.s, e);
-		ft_putstr(param.s);
+			e->param->s = manage_precision_s(e->param->s, e);
+		ft_putstr(e->param->s);
 	}
 	else if (e->conversion == 'o')
 	{
-		param.u = (unsigned int)va_arg(*ap, int);
-		e->outputlen = ft_strlen(ft_itoa_ll(param.u, 8));
-		manage_flags(e);
+		e->param->u = (unsigned int)va_arg(*ap, int);
+		e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 8));
+		manage_flags(e->param->u > 0, e);
 		manage_field_width(e);
-		manage_precision(&(param.d), 0, e);
-		if (e->alt && param.u)
+		manage_precision(&(e->param->d), 0, e);
+		if (e->alt && e->param->u)
 			ft_putchar('0');
-		ft_putoctal(param.u);
+		ft_putoctal(e->param->u);
 	}
 	else if (e->conversion == 'x')
 	{
-		param.d = (int)va_arg(*ap, int);
+		e->param->d = (int)va_arg(*ap, int);
 		e->outputlen = 8;
 		manage_field_width(e);
-		manage_precision(&(param.d), 0, e);
-		if (e->alt && param.d)
+		manage_precision(&(e->param->d), 0, e);
+		if (e->alt && e->param->d)
 			ft_putstr("0x");
-		ft_puthex(param.d, "min");
+		ft_puthex(e->param->d, "min");
 	}
 	else if (e->conversion == 'X')
 	{
-		param.d = (int)va_arg(*ap, int);
+		e->param->d = (int)va_arg(*ap, int);
 		e->outputlen = 8;
 		manage_field_width(e);
-		manage_precision(&(param.d), 0, e);
-		if (e->alt && param.d)
+		manage_precision(&(e->param->d), 0, e);
+		if (e->alt && e->param->d)
 			ft_putstr("0X");
-		ft_puthex(param.d, "maj");
+		ft_puthex(e->param->d, "maj");
 	}
 	else if (e->conversion == 'p')
 	{
-		param.l = (unsigned long long int)va_arg(*ap, void*);
-		if (!param.l)
+		e->param->l = (unsigned long long int)va_arg(*ap, void*);
+		if (!e->param->l)
 			ft_putstr("(nil)");
 		else
 		{
+			if (e->plus && e->param->l > 0)
+				ft_putchar('+');
 			ft_putstr("0x");
-			ft_puthex_ull(param.l, "min");
+			ft_puthex_ull(e->param->l, "min");
 		}
 	}
 	else if (e->conversion == '%')
@@ -267,7 +277,11 @@ int	get_flags(const char *restrict format, t_env *e)
 	else if (format[e->index] == ' ')
 		e->space = 1;
 	else if (format[e->index] == '+')
+	{
+		if (e->space)
+			e->space = 0;
 		e->plus = 1;
+	}
 	else
 		return (1);
 	e->index++;

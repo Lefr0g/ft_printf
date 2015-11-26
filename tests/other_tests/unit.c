@@ -28,7 +28,7 @@ void	visu_compare(char *str, void *arg)
 	ft_putstr(str);
 	ft_putstr("\033[0m");
 	ft_putendl("'");
-	ft_putchar('\n');
+//	ft_putchar('\n');
 
 	printf(pf_str, *(int*)arg);
 	ft_printf(ftpf_str, *(int*)arg);
@@ -40,6 +40,15 @@ int	main(void)
 	int	i = 42;
 
 	visu_compare("%d", &i);
+	visu_compare("%5d", &i);
+	visu_compare("%0d", &i);
 	visu_compare("%05d", &i);
+	visu_compare("%+d", &i);
+	visu_compare("%+5d", &i);
+
+	visu_compare("%#5x", &i);
+	i = 0;
+	visu_compare("%#5x", &i);
+
 	return (0);
 }

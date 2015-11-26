@@ -25,6 +25,7 @@ int	ft_printf_reinit(t_env *e)
 	ft_strcpy(e->mod, "\0\0\0");
 	e->conversion = '\0';
 	e->spacer = ' ';
+	e->outputlen = 0;
 	return (0);
 }
 
@@ -45,5 +46,6 @@ int	ft_printf_init(t_env *e)
 	ft_strcpy(e->mod, "\0\0\0");
 	e->conversion = '\0';
 	e->spacer = ' ';
+	e->outputlen = 0;
 	return (0);
 }

@@ -42,6 +42,7 @@ typedef struct	s_env
 	int			field_width;
 	int			precisflag;
 	int			precision;
+	int			outputlen;
 	char		*mod;
 	char		conversion;
 	char		spacer;
@@ -54,6 +55,8 @@ int				ft_printf_reinit(t_env *e);
 int				directives(const char *restrict format, va_list *ap, t_env *e);
 int				convert(va_list *ap, t_env *e);
 
+int				get_flags(const char *restrict format, t_env *e);
+
 void			ft_puthex(unsigned int n, char *mode);
 void			ft_puthex_ull(unsigned long long int n, char *mode);
 void			ft_putoctal(unsigned int n);
@@ -61,8 +64,12 @@ void			ft_putoctal(unsigned int n);
 void			ft_putnbr_ull(unsigned long long int n);
 char			*ft_itoa_ll(long long int n, unsigned int base);
 
-int				manage_field_width(int outputlen, t_env *e);
-int				manage_precision(void *value, int outputlen, int isneg, t_env *e);
+int				manage_field_width(t_env *e);
+int				manage_precision(void *value, int isneg, t_env *e);
+//	NEW
+int				manage_flags(t_env *e);
+
+
 char			*manage_precision_s(char *str, t_env *e);
 
 int				get_max(int a, int b);

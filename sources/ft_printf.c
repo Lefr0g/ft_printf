@@ -71,14 +71,14 @@ void	apply_lenmod(t_env *e, void *arg)
 //	printf("Address arg = %p\n", arg);
 }
 
-int		manage_precision(void *value, int outputlen, int isneg, t_env *e)
+int		manage_precision(void *value, int isneg, t_env *e)
 {
 	int	i;
 
 	if (!e->precisflag)
 		return (0);
 	i = e->precision;
-	while (i && i - outputlen > 0)
+	while (i && i - e->outputlen > 0)
 	{
 		if (isneg)
 		{
@@ -92,6 +92,23 @@ int		manage_precision(void *value, int outputlen, int isneg, t_env *e)
 			ft_putchar('0');
 			i--;
 		}
+	}
+	return (0);
+}
+
+int		manage_flags(t_env *e)
+{
+	if (e->zero)
+	{
+		if (!e->neg && ft_strnequ(&e->conversion, "diouxX", 1))
+			e->spacer = '0';
+	}
+	if (e->alt)
+	{
+		if (e->conversion == 'x' || e->conversion == 'X')
+			e->outputlen += 2;
+		else if (e->conversion == 'o')
+			e->outputlen++;
 	}
 	return (0);
 }
@@ -111,12 +128,12 @@ char	*manage_precision_s(char *str, t_env *e)
 	return (str);
 }
 
-int		manage_field_width(int outputlen, t_env *e)
+int		manage_field_width(t_env *e)
 {
 	int	i;
 
 	i = e->field_width;
-	while (i && i - get_max(outputlen, e->precision) > 0)
+	while (i && i - get_max(e->outputlen, e->precision) > 0)
 	{
 		ft_putchar(e->spacer);
 		i--;
@@ -125,9 +142,9 @@ int		manage_field_width(int outputlen, t_env *e)
 }
 
 /*
-**	This function, called from the directive() function, implements the conversion
-**	according to the env parameters, taking into account the rules and exceptions
-**	specified in the printf(3) manual.
+**	This function, called from the directive() function, implements the
+**	conversion according to the env parameters, taking into account the rules and
+**	exceptions specified in the printf(3) manual.
 **	A call to va_arg() fetches the value of the next printf() argument into the
 **	relevant variable in the param structure according to its type.
 **	Then the field width and precision management functions are called, before
@@ -140,25 +157,27 @@ int		convert(va_list *ap, t_env *e)
 	if (e->conversion == 'd' || e->conversion == 'i')
 	{
 		param.d = (int)va_arg(*ap, int);
+		e->outputlen = ft_strlen(ft_itoa(param.d));
 
 //		printf("\nAddress param.d = %p\n", &(param.d));
 //		Experimental
-		apply_lenmod(e, &(param.d));
-		
+		apply_lenmod(e, &(param.d));	
 //		printf("param.d = %d\n", param.d);
 //		printf("Address param.d = %p\n", &(param.d));
 
-//
+//		NEW
+		manage_flags(e);
 
-		manage_field_width(ft_strlen(ft_itoa(param.d)), e);
-		manage_precision(&(param.d), ft_strlen(ft_itoa(param.d)), (param.d < 0), e);
+		manage_field_width(e);
+		manage_precision(&(param.d), (param.d < 0), e);
 		ft_putnbr(param.d);
 	}
 	else if (e->conversion == 'u')
 	{
 		param.u = (unsigned int)va_arg(*ap, int);
-		manage_field_width(ft_strlen(ft_itoa_ll(param.u, 10)), e);
-		manage_precision(&(param.u), ft_strlen(ft_itoa_ll(param.u, 10)), 0, e);
+		e->outputlen = ft_strlen(ft_itoa_ll(param.u, 10));
+		manage_field_width(e);
+		manage_precision(&(param.u), 0, e);
 		ft_putnbr_ull(param.u);
 	}
 	else if (e->conversion == 'c')
@@ -169,8 +188,9 @@ int		convert(va_list *ap, t_env *e)
 	else if (e->conversion == 's')
 	{
 		param.s = (char*)va_arg(*ap, char*);
-		if (ft_strlen(param.s) < (size_t)e->field_width)
-			manage_field_width(ft_strlen(param.s), e);
+		e->outputlen = ft_strlen(param.s);
+		if (e->outputlen < e->field_width)
+			manage_field_width(e);
 		if (e->precisflag)
 			param.s = manage_precision_s(param.s, e);
 		ft_putstr(param.s);
@@ -178,22 +198,32 @@ int		convert(va_list *ap, t_env *e)
 	else if (e->conversion == 'o')
 	{
 		param.u = (unsigned int)va_arg(*ap, int);
-		manage_field_width(ft_strlen(ft_itoa_ll(param.u, 8)), e);
-		manage_precision(&(param.d), ft_strlen(ft_itoa_ll(param.u, 8)), 0, e);
+		e->outputlen = ft_strlen(ft_itoa_ll(param.u, 8));
+		manage_flags(e);
+		manage_field_width(e);
+		manage_precision(&(param.d), 0, e);
+		if (e->alt && param.u)
+			ft_putchar('0');
 		ft_putoctal(param.u);
 	}
 	else if (e->conversion == 'x')
 	{
 		param.d = (int)va_arg(*ap, int);
-		manage_field_width(8, e);
-		manage_precision(&(param.d), 8, 0, e);
+		e->outputlen = 8;
+		manage_field_width(e);
+		manage_precision(&(param.d), 0, e);
+		if (e->alt && param.d)
+			ft_putstr("0x");
 		ft_puthex(param.d, "min");
 	}
 	else if (e->conversion == 'X')
 	{
 		param.d = (int)va_arg(*ap, int);
-		manage_field_width(8, e);
-		manage_precision(&(param.d), 8, 0, e);
+		e->outputlen = 8;
+		manage_field_width(e);
+		manage_precision(&(param.d), 0, e);
+		if (e->alt && param.d)
+			ft_putstr("0X");
 		ft_puthex(param.d, "maj");
 	}
 	else if (e->conversion == 'p')
@@ -219,7 +249,7 @@ int		convert(va_list *ap, t_env *e)
 **	format[] index upon success.
 **	Called from the directive() function.
 */
-int	check_flags(const char *restrict format, t_env *e)
+int	get_flags(const char *restrict format, t_env *e)
 {
 	int	i;
 
@@ -230,7 +260,10 @@ int	check_flags(const char *restrict format, t_env *e)
 	else if (format[e->index] == '0')
 		e->zero = 1;
 	else if (format[e->index] == '-')
+	{
+		e->zero = 0;
 		e->neg = 1;
+	}
 	else if (format[e->index] == ' ')
 		e->space = 1;
 	else if (format[e->index] == '+')
@@ -242,8 +275,10 @@ int	check_flags(const char *restrict format, t_env *e)
 }
 
 /*
-**	This function sets the env variables according to the relevant flags,
-**	field width, precision, lenght modifiers and conversion specifications.
+**	This function sets the env variables by parsing the current conversion 
+**	parameters : flags, field width, precision, lenght modifiers and 
+**	conversion specifications.
+**	
 **	It also checks for invalid directive character, and writes a message on
 **	stderr in this case.
 **	If the next directive is NOT a conversion specifier, the function calls
@@ -253,8 +288,8 @@ int	check_flags(const char *restrict format, t_env *e)
 */
 int	directives(const char *restrict format, va_list *ap, t_env *e)
 {
-	check_flags(format, e);
-	if (ft_isdigit(format[e->index]))
+	get_flags(format, e);
+	if (ft_isdigit(format[e->index]) && format[e->index])
 	{
 		e->field_width = ft_atoi(&format[e->index]);
 		e->index += ft_strlen(ft_itoa(e->field_width));
@@ -265,7 +300,7 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 		if (ft_isdigit(format[e->index + 1]))
 		{
 			e->precision = ft_atoi(&format[e->index + 1]);
-			e->index += ft_strlen(ft_itoa(e->precision)) + 1;
+			e->index += ft_strlen(&format[e->index + 1]);
 		}
 		else
 		{

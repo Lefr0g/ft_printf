@@ -48,6 +48,7 @@ LIBFTHEADERS = $(addprefix $(LIBFTINCLUDIR), $(LIBFTHDRS))
 LIBFTSRCS = ft_atoi.c ft_isdigit.c ft_itoa.c ft_putchar.c ft_putendl.c \
 			ft_putendl_fd.c ft_putchar_fd.c \
 			ft_putstr.c ft_putnbr.c ft_strcmp.c ft_strdup.c ft_strlen.c \
+			ft_strnequ.c ft_strncmp.c \
 			ft_isascii.c ft_isprint.c ft_strcpy.c ft_strnew.c ft_memalloc.c \
 			ft_bzero.c ft_memset.c ft_strchr.c ft_strncpy.c ft_memmove.c \
 			ft_memcpy.c

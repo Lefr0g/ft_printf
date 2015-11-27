@@ -14,7 +14,7 @@
 
 void	convert_di(va_list *ap, t_env *e)
 {
-	if (!e->mod)
+	if (!e->mod[0])
 		e->param->i = (int)va_arg(*ap, int);
 	else if (!ft_strcmp(e->mod, "hh"))
 		e->param->sc = (int)va_arg(*ap, int);
@@ -22,13 +22,13 @@ void	convert_di(va_list *ap, t_env *e)
 		e->param->sh = (int)va_arg(*ap, int);
 	else if (!ft_strcmp(e->mod, "l"))
 		e->param->l = (long)va_arg(*ap, long);
-	if (!ft_strcmp(e->mod, "ll"))
+	else if (!ft_strcmp(e->mod, "ll"))
 		e->param->ll = (long long)va_arg(*ap, long long);
 	else if (!ft_strcmp(e->mod, "j"))
 		e->param->imax = (intmax_t)va_arg(*ap, intmax_t);
 	else if (!ft_strcmp(e->mod, "z"))
 		e->param->l = (long)va_arg(*ap, long);
-
+	
 	e->outputlen = ft_strlen(ft_itoa(e->param->i));
 
 	manage_flags((e->param->i > 0), e);
@@ -39,7 +39,7 @@ void	convert_di(va_list *ap, t_env *e)
 	
 	if (e->plus && e->param->i > 0)
 		ft_putchar('+');
-
+	
 	manage_print(e);
 }
 
@@ -53,7 +53,7 @@ void	convert_uU(va_list *ap, t_env *e)
 	}
 	else
 	{
-		if (!e->mod)
+		if (!e->mod[0])
 			e->param->u = (unsigned int)va_arg(*ap, unsigned int);
 		else if (!ft_strcmp(e->mod, "hh"))
 			e->param->uc = (unsigned int)va_arg(*ap, unsigned int);
@@ -61,7 +61,7 @@ void	convert_uU(va_list *ap, t_env *e)
 			e->param->ush = (unsigned int)va_arg(*ap, unsigned int);
 		else if (!ft_strcmp(e->mod, "l"))
 			e->param->ul = (unsigned long)va_arg(*ap, unsigned long);
-		if (!ft_strcmp(e->mod, "ll"))
+		else if (!ft_strcmp(e->mod, "ll"))
 			e->param->ull = (unsigned long long)va_arg(*ap, unsigned long long);
 		else if (!ft_strcmp(e->mod, "j"))
 			e->param->uimax = (uintmax_t)va_arg(*ap, uintmax_t);

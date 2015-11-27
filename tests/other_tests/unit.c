@@ -37,7 +37,7 @@ void	visu_compare(char *str, void *arg)
 
 int	main(void)
 {
-	int	i = -42;
+	int	i = 42;
 
 	visu_compare("%d", &i);
 	visu_compare("%5d", &i);

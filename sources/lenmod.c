@@ -81,8 +81,8 @@ void	manage_print(t_env *e)
 		else
 			ft_putchar(e->param->c);
 	}
-	if (e->conversion == 'u')
+	else if (e->conversion == 'u')
 		ft_putnbr_ull(e->param->u);
-	if (e->conversion == 'd' || e->conversion == 'i')
+	else if (e->conversion == 'd' || e->conversion == 'i')
 		ft_putnbr(e->param->i);
 }

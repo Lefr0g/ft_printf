@@ -26,6 +26,7 @@
 # include <stdlib.h>
 # include "linkto_libft.h"
 # include <wchar.h>
+# include <inttypes.h>
 
 typedef union	u_param
 {
@@ -37,7 +38,7 @@ typedef union	u_param
 	long				l;
 	unsigned long		ul;
 	long long			ll;
-	unsigned long long	ll;
+	unsigned long long	ull;
 	char				c;
 	signed char			sc;
 	unsigned char		uc;
@@ -78,6 +79,7 @@ int				directives(const char *restrict format, va_list *ap, t_env *e);
 int				convert(va_list *ap, t_env *e);
 void			convert_di(va_list *ap, t_env *e);
 void			convert_uU(va_list *ap, t_env *e);
+void			convert_cC(va_list *ap, t_env *e);
 
 
 int				get_flags(const char *restrict format, t_env *e);
@@ -98,7 +100,7 @@ int				manage_flags(int ispos, t_env *e);
 void			*manage_lenmod(va_list *ap, t_env *e);
 
 //	NEW
-void			manage_print(t_env e);
+void			manage_print(t_env *e);
 
 
 char			*manage_precision_s(char *str, t_env *e);

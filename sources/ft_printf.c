@@ -142,30 +142,30 @@ int		convert(va_list *ap, t_env *e)
 		e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 8));
 		manage_flags(e->param->u > 0, e);
 		manage_field_width(e);
-		manage_precision(&(e->param->d), 0, e);
+		manage_precision(&(e->param->i), 0, e);
 		if (e->alt && e->param->u)
 			ft_putchar('0');
 		ft_putoctal(e->param->u);
 	}
 	else if (e->conversion == 'x')
 	{
-		e->param->d = va_arg(*ap, int);
+		e->param->i = va_arg(*ap, int);
 		e->outputlen = 8;
 		manage_field_width(e);
-		manage_precision(&(e->param->d), 0, e);
-		if (e->alt && e->param->d)
+		manage_precision(&(e->param->i), 0, e);
+		if (e->alt && e->param->i)
 			ft_putstr("0x");
-		ft_puthex(e->param->d, "min");
+		ft_puthex(e->param->i, "min");
 	}
 	else if (e->conversion == 'X')
 	{
-		e->param->d = (int)va_arg(*ap, int);
+		e->param->i = (int)va_arg(*ap, int);
 		e->outputlen = 8;
 		manage_field_width(e);
-		manage_precision(&(e->param->d), 0, e);
-		if (e->alt && e->param->d)
+		manage_precision(&(e->param->i), 0, e);
+		if (e->alt && e->param->i)
 			ft_putstr("0X");
-		ft_puthex(e->param->d, "maj");
+		ft_puthex(e->param->i, "maj");
 	}
 	else if (e->conversion == 'p')
 	{

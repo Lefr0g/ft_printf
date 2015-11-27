@@ -12,6 +12,7 @@
 
 #include "ft_printf.h"
 
+/*
 void	*manage_lenmod(va_list *ap, t_env *e)
 {
 	void	*dst;
@@ -22,8 +23,8 @@ void	*manage_lenmod(va_list *ap, t_env *e)
 	if (!dst)
 		return (NULL);
 
-/*	Ne semble pas fonctionner sans casting en int
- *
+*	Ne semble pas fonctionner sans casting en int
+*
 	if (sizeof(*arg) != sizeof(int))
 	{
 		ft_putstr("\nError > argument is not an int\n");
@@ -32,7 +33,7 @@ void	*manage_lenmod(va_list *ap, t_env *e)
 		ft_putstr(" bytes\n");
 		exit(1);
 	}
-*/
+*
 
 //	printf("Address arg = %p\n", arg);
 	
@@ -64,7 +65,7 @@ void	*manage_lenmod(va_list *ap, t_env *e)
 
 	return();
 }
-
+*/
 
 // TO DO : FINIR CETTE VERSION !
 //
@@ -75,7 +76,8 @@ void	manage_print(t_env *e)
 	if (e->conversion == 'c')
 	{
 		if (e->mod[0] == 'l' )
-			ft_putchar_wchar_t(e->param->wc);
+//			ft_putchar_wchar_t(e->param->wc);
+			ft_putchar(e->param->wc);
 		else
 			ft_putchar(e->param->c);
 	}

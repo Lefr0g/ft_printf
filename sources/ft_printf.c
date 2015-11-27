@@ -66,7 +66,7 @@ void	apply_lenmod(t_env *e, void *arg)
 		ft_memmove(dst, arg, sizeof(long long));
 		ft_memcpy(arg, dst, sizeof(long long));
 	}
-
+	free(dst);
 //	printf("\narg = %d, dst = %d\n", *(int*)arg, *(int*)dst);
 //	printf("Address arg = %p\n", arg);
 }
@@ -160,7 +160,7 @@ int		convert(va_list *ap, t_env *e)
 {
 	if (e->conversion == 'd' || e->conversion == 'i')
 	{
-		e->param->d = (int)va_arg(*ap, int);
+		e->param->d = va_arg(*ap, int);
 		e->outputlen = ft_strlen(ft_itoa(e->param->d));
 
 //		printf("\nAddress e->param->d = %p\n", &(e->param->d));
@@ -178,13 +178,24 @@ int		convert(va_list *ap, t_env *e)
 			ft_putchar('+');
 		ft_putnbr(e->param->d);
 	}
-	else if (e->conversion == 'u')
+	else if (e->conversion == 'u' || e->conversion == 'U')
 	{
-		e->param->u = (unsigned int)va_arg(*ap, int);
+		if (e->conversion == 'U')
+			e->mod = ft_strdup("l");
+		e->param->u = va_arg(*ap, unsigned int);
 		e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 10));
 		manage_field_width(e);
 		manage_precision(&(e->param->u), 0, e);
 		ft_putnbr_ull(e->param->u);
+	}
+	else if (e->conversion == 'U')
+	{
+		e->param->l = va_arg(*ap, long int);
+		e->outputlen = ft_strlen(ft_itoa_ll(e->param->l, 10));
+		manage_field_width(e);
+		manage_precision(&(e->param->u), 0, e);
+		ft_putnbr_ull(e->param->u);
+		ft_putstr((char*)e->param->l);
 	}
 	else if (e->conversion == 'c')
 	{
@@ -221,7 +232,7 @@ int		convert(va_list *ap, t_env *e)
 	}
 	else if (e->conversion == 'x')
 	{
-		e->param->d = (int)va_arg(*ap, int);
+		e->param->d = va_arg(*ap, int);
 		e->outputlen = 8;
 		manage_field_width(e);
 		manage_precision(&(e->param->d), 0, e);
@@ -376,7 +387,11 @@ int	ft_printf(const char *restrict format, ...)
 	t_env	e;
 	va_list	ap;
 
-	ft_printf_init(&e);
+	if(ft_printf_init(&e))
+	{
+		ft_putendl_fd("\nError : invalid conversion identifier", 2);
+		return (1);
+	}
 	va_start(ap, format);
 
 	while (format[e.index])

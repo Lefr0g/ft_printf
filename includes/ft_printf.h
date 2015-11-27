@@ -13,6 +13,14 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# ifdef __APPLE__
+#  define SYS_OS "darwin"
+# elif __linux__
+#  define SYS_OS "linux"
+# else
+#  define SYS_OS "unknown"
+# endif
+
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -32,6 +40,7 @@ typedef union	u_param
 
 typedef struct	s_env
 {
+	char		*os;
 	t_param		*param;
 	int			index;
 	char		*lenmods;

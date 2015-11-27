@@ -24,53 +24,6 @@ int	get_max(int a, int b)
 	return (a);
 }
 
-
-void	apply_lenmod(t_env *e, void *arg)
-{
-	void	*dst;
-
-//	if (!e->mod)
-//		return (*(int*)arg);
-	dst = ft_memalloc(16);
-/*	Ne semble pas fonctionner sans casting en int
- *
-	if (sizeof(*arg) != sizeof(int))
-	{
-		ft_putstr("\nError > argument is not an int\n");
-		ft_putstr("sizeof(*arg) = ");
-		ft_putnbr(sizeof(*arg));
-		ft_putstr(" bytes\n");
-		exit(1);
-	}
-*/
-
-//	printf("Address arg = %p\n", arg);
-	
-	if (!ft_strcmp(e->mod, "hh"))
-	{
-		ft_memmove(dst, arg, sizeof(char));
-		ft_memcpy(arg, dst, sizeof(int));
-	}
-	else if (!ft_strcmp(e->mod, "h"))
-	{
-		ft_memmove(dst, arg, sizeof(short));
-		ft_memcpy(arg, dst, sizeof(int));
-	}
-	else if (!ft_strcmp(e->mod, "l"))
-	{
-		ft_memmove(dst, arg, sizeof(long));
-		ft_memcpy(arg, dst, sizeof(long));
-	}
-	else if (!ft_strcmp(e->mod, "ll"))
-	{
-		ft_memmove(dst, arg, sizeof(long long));
-		ft_memcpy(arg, dst, sizeof(long long));
-	}
-	free(dst);
-//	printf("\narg = %d, dst = %d\n", *(int*)arg, *(int*)dst);
-//	printf("Address arg = %p\n", arg);
-}
-
 int		manage_precision(void *value, int isneg, t_env *e)
 {
 	int	i;
@@ -160,52 +113,16 @@ int		convert(va_list *ap, t_env *e)
 {
 	if (e->conversion == 'd' || e->conversion == 'i')
 	{
-		e->param->d = va_arg(*ap, int);
-		e->outputlen = ft_strlen(ft_itoa(e->param->d));
-
-//		printf("\nAddress e->param->d = %p\n", &(e->param->d));
-//		Experimental
-		apply_lenmod(e, &(e->param->d));	
-//		printf("e->param->d = %d\n", e->param->d);
-//		printf("Address e->param->d = %p\n", &(e->param->d));
-
-//		NEW
-		manage_flags((e->param->d > 0), e);
-
-		manage_field_width(e);
-		manage_precision(&(e->param->d), (e->param->d < 0), e);
-		if (e->plus && e->param->d > 0)
-			ft_putchar('+');
-		ft_putnbr(e->param->d);
+		convert_di(ap, e);
 	}
 	else if (e->conversion == 'u' || e->conversion == 'U')
 	{
-		if (e->conversion == 'U')
-			e->mod = ft_strdup("l");
-		e->param->u = va_arg(*ap, unsigned int);
-		e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 10));
-		manage_field_width(e);
-		manage_precision(&(e->param->u), 0, e);
-		ft_putnbr_ull(e->param->u);
+		convert_uU(ap, e);
 	}
-	else if (e->conversion == 'U')
+	else if (e->conversion == 'c' || e->conversion == 'C')
 	{
-		e->param->l = va_arg(*ap, long int);
-		e->outputlen = ft_strlen(ft_itoa_ll(e->param->l, 10));
-		manage_field_width(e);
-		manage_precision(&(e->param->u), 0, e);
-		ft_putnbr_ull(e->param->u);
-		ft_putstr((char*)e->param->l);
-	}
-	else if (e->conversion == 'c')
-	{
-		e->param->c = (unsigned char)va_arg(*ap, int);
-		ft_putchar(e->param->c);
-	}
-	else if (e->conversion == 'C')
-	{
-		e->param->c = (unsigned char)va_arg(*ap, int);
-		ft_putchar(e->param->c);
+		convert_cC(ap, e);
+		manage_print(e);
 	}
 	else if (e->conversion == 's')
 	{
@@ -341,7 +258,7 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 	else if (ft_strchr(e->lenmods, format[e->index]))
 	{	
 		e->mod[0] = format[e->index];
-		if (ft_strchr(e->lenmods, format[e->index + 1]))
+		if (format[e->index] == format[e->index + 1])
 		{
 			e->mod[1] = format[e->index + 1];
 			e->index++;

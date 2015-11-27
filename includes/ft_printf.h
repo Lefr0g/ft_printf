@@ -25,17 +25,27 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "linkto_libft.h"
+# include <wchar.h>
 
 typedef union	u_param
 {
-	int				d;
-	short			sh;
-	unsigned int	u;
-	long			l;
-	long long		ll;
-	char			c;
-//	unsigned char	c;
-	char			*s;
+	size_t				st;
+	int					i;
+	short				sh;
+	unsigned short		ush;
+	unsigned int		u;
+	long				l;
+	unsigned long		ul;
+	long long			ll;
+	unsigned long long	ll;
+	char				c;
+	signed char			sc;
+	unsigned char		uc;
+	wchar_t				wc;
+	wint_t				wi;
+	intmax_t			imax;
+	uintmax_t			uimax;
+	char				*s;
 }				t_param;
 
 typedef struct	s_env
@@ -64,7 +74,11 @@ int				ft_printf(const char *restrict format, ...);
 int				ft_printf_init(t_env *e);
 int				ft_printf_reinit(t_env *e);
 int				directives(const char *restrict format, va_list *ap, t_env *e);
+
 int				convert(va_list *ap, t_env *e);
+void			convert_di(va_list *ap, t_env *e);
+void			convert_uU(va_list *ap, t_env *e);
+
 
 int				get_flags(const char *restrict format, t_env *e);
 
@@ -79,6 +93,12 @@ int				manage_field_width(t_env *e);
 int				manage_precision(void *value, int isneg, t_env *e);
 //	NEW
 int				manage_flags(int ispos, t_env *e);
+
+//	NEW
+void			*manage_lenmod(va_list *ap, t_env *e);
+
+//	NEW
+void			manage_print(t_env e);
 
 
 char			*manage_precision_s(char *str, t_env *e);

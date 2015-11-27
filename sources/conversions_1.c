@@ -17,9 +17,9 @@ void	convert_di(va_list *ap, t_env *e)
 	if (!e->mod)
 		e->param->i = (int)va_arg(*ap, int);
 	else if (!ft_strcmp(e->mod, "hh"))
-		e->param->sc = (signed char)va_arg(*ap, signed char);
+		e->param->sc = (int)va_arg(*ap, int);
 	else if (!ft_strcmp(e->mod, "h"))
-		e->param->sh = (short)va_arg(*ap, short);
+		e->param->sh = (int)va_arg(*ap, int);
 	else if (!ft_strcmp(e->mod, "l"))
 		e->param->l = (long)va_arg(*ap, long);
 	if (!ft_strcmp(e->mod, "ll"))
@@ -56,9 +56,9 @@ void	convert_uU(va_list *ap, t_env *e)
 		if (!e->mod)
 			e->param->u = (unsigned int)va_arg(*ap, unsigned int);
 		else if (!ft_strcmp(e->mod, "hh"))
-			e->param->uc = (unsigned char)va_arg(*ap, unsigned char);
+			e->param->uc = (unsigned int)va_arg(*ap, unsigned int);
 		else if (!ft_strcmp(e->mod, "h"))
-			e->param->ush = (unsigned short)va_arg(*ap, unsigned short);
+			e->param->ush = (unsigned int)va_arg(*ap, unsigned int);
 		else if (!ft_strcmp(e->mod, "l"))
 			e->param->ul = (unsigned long)va_arg(*ap, unsigned long);
 		if (!ft_strcmp(e->mod, "ll"))

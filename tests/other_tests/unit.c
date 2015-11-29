@@ -13,7 +13,7 @@
 # include "ft_printf.h"
 # include <stdio.h>
 
-void	visu_compare(char *str, void *arg)
+void	visu_compare(char *str, void *arg, char* type)
 {
 	char	*pf_str;
 	char	*ftpf_str;
@@ -30,41 +30,53 @@ void	visu_compare(char *str, void *arg)
 	ft_putendl("'");
 //	ft_putchar('\n');
 
-	printf(pf_str, *(int*)arg);
-	ft_printf(ftpf_str, *(int*)arg);
+	if (!ft_strcmp(type, "int"))
+	{
+		printf(pf_str, *(int*)arg);
+		ft_printf(ftpf_str, *(int*)arg);
+	}
+	else if (!ft_strcmp(type, "char*"))
+	{
+		printf(pf_str, (char*)arg);
+		ft_printf(ftpf_str, (char*)arg);
+	}
 	ft_putchar('\n');
 }
 
 int	main(void)
 {
-	int	i = 42;
+	int		i = 42;
+	char	*str;
 
-	visu_compare("%d", &i);
-	visu_compare("%5d", &i);
-	visu_compare("%0d", &i);
-	visu_compare("%05d", &i);
-	visu_compare("%+d", &i);
-	visu_compare("%+5d", &i);
+	str = ft_strdup("String test OK");
+
+	visu_compare("%d", &i, "int");
+	visu_compare("%5d", &i, "int");
+	visu_compare("%0d", &i, "int");
+	visu_compare("%05d", &i, "int");
+	visu_compare("%+d", &i, "int");
+	visu_compare("%+5d", &i, "int");
 
 	ft_putstr("=================================================\n");
 	
-//	printf("%+s", "check\n");
-//	visu_compare("%+s", &i);
-//	visu_compare("%+S", &i);
-	visu_compare("%+p", &i);
-	visu_compare("%+d", &i);
-	visu_compare("%+D", &i);
-	visu_compare("%+i", &i);
-	visu_compare("%+o", &i);
-	visu_compare("%+O", &i);
-	visu_compare("%+u", &i);
-	visu_compare("%+U", &i);
-	visu_compare("%+x", &i);
-	visu_compare("%+X", &i);
-	visu_compare("%+c", &i);
-	visu_compare("%+C", &i);
+//	printf("%s", "check\n");
+	visu_compare("%s", str, "char*");
+	visu_compare("%+s", str, "char*");
+//	visu_compare("%+S", &i, "int");
+	visu_compare("%+p", &i, "int");
+	visu_compare("%+d", &i, "int");
+	visu_compare("%+D", &i, "int");
+	visu_compare("%+i", &i, "int");
+	visu_compare("%+o", &i, "int");
+	visu_compare("%+O", &i, "int");
+	visu_compare("%+u", &i, "int");
+	visu_compare("%+U", &i, "int");
+	visu_compare("%+x", &i, "int");
+	visu_compare("%+X", &i, "int");
+	visu_compare("%+c", &i, "int");
+	visu_compare("%+C", &i, "int");
 
-//	visu_compare("%#5x", &i);
+//	visu_compare("%#5x", &i, "int");
 
 	return (0);
 }

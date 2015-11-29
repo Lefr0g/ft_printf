@@ -126,9 +126,11 @@ int		convert(va_list *ap, t_env *e)
 	}
 	else if (e->conversion == 's')
 	{
-		if (e->plus)
-			ft_putendl_fd("\nError : '+' flag used with '%s'", 2);
-		e->param->s = (char*)va_arg(*ap, char*);
+//		if (e->plus)
+//			ft_putendl_fd("\nError : '+' flag used with s conversion", 2);
+		e->param->s = ft_strdup((char*)va_arg(*ap, char*));
+		if (!e->param->s)
+			ft_putendl_fd("\nError : string copy failed", 2);
 		e->outputlen = ft_strlen(e->param->s);
 		if (e->outputlen < e->field_width)
 			manage_field_width(e);

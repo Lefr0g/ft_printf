@@ -12,6 +12,7 @@
 
 # include "ft_printf.h"
 # include <stdio.h>
+# include <limits.h>
 
 void	visu_compare(char *str, void *arg, char* type)
 {
@@ -50,7 +51,7 @@ void	visu_compare(char *str, void *arg, char* type)
 
 int	main(void)
 {
-	int		i = 42;
+	int		i = 6324;
 	char	c;
 	char	*str;
 
@@ -71,6 +72,7 @@ int	main(void)
 
 	ft_putstr("=================================================\n");
 	(void)str;
+	(void)c;
 /*
 	visu_compare("%i", &i, "int");
 	visu_compare("%5i", &i, "int");
@@ -80,10 +82,8 @@ int	main(void)
 	visu_compare("%+i", &i, "int");
 	visu_compare("%+5i", &i, "int");
 	*/
-
-	ft_printf("Char = %c\n", c);
-	visu_compare("%+c", &c, "char");
-	visu_compare("%s", str, "char*");
+	visu_compare("%#o", &i, "int");
+	visu_compare("%0o", &i, "int");
 
 /*
 ------------------------------------------

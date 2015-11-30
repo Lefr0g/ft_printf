@@ -12,6 +12,26 @@
 
 #include "ft_printf.h"
 
+void	manage_modifiers_ouxX(va_list *ap, t_env *e)
+{
+		if (!e->mod[0])
+			e->param->u = (unsigned int)va_arg(*ap, unsigned int);
+		else if (!ft_strcmp(e->mod, "hh"))
+			e->param->uc = (unsigned int)va_arg(*ap, unsigned int);
+		else if (!ft_strcmp(e->mod, "h"))
+			e->param->ush = (unsigned int)va_arg(*ap, unsigned int);
+		else if (!ft_strcmp(e->mod, "l"))
+			e->param->ul = (unsigned long)va_arg(*ap, unsigned long);
+		else if (!ft_strcmp(e->mod, "ll"))
+			e->param->ull = (unsigned long long)va_arg(*ap, unsigned long long);
+		else if (!ft_strcmp(e->mod, "j"))
+			e->param->uimax = (uintmax_t)va_arg(*ap, uintmax_t);
+		else if (!ft_strcmp(e->mod, "z"))
+			e->param->st = (size_t)va_arg(*ap, size_t);
+
+
+}
+
 void	convert_di(va_list *ap, t_env *e)
 {
 	if (!e->mod[0])
@@ -53,21 +73,8 @@ void	convert_uU(va_list *ap, t_env *e)
 	}
 	else
 	{
-		if (!e->mod[0])
-			e->param->u = (unsigned int)va_arg(*ap, unsigned int);
-		else if (!ft_strcmp(e->mod, "hh"))
-			e->param->uc = (unsigned int)va_arg(*ap, unsigned int);
-		else if (!ft_strcmp(e->mod, "h"))
-			e->param->ush = (unsigned int)va_arg(*ap, unsigned int);
-		else if (!ft_strcmp(e->mod, "l"))
-			e->param->ul = (unsigned long)va_arg(*ap, unsigned long);
-		else if (!ft_strcmp(e->mod, "ll"))
-			e->param->ull = (unsigned long long)va_arg(*ap, unsigned long long);
-		else if (!ft_strcmp(e->mod, "j"))
-			e->param->uimax = (uintmax_t)va_arg(*ap, uintmax_t);
-		else if (!ft_strcmp(e->mod, "z"))
-			e->param->st = (size_t)va_arg(*ap, size_t);
-
+		manage_modifiers_ouxX(ap, e);
+		
 		e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 10));
 		
 		manage_field_width(e);
@@ -94,14 +101,28 @@ void	convert_cC(va_list *ap, t_env *e)
 	}
 	manage_print_all(e);
 }
-/*
-void	convert_U()
+
+void	convert_oO(va_list *ap, t_env *e)
 {
-	e->param->l = va_arg(*ap, long int);
-	e->outputlen = ft_strlen(ft_itoa_ll(e->param->l, 10));
-	manage_field_width(e);
-	manage_precision(&(e->param->u), 0, e);
-	ft_putnbr_ull(e->param->u);
-	ft_putstr((char*)e->param->l);
+	if (e->conversion == 'O')
+	{
+		e->conversion = 'o';
+		e->mod[0] = 'l';
+		convert_oO(ap, e);
+	}
+	else
+	{
+		manage_modifiers_ouxX(ap, e);
+		
+		manage_flags(0, e);
+//	
+		e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 8));
+		
+		manage_field_width(e);
+		
+		manage_precision(&(e->param->u), 0, e);
+		
+		manage_print_all(e);
+	}
+
 }
-*/

@@ -35,12 +35,17 @@ int	ft_printf_reinit(t_env *e)
 */
 int	ft_printf_init(t_env *e)
 {
-	e->os = ft_strdup(SYS_OS);
-//	ft_putendl(e->os);
 	e->param = (t_param*)malloc(sizeof(t_param));
 	e->index = 0;
 	e->lenmods = ft_strdup("hljz");
-	e->conversions = ft_strdup("sSpdDioOuUxXcC%");
+	
+	e->os = ft_strdup(SYS_OS);
+//	ft_putendl(e->os);
+	if (!ft_strcmp(e->os, "Darwin"))
+		e->conversions = ft_strdup("sSpdDioOuUxXcC%");
+	else
+		e->conversions = ft_strdup("sSpdiouxXcC%");
+	
 	e->alt = 0;
 	e->zero = 0;
 	e->neg = 0;

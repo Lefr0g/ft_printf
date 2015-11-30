@@ -28,5 +28,7 @@ void	manage_print_all(t_env *e)
 	else if (e->conversion == 'u')
 		ft_putnbr_ull(e->param->u);
 	else if (e->conversion == 'd' || e->conversion == 'i')
-		ft_putnbr(e->param->i);	
+		ft_putnbr(e->param->i);
+	else if (e->conversion == 'o')
+		ft_putoctal(e->param->u);
 }

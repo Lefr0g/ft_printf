@@ -61,7 +61,15 @@ int		manage_flags(int ispos, t_env *e)
 		if (e->conversion == 'x' || e->conversion == 'X')
 			e->outputlen += 2;
 		else if (e->conversion == 'o')
-			e->outputlen++;
+		{
+			e->precisflag = 1;
+			e->precision++;
+//			e->precision = ft_strlen(ft_itoa_ll(e->param->ll, 8) + 10);
+//			ft_putstr("Debug : ");
+//			ft_itoa_ll(e->param->ll, 8);
+//			e->precision = 6;
+//			e->outputlen += 2;
+		}
 	}
 	if (e->plus && (e->conversion == 'd' || e->conversion == 'i' 
 			|| e->conversion == 'p'))
@@ -139,6 +147,7 @@ int		convert(va_list *ap, t_env *e)
 	}
 	else if (e->conversion == 'o')
 	{
+		/*
 		e->param->u = (unsigned int)va_arg(*ap, int);
 		e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 8));
 		manage_flags(e->param->u > 0, e);
@@ -147,6 +156,8 @@ int		convert(va_list *ap, t_env *e)
 		if (e->alt && e->param->u)
 			ft_putchar('0');
 		ft_putoctal(e->param->u);
+		*/
+		convert_oO(ap, e);
 	}
 	else if (e->conversion == 'x')
 	{
@@ -268,7 +279,10 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 	}
 	else if (!ft_strchr(e->conversions, format[e->index]))
 	{
-		ft_putendl_fd("\nError : invalid conversion identifier", 2);
+		if (!ft_strcmp(e->os, "linux"))
+			ft_putstr(&format[e->index - 1]);
+		else
+			ft_putendl_fd("\nError : invalid conversion identifier", 2);
 		exit(1);
 	}
 

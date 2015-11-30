@@ -46,7 +46,7 @@ char		*ft_itoa_ll(long long int n, unsigned int base)
 {
 	size_t						j;
 	int							i;
-	long long int		buf;
+	long long int				buf;
 	char						*result;
 
 	i = 1;

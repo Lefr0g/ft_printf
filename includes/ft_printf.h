@@ -100,7 +100,7 @@ int				manage_flags(int ispos, t_env *e);
 void			*manage_lenmod(va_list *ap, t_env *e);
 
 //	NEW
-void			manage_print(t_env *e);
+void			manage_print_all(t_env *e);
 
 
 char			*manage_precision_s(char *str, t_env *e);

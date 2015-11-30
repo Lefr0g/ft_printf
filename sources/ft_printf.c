@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-#include <stdio.h>
+//#include <stdio.h>
 
 /*
 **	Compares 2 ints, returns the biggest
@@ -122,7 +122,6 @@ int		convert(va_list *ap, t_env *e)
 	else if (e->conversion == 'c' || e->conversion == 'C')
 	{
 		convert_cC(ap, e);
-		manage_print(e);
 	}
 	else if (e->conversion == 's')
 	{

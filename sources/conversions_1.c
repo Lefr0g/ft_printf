@@ -40,7 +40,7 @@ void	convert_di(va_list *ap, t_env *e)
 	if (e->plus && e->param->i > 0)
 		ft_putchar('+');
 	
-	manage_print(e);
+	manage_print_all(e);
 }
 
 void	convert_uU(va_list *ap, t_env *e)
@@ -74,7 +74,7 @@ void	convert_uU(va_list *ap, t_env *e)
 		
 		manage_precision(&(e->param->u), 0, e);
 		
-		manage_print(e);
+		manage_print_all(e);
 	}
 }
 
@@ -92,7 +92,7 @@ void	convert_cC(va_list *ap, t_env *e)
 			e->param->wi = (wint_t)va_arg(*ap, wint_t);
 		e->param->i = (int)va_arg(*ap, int);
 	}
-	manage_print(e);
+	manage_print_all(e);
 }
 /*
 void	convert_U()

@@ -32,7 +32,7 @@ PRINTHEADERS = $(addprefix $(PRINTINCLUDIR), $(PRINTHDRS))
 
 PRINTSRCS = ft_printf.c ft_puthex.c ft_puthex_ull.c ft_putnbr_ull.c \
 			ft_putoctal.c ft_printf_init.c ft_itoa_ull.c \
-			lenmod.c conversions_1.c
+			manage_print.c conversions_1.c
 
 PRINTSRCDIR = sources/
 

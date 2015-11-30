@@ -35,6 +35,11 @@ void	visu_compare(char *str, void *arg, char* type)
 		printf(pf_str, *(int*)arg);
 		ft_printf(ftpf_str, *(int*)arg);
 	}
+	else if (!ft_strcmp(type, "char"))
+	{
+		printf(pf_str, *(char*)arg);
+		ft_printf(ftpf_str, *(char*)arg);
+	}
 	else if (!ft_strcmp(type, "char*"))
 	{
 		printf(pf_str, (char*)arg);
@@ -46,8 +51,10 @@ void	visu_compare(char *str, void *arg, char* type)
 int	main(void)
 {
 	int		i = 42;
+	char	c;
 	char	*str;
 
+	c = 'D';
 	str = ft_strdup("String test OK");
 
 	(void)str;
@@ -57,7 +64,6 @@ int	main(void)
 	visu_compare("%d", &i, "int");
 	visu_compare("%5d", &i, "int");
 	visu_compare("%.5d", &i, "int");
-//	/*
 	visu_compare("%0d", &i, "int");
 	visu_compare("%05d", &i, "int");
 	visu_compare("%+d", &i, "int");
@@ -65,7 +71,7 @@ int	main(void)
 
 	ft_putstr("=================================================\n");
 	(void)str;
-
+/*
 	visu_compare("%i", &i, "int");
 	visu_compare("%5i", &i, "int");
 	visu_compare("%.5i", &i, "int");
@@ -73,7 +79,11 @@ int	main(void)
 	visu_compare("%05i", &i, "int");
 	visu_compare("%+i", &i, "int");
 	visu_compare("%+5i", &i, "int");
-//	*/
+	*/
+
+	ft_printf("Char = %c\n", c);
+	visu_compare("%+c", &c, "char");
+	visu_compare("%s", str, "char*");
 
 /*
 ------------------------------------------

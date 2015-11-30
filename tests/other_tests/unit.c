@@ -50,15 +50,36 @@ int	main(void)
 
 	str = ft_strdup("String test OK");
 
+	(void)str;
+//	printf("%i\n", i);
+//	ft_printf("%i\n", i);
+	
 	visu_compare("%d", &i, "int");
 	visu_compare("%5d", &i, "int");
+	visu_compare("%.5d", &i, "int");
+//	/*
 	visu_compare("%0d", &i, "int");
 	visu_compare("%05d", &i, "int");
 	visu_compare("%+d", &i, "int");
 	visu_compare("%+5d", &i, "int");
 
 	ft_putstr("=================================================\n");
+	(void)str;
+
+	visu_compare("%i", &i, "int");
+	visu_compare("%5i", &i, "int");
+	visu_compare("%.5i", &i, "int");
+	visu_compare("%0i", &i, "int");
+	visu_compare("%05i", &i, "int");
+	visu_compare("%+i", &i, "int");
+	visu_compare("%+5i", &i, "int");
+//	*/
+
+/*
+------------------------------------------
+*/	
 	
+/*
 //	printf("%s", "check\n");
 	visu_compare("%s", str, "char*");
 	visu_compare("%+s", str, "char*");
@@ -77,6 +98,6 @@ int	main(void)
 	visu_compare("%+C", &i, "int");
 
 //	visu_compare("%#5x", &i, "int");
-
+*/
 	return (0);
 }

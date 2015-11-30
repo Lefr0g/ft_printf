@@ -249,7 +249,7 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 		if (ft_isdigit(format[e->index + 1]))
 		{
 			e->precision = ft_atoi(&format[e->index + 1]);
-			e->index += ft_strlen(&format[e->index + 1]);
+			e->index += ft_strlen(ft_itoa(e->precision));
 		}
 		else
 		{

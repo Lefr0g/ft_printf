@@ -36,7 +36,7 @@ int	ft_printf_reinit(t_env *e)
 int	ft_printf_init(t_env *e)
 {
 	e->os = ft_strdup(SYS_OS);
-	ft_putendl(e->os);
+//	ft_putendl(e->os);
 	e->param = (t_param*)malloc(sizeof(t_param));
 	e->index = 0;
 	e->lenmods = ft_strdup("hljz");

@@ -51,7 +51,7 @@ void	visu_compare(char *str, void *arg, char* type)
 
 int	main(void)
 {
-	int		i = 6324;
+	int		i = -6324;
 	char	c;
 	char	*str;
 
@@ -82,6 +82,8 @@ int	main(void)
 	visu_compare("%+i", &i, "int");
 	visu_compare("%+5i", &i, "int");
 	*/
+	visu_compare("%o", &i, "int");
+	visu_compare("%llo", &i, "int");
 	visu_compare("%#o", &i, "int");
 	visu_compare("%0o", &i, "int");
 

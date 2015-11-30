@@ -63,8 +63,8 @@ int		manage_flags(int ispos, t_env *e)
 		else if (e->conversion == 'o')
 		{
 			e->precisflag = 1;
-			e->precision++;
-//			e->precision = ft_strlen(ft_itoa_ll(e->param->ll, 8) + 10);
+//			e->precision++;
+			e->precision = ft_strlen(ft_itoa_ll(e->param->ull, 8)) + 1;
 //			ft_putstr("Debug : ");
 //			ft_itoa_ll(e->param->ll, 8);
 //			e->precision = 6;

@@ -53,7 +53,7 @@ int		manage_flags(int ispos, t_env *e)
 {
 	if (e->zero)
 	{
-		if (!e->neg && ft_strnequ(&e->conversion, "diouxX", 1))
+		if (!e->neg && ft_strchr("diouxX", e->conversion))
 			e->spacer = '0';
 	}
 	if (e->alt)
@@ -280,8 +280,6 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 	}
 	else
 		directives(format, ap, e);
-//	if format[i + 1] != e->conversions => recursion
-//	else call conversion and print function
 	return (e->index);
 }
 

@@ -15,10 +15,13 @@
 
 # ifdef __APPLE__
 #  define SYS_OS "darwin"
+#  define NULL_PTR "0x0"
 # elif __linux__
 #  define SYS_OS "linux"
+#  define NULL_PTR "(nil)"
 # else
 #  define SYS_OS "unknown"
+#  define NULL_PTR "0x0"
 # endif
 
 # include <stdarg.h>

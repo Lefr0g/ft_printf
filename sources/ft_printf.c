@@ -183,7 +183,7 @@ int		convert(va_list *ap, t_env *e)
 	{
 		e->param->l = (unsigned long long int)va_arg(*ap, void*);
 		if (!e->param->l)
-			ft_putstr("(nil)");
+			ft_putstr(NULL_PTR);
 		else
 		{
 			if (e->plus && e->param->l > 0)

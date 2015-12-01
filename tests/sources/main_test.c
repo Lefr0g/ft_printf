@@ -12,6 +12,21 @@
 
 #include "ft_printf_test.h"
 
+
+/*
+ *	TO DO:
+ *
+ *	The run_x_conversion_test() function must be modified in order to allow to
+ *	specify the string used by the printf function call as a parameter of
+ *	this function.
+ *	This will allow running the tests for flags, length, precision etc... using
+ *	the same function.
+ *
+ *
+*/
+
+
+
 int	single_test_run(char *str, void *arg, char *type)
 {
 	int		res;

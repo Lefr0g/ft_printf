@@ -83,6 +83,8 @@ int	run_all_tests(void)
 
 	run_single_string_test(&index, 20);
 	
+//	run_x_conversion_test(&index, 1);
+
 	run_all_conversion_test(&index);
 
 	center_ui_str("End of Tests", UI_SEPARATOR);

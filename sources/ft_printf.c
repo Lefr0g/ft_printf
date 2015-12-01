@@ -209,10 +209,6 @@ int		convert(va_list *ap, t_env *e)
 */
 int	get_flags(const char *restrict format, t_env *e)
 {
-	int	i;
-
-	i = 0;
-	(void)i;
 	if (format[e->index] == '#')
 		e->alt = 1;
 	else if (format[e->index] == '0')

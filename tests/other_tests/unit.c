@@ -82,11 +82,14 @@ int	main(void)
 	visu_compare("%+i", &i, "int");
 	visu_compare("%+5i", &i, "int");
 	*/
-	visu_compare("%o", &i, "int");
-	visu_compare("%llo", &i, "int");
-	visu_compare("%#o", &i, "int");
-	visu_compare("%0o", &i, "int");
-
+	visu_compare("%x", &i, "int");
+	visu_compare("%llx", &i, "int");
+	visu_compare("%#x", &i, "int");
+	visu_compare("%0x", &i, "int");
+	i = 0;
+	visu_compare("%x", &i, "int");
+	visu_compare("%#x", &i, "int");
+	visu_compare("%0x", &i, "int");
 /*
 ------------------------------------------
 */	

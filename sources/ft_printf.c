@@ -28,14 +28,17 @@ int		manage_precision(void *value, int isneg, t_env *e)
 {
 	int	i;
 
+//	printf("Isneg = %d\n", isneg);
+
 	if (!e->precisflag)
 		return (0);
 	i = e->precision;
+	if (isneg)
+		i++;
 	while (i && i - e->outputlen > 0)
 	{
 		if (isneg)
 		{
-			i++;
 			ft_putchar('-');
 			isneg = 0;
 			*(long long int*)value  = -*(long long int*)value;
@@ -63,12 +66,7 @@ int		manage_flags(int ispos, t_env *e)
 		else if (e->conversion == 'o')
 		{
 			e->precisflag = 1;
-//			e->precision++;
 			e->precision = ft_strlen(ft_itoa_ll(e->param->ull, 8)) + 1;
-//			ft_putstr("Debug : ");
-//			ft_itoa_ll(e->param->ll, 8);
-//			e->precision = 6;
-//			e->outputlen += 2;
 		}
 	}
 	if (e->plus && (e->conversion == 'd' || e->conversion == 'i' 
@@ -159,8 +157,10 @@ int		convert(va_list *ap, t_env *e)
 		*/
 		convert_oO(ap, e);
 	}
-	else if (e->conversion == 'x')
+	else if (e->conversion == 'x' || e->conversion == 'X')
 	{
+		convert_xX(ap, e);
+/*
 		e->param->i = va_arg(*ap, int);
 		e->outputlen = 8;
 		manage_field_width(e);
@@ -168,9 +168,11 @@ int		convert(va_list *ap, t_env *e)
 		if (e->alt && e->param->i)
 			ft_putstr("0x");
 		ft_puthex(e->param->i, "min");
+
 	}
 	else if (e->conversion == 'X')
 	{
+
 		e->param->i = (int)va_arg(*ap, int);
 		e->outputlen = 8;
 		manage_field_width(e);
@@ -178,6 +180,7 @@ int		convert(va_list *ap, t_env *e)
 		if (e->alt && e->param->i)
 			ft_putstr("0X");
 		ft_puthex(e->param->i, "maj");
+*/
 	}
 	else if (e->conversion == 'p')
 	{

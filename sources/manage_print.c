@@ -31,4 +31,16 @@ void	manage_print_all(t_env *e)
 		ft_putnbr(e->param->i);
 	else if (e->conversion == 'o')
 		ft_putoctal(e->param->u);
+	else if (e->conversion == 'x')
+	{
+		if (e->alt)
+			ft_putstr("0x");
+		ft_puthex_ull(e->param->ull, "min");
+	}
+	else if (e->conversion == 'x')
+	{
+		if (e->alt)
+			ft_putstr("0X");
+		ft_puthex_ull(e->param->ull, "maj");
+	}
 }

@@ -14,20 +14,20 @@
 
 void	manage_modifiers_ouxX(va_list *ap, t_env *e)
 {
-		if (!e->mod[0])
-			e->param->u = (unsigned int)va_arg(*ap, unsigned int);
-		else if (!ft_strcmp(e->mod, "hh"))
-			e->param->uc = (unsigned int)va_arg(*ap, unsigned int);
-		else if (!ft_strcmp(e->mod, "h"))
-			e->param->ush = (unsigned int)va_arg(*ap, unsigned int);
-		else if (!ft_strcmp(e->mod, "l"))
-			e->param->ul = (unsigned long)va_arg(*ap, unsigned long);
-		else if (!ft_strcmp(e->mod, "ll"))
-			e->param->ull = (unsigned long long)va_arg(*ap, unsigned long long);
-		else if (!ft_strcmp(e->mod, "j"))
-			e->param->uimax = (uintmax_t)va_arg(*ap, uintmax_t);
-		else if (!ft_strcmp(e->mod, "z"))
-			e->param->st = (size_t)va_arg(*ap, size_t);
+	if (!e->mod[0])
+		e->param->u = (unsigned int)va_arg(*ap, unsigned int);
+	else if (!ft_strcmp(e->mod, "hh"))
+		e->param->uc = (unsigned int)va_arg(*ap, unsigned int);
+	else if (!ft_strcmp(e->mod, "h"))
+		e->param->ush = (unsigned int)va_arg(*ap, unsigned int);
+	else if (!ft_strcmp(e->mod, "l"))
+		e->param->ul = (unsigned long)va_arg(*ap, unsigned long);
+	else if (!ft_strcmp(e->mod, "ll"))
+		e->param->ull = (unsigned long long)va_arg(*ap, unsigned long long);
+	else if (!ft_strcmp(e->mod, "j"))
+		e->param->uimax = (uintmax_t)va_arg(*ap, uintmax_t);
+	else if (!ft_strcmp(e->mod, "z"))
+		e->param->st = (size_t)va_arg(*ap, size_t);
 
 
 }
@@ -48,18 +48,21 @@ void	convert_di(va_list *ap, t_env *e)
 		e->param->imax = (intmax_t)va_arg(*ap, intmax_t);
 	else if (!ft_strcmp(e->mod, "z"))
 		e->param->l = (long)va_arg(*ap, long);
-	
+
 	e->outputlen = ft_strlen(ft_itoa(e->param->i));
 
+//	printf("\nOutpulen = %d\n", e->outputlen);
+//	printf("Precision = %d\n", e->precision);
+	
 	manage_flags((e->param->i > 0), e);
 
 	manage_field_width(e);
-	
+
 	manage_precision(&(e->param->i), (e->param->i < 0), e);
-	
+
 	if (e->plus && e->param->i > 0)
 		ft_putchar('+');
-	
+
 	manage_print_all(e);
 }
 
@@ -74,13 +77,13 @@ void	convert_uU(va_list *ap, t_env *e)
 	else
 	{
 		manage_modifiers_ouxX(ap, e);
-		
+
 		e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 10));
-		
+
 		manage_field_width(e);
-		
+
 		manage_precision(&(e->param->u), 0, e);
-		
+
 		manage_print_all(e);
 	}
 }
@@ -113,16 +116,30 @@ void	convert_oO(va_list *ap, t_env *e)
 	else
 	{
 		manage_modifiers_ouxX(ap, e);
-		
+
 		manage_flags(0, e);
-//	
+
 		e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 8));
-		
+
 		manage_field_width(e);
-		
+
 		manage_precision(&(e->param->u), 0, e);
-		
+
 		manage_print_all(e);
 	}
+}
 
+void	convert_xX(va_list *ap, t_env *e)
+{
+	manage_modifiers_ouxX(ap, e);
+
+	manage_flags(0, e);
+
+	e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 16));
+
+	manage_field_width(e);
+
+	manage_precision(&(e->param->u), 0, e);
+
+	manage_print_all(e);
 }

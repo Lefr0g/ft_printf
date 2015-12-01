@@ -84,6 +84,7 @@ void			convert_di(va_list *ap, t_env *e);
 void			convert_uU(va_list *ap, t_env *e);
 void			convert_cC(va_list *ap, t_env *e);
 void			convert_oO(va_list *ap, t_env *e);
+void			convert_xX(va_list *ap, t_env *e);
 
 
 int				get_flags(const char *restrict format, t_env *e);

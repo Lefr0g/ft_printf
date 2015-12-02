@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/02 15:41:48 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/02 16:19:55 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,11 @@ void			convert_xX(va_list *ap, t_env *e);
 */
 void			manage_modifiers_ouxX(va_list *ap, t_env *e);
 
+/*
+**	precision.c
+*/
+int				manage_precision(void *value, int isneg, t_env *e);
+char			*manage_precision_s(char *str, t_env *e);
 
 /*
 **	flags.c
@@ -102,20 +107,7 @@ void			manage_modifiers_ouxX(va_list *ap, t_env *e);
 int				get_flags(const char *restrict format, t_env *e);
 int				manage_flags(int ispos, t_env *e);
 
-void			ft_puthex(unsigned int n, char *mode);
-void			ft_puthex_ull(unsigned long long int n, char *mode);
-void			ft_putoctal(unsigned int n);
-
-void			ft_putnbr_ull(unsigned long long int n);
-char			*ft_itoa_ll(long long int n, unsigned int base);
-
 int				manage_field_width(t_env *e);
-int				manage_precision(void *value, int isneg, t_env *e);
-//	NEW
-int				manage_flags(int ispos, t_env *e);
-
-//	NEW
-void			*manage_lenmod(va_list *ap, t_env *e);
 
 /*
 **	printing.c
@@ -123,9 +115,20 @@ void			*manage_lenmod(va_list *ap, t_env *e);
 void			manage_print_all(t_env *e);
 
 
-char			*manage_precision_s(char *str, t_env *e);
-
+/*
+**	misc.c
+*/
 int				get_max(int a, int b);
-// int				ft_charinstr(const char *str, char c);
+
+/*
+**	others
+*/
+void			ft_puthex(unsigned int n, char *mode);
+void			ft_puthex_ull(unsigned long long int n, char *mode);
+void			ft_putoctal(unsigned int n);
+
+void			ft_putnbr_ull(unsigned long long int n);
+char			*ft_itoa_ll(long long int n, unsigned int base);
+
 
 #endif

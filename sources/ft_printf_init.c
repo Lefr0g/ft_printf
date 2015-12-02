@@ -40,8 +40,7 @@ int	ft_printf_init(t_env *e)
 	e->lenmods = ft_strdup("hljz");
 	
 	e->os = ft_strdup(SYS_OS);
-//	ft_putendl(e->os);
-	if (!ft_strcmp(e->os, "Darwin"))
+	if (!ft_strcmp(e->os, "darwin"))
 		e->conversions = ft_strdup("sSpdDioOuUxXcC%");
 	else
 		e->conversions = ft_strdup("sSpdiouxXcC%");

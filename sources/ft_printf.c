@@ -6,56 +6,13 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/02 15:44:58 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/02 17:03:11 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 //#include <stdio.h>
-
-int		manage_precision(void *value, int isneg, t_env *e)
-{
-	int	i;
-
-//	printf("Isneg = %d\n", isneg);
-
-	if (!e->precisflag)
-		return (0);
-	i = e->precision;
-	if (isneg)
-		i++;
-	while (i && i - e->outputlen > 0)
-	{
-		if (isneg)
-		{
-			ft_putchar('-');
-			isneg = 0;
-			*(long long int*)value  = -*(long long int*)value;
-		}
-		else
-		{
-			ft_putchar('0');
-			i--;
-		}
-	}
-	return (0);
-}
-
-char	*manage_precision_s(char *str, t_env *e)
-{
-	char	*out;
-	int		strlen;
-
-	strlen = ft_strlen(str);
-	out = ft_strnew(strlen);
-	if (strlen > e->precision)
-	{
-		ft_strncpy(out, str, e->precision);
-		return (out);
-	}
-	return (str);
-}
 
 int		manage_field_width(t_env *e)
 {
@@ -107,57 +64,20 @@ int		convert(va_list *ap, t_env *e)
 			e->param->s = manage_precision_s(e->param->s, e);
 		ft_putstr(e->param->s);
 	}
-	else if (e->conversion == 'o')
+	else if (e->conversion == 'o' || e->conversion == 'O')
 	{
-		/*
-		e->param->u = (unsigned int)va_arg(*ap, int);
-		e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 8));
-		manage_flags(e->param->u > 0, e);
-		manage_field_width(e);
-		manage_precision(&(e->param->i), 0, e);
-		if (e->alt && e->param->u)
-			ft_putchar('0');
-		ft_putoctal(e->param->u);
-		*/
 		convert_oO(ap, e);
 	}
 	else if (e->conversion == 'x' || e->conversion == 'X')
 	{
 		convert_xX(ap, e);
-/*
-		e->param->i = va_arg(*ap, int);
-		e->outputlen = 8;
-		manage_field_width(e);
-		manage_precision(&(e->param->i), 0, e);
-		if (e->alt && e->param->i)
-			ft_putstr("0x");
-		ft_puthex(e->param->i, "min");
-
-	}
-	else if (e->conversion == 'X')
-	{
-
-		e->param->i = (int)va_arg(*ap, int);
-		e->outputlen = 8;
-		manage_field_width(e);
-		manage_precision(&(e->param->i), 0, e);
-		if (e->alt && e->param->i)
-			ft_putstr("0X");
-		ft_puthex(e->param->i, "maj");
-*/
 	}
 	else if (e->conversion == 'p')
 	{
-		e->param->l = (unsigned long long int)va_arg(*ap, void*);
-		if (!e->param->l)
-			ft_putstr(NULL_PTR);
-		else
-		{
-			if (e->plus && e->param->l > 0)
-				ft_putchar('+');
-			ft_putstr("0x");
-			ft_puthex_ull(e->param->l, "min");
-		}
+		e->alt = 1;
+		ft_strcpy(e->mod, "l");
+		e->conversion = 'x';
+		convert_xX(ap, e);
 	}
 	else if (e->conversion == '%')
 		ft_putchar('%');

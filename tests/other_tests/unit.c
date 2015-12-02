@@ -46,10 +46,15 @@ void	visu_compare(char *str, void *arg, char *type)
 		printf(pf_str, (char*)arg);
 		ft_printf(ftpf_str, (char*)arg);
 	}
+	else if (!ft_strcmp(type, "long"))
+	{
+		printf(pf_str, *(long*)arg);
+		ft_printf(ftpf_str, *(long*)arg);
+	}
 	ft_putchar('\n');
 }
 
-void	compare_all_flags(char *str, void *arg, char *type)
+void	compare_flags(char *str, void *arg, char *type)
 {
 	visu_compare(ft_strjoin("%", str), arg, type);
 	visu_compare(ft_strjoin("%#", str), arg, type);
@@ -58,6 +63,27 @@ void	compare_all_flags(char *str, void *arg, char *type)
 	visu_compare(ft_strjoin("% ", str), arg, type);
 	visu_compare(ft_strjoin("%+", str), arg, type);
 }	
+
+void	compare_flags_on_int(char *str)
+{
+	int	i;
+
+	ft_putstr("=================================================\n");
+	i = 42;
+	compare_flags(str, &i, "int");
+	ft_putstr("=================================================\n");
+	i = 0;
+	compare_flags(str, &i, "int");
+	ft_putstr("=================================================\n");
+	i = -42;
+	compare_flags(str, &i, "int");
+	ft_putstr("=================================================\n");
+	i = INT_MIN;
+	compare_flags(str, &i, "int");
+	ft_putstr("=================================================\n");
+	i = INT_MAX;
+	compare_flags(str, &i, "int");
+}
 
 int	main(void)
 {
@@ -69,6 +95,7 @@ int	main(void)
 	str = ft_strdup("String test OK");
 
 	(void)str;
+	(void)i;
 //	printf("%i\n", i);
 //	ft_printf("%i\n", i);
 /*	
@@ -102,6 +129,26 @@ int	main(void)
 	visu_compare("%0x", &i, "int");
 	*/
 	ft_putstr("=================================================\n");
+	compare_flags_on_int("p");
+	
+	ft_putstr("=================================================\n");
+
+	int	j;
+	int	*ptrj;
+
+	j = 1;
+	ptrj = &j;
+
+	printf("%x\n", (int)&j);
+	ft_printf("%x\n\n", &j);
+	visu_compare("%x", &ptrj, "int");
+	printf("%lx\n", (long)&j);
+	ft_printf("%lx\n\n", &j);
+	visu_compare("%lx", &ptrj, "long");
+	printf("%p\n", &j);
+	ft_printf("%p\n", &j);
+	visu_compare("%p", &ptrj, "long");
+
 /*	
 	i = 42;
 	visu_compare("%d", &i, "int");
@@ -116,23 +163,6 @@ int	main(void)
 	visu_compare("%-x", &i, "int");
 
 */
-	ft_putstr("=================================================\n");
-	i = 42;
-	compare_all_flags("d", &i, "int");
-	ft_putstr("=================================================\n");
-	i = 0;
-	compare_all_flags("d", &i, "int");
-	ft_putstr("=================================================\n");
-	i = -42;
-	compare_all_flags("d", &i, "int");
-	ft_putstr("=================================================\n");
-	i = INT_MIN;
-	compare_all_flags("d", &i, "int");
-	ft_putstr("=================================================\n");
-	i = INT_MAX;
-	compare_all_flags("d", &i, "int");
-
-
 
 /*	
 	ft_putstr("=================================================\n");

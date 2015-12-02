@@ -64,6 +64,16 @@ void	compare_flags(char *str, void *arg, char *type)
 	visu_compare(ft_strjoin("%+", str), arg, type);
 }	
 
+void	compare_lenmods(char *str, void *arg, char *type)
+{
+	visu_compare(ft_strjoin("%", str), arg, type);
+	visu_compare(ft_strjoin("%hh", str), arg, type);
+	visu_compare(ft_strjoin("%h", str), arg, type);
+	visu_compare(ft_strjoin("%l", str), arg, type);
+	visu_compare(ft_strjoin("%ll", str), arg, type);
+	visu_compare(ft_strjoin("%j", str), arg, type);
+	visu_compare(ft_strjoin("%z", str), arg, type);
+}	
 void	compare_flags_on_int(char *str)
 {
 	int	i;
@@ -129,7 +139,7 @@ int	main(void)
 	visu_compare("%0x", &i, "int");
 	*/
 	ft_putstr("=================================================\n");
-	compare_flags_on_int("p");
+//	compare_flags_on_int("p");
 	
 	ft_putstr("=================================================\n");
 
@@ -139,6 +149,8 @@ int	main(void)
 	j = 1;
 	ptrj = &j;
 
+	compare_lenmods("x", &ptrj, "long");
+/*
 	visu_compare("%p", &ptrj, "long");
 	visu_compare("%hhx", &ptrj, "long");
 	visu_compare("%hx", &ptrj, "long");
@@ -147,6 +159,7 @@ int	main(void)
 	visu_compare("%llx", &ptrj, "long");
 	visu_compare("%jx", &ptrj, "long");
 	visu_compare("%zx", &ptrj, "long");
+*/
 /*	
 	i = 42;
 	visu_compare("%d", &i, "int");

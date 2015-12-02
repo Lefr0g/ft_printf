@@ -90,6 +90,21 @@ int	main(void)
 	visu_compare("%x", &i, "int");
 	visu_compare("%#x", &i, "int");
 	visu_compare("%0x", &i, "int");
+	
+	ft_putstr("=================================================\n");
+	
+	i = 42;
+	visu_compare("%+0x", &i, "int");
+	visu_compare("%0x", &i, "int");
+	visu_compare("%-x", &i, "int");
+	i = -42;
+	visu_compare("%+0x", &i, "int");
+	visu_compare("%0x", &i, "int");
+	visu_compare("%-x", &i, "int");
+
+	ft_putstr("=================================================\n");
+	visu_compare("%-0x", &i, "int");
+	visu_compare("%-0##x", &i, "int");
 /*
 ------------------------------------------
 */	

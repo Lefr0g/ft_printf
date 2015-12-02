@@ -139,16 +139,14 @@ int	main(void)
 	j = 1;
 	ptrj = &j;
 
-	printf("%x\n", (int)&j);
-	ft_printf("%x\n\n", &j);
-	visu_compare("%x", &ptrj, "int");
-	printf("%lx\n", (long)&j);
-	ft_printf("%lx\n\n", &j);
-	visu_compare("%lx", &ptrj, "long");
-	printf("%p\n", &j);
-	ft_printf("%p\n", &j);
 	visu_compare("%p", &ptrj, "long");
-
+	visu_compare("%hhx", &ptrj, "long");
+	visu_compare("%hx", &ptrj, "long");
+	visu_compare("%x", &ptrj, "int");
+	visu_compare("%lx", &ptrj, "long");
+	visu_compare("%llx", &ptrj, "long");
+	visu_compare("%jx", &ptrj, "long");
+	visu_compare("%zx", &ptrj, "long");
 /*	
 	i = 42;
 	visu_compare("%d", &i, "int");

@@ -35,12 +35,12 @@ void	manage_print_all(t_env *e)
 	{
 		if (e->alt && e->param->i)
 			ft_putstr("0x");
-		ft_puthex_ull(e->param->u, "min");
+		ft_puthex_ull(e->param->ull, "min");
 	}
 	else if (e->conversion == 'X')
 	{
 		if (e->alt && e->param->i)
 			ft_putstr("0X");
-		ft_puthex_ull(e->param->u, "maj");
+		ft_puthex_ull(e->param->ull, "maj");
 	}
 }

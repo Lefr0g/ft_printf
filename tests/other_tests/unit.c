@@ -152,10 +152,11 @@ int	main(void)
 	int	j;
 	int	*ptrj;
 
-	j = 1;
+	j = -42;
 	ptrj = &j;
 
-	compare_lenmods("d", &ptrj, "long long");
+	ft_printf("%d\n", j);
+	compare_lenmods("d", &j, "long long");
 /*
 	visu_compare("%p", &ptrj, "long");
 	visu_compare("%hhx", &ptrj, "long");

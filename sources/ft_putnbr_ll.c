@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/05 11:30:24 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/02 19:23:23 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/02 19:30:39 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void ft_putnbr_ll(long long int n)
 		ft_putchar('-');
 		ft_putnbr_ll(-n);
 	}
-	if (n > 9)
+	else if (n > 9)
 	{
 		ft_putnbr_ll(n / 10);
 		ft_putnbr_ll(n % 10);

@@ -51,6 +51,12 @@ void	visu_compare(char *str, void *arg, char *type)
 		printf(pf_str, *(long*)arg);
 		ft_printf(ftpf_str, *(long*)arg);
 	}
+	else if (!ft_strcmp(type, "long long"))
+	{
+		printf(pf_str, *(long long*)arg);
+		ft_printf(ftpf_str, *(long long*)arg);
+	}
+
 	ft_putchar('\n');
 }
 
@@ -149,7 +155,7 @@ int	main(void)
 	j = 1;
 	ptrj = &j;
 
-	compare_lenmods("x", &ptrj, "long");
+	compare_lenmods("d", &ptrj, "long long");
 /*
 	visu_compare("%p", &ptrj, "long");
 	visu_compare("%hhx", &ptrj, "long");

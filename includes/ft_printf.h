@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/02 16:19:55 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/02 19:19:07 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void			ft_puthex_ull(unsigned long long int n, char *mode);
 void			ft_putoctal(unsigned int n);
 
 void			ft_putnbr_ull(unsigned long long int n);
+void			ft_putnbr_ll(long long int n);
 char			*ft_itoa_ll(long long int n, unsigned int base);
 
 

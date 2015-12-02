@@ -6,12 +6,14 @@
 #    By: amulin <amulin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/10 17:35:06 by amulin            #+#    #+#              #
-#    Updated: 2015/11/24 16:00:48 by amulin           ###   ########.fr        #
+#    Updated: 2015/12/02 15:16:27 by amulin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+
+# *************************** #
 # OS detection (Linux / OSX)
-#
+
 OS_NAME = $(shell uname -s)
 ifeq ($(OS_NAME),Linux)
 	CC = gcc
@@ -19,6 +21,7 @@ endif
 ifeq ($(OS_NAME),Darwin)
 	CC = clang
 endif
+# *************************** #
 
 NAME = libftprintf.a
 
@@ -32,7 +35,8 @@ PRINTHEADERS = $(addprefix $(PRINTINCLUDIR), $(PRINTHDRS))
 
 PRINTSRCS = ft_printf.c ft_puthex.c ft_puthex_ull.c ft_putnbr_ull.c \
 			ft_putoctal.c ft_printf_init.c ft_itoa_ull.c \
-			manage_print.c conversions_1.c
+			printing.c conversions_1.c modifiers.c flags.c \
+			misc.c
 
 PRINTSRCDIR = sources/
 

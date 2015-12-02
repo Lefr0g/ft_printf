@@ -14,7 +14,7 @@
 # include <stdio.h>
 # include <limits.h>
 
-void	visu_compare(char *str, void *arg, char* type)
+void	visu_compare(char *str, void *arg, char *type)
 {
 	char	*pf_str;
 	char	*ftpf_str;
@@ -49,6 +49,16 @@ void	visu_compare(char *str, void *arg, char* type)
 	ft_putchar('\n');
 }
 
+void	compare_all_flags(char *str, void *arg, char *type)
+{
+	visu_compare(ft_strjoin("%", str), arg, type);
+	visu_compare(ft_strjoin("%#", str), arg, type);
+	visu_compare(ft_strjoin("%0", str), arg, type);
+	visu_compare(ft_strjoin("%-", str), arg, type);
+	visu_compare(ft_strjoin("% ", str), arg, type);
+	visu_compare(ft_strjoin("%+", str), arg, type);
+}	
+
 int	main(void)
 {
 	int		i = -6324;
@@ -61,7 +71,7 @@ int	main(void)
 	(void)str;
 //	printf("%i\n", i);
 //	ft_printf("%i\n", i);
-	
+/*	
 	visu_compare("%d", &i, "int");
 	visu_compare("%5d", &i, "int");
 	visu_compare("%.5d", &i, "int");
@@ -73,7 +83,7 @@ int	main(void)
 	ft_putstr("=================================================\n");
 	(void)str;
 	(void)c;
-/*
+
 	visu_compare("%i", &i, "int");
 	visu_compare("%5i", &i, "int");
 	visu_compare("%.5i", &i, "int");
@@ -81,7 +91,7 @@ int	main(void)
 	visu_compare("%05i", &i, "int");
 	visu_compare("%+i", &i, "int");
 	visu_compare("%+5i", &i, "int");
-	*/
+	
 	visu_compare("%x", &i, "int");
 	visu_compare("%llx", &i, "int");
 	visu_compare("%#x", &i, "int");
@@ -90,21 +100,46 @@ int	main(void)
 	visu_compare("%x", &i, "int");
 	visu_compare("%#x", &i, "int");
 	visu_compare("%0x", &i, "int");
-	
+	*/
 	ft_putstr("=================================================\n");
-	
+/*	
 	i = 42;
-	visu_compare("%+0x", &i, "int");
-	visu_compare("%0x", &i, "int");
-	visu_compare("%-x", &i, "int");
+	visu_compare("%d", &i, "int");
+	visu_compare("%#d", &i, "int");
+	visu_compare("%0d", &i, "int");
+	visu_compare("%-d", &i, "int");
+	visu_compare("% d", &i, "int");
+	visu_compare("%+d", &i, "int");
 	i = -42;
 	visu_compare("%+0x", &i, "int");
 	visu_compare("%0x", &i, "int");
 	visu_compare("%-x", &i, "int");
 
+*/
+	ft_putstr("=================================================\n");
+	i = 42;
+	compare_all_flags("d", &i, "int");
+	ft_putstr("=================================================\n");
+	i = 0;
+	compare_all_flags("d", &i, "int");
+	ft_putstr("=================================================\n");
+	i = -42;
+	compare_all_flags("d", &i, "int");
+	ft_putstr("=================================================\n");
+	i = INT_MIN;
+	compare_all_flags("d", &i, "int");
+	ft_putstr("=================================================\n");
+	i = INT_MAX;
+	compare_all_flags("d", &i, "int");
+
+
+
+/*	
 	ft_putstr("=================================================\n");
 	visu_compare("%-0x", &i, "int");
+	visu_compare("%-0#x", &i, "int");
 	visu_compare("%-0##x", &i, "int");
+*/
 /*
 ------------------------------------------
 */	

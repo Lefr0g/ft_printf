@@ -6,23 +6,13 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2015/06/05 16:06:14 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/02 15:44:58 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 //#include <stdio.h>
-
-/*
-**	Compares 2 ints, returns the biggest
-*/
-int	get_max(int a, int b)
-{
-	if (a <= b)
-		return (b);
-	return (a);
-}
 
 int		manage_precision(void *value, int isneg, t_env *e)
 {
@@ -48,32 +38,6 @@ int		manage_precision(void *value, int isneg, t_env *e)
 			ft_putchar('0');
 			i--;
 		}
-	}
-	return (0);
-}
-
-int		manage_flags(int ispos, t_env *e)
-{
-	if (e->zero)
-	{
-		if (!e->neg && ft_strchr("diouxX", e->conversion))
-			e->spacer = '0';
-	}
-	if (e->alt)
-	{
-		if (e->conversion == 'x' || e->conversion == 'X')
-			e->outputlen += 2;
-		else if (e->conversion == 'o')
-		{
-			e->precisflag = 1;
-			e->precision = ft_strlen(ft_itoa_ll(e->param->ull, 8)) + 1;
-		}
-	}
-	if (e->plus && (e->conversion == 'd' || e->conversion == 'i' 
-			|| e->conversion == 'p'))
-	{
-		if (ispos)
-			e->outputlen++;
 	}
 	return (0);
 }
@@ -199,36 +163,6 @@ int		convert(va_list *ap, t_env *e)
 		ft_putchar('%');
 	else
 		return (-1);
-	return (0);
-}
-
-/*
-**	Sets the env parameters according to the given flags, and increments the
-**	format[] index upon success.
-**	Called from the directive() function.
-*/
-int	get_flags(const char *restrict format, t_env *e)
-{
-	if (format[e->index] == '#')
-		e->alt = 1;
-	else if (format[e->index] == '0')
-		e->zero = 1;
-	else if (format[e->index] == '-')
-	{
-		e->zero = 0;
-		e->neg = 1;
-	}
-	else if (format[e->index] == ' ')
-		e->space = 1;
-	else if (format[e->index] == '+')
-	{
-		if (e->space)
-			e->space = 0;
-		e->plus = 1;
-	}
-	else
-		return (1);
-	e->index++;
 	return (0);
 }
 

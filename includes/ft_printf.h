@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2015/06/10 19:43:37 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/02 15:41:48 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,27 @@ int				ft_printf_reinit(t_env *e);
 int				directives(const char *restrict format, va_list *ap, t_env *e);
 
 int				convert(va_list *ap, t_env *e);
+
+/*
+**	conversions_1.c
+*/
 void			convert_di(va_list *ap, t_env *e);
 void			convert_uU(va_list *ap, t_env *e);
 void			convert_cC(va_list *ap, t_env *e);
 void			convert_oO(va_list *ap, t_env *e);
 void			convert_xX(va_list *ap, t_env *e);
 
+/*
+**	modifiers.c
+*/
+void			manage_modifiers_ouxX(va_list *ap, t_env *e);
 
+
+/*
+**	flags.c
+*/
 int				get_flags(const char *restrict format, t_env *e);
+int				manage_flags(int ispos, t_env *e);
 
 void			ft_puthex(unsigned int n, char *mode);
 void			ft_puthex_ull(unsigned long long int n, char *mode);
@@ -104,7 +117,9 @@ int				manage_flags(int ispos, t_env *e);
 //	NEW
 void			*manage_lenmod(va_list *ap, t_env *e);
 
-//	NEW
+/*
+**	printing.c
+*/
 void			manage_print_all(t_env *e);
 
 

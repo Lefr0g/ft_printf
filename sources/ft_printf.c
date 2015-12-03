@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/03 19:16:41 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/03 20:53:28 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 		if (ft_isdigit(format[e->index + 1]))
 		{
 			e->precision = ft_atoi(&format[e->index + 1]);
-			e->index += ft_strlen(ft_itoa(e->precision));
+			e->index += ft_strlen(ft_itoa(e->precision)) + 1;
 		}
 		else
 		{

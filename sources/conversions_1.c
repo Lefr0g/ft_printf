@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/03 18:54:48 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/03 20:42:38 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ void	convert_di(va_list *ap, t_env *e)
 	e->outputlen = ft_strlen(ft_itoa(e->param->i));
 
 //	printf("\nOutpulen = %d\n", e->outputlen);
+//	printf("Field Width = %d\n", e->field_width);
 //	printf("Precision = %d\n", e->precision);
 	
 	manage_flags((e->param->i > 0), e);
 
-	manage_field_width(e);
+//	manage_field_width(e);
 
 	manage_precision(&(e->param->i), (e->param->i < 0), e);
 

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/03 19:15:51 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/03 20:32:31 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		manage_precision(void *value, int isneg, t_env *e)
 
 	if (!e->precisflag)
 		return (0);
+	if (!e->neg)
+		manage_field_width(e);
 	i = e->precision;
 	if (isneg)
 		i++;
@@ -48,6 +50,8 @@ int		manage_precision(void *value, int isneg, t_env *e)
 			i--;
 		}
 	}
+	if (e->neg)
+		manage_field_width(e);
 	return (0);
 }
 

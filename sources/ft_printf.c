@@ -6,26 +6,13 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/02 19:04:57 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/03 19:16:41 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 //#include <stdio.h>
-
-int		manage_field_width(t_env *e)
-{
-	int	i;
-
-	i = e->field_width;
-	while (i && i - get_max(e->outputlen, e->precision) > 0)
-	{
-		ft_putchar(e->spacer);
-		i--;
-	}
-	return (0);
-}
 
 /*
 **	This function, called from the directive() function, implements the

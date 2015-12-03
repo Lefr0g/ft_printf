@@ -6,11 +6,24 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/02 16:11:35 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/03 19:15:51 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		manage_field_width(t_env *e)
+{
+	int	i;
+
+	i = e->field_width;
+	while (i && i - get_max(e->outputlen, e->precision) > 0)
+	{
+		ft_putchar(e->spacer);
+		i--;
+	}
+	return (0);
+}
 
 int		manage_precision(void *value, int isneg, t_env *e)
 {

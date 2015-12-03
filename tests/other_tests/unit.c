@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/03 17:26:14 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/03 19:00:51 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,14 +150,35 @@ int	main(void)
 	ft_putstr("=================================================\n");
 
 	int	j;
-//	int			*ptrj;
+	long k;
+	int			*ptrj;
 
-	j = INT_MIN;
-//	ptrj = &j;
+	j = 12;
+	ptrj = &j;
+
+
+//	visu_compare("4567 |%-10]5d| plip\n", ptrj, "int");
+	printf("4567 |%-10]5d| plip\n", 12);
+	printf("4567 |%10]5d| plip\n", 12);
+	j = -12;
+	k = -12;
+
+	visu_compare("|%10d|\n", ptrj, "int");
+	visu_compare("|%-10d|\n", ptrj, "int");
+
+	visu_compare("|%10.5d|\n", ptrj, "int");
+	visu_compare("|%10d|\n", ptrj, "int");
+	visu_compare("|%010d|\n", ptrj, "int"); 
+	visu_compare("|%-10.5d|\n", ptrj, "int");
+	visu_compare("|%-010.5d|\n", ptrj, "int");
 
 //	ft_printf("%d\n", j);
-	compare_lenmods("d", &j, "int");
-/*
+
+
+//	compare_lenmods("d", &j, "long long");
+
+	
+	/*
 	visu_compare("%p", &ptrj, "long");
 	visu_compare("%hhx", &ptrj, "long");
 	visu_compare("%hx", &ptrj, "long");

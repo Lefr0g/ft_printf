@@ -8,12 +8,17 @@ if [ $OS_NAME = "Linux" ]; then
 elif [ $OS_NAME = "Darwin" ]; then
 	CC=clang
 fi
+if [ $1 = "noflag" ]; then
+	FLAGS=
+else
+	FLAGS="-Wall -Werror -Wextra"
+fi
 echo -e "\n\033[033m>>> OS detected : $OS_NAME\033[0m"
 echo -e "\n\033[033m>>> Running fclean.sh :\033[0m\n"
 ./fclean.sh
 echo -e "\n\033[033m>>> Compiling unit.c :\033[0m\n"
 make -C ../../
 make -C ../../libft/
-$CC -Wall -Werror -Wextra -I ../../includes/ unit.c -L ../../libft -lft -L ../../ -lftprintf -o unit.out
+$CC $FLAGS -I ../../includes/ unit.c -L ../../libft -lft -L ../../ -lftprintf -o unit.out
 echo -e "\n\033[033m>>> Running unit.out :\033[0m\n"
 ./unit.out

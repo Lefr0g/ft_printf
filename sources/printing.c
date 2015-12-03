@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 19:34:39 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/02 19:39:04 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/03 17:22:05 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,17 @@ void	manage_print_all(t_env *e)
 		ft_putnbr_ull(e->param->u);
 	else if (e->conversion == 'd' || e->conversion == 'i')
 	{
-		ft_putnbr_ll(e->param->ll);
+//		ft_print_memory(e->param, sizeof(int));
+//		if (!e->mod[0] || !ft_strcmp(e->mod, "hh") || !ft_strcmp(e->mod, "h"))
+//			ft_putnbr_void(e->param, sizeof(e->param->sc));
+		if (!e->mod[0])
+			ft_putnbr(e->param->i);
+		else if (!ft_strcmp(e->mod, "h"))
+			ft_putnbr_short(e->param->sh);
+		else if (!ft_strcmp(e->mod, "hh"))
+			ft_putnbr_char(e->param->sc);
+		else
+			ft_putnbr_ll(e->param->ll);
 	}
 	else if (e->conversion == 'o')
 		ft_putoctal(e->param->u);

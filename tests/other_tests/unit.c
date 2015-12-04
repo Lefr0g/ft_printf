@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/03 20:36:44 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/04 15:19:26 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,19 +158,27 @@ int	main(void)
 
 
 //	visu_compare("4567 |%-10]5d| plip\n", ptrj, "int");
-	printf("4567 |%-10]5d| plip\n", 12);
-	printf("4567 |%10]5d| plip\n", 12);
-	j = -12;
+
+//	printf("4567 |%-10]5d| plip\n", 12);
+//	printf("4567 |%10]5d| plip\n", 12);
+	j = 12;
 	k = -12;
 
 //	visu_compare("|%10d|", ptrj, "int");
 //	visu_compare("|%-10d|", ptrj, "int");
+/*
+	visu_compare("|%10.5i|", ptrj, "int");
+	visu_compare("|%10i|", ptrj, "int");
+	visu_compare("|%010i|", ptrj, "int"); 
+	visu_compare("|%-10.5i|", ptrj, "int");
+	visu_compare("|%-010.5i|", ptrj, "int");
+*/
 
-	visu_compare("|%10.5d|", ptrj, "int");
-//	visu_compare("|%10d|", ptrj, "int");
-//	visu_compare("|%010d|", ptrj, "int"); 
-//	visu_compare("|%-10.5d|", ptrj, "int");
-//	visu_compare("|%-010.5d|", ptrj, "int");
+	visu_compare("|%10.5u|", ptrj, "int");
+	visu_compare("|%10u|", ptrj, "int");
+	visu_compare("|%010u|", ptrj, "int"); 
+	visu_compare("|%-10.5u|", ptrj, "int");
+	visu_compare("|%-010.5u|", ptrj, "int");
 
 //	ft_printf("%d\n", j);
 

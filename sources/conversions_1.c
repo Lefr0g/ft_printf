@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/03 20:42:38 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/04 15:17:07 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	convert_di(va_list *ap, t_env *e)
 {
+	int	buf;
+
 	if (!e->mod[0])
 		e->param->i = (int)va_arg(*ap, int);
 	else if (!ft_strcmp(e->mod, "hh"))
@@ -31,13 +33,30 @@ void	convert_di(va_list *ap, t_env *e)
 
 	e->outputlen = ft_strlen(ft_itoa(e->param->i));
 
-//	printf("\nOutpulen = %d\n", e->outputlen);
-//	printf("Field Width = %d\n", e->field_width);
 //	printf("Precision = %d\n", e->precision);
+//	printf("Outpulen = %d\n", e->outputlen);
+
+	if (e->precision > e->outputlen)
+	{
+		buf = e->outputlen;
+		e->outputlen = e->precision;
+		if (e->param->i < 0)
+			e->outputlen++;
+		e->precision = e->outputlen - buf;
+	}
+	else
+		e->precisflag = 0;
+
+//	printf("Field Width = %d\n", e->field_width);
+//	printf("\ne->neg = %d\n", e->neg);
+//	printf("\ne->zero = %d\n", e->zero);
+//	printf("Precision = %d\n", e->precision);
+//	printf("Outpulen = %d\n", e->outputlen);
 	
 	manage_flags((e->param->i > 0), e);
-
-//	manage_field_width(e);
+	
+	if (!e->neg)
+		manage_field_width(e);
 
 	manage_precision(&(e->param->i), (e->param->i < 0), e);
 
@@ -45,10 +64,14 @@ void	convert_di(va_list *ap, t_env *e)
 		ft_putchar('+');
 
 	manage_print_all(e);
+
+	if (e->neg)
+		manage_field_width(e);
 }
 
 void	convert_uU(va_list *ap, t_env *e)
 {
+	int	buf;
 	if (e->conversion == 'U')
 	{
 		e->conversion = 'u';
@@ -60,12 +83,29 @@ void	convert_uU(va_list *ap, t_env *e)
 		manage_modifiers_ouxX(ap, e);
 
 		e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 10));
+		if (e->precision > e->outputlen)
+		{
+			buf = e->outputlen;
+			e->outputlen = e->precision;
+			e->precision = e->outputlen - buf;
+		}
+		else
+			e->precisflag = 0;
 
-		manage_field_width(e);
+//		printf("Precision = %d\n", e->precision);
+//		printf("Outpulen = %d\n", e->outputlen);
+
+		manage_flags(1, e);
+		
+		if (!e->neg)
+			manage_field_width(e);
 
 		manage_precision(&(e->param->u), 0, e);
 
 		manage_print_all(e);
+		
+		if (e->neg)
+			manage_field_width(e);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 19:34:39 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/04 15:38:55 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/04 18:11:41 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,9 @@ void	manage_print_all(t_env *e)
 			ft_putchar(e->param->c);
 	}
 	else if (e->conversion == 'u')
-		ft_putnbr_ull(e->param->u);
+		ft_putnbr_ull(e->param->ull);
 	else if (e->conversion == 'd' || e->conversion == 'i')
 	{
-//		ft_print_memory(e->param, sizeof(int));
-//		if (!e->mod[0] || !ft_strcmp(e->mod, "hh") || !ft_strcmp(e->mod, "h"))
-//			ft_putnbr_void(e->param, sizeof(e->param->sc));
 		if (!e->mod[0])
 			ft_putnbr(e->param->i);
 		else if (!ft_strcmp(e->mod, "h"))
@@ -45,19 +42,11 @@ void	manage_print_all(t_env *e)
 		ft_putoctal(e->param->u);
 	else if (e->conversion == 'x')
 	{
-//		if (e->alt && !e->param->i)
-//			ft_putstr(NULL_PTR);
-//		else if (e->alt)
-//			ft_putstr("0x");
 		if (e->param->i)
 			ft_puthex_ull(e->param->ull, "min");
 	}
 	else if (e->conversion == 'X')
 	{	
-//		if (e->alt && !e->param->i)
-//			ft_putstr(NULL_PTR);
-//		else if (e->alt)
-//			ft_putstr("0X");
 		if (e->param->i)
 			ft_puthex_ull(e->param->ull, "maj");
 	}

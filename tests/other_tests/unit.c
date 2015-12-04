@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/04 17:06:02 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/04 18:10:43 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,20 @@ void	visu_compare(char *str, void *arg, char *type)
 		printf(pf_str, *(int*)arg);
 		ft_printf(ftpf_str, *(int*)arg);
 	}
+	else if (!ft_strcmp(type, "uint"))
+	{
+		printf(pf_str, *(unsigned int*)arg);
+		ft_printf(ftpf_str, *(unsigned int*)arg);
+	}
 	else if (!ft_strcmp(type, "char"))
 	{
 		printf(pf_str, *(char*)arg);
 		ft_printf(ftpf_str, *(char*)arg);
+	}
+	else if (!ft_strcmp(type, "uchar"))
+	{
+		printf(pf_str, *(unsigned char*)arg);
+		ft_printf(ftpf_str, *(unsigned char*)arg);
 	}
 	else if (!ft_strcmp(type, "char*"))
 	{
@@ -55,6 +65,11 @@ void	visu_compare(char *str, void *arg, char *type)
 	{
 		printf(pf_str, *(long long*)arg);
 		ft_printf(ftpf_str, *(long long*)arg);
+	}
+	else if (!ft_strcmp(type, "u long long"))
+	{
+		printf(pf_str, *(unsigned long long*)arg);
+		ft_printf(ftpf_str, *(unsigned long long*)arg);
 	}
 
 	ft_putchar('\n');
@@ -149,9 +164,9 @@ int	main(void)
 	
 	ft_putstr("=================================================\n");
 
-	int	j;
-	long k;
-	int			*ptrj;
+	unsigned long long	j;
+	long 	k;
+	unsigned long long	*ptrj;
 
 	j = 12;
 	ptrj = &j;
@@ -161,19 +176,24 @@ int	main(void)
 
 //	printf("4567 |%-10]5d| plip\n", 12);
 //	printf("4567 |%10]5d| plip\n", 12);
-	j = 12;
+	j = INT_MIN;
 	k = -12;
 
 //	visu_compare("|%10d|", ptrj, "int");
 //	visu_compare("|%-10d|", ptrj, "int");
-/*
-	visu_compare("|%10.5i|", ptrj, "int");
-	visu_compare("|%10i|", ptrj, "int");
-	visu_compare("|%010i|", ptrj, "int"); 
-	visu_compare("|%-10.5i|", ptrj, "int");
-	visu_compare("|%-010.5i|", ptrj, "int");
-*/
 
+	visu_compare("|%u|", ptrj, "uint");
+	visu_compare("|%10.5llu|", ptrj, "u long long");
+	visu_compare("|%10llu|", ptrj, "u long long");
+	visu_compare("|%010llu|", ptrj, "u long long"); 
+	visu_compare("|%-10.5llu|", ptrj, "u long long");
+	visu_compare("|%-010.5llu|", ptrj, "u long long");
+
+
+//	Hardcore, out-of-scope (bonus) test :
+//	visu_compare("%ll# +++-+-- h00012.3.5.28d", ptrj, "int");
+
+/*
 	visu_compare("|%10.5p|", ptrj, "int");
 	visu_compare("|%010.5p|", ptrj, "int");
 	visu_compare("|%10p|", ptrj, "int");
@@ -181,7 +201,7 @@ int	main(void)
 	visu_compare("|%010p|", ptrj, "int"); 
 	visu_compare("|%-10.5p|", ptrj, "int");
 	visu_compare("|%-010.5p|", ptrj, "int");
-
+*/
 //	ft_printf("%d\n", j);
 
 

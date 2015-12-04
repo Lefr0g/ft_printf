@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/04 17:24:37 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/04 17:39:15 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,11 @@ void	convert_xX(va_list *ap, t_env *e)
 
 	manage_modifiers_ouxX(ap, e);
 
+	if (e->conversion == 'x')
+		ft_strcpy(e->xX_prefix, "0x");
+	else
+		ft_strcpy(e->xX_prefix, "0X");
+	
 	e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 16));
 	if (e->precision > e->outputlen)
 	{
@@ -187,10 +192,8 @@ void	convert_xX(va_list *ap, t_env *e)
 
 	if (e->alt && !e->param->i)
 		ft_putstr(NULL_PTR);
-	else if (e->neg && e->alt && e->conversion == 'x' && !e->zero)
-		ft_putstr("0x");
-	else if (e->neg && e->alt && e->conversion == 'X' && !e->zero)
-		ft_putstr("0X");
+	else if (e->neg && e->alt && ft_strchr("xX", e->conversion) && !e->zero)
+		ft_putstr(e->xX_prefix);
 	manage_precision(&(e->param->u), 0, e);
 
 	manage_print_all(e);			

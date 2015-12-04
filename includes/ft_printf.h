@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/04 14:19:37 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/04 17:32:54 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct	s_env
 	char		*mod;
 	char		conversion;
 	char		spacer;
+	char		*xX_prefix;
 }				t_env;
 
 int				ft_printf(const char *restrict format, ...);

@@ -23,7 +23,7 @@ int	ft_printf_reinit(t_env *e)
 	e->field_width = 0;
 	e->precisflag = 0;
 	e->precision = 0;
-	ft_strcpy(e->mod, "\0\0\0");
+	ft_bzero(e->mod, 3);
 	e->conversion = '\0';
 	e->spacer = ' ';
 	e->outputlen = 0;
@@ -56,9 +56,11 @@ int	ft_printf_init(t_env *e)
 	e->precisflag = 0;
 	e->precision = 0;
 	e->mod = ft_strnew(3);
-	ft_strcpy(e->mod, "\0\0\0");
+	ft_bzero(e->mod, 3);
 	e->conversion = '\0';
 	e->spacer = ' ';
 	e->outputlen = 0;
+	e->xX_prefix = ft_strnew(3);
+	ft_bzero(e->xX_prefix, 3);
 	return (0);
 }

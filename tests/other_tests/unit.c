@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/04 15:19:26 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/04 17:06:02 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,11 +174,13 @@ int	main(void)
 	visu_compare("|%-010.5i|", ptrj, "int");
 */
 
-	visu_compare("|%10.5u|", ptrj, "int");
-	visu_compare("|%10u|", ptrj, "int");
-	visu_compare("|%010u|", ptrj, "int"); 
-	visu_compare("|%-10.5u|", ptrj, "int");
-	visu_compare("|%-010.5u|", ptrj, "int");
+	visu_compare("|%10.5p|", ptrj, "int");
+	visu_compare("|%010.5p|", ptrj, "int");
+	visu_compare("|%10p|", ptrj, "int");
+	visu_compare("|%-10p|", ptrj, "int");
+	visu_compare("|%010p|", ptrj, "int"); 
+	visu_compare("|%-10.5p|", ptrj, "int");
+	visu_compare("|%-010.5p|", ptrj, "int");
 
 //	ft_printf("%d\n", j);
 

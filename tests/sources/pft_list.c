@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 18:32:29 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/07 18:44:50 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/07 18:51:20 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ t_pft_list	*pft_lstnew(const char *input, void const *arg, const char *type)
 		ft_putendl("ERROR : pft_lstnew() : item memory allocation fail");
 		exit (1);
 	}
+	return (elem);
 }

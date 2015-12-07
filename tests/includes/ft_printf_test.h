@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/07 14:39:02 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/07 18:45:18 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/07 18:51:31 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	init_test_env(t_pft_env *e);
 void	clear_test_env(t_pft_env *e);
 
 /*
- * NEW pft_list.c functions (NOT DONE YET)
+ * NEW pft_list.c functions
 */
 t_pft_list	*pft_lstnew(const char *input, void const *arg, const char *type);
 

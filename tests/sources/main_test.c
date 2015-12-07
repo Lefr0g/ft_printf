@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 14:40:21 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/07 17:29:54 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/07 18:31:34 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,9 @@ int	main(void)
 
 void	init_test_env(t_pft_env *e)
 {
+	e = (t_pft_env*)malloc(sizeof(t_pft_env));
 	e->index = 0;
-	e->lst_start = (t_list*)malloc(sizeof(t_list));
+	e->lst_start = (t_list*)malloc(sizeof(t_pft_list));
 	if (!e->lst_start)
 	{
 		ft_putendl("ERROR : init_test_env() failed. Aborting");

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 15:29:09 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/07 18:26:16 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/07 18:29:53 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	call_print(int (*printfn)(const char * restrict, ...), char *str,
 void	runtest_1_arg(char *str, void *arg, char *type, t_pft_env *e)
 {
 //	ToDo : redirect stram to char*. Not sure if can be done directly in one step.
-//			Edit : will be done y capturing output to a file, then reading from
-//			this file via gnl.
+//			Edit : will be done by capturing output to a file, then reading from
+//			this file via gnl().
 
 
 	if (ft_strcmp(type, "signed char"))
@@ -67,14 +67,14 @@ void	runtest_1_arg(char *str, void *arg, char *type, t_pft_env *e)
 		if (!hijack_stream("ref.txt", stdout))
 			return (-1);
 
-//		Call printf : TODO
+//		Call printf : test needed
 		call_print(&printf, str, arg, type);
 		
 //		Redirect upcoming ft_printf output to dummy.txt : OK
 		if (!hijack_stream("dummy.txt", stdout))
 			return (-1);
 
-//		Call ft_printf : TODO
+//		Call ft_printf : test needed
 		call_print(&ft_printf, str, arg, type);
 
 //		Reset output stream to stdout : OK

@@ -27,6 +27,8 @@ int	ft_printf_reinit(t_env *e)
 	e->conversion = '\0';
 	e->spacer = ' ';
 	e->outputlen = 0;
+	e->p_conv = 0;
+	e->null_printed = 0;
 	return (0);
 }
 
@@ -62,5 +64,7 @@ int	ft_printf_init(t_env *e)
 	e->outputlen = 0;
 	e->xX_prefix = ft_strnew(3);
 	ft_bzero(e->xX_prefix, 3);
+	e->p_conv = 0;
+	e->null_printed = 0;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 19:34:39 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/04 18:11:41 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/07 12:21:09 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,25 @@ void	manage_print_all(t_env *e)
 		ft_putoctal(e->param->u);
 	else if (e->conversion == 'x')
 	{
-		if (e->param->i)
+		if (!e->param->i && e->alt && e->p_conv)
+			print_null_ptr(e);
+		else	
 			ft_puthex_ull(e->param->ull, "min");
 	}
 	else if (e->conversion == 'X')
-	{	
-		if (e->param->i)
+	{
+		if (!e->param->i && e->alt && e->p_conv)
+			print_null_ptr(e);
+		else
 			ft_puthex_ull(e->param->ull, "maj");
+	}
+}
+
+void	print_null_ptr(t_env *e)
+{
+	if (!e->null_printed)
+	{
+		ft_putstr(NULL_PTR);
+		e->null_printed = 1;
 	}
 }

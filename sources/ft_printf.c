@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/04 17:55:30 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/07 11:38:16 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int		convert(va_list *ap, t_env *e)
 	}
 	else if (e->conversion == 'p')
 	{
+		e->p_conv = 1;
 		e->alt = 1;
 		ft_strcpy(e->mod, "l");
 		e->conversion = 'x';

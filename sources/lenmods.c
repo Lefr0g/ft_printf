@@ -6,11 +6,29 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:00:44 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/02 19:08:04 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/07 12:14:21 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	manage_modifiers_di(va_list *ap, t_env *e)
+{
+	if (!e->mod[0])
+		e->param->i = (int)va_arg(*ap, int);
+	else if (!ft_strcmp(e->mod, "hh"))
+		e->param->sc = (int)va_arg(*ap, int);
+	else if (!ft_strcmp(e->mod, "h"))
+		e->param->sh = (int)va_arg(*ap, int);
+	else if (!ft_strcmp(e->mod, "l"))
+		e->param->l = (long)va_arg(*ap, long);
+	else if (!ft_strcmp(e->mod, "ll"))
+		e->param->ll = (long long)va_arg(*ap, long long);
+	else if (!ft_strcmp(e->mod, "j"))
+		e->param->imax = (intmax_t)va_arg(*ap, intmax_t);
+	else if (!ft_strcmp(e->mod, "z"))
+		e->param->l = (long)va_arg(*ap, long);
+}
 
 void	manage_modifiers_ouxX(va_list *ap, t_env *e)
 {

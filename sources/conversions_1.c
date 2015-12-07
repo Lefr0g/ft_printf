@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/04 17:39:15 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/07 12:20:51 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,7 @@ void	convert_di(va_list *ap, t_env *e)
 {
 	int	buf;
 
-	if (!e->mod[0])
-		e->param->i = (int)va_arg(*ap, int);
-	else if (!ft_strcmp(e->mod, "hh"))
-		e->param->sc = (int)va_arg(*ap, int);
-	else if (!ft_strcmp(e->mod, "h"))
-		e->param->sh = (int)va_arg(*ap, int);
-	else if (!ft_strcmp(e->mod, "l"))
-		e->param->l = (long)va_arg(*ap, long);
-	else if (!ft_strcmp(e->mod, "ll"))
-		e->param->ll = (long long)va_arg(*ap, long long);
-	else if (!ft_strcmp(e->mod, "j"))
-		e->param->imax = (intmax_t)va_arg(*ap, intmax_t);
-	else if (!ft_strcmp(e->mod, "z"))
-		e->param->l = (long)va_arg(*ap, long);
-
+	manage_modifiers_di(ap, e);
 	e->outputlen = ft_strlen(ft_itoa(e->param->i));
 
 //	printf("Precision = %d\n", e->precision);
@@ -190,10 +176,13 @@ void	convert_xX(va_list *ap, t_env *e)
 	if (!e->neg)
 		manage_field_width(e);
 
-	if (e->alt && !e->param->i)
-		ft_putstr(NULL_PTR);
-	else if (e->neg && e->alt && ft_strchr("xX", e->conversion) && !e->zero)
+	if (e->alt && !e->param->i && e->p_conv)
+		print_null_ptr(e);
+	if (e->neg && e->alt && ft_strchr("xX", e->conversion) && !e->zero
+			&& e->param->i)
 		ft_putstr(e->xX_prefix);
+//		ft_putstr("bar");
+
 	manage_precision(&(e->param->u), 0, e);
 
 	manage_print_all(e);			

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/04 18:10:43 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/07 12:42:08 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,25 +94,53 @@ void	compare_lenmods(char *str, void *arg, char *type)
 	visu_compare(ft_strjoin("%ll", str), arg, type);
 	visu_compare(ft_strjoin("%j", str), arg, type);
 	visu_compare(ft_strjoin("%z", str), arg, type);
-}	
+}
+
+void	compare_fieldw_precision(char *str, void *arg, char *type)
+{
+	visu_compare(ft_strjoin("%10.5", str), arg, type);
+	visu_compare(ft_strjoin("%010.5", str), arg, type);
+	visu_compare(ft_strjoin("%10", str), arg, type);
+	visu_compare(ft_strjoin("%-10", str), arg, type);
+	visu_compare(ft_strjoin("%010", str), arg, type); 
+	visu_compare(ft_strjoin("%-10.5", str), arg, type);
+	visu_compare(ft_strjoin("%-010.5", str), arg, type);
+}
+
 void	compare_flags_on_int(char *str)
 {
 	int	i;
 
 	ft_putstr("=================================================\n");
+	ft_putstr("=================================================\n");
 	i = 42;
+	ft_putstr("Value = ");
+	ft_putnbr(i);
+	ft_putendl("\n");
 	compare_flags(str, &i, "int");
 	ft_putstr("=================================================\n");
 	i = 0;
+	ft_putstr("Value = ");
+	ft_putnbr(i);
+	ft_putendl("\n");
 	compare_flags(str, &i, "int");
 	ft_putstr("=================================================\n");
 	i = -42;
+	ft_putstr("Value = ");
+	ft_putnbr(i);
+	ft_putendl("\n");
 	compare_flags(str, &i, "int");
 	ft_putstr("=================================================\n");
 	i = INT_MIN;
+	ft_putstr("Value = ");
+	ft_putnbr(i);
+	ft_putendl("\n");
 	compare_flags(str, &i, "int");
 	ft_putstr("=================================================\n");
 	i = INT_MAX;
+	ft_putstr("Value = ");
+	ft_putnbr(i);
+	ft_putendl("\n");
 	compare_flags(str, &i, "int");
 }
 
@@ -164,9 +192,9 @@ int	main(void)
 	
 	ft_putstr("=================================================\n");
 
-	unsigned long long	j;
+	int	j;
 	long 	k;
-	unsigned long long	*ptrj;
+	int	*ptrj;
 
 	j = 12;
 	ptrj = &j;
@@ -176,19 +204,15 @@ int	main(void)
 
 //	printf("4567 |%-10]5d| plip\n", 12);
 //	printf("4567 |%10]5d| plip\n", 12);
-	j = INT_MIN;
+	j = 0;
 	k = -12;
+
+//	compare_flags_on_int("p");
+
+	compare_fieldw_precision("#p", &j, "int");
 
 //	visu_compare("|%10d|", ptrj, "int");
 //	visu_compare("|%-10d|", ptrj, "int");
-
-	visu_compare("|%u|", ptrj, "uint");
-	visu_compare("|%10.5llu|", ptrj, "u long long");
-	visu_compare("|%10llu|", ptrj, "u long long");
-	visu_compare("|%010llu|", ptrj, "u long long"); 
-	visu_compare("|%-10.5llu|", ptrj, "u long long");
-	visu_compare("|%-010.5llu|", ptrj, "u long long");
-
 
 //	Hardcore, out-of-scope (bonus) test :
 //	visu_compare("%ll# +++-+-- h00012.3.5.28d", ptrj, "int");

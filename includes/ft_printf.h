@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/04 17:32:54 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/07 12:39:43 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct	s_env
 	char		conversion;
 	char		spacer;
 	char		*xX_prefix;
+	int			p_conv;
+	int			null_printed;
 }				t_env;
 
 int				ft_printf(const char *restrict format, ...);
@@ -94,6 +96,7 @@ void			convert_xX(va_list *ap, t_env *e);
 /*
 **	modifiers.c
 */
+void			manage_modifiers_di(va_list *ap, t_env *e);
 void			manage_modifiers_ouxX(va_list *ap, t_env *e);
 
 /*
@@ -114,6 +117,7 @@ int				manage_field_width(t_env *e);
 **	printing.c
 */
 void			manage_print_all(t_env *e);
+void			print_null_ptr(t_env *e);
 
 
 /*

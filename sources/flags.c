@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/04 17:21:44 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/07 12:42:25 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int		manage_flags(int ispos, t_env *e)
 	}
 	if (e->alt)
 	{
-		if (e->conversion == 'x' || e->conversion == 'X')
+		if ((e->conversion == 'x' || e->conversion == 'X')
+				&& (e->param && e->p_conv))
 			e->outputlen += 2;
 		else if (e->conversion == 'o')
 		{

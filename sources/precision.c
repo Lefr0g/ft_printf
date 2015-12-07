@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/04 17:37:22 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/07 12:42:48 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,18 @@ int		manage_field_width(t_env *e)
 		ft_putchar('-');
 		e->param->i = -e->param->i;
 	}
-	if (ft_strchr("xX", e->conversion) && !e->neg && e->spacer == '0')
+	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer == '0'
+			&& e->param->i)
 		ft_putstr(e->xX_prefix);
+	else if (e->p_conv && !e->param->i && e->zero)
+		print_null_ptr(e);
 	while (i && i - get_max(e->outputlen, e->precision) > 0)
 	{
 		ft_putchar(e->spacer);
 		i--;
 	}
-	if (ft_strchr("xX", e->conversion) && !e->neg && e->spacer != '0')
+	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer != '0'
+			&& e->param->i)
 		ft_putstr(e->xX_prefix);
 	return (0);
 }

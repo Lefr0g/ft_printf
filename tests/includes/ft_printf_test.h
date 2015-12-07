@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/07 14:39:02 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/07 17:30:22 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/07 18:26:06 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,17 @@ void	init_test_env(t_pft_env *e);
 void	clear_test_env(t_pft_env *e);
 
 /*
- * NEW pf_list.c functions
+ * NEW pf_list.c functions (NOT DONE YET)
 */
 t_pft_list	*pft_lstnew(void const *content, size_t content_size);
+
+/*
+ * NEW test_functions.c functions (WIP)
+*/
+void	call_print(int (*printfn)(const char * restrict, ...),
+		char *str, void *arg, char *type);
+void	runtest_1_arg(char *str, void *arg, char *type, t_pft_env *e);
+
 
 /*
  * test_sequences.c functions

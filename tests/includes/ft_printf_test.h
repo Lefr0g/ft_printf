@@ -1,14 +1,14 @@
-/*
- *
- *
- *
- *
- *
- *
- *
- *
- *
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_test.h                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/10/07 14:39:02 by amulin            #+#    #+#             */
+/*   Updated: 2015/12/07 17:30:22 by amulin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FT_PRINTF_TEST_H
 
@@ -28,11 +28,35 @@
 # define MAX_LEN_RANDOM_STR 1000
 # define UI_SEPARATOR '-'
 
+typedef struct		s_pft_list
+{
+	int				index;
+	char			*input;
+	void			*arg;
+	char			*type;
+	char			*refout;
+	char			*testout;
+	struct s_list	*next;
+}					t_pft_list;
+
+typedef struct		s_pft_env
+{
+	int				index;
+	t_list			*lst_start;
+}					t_pft_env;
+
 /*
  * main_test.c functions
 */
 int		single_test_run(char *str, void *arg, char *type);
 int		run_all_tests(void);
+void	init_test_env(t_pft_env *e);
+void	clear_test_env(t_pft_env *e);
+
+/*
+ * NEW pf_list.c functions
+*/
+t_pft_list	*pft_lstnew(void const *content, size_t content_size);
 
 /*
  * test_sequences.c functions

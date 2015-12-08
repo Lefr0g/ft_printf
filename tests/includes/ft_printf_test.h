@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/07 14:39:02 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/07 18:51:31 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/08 12:52:42 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,27 @@
 # define MAX_LEN_RANDOM_STR 1000
 # define UI_SEPARATOR '-'
 
-typedef struct		s_pft_list
+typedef struct			s_pft_list
 {
-	int				index;
-	char			*input;
-	void			*arg;
-	char			*type;
-	char			*refout;
-	char			*testout;
-	struct s_list	*next;
-}					t_pft_list;
+	int					index;
+	int					seq_id;
+	char				*seq_title;
+	int					sec_id;
+	char				*sec_title;
+	char				*format;
+	void				*arg;
+	char				*type;
+	char				*refout;
+	char				*testout;
+	short				matching;
+	struct s_pft_list	*next;
+}						t_pft_list;
 
-typedef struct		s_pft_env
+typedef struct			s_pft_env
 {
-	int				index;
-	t_list			*lst_start;
-}					t_pft_env;
+	int					index;
+	t_list				*lst_start;
+}						t_pft_env;
 
 /*
  * main_test.c functions

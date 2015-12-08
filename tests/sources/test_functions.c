@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 15:29:09 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/07 18:29:53 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/08 12:15:15 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,37 +15,44 @@
 void	call_print(int (*printfn)(const char * restrict, ...), char *str,
 		void *arg, char *type)
 {
-	if (!ft_strcmp(type, "signed char"))
+	if (!str)
+	{
+		ft_putendl("ERROR : call_print() : no format string input");
+		exit(1);
+	}
+	if (arg && !ft_strcmp(type, "none") && !arg)
+		printfn(str);
+	else if (arg && !ft_strcmp(type, "signed char"))
 		printfn(str, *(signed char*)arg);
-	else if (!ft_strcmp(type, "short"))
+	else if (arg && !ft_strcmp(type, "short"))
 		printfn(str, *(short*)arg);
-	else if (!ft_strcmp(type, "int"))
+	else if (arg && !ft_strcmp(type, "int"))
 		printfn(str, *(int*)arg);
-	else if (!ft_strcmp(type, "long"))
+	else if (arg && !ft_strcmp(type, "long"))
 		printfn(str, *(long*)arg);
-	else if (!ft_strcmp(type, "long long"))
+	else if (arg && !ft_strcmp(type, "long long"))
 		printfn(str, *(long long*)arg);
-	else if (!ft_strcmp(type, "intmax_t"))
+	else if (arg && !ft_strcmp(type, "intmax_t"))
 		printfn(str, *(intmax_t*)arg);
-	else if (!ft_strcmp(type, "unsigned char"))
+	else if (arg && !ft_strcmp(type, "unsigned char"))
 		printfn(str, *(unsigned char*)arg);
-	else if (!ft_strcmp(type, "unsigned short"))
+	else if (arg && !ft_strcmp(type, "unsigned short"))
 		printfn(str, *(unsigned short*)arg);
-	else if (!ft_strcmp(type, "unsigned int"))
+	else if (arg && !ft_strcmp(type, "unsigned int"))
 		printfn(str, *(unsigned int*)arg);
-	else if (!ft_strcmp(type, "unsigned long"))
+	else if (arg && !ft_strcmp(type, "unsigned long"))
 		printfn(str, *(unsigned long*)arg);
-	else if (!ft_strcmp(type, "unsigned long long"))
+	else if (arg && !ft_strcmp(type, "unsigned long long"))
 		printfn(str, *(unsigned long long*)arg);
-	else if (!ft_strcmp(type, "uintmax_t"))
+	else if (arg && !ft_strcmp(type, "uintmax_t"))
 		printfn(str, *(uintmax_t*)arg);
-	else if (!ft_strcmp(type, "size_t"))
+	else if (arg && !ft_strcmp(type, "size_t"))
 		printfn(str, *(size_t*)arg);
-	else if (!ft_strcmp(type, "wint_t"))
+	else if (arg && !ft_strcmp(type, "wint_t"))
 		printfn(str, *(wint_t*)arg);
-	else if (!ft_strcmp(type, "wchar_t*"))
+	else if (arg && !ft_strcmp(type, "wchar_t*"))
 		printfn(str, (wchar_t*)arg);
-	else if (!ft_strcmp(type, "char*"))
+	else if (arg && !ft_strcmp(type, "char*"))
 		printfn(str, (char*)arg);
 	else
 	{

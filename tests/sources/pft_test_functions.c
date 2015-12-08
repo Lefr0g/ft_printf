@@ -6,11 +6,60 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 15:29:09 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/08 12:15:15 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/08 18:29:56 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_test.h"
+
+/*  FOIREUX
+void	copy_arg(void *dst, const void *arg, const char *type)
+{
+	if (!src || !type)
+	{
+		ft_putendl("ERROR : copy_arg() : no input argument");
+		exit(1);
+	}
+	else if (arg && !ft_strcmp(type, "signed char"))
+		ft_memcpy(dst, *(signed char*)arg, sizeof(signed char));
+	else if (arg && !ft_strcmp(type, "short"))
+		ft_memcpy(str, *(short*)arg, sizeof(short));
+	else if (arg && !ft_strcmp(type, "int"))
+		ft_memcpy(str, *(int*)arg, sizeof(int));
+	else if (arg && !ft_strcmp(type, "long"))
+		ft_memcpy(str, *(long*)arg, sizeof(long));
+	else if (arg && !ft_strcmp(type, "long long"))
+		ft_memcpy(str, *(long long*)arg, sizeof(long long));
+	else if (arg && !ft_strcmp(type, "intmax_t"))
+		ft_memcpy(str, *(intmax_t*)arg, sizeof(intmax_t));
+	else if (arg && !ft_strcmp(type, "unsigned char"))
+		ft_memcpy(str, *(unsigned char*)arg, sizeof(unsigned char));
+	else if (arg && !ft_strcmp(type, "unsigned short"))
+		ft_memcpy(str, *(unsigned short*)arg, sizeof(unsigned short));
+	else if (arg && !ft_strcmp(type, "unsigned int"))
+		ft_memcpy(str, *(unsigned int*)arg, sizeof(unsigned int));
+	else if (arg && !ft_strcmp(type, "unsigned long"))
+		ft_memcpy(str, *(unsigned long*)arg, sizeof(unsigned long));
+	else if (arg && !ft_strcmp(type, "unsigned long long"))
+		ft_memcpy(str, *(unsigned long long*)arg, sizeof(unsigned long long));
+	else if (arg && !ft_strcmp(type, "uintmax_t"))
+		ft_memcpy(str, *(uintmax_t*)arg, sizeof(uintmax_t));
+	else if (arg && !ft_strcmp(type, "size_t"))
+		ft_memcpy(str, *(size_t*)arg, sizeof(size_t));
+	else if (arg && !ft_strcmp(type, "wint_t"))
+		ft_memcpy(str, *(wint_t*)arg, sizeof(wint_t));
+	else if (arg && !ft_strcmp(type, "wchar_t*"))
+		ft_memcpy(str, (wchar_t*)arg, sizeof(wchar_t));
+	else if (arg && !ft_strcmp(type, "char*"))
+		ft_memcpy(str, (char*)arg, sizeof(char));
+	else
+	{
+		ft_putendl("ERROR : call_print() : unknown argument type");
+		exit(1);
+	}
+
+}
+*/
 
 void	call_print(int (*printfn)(const char * restrict, ...), char *str,
 		void *arg, char *type)
@@ -67,19 +116,20 @@ void	runtest_1_arg(char *str, void *arg, char *type, t_pft_env *e)
 //			Edit : will be done by capturing output to a file, then reading from
 //			this file via gnl().
 
+	(void)e;
 
 	if (ft_strcmp(type, "signed char"))
 	{
 //		Redirect upcoming printf output to ref.txt : OK
 		if (!hijack_stream("ref.txt", stdout))
-			return (-1);
+			exit(-1);
 
 //		Call printf : test needed
 		call_print(&printf, str, arg, type);
 		
 //		Redirect upcoming ft_printf output to dummy.txt : OK
 		if (!hijack_stream("dummy.txt", stdout))
-			return (-1);
+			exit(-1);
 
 //		Call ft_printf : test needed
 		call_print(&ft_printf, str, arg, type);

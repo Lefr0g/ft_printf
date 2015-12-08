@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 14:40:21 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/08 14:21:20 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/08 19:44:05 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,27 +95,88 @@ int	run_all_tests(void)
 
 int	main(void)
 {
-//NEW	t_pf_test_env	e;
 //	setlocale(LC_ALL, "");
-//NEW	pft_init(&e);
-	run_all_tests();
+
+	t_pft_env	e;
+
+	char	*tbd;
+
+	tbd = ft_strnew(1000);
+	
+	pft_init_env(&e);
+	pft_load(&e);
+
+	printf("This text in normal color\n");
+	printf("%s", ansi_transform("This text is underlined\n", ANSI_UNDERLINED));
+	printf("%s", ansi_transform("This text in yellow\n", ANSI_COLOR_YELLOW));
+	printf("%s", ansi_transform("This text in red\n", ANSI_COLOR_RED));
+	printf("%s", ansi_transform("This text in green\n", ANSI_COLOR_GREEN));
+	printf("%s", ansi_transform("This text in blue\n", ANSI_COLOR_BLUE));
+	printf("%s", ansi_transform("This text in cyan\n", ANSI_COLOR_CYAN));
+	printf("%s", ansi_transform("This text in magenta\n", ANSI_COLOR_MAGENTA));
+
+	ft_strcpy(tbd, ansi_transform("%s ", ANSI_COLOR_RED));
+	ft_strcat(tbd, ansi_transform("gege", ANSI_UNDERLINED));
+	ft_putendl(tbd);
+//	ft_putendl(e.buf_sec_title);
+//	ft_putendl(e.buf_seq_title);
+	ft_putendl(e.lst_current->sec_title);
+	ft_putendl("Dislaying the list below:\n\n");
+	pft_lstprint(e.lst_current);
+	pft_lstprint(e.lst_start);
+
+//run_all_tests();
+
 //NEW	pft_print_results(&e);
 //NEW	pft_summary_prompt(%e);
 //NEW	pft_clear_env(&e);
 	return (0);
 }
 
-void	init_test_env(t_pft_env *e)
+void	pft_init_env(t_pft_env *e)
 {
 	setlocale(LC_ALL, "");
-	e = (t_pft_env*)malloc(sizeof(t_pft_env));
 	e->index = 0;
+	e->lst_start = (t_pft_list*)malloc(sizeof(t_pft_list));
+	e->lst_current = e->lst_start;
+	e->buf_index = -1;
+	e->buf_seq_id = -1;
+	e->buf_seq_title = ft_strnew(100);
+	e->buf_sec_id = -1;
+	e->buf_sec_title = ft_strnew(100);
+	e->buf_format = NULL;
+	e->buf_arg = NULL;
+	e->buf_type = NULL;
+	e->buf_refout = NULL;
+	e->buf_testout = NULL;
+	e->buf_matching = -1;
+
+
+/*
 	e->lst_start = (t_list*)malloc(sizeof(t_pft_list));
 	if (!e->lst_start)
 	{
 		ft_putendl("ERROR : init_test_env() failed. Aborting");
 		exit(1);
 	}
+*/
+}
+
+void	pft_load_section_0(t_pft_env *e)
+{
+	ft_putendl("Check 1");
+	e->lst_current = pft_lstnew("%d", 0, sizeof(int), "int");
+	ft_putendl("Check 2");
+	e->lst_current->index = 0;
+	e->buf_sec_id = 0;
+	ft_strcpy(e->lst_current->sec_title, "%d conversion");
+	e->buf_seq_id = 0;
+	ft_strcpy(e->lst_current->seq_title, "Vanilla");
+}
+
+void	pft_load(t_pft_env *e)
+{
+	pft_load_section_0(e);
 }
 
 void	clear_test_env(t_pft_env *e)

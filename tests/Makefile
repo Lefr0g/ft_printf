@@ -12,7 +12,8 @@ NAME = run_tests.out
 
 FLAGS = -Wall -Werror -Wextra
 
-SRCS = main_test.c gears.c interface.c random_gens.c test_sequences.c
+SRCS = pft_main.c pft_gears.c pft_interface.c pft_random_gens.c \
+	   test_sequences.c pft_list.c pft_test_functions.c
 
 SRCSDIR = sources/
 

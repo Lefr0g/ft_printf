@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 14:40:21 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/07 18:31:34 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/08 14:21:20 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,18 @@ int	run_all_tests(void)
 int	main(void)
 {
 //NEW	t_pf_test_env	e;
-	setlocale(LC_ALL, "");
-//NW	init_test_env(&e);
+//	setlocale(LC_ALL, "");
+//NEW	pft_init(&e);
 	run_all_tests();
-//NEW	clear_test_env(&e);
+//NEW	pft_print_results(&e);
+//NEW	pft_summary_prompt(%e);
+//NEW	pft_clear_env(&e);
 	return (0);
 }
 
 void	init_test_env(t_pft_env *e)
 {
+	setlocale(LC_ALL, "");
 	e = (t_pft_env*)malloc(sizeof(t_pft_env));
 	e->index = 0;
 	e->lst_start = (t_list*)malloc(sizeof(t_pft_list));

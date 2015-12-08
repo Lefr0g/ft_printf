@@ -6,7 +6,7 @@
 #    By: amulin <amulin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/08 12:16:57 by amulin            #+#    #+#              #
-#    Updated: 2015/12/08 13:42:32 by amulin           ###   ########.fr        #
+#    Updated: 2015/12/08 13:46:53 by amulin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,8 +58,8 @@ New design to be implemented for the printf testing program:
 
 	---------------------- Starting Conversion Tests --------------------
 
-   	 01 -  %c conversion :	✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔
-     02 -  %c conversion :	✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔  
+	01 -  %c conversion :	✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔
+	02 -  %c conversion :	✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔  
 	
 
 4/ A summary of the test is printed on terminal
@@ -68,9 +68,9 @@ New design to be implemented for the printf testing program:
 			1542 tests executed, 1500 valid, 42 failed.
 	4.3/ A table showing the failed tests is shown :
 
-		INDEX	FORMAT	ARG				TYPE		REFOUT			TESTOUT
-		456		%#x		0				int			0				0x0
-		942		%s		ifr/4\d ...		char*		ifr/4\d ...		ifr/4??! ...
+	INDEX	FORMAT	ARG				TYPE		REFOUT			TESTOUT
+	456		%#x		0				int			0				0x0
+	942		%s		ifr/4\d ...		char*		ifr/4\d ...		ifr/4??! ...
 
 	4.4/ The user is prompted to enter the index of a test to see more detailed
 		 information and untruncated input and output strings :

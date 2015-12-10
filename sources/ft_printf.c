@@ -157,9 +157,11 @@ int	ft_printf(const char *restrict format, ...)
 {
 	t_env	e;
 	va_list	ap;
-	int		outlen;
+	int		convlen;
+	int		step;
 
-	outlen = 0;
+	convlen = 0;
+	step = 0;
 	if (ft_printf_init(&e))
 	{
 		ft_putendl_fd("\nError : invalid conversion identifier", 2);
@@ -170,12 +172,15 @@ int	ft_printf(const char *restrict format, ...)
 	while (format[e.index])
 	{
 		if (format[e.index] != '%')
+		{
 			ft_putchar(format[e.index]);
+			step++;
+		}
 		else
 		{
 			e.index++;
 			directives(format, &ap, &e);
-			outlen = outlen + e.outputlen;
+			convlen = convlen + get_max(e.outputlen, e.field_width);
 			ft_printf_reinit(&e);
 		}
 		e.index++;
@@ -183,5 +188,5 @@ int	ft_printf(const char *restrict format, ...)
 	va_end(ap);
 //	ft_putstr(format);
 //	ft_putendl("|");
-	return (e.index);
+	return (step + convlen);
 }

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/07 11:38:16 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/10 18:58:04 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,8 +157,10 @@ int	ft_printf(const char *restrict format, ...)
 {
 	t_env	e;
 	va_list	ap;
+	int		outlen;
 
-	if(ft_printf_init(&e))
+	outlen = 0;
+	if (ft_printf_init(&e))
 	{
 		ft_putendl_fd("\nError : invalid conversion identifier", 2);
 		return (1);
@@ -173,10 +175,13 @@ int	ft_printf(const char *restrict format, ...)
 		{
 			e.index++;
 			directives(format, &ap, &e);
+			outlen = outlen + e.outputlen;
 			ft_printf_reinit(&e);
 		}
 		e.index++;
 	}
 	va_end(ap);
-	return (0);
+//	ft_putstr(format);
+//	ft_putendl("|");
+	return (e.index);
 }

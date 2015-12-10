@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/07 12:53:53 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/10 17:09:28 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,12 @@ void	visu_compare(char *str, void *arg, char *type)
 	ft_putendl("'");
 //	ft_putchar('\n');
 
-	if (!ft_strcmp(type, "int"))
+	if (!ft_strcmp(type, "none"))
+	{
+		printf(pf_str);
+		ft_printf(ftpf_str);
+	}
+	else if (!ft_strcmp(type, "int"))
 	{
 		printf(pf_str, *(int*)arg);
 		ft_printf(ftpf_str, *(int*)arg);
@@ -209,6 +214,7 @@ int	main(void)
 
 //	compare_flags_on_int("p");
 
+	visu_compare("This is a simple string test.", NULL, "none");
 	compare_fieldw_precision("#p", &j, "int");
 
 //	visu_compare("|%10d|", ptrj, "int");

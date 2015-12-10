@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/10 17:09:28 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/10 18:15:40 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	visu_compare(char *str, void *arg, char *type)
 {
 	char	*pf_str;
 	char	*ftpf_str;
+	int		pf_out;
+	int		ftpf_out;
 
 	pf_str = ft_strjoin("printf\t\t>>>\t'\033[32m", str);
 	pf_str = ft_strjoin(pf_str, "\033[0m'\n");
@@ -33,50 +35,53 @@ void	visu_compare(char *str, void *arg, char *type)
 
 	if (!ft_strcmp(type, "none"))
 	{
-		printf(pf_str);
-		ft_printf(ftpf_str);
+		pf_out = printf(pf_str);
+		ftpf_out = ft_printf(ftpf_str);
 	}
 	else if (!ft_strcmp(type, "int"))
 	{
-		printf(pf_str, *(int*)arg);
-		ft_printf(ftpf_str, *(int*)arg);
+		pf_out = printf(pf_str, *(int*)arg);
+		ftpf_out = ft_printf(ftpf_str, *(int*)arg);
 	}
 	else if (!ft_strcmp(type, "uint"))
 	{
-		printf(pf_str, *(unsigned int*)arg);
-		ft_printf(ftpf_str, *(unsigned int*)arg);
+		pf_out = printf(pf_str, *(unsigned int*)arg);
+		ftpf_out = ft_printf(ftpf_str, *(unsigned int*)arg);
 	}
 	else if (!ft_strcmp(type, "char"))
 	{
-		printf(pf_str, *(char*)arg);
-		ft_printf(ftpf_str, *(char*)arg);
+		pf_out = printf(pf_str, *(char*)arg);
+		ftpf_out = ft_printf(ftpf_str, *(char*)arg);
 	}
 	else if (!ft_strcmp(type, "uchar"))
 	{
-		printf(pf_str, *(unsigned char*)arg);
-		ft_printf(ftpf_str, *(unsigned char*)arg);
+		pf_out = printf(pf_str, *(unsigned char*)arg);
+		ftpf_out = ft_printf(ftpf_str, *(unsigned char*)arg);
 	}
 	else if (!ft_strcmp(type, "char*"))
 	{
-		printf(pf_str, (char*)arg);
-		ft_printf(ftpf_str, (char*)arg);
+		pf_out = printf(pf_str, (char*)arg);
+		ftpf_out = ft_printf(ftpf_str, (char*)arg);
 	}
 	else if (!ft_strcmp(type, "long"))
 	{
-		printf(pf_str, *(long*)arg);
-		ft_printf(ftpf_str, *(long*)arg);
+		pf_out = printf(pf_str, *(long*)arg);
+		ftpf_out = ft_printf(ftpf_str, *(long*)arg);
 	}
 	else if (!ft_strcmp(type, "long long"))
 	{
-		printf(pf_str, *(long long*)arg);
-		ft_printf(ftpf_str, *(long long*)arg);
+		pf_out = printf(pf_str, *(long long*)arg);
+		ftpf_out = ft_printf(ftpf_str, *(long long*)arg);
 	}
 	else if (!ft_strcmp(type, "u long long"))
 	{
-		printf(pf_str, *(unsigned long long*)arg);
-		ft_printf(ftpf_str, *(unsigned long long*)arg);
+		pf_out = printf(pf_str, *(unsigned long long*)arg);
+		ftpf_out = ft_printf(ftpf_str, *(unsigned long long*)arg);
 	}
-
+	if (pf_out == ftpf_out)
+		printf("Both functions return %d\n", pf_out);
+	else
+		printf("[ \033[33mWARNING\033[0m ] ft_printf() returns \033[33m%d\033[0m instead of \033[33m%d\033[0m.\n", ftpf_out, pf_out);
 	ft_putchar('\n');
 }
 

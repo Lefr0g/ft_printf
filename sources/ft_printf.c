@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/11 11:38:04 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/11 13:25:58 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ int		convert(va_list *ap, t_env *e)
 		convert_xX(ap, e);
 	}
 	else if (e->conversion == '%')
+	{
 		ft_putchar('%');
+		e->outputlen++;
+	}
 	else
 		return (-1);
 	return (0);
@@ -124,13 +127,21 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 		}
 		e->index++;
 	}
+//	Mais bordel qu'es-ce que cette evaluation est censee faire avec Linux ?
+//	A checker sur Nina
+//	VVV
 	else if (!ft_strchr(e->conversions, format[e->index]))
 	{
 		if (!ft_strcmp(e->os, "linux"))
 			ft_putstr(&format[e->index - 1]);
 		else
-			ft_putendl_fd("\nError : invalid conversion identifier", 2);
-		exit(1);
+//			ft_putendl_fd("\nError : invalid conversion identifier", 2);
+//		exit(1);
+		{
+			ft_putchar(format[e->index]);
+			e->outputlen++;
+			return (e->index);
+		}
 	}
 
 	if (ft_strchr(e->conversions, format[e->index]))
@@ -170,7 +181,7 @@ int	ft_printf(const char *restrict format, ...)
 	step = 0;
 	if (ft_printf_init(&e))
 	{
-		ft_putendl_fd("\nError : invalid conversion identifier", 2);
+		ft_putendl_fd("\nError : initialization failed", 2);
 		return (1);
 	}
 	va_start(ap, format);
@@ -185,9 +196,14 @@ int	ft_printf(const char *restrict format, ...)
 		else
 		{
 			e.index++;
-			directives(format, &ap, &e);
-			convlen = convlen + get_max(e.outputlen, e.field_width);
-			ft_printf_reinit(&e);
+			if (format[e.index])
+			{
+				directives(format, &ap, &e);
+				convlen = convlen + get_max(e.outputlen, e.field_width);
+				ft_printf_reinit(&e);
+			}
+			else
+				return (step + convlen);
 		}
 		e.index++;
 	}

@@ -1,14 +1,14 @@
-/*
- *
- *
- *
- *
- *
- *
- *
- *
- *
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_init.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/10/11 12:56:31 by amulin            #+#    #+#             */
+/*   Updated: 2015/12/11 12:59:03 by amulin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -58,13 +58,14 @@ int	ft_printf_init(t_env *e)
 	e->precisflag = 0;
 	e->precision = 0;
 	e->mod = ft_strnew(3);
-	ft_bzero(e->mod, 3);
 	e->conversion = '\0';
 	e->spacer = ' ';
 	e->outputlen = 0;
 	e->xX_prefix = ft_strnew(3);
-	ft_bzero(e->xX_prefix, 3);
 	e->p_conv = 0;
 	e->null_printed = 0;
+	if (!e->param || !e->lenmods || !e->os || !e->conversions 
+			|| !e->mod || !e->xX_prefix)
+		return (1);
 	return (0);
 }

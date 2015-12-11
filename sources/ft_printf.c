@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/10 18:58:04 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/11 11:38:04 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 */
 int		convert(va_list *ap, t_env *e)
 {
+	char	*str;
+
 	if (e->conversion == 'd' || e->conversion == 'i')
 	{
 		convert_di(ap, e);
@@ -41,7 +43,11 @@ int		convert(va_list *ap, t_env *e)
 	{
 //		if (e->plus)
 //			ft_putendl_fd("\nError : '+' flag used with s conversion", 2);
-		e->param->s = ft_strdup((char*)va_arg(*ap, char*));
+		str = (char*)va_arg(*ap, char*);
+		if (str)
+			e->param->s = ft_strdup(str);
+		else
+			e->param->s = ft_strdup("(null)");
 		if (!e->param->s)
 			ft_putendl_fd("\nError : string copy failed", 2);
 		e->outputlen = ft_strlen(e->param->s);

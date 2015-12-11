@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/10 19:20:26 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/11 11:31:44 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,6 +246,7 @@ int	main(void)
 	j = 0;
 	visu_compare("This is a simple string test.", NULL, "none");
 	visu_compare("", NULL, "none");
+	visu_compare("%s", NULL, "char*");
 	compare_fieldw_precision("#p", &j, "int");
 
 //	visu_compare("|%10d|", ptrj, "int");

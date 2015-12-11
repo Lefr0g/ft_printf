@@ -6,7 +6,7 @@
 
 #include "ft_printf.h"
 
-static void	my_process(unsigned long long n, char *result, unsigned long long i,
+static void	my_process(long long int n, char *result, int i,
 		unsigned int base)
 {
 	size_t	index;
@@ -42,11 +42,11 @@ char		*my_exception(void)
 	return (result);
 }
 */
-char		*ft_itoa_ull(unsigned long long int n, unsigned int base)
+char		*ft_itoa_ll(long long int n, unsigned int base)
 {
 	size_t						j;
-	unsigned long long				i;
-	unsigned long long				buf;
+	long long int				i;
+	long long int				buf;
 	char						*result;
 
 	i = 1;

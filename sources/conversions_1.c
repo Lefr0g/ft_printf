@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/07 12:20:51 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/11 12:41:36 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,10 @@ void	convert_xX(va_list *ap, t_env *e)
 	else
 		ft_strcpy(e->xX_prefix, "0X");
 	
-	e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 16));
+	e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
+
+//	ft_putnbr(e->outputlen);
+//	ft_putchar('/');
 	if (e->precision > e->outputlen)
 	{
 		buf = e->outputlen;
@@ -170,6 +173,7 @@ void	convert_xX(va_list *ap, t_env *e)
 	}
 	else
 		e->precisflag = 0;
+
 
 	manage_flags(0, e);
 
@@ -188,5 +192,11 @@ void	convert_xX(va_list *ap, t_env *e)
 	manage_print_all(e);			
 	
 	if (e->neg)
-		manage_field_width(e);	
+		manage_field_width(e);
+	
+
+//	ft_putchar('/');
+//	ft_putnbr(get_max(e->outputlen, e->field_width));
+//	ft_putchar('/');
+	
 }

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:00:44 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/07 12:14:21 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/11 12:32:13 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ void	manage_modifiers_di(va_list *ap, t_env *e)
 
 void	manage_modifiers_ouxX(va_list *ap, t_env *e)
 {
-	if (!e->mod[0])
+	if (!e->mod[0] && !ft_strchr("xXp", e->conversion))
 		e->param->u = (unsigned int)va_arg(*ap, unsigned int);
+	else if (ft_strchr("xXp", e->conversion))
+		e->param->ul = (unsigned long)va_arg(*ap, unsigned int*);
 	else if (!ft_strcmp(e->mod, "hh"))
 		e->param->uc = (unsigned int)va_arg(*ap, unsigned int);
 	else if (!ft_strcmp(e->mod, "h"))

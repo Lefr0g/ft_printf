@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/11 11:31:44 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/11 12:28:38 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ void	visu_compare(char *str, void *arg, char *type)
 		fflush(stdout);
 		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
 		ftpf_out = ft_printf(str, *(int*)arg);
+	}
+	else if (!ft_strcmp(type, "int*"))
+	{
+		ft_putstr("printf\t\t>>>\t'\033[32m");
+		pf_out = printf(str, (int*)arg);
+		fflush(stdout);
+		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
+		ftpf_out = ft_printf(str, (int*)arg);
 	}
 	else if (!ft_strcmp(type, "uint"))
 	{
@@ -245,8 +253,10 @@ int	main(void)
 
 	j = 0;
 	visu_compare("This is a simple string test.", NULL, "none");
-	visu_compare("", NULL, "none");
-	visu_compare("%s", NULL, "char*");
+//	visu_compare("", NULL, "none");
+//	visu_compare("%s", NULL, "char*");
+	visu_compare("%p", &k, "int");
+	visu_compare("%p", &j, "int*");
 	compare_fieldw_precision("#p", &j, "int");
 
 //	visu_compare("|%10d|", ptrj, "int");

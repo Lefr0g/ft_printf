@@ -6,7 +6,7 @@
 #    By: amulin <amulin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/10 17:35:06 by amulin            #+#    #+#              #
-#    Updated: 2015/12/03 17:19:12 by amulin           ###   ########.fr        #
+#    Updated: 2015/12/11 12:39:23 by amulin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ PRINTINCLUDIR = includes/
 PRINTHEADERS = $(addprefix $(PRINTINCLUDIR), $(PRINTHDRS))
 
 PRINTSRCS = ft_printf.c ft_puthex.c ft_puthex_ull.c ft_putnbr_ull.c \
-			ft_putoctal.c ft_printf_init.c ft_itoa_ull.c ft_putnbr_ll.c \
+			ft_putoctal.c ft_printf_init.c ft_putnbr_ll.c \
+			ft_itoa_ll.c ft_itoa_ull.c \
 			printing.c conversions_1.c lenmods.c flags.c precision.c \
 			misc.c ft_putnbr_void.c ft_putnbr_short.c ft_putnbr_char.c
 

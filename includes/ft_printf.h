@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/07 12:39:43 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/11 12:38:32 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ void			ft_putnbr_char(signed char n);
 void			ft_putnbr_ull(unsigned long long int n);
 void			ft_putnbr_ll(long long n);
 char			*ft_itoa_ll(long long int n, unsigned int base);
+char			*ft_itoa_ull(unsigned long long n, unsigned int base);
 
 
 #endif

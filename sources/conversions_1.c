@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/11 12:41:36 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/11 15:50:21 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	convert_uU(va_list *ap, t_env *e)
 	{
 		manage_modifiers_ouxX(ap, e);
 
-		e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 10));
+		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 10));
 		if (e->precision > e->outputlen)
 		{
 			buf = e->outputlen;
@@ -105,9 +105,9 @@ void	convert_cC(va_list *ap, t_env *e)
 	}
 	else
 	{
-		if (e->mod[0] == 'l')
+//		if (e->mod[0] == 'l')
 			e->param->wi = (wint_t)va_arg(*ap, wint_t);
-		e->param->i = (int)va_arg(*ap, int);
+//		e->param->i = (int)va_arg(*ap, int);
 	}
 	manage_print_all(e);
 }
@@ -126,7 +126,7 @@ void	convert_oO(va_list *ap, t_env *e)
 	{
 		manage_modifiers_ouxX(ap, e);
 
-		e->outputlen = ft_strlen(ft_itoa_ll(e->param->u, 8));
+		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 8));
 		if (e->precision > e->outputlen)
 		{
 			buf = e->outputlen;
@@ -163,8 +163,6 @@ void	convert_xX(va_list *ap, t_env *e)
 	
 	e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
 
-//	ft_putnbr(e->outputlen);
-//	ft_putchar('/');
 	if (e->precision > e->outputlen)
 	{
 		buf = e->outputlen;
@@ -185,7 +183,6 @@ void	convert_xX(va_list *ap, t_env *e)
 	if (e->neg && e->alt && ft_strchr("xX", e->conversion) && !e->zero
 			&& e->param->i)
 		ft_putstr(e->xX_prefix);
-//		ft_putstr("bar");
 
 	manage_precision(&(e->param->u), 0, e);
 
@@ -193,10 +190,34 @@ void	convert_xX(va_list *ap, t_env *e)
 	
 	if (e->neg)
 		manage_field_width(e);
-	
+}
 
-//	ft_putchar('/');
-//	ft_putnbr(get_max(e->outputlen, e->field_width));
-//	ft_putchar('/');
-	
+void	convert_sS(va_list *ap, t_env *e)
+{
+	char	*str;
+
+	if (e->conversion == 'S')
+	{
+		e->conversion = 's';
+		e->mod[0] = 'l';
+		convert_sS(ap, e);
+	}
+	else
+	{
+//		if (e->plus)
+//			ft_putendl_fd("\nError : '+' flag used with s conversion", 2);
+		str = (char*)va_arg(*ap, char*);
+		if (str)
+			e->param->s = ft_strdup(str);
+		else
+			e->param->s = ft_strdup("(null)");
+		if (!e->param->s)
+			ft_putendl_fd("\nError : string copy failed", 2);
+		e->outputlen = ft_strlen(e->param->s);
+		if (e->outputlen < e->field_width)
+			manage_field_width(e);
+		if (e->precisflag)
+			e->param->s = manage_precision_s(e->param->s, e);
+		ft_putstr(e->param->s);
+	}
 }

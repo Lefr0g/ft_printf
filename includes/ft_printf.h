@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/11 12:38:32 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/11 15:39:40 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void			convert_uU(va_list *ap, t_env *e);
 void			convert_cC(va_list *ap, t_env *e);
 void			convert_oO(va_list *ap, t_env *e);
 void			convert_xX(va_list *ap, t_env *e);
+void			convert_sS(va_list *ap, t_env *e);
 
 /*
 **	modifiers.c
@@ -130,7 +131,7 @@ int				get_max(int a, int b);
 */
 void			ft_puthex(unsigned int n, char *mode);
 void			ft_puthex_ull(unsigned long long int n, char *mode);
-void			ft_putoctal(unsigned int n);
+void			ft_putoctal(unsigned long n);
 
 void			ft_putnbr_void(void *n, size_t size);
 void			ft_putnbr_short(short n);

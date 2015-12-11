@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/11 13:23:12 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/11 15:53:08 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,14 @@ void	visu_compare(char *str, void *arg, char *type)
 		fflush(stdout);
 		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
 		ftpf_out = ft_printf(str, *(long*)arg);
+	}
+	else if (!ft_strcmp(type, "u long"))
+	{
+		ft_putstr("printf\t\t>>>\t'\033[32m");
+		pf_out = printf(str, *(unsigned long*)arg);
+		fflush(stdout);
+		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
+		ftpf_out = ft_printf(str, *(unsigned long*)arg);
 	}
 	else if (!ft_strcmp(type, "long long"))
 	{
@@ -234,6 +242,7 @@ int	main(void)
 
 	int	j;
 	long 	k;
+	unsigned long	ulong;
 	int	*ptrj;
 	char	*str2;
 
@@ -260,6 +269,19 @@ int	main(void)
 	compare_fieldw_precision("#p", &j, "int");
 	visu_compare("%%", NULL, "none");
 	visu_compare("% Zoooo", NULL, "none");
+	
+	k = LONG_MAX;
+	visu_compare("%o", &k, "long");
+	visu_compare("%O", &k, "long");
+
+	ulong = ULONG_MAX / 2;
+	visu_compare("%u", &ulong, "u long");
+	visu_compare("%U", &ulong, "u long");
+
+	c = 'f';
+	visu_compare("%c", &c, "char");
+	visu_compare("%C", &c, "char");
+
 
 //	visu_compare("|%10d|", ptrj, "int");
 //	visu_compare("|%-10d|", ptrj, "int");

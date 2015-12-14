@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/11 15:50:21 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/14 14:44:07 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,12 @@ void	convert_cC(va_list *ap, t_env *e)
 	}
 	else
 	{
-//		if (e->mod[0] == 'l')
+		if (e->mod[0] == 'l')
 			e->param->wi = (wint_t)va_arg(*ap, wint_t);
-//		e->param->i = (int)va_arg(*ap, int);
+		else
+			e->param->i = (int)va_arg(*ap, int);
+		manage_print_all(e);
 	}
-	manage_print_all(e);
 }
 
 void	convert_oO(va_list *ap, t_env *e)

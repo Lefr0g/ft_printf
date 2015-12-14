@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 19:34:39 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/11 15:53:37 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/14 16:37:10 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	manage_print_all(t_env *e)
 	if (e->conversion == 'c')
 	{
 		if (e->mod[0] == 'l' )
-//			ft_putchar_wchar_t(e->param->wc);
-			ft_putchar(e->param->wc);
+			ft_putwchar_t(e->param->wc);
+//			ft_print_memory(&(e->param->wc), sizeof(wchar_t));
 		else
-			ft_putchar(e->param->c);
+			ft_putchar(e->param->uc);
 		e->outputlen++;
 	}
 	else if (e->conversion == 'u')

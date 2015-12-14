@@ -6,13 +6,14 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/11 15:53:08 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/14 18:46:26 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
 # include <stdio.h>
 # include <limits.h>
+# include <locale.h>
 
 void	visu_compare(char *str, void *arg, char *type)
 {
@@ -58,6 +59,14 @@ void	visu_compare(char *str, void *arg, char *type)
 		fflush(stdout);
 		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
 		ftpf_out = ft_printf(str, *(unsigned int*)arg);
+	}
+	else if (!ft_strcmp(type, "wint_t"))
+	{
+		ft_putstr("printf\t\t>>>\t'\033[32m");
+		pf_out = printf(str, *(wint_t*)arg);
+		fflush(stdout);
+		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
+		ftpf_out = ft_printf(str, *(wint_t*)arg);
 	}
 	else if (!ft_strcmp(type, "char"))
 	{
@@ -196,8 +205,10 @@ int	main(void)
 {
 	int		i = -6324;
 	char	c;
+	wint_t	wc;
 	char	*str;
 
+	setlocale(LC_ALL, "");
 	c = 'D';
 	str = ft_strdup("String test OK");
 
@@ -260,6 +271,7 @@ int	main(void)
 
 	str2 = ft_strdup("printf\t\t>>>\t'\033[32mThis is a simple string test.\033[0m'\n");
 
+	
 	j = 0;
 	visu_compare("This is a simple string test.", NULL, "none");
 //	visu_compare("", NULL, "none");
@@ -277,11 +289,29 @@ int	main(void)
 	ulong = ULONG_MAX / 2;
 	visu_compare("%u", &ulong, "u long");
 	visu_compare("%U", &ulong, "u long");
-
+	
 	c = 'f';
+	wc = L'\xe9';
+	ft_putendl("%c with c as char :");
 	visu_compare("%c", &c, "char");
-	visu_compare("%C", &c, "char");
+	
+	ft_putendl("%C with wc as wint_t :");
+	visu_compare("%C", &wc, "wint_t");
+	
+	ft_putendl("%C with wc as char :");
+	visu_compare("%C", &wc, "char");
+	
+	c = 'f';
+	wc = L'\xe9';
 
+	ft_print_memory(&c, sizeof(char));
+	ft_print_memory(&wc, sizeof(char));
+	ft_print_memory(&wc, sizeof(wchar_t));
+	ft_print_memory(&wc, sizeof(wint_t));
+
+	printf("wchar_t = %d\n", (int)wc);
+
+	ft_putendl("============= END OF TESTS =================");
 
 //	visu_compare("|%10d|", ptrj, "int");
 //	visu_compare("|%-10d|", ptrj, "int");
@@ -305,6 +335,7 @@ int	main(void)
 
 	
 	/*
+	   p
 	visu_compare("%p", &ptrj, "long");
 	visu_compare("%hhx", &ptrj, "long");
 	visu_compare("%hx", &ptrj, "long");

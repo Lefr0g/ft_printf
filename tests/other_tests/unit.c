@@ -322,6 +322,9 @@ int	main(void)
 //	visu_compare("%10.5#p", &j, "int");
 	visu_compare("%%", NULL, "none");
 	visu_compare("%-10p", &j, "int");
+	visu_compare("%p", &j, "int");
+	visu_compare("%10p", &j, "int");
+	visu_compare("%010p", &j, "int");
 
 /*	
 	visu_compare("% Zoooo", NULL, "none");

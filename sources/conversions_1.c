@@ -12,6 +12,8 @@
 
 #include "ft_printf.h"
 
+#include <stdio.h>
+
 void	convert_di(va_list *ap, t_env *e)
 {
 	int	buf;
@@ -161,8 +163,8 @@ void	convert_xX(va_list *ap, t_env *e)
 		ft_strcpy(e->xX_prefix, "0x");
 	else
 		ft_strcpy(e->xX_prefix, "0X");
-	
-	e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
+	if (e->param->i)
+		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
 
 	if (e->precision > e->outputlen)
 	{
@@ -186,7 +188,11 @@ void	convert_xX(va_list *ap, t_env *e)
 
 	manage_precision(&(e->param->u), 0, e);
 
-	manage_print_all(e);			
+//	printf("Precision = %d\n", e->precision);
+//	printf("Outpulen = %d\n", e->outputlen);
+
+
+	manage_print_all(e);
 	
 	if (e->neg)
 		manage_field_width(e);

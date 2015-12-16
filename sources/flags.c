@@ -12,6 +12,8 @@
 
 #include "ft_printf.h"
 
+#include <stdio.h>
+
 /*
 **	get_flags() sets the env parameters according to the given flags, and 
 **	increments the format[] index upon success.
@@ -38,7 +40,6 @@ int	get_flags(const char *restrict format, t_env *e)
 	}
 	else
 		return (1);
-	e->index++;
 	return (0);
 }
 
@@ -49,14 +50,20 @@ int	get_flags(const char *restrict format, t_env *e)
 */
 int		manage_flags(int ispos, t_env *e)
 {
+//	printf("precisflag = %d\n", e->precisflag);
 	if (e->zero)
 	{
-		if (!e->neg && ft_strchr("diouxX", e->conversion))
-			e->spacer = '0';
-		if (e->precisflag && ft_strchr("diouxX", e->conversion))
-		{
+		if (!e->param->i)
 			e->zero = 0;
-			e->spacer = ' ';
+		else
+		{
+			if (!e->neg && ft_strchr("diouxX", e->conversion))
+				e->spacer = '0';
+			if (e->precisflag && ft_strchr("diouxX", e->conversion))
+			{
+				e->zero = 0;
+				e->spacer = ' ';
+			}
 		}
 	}
 	if (e->alt)

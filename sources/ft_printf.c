@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-//#include <stdio.h>
+#include <stdio.h>
 
 /*
 **	This function, called from the directive() function, implements the
@@ -81,8 +81,9 @@ int		convert(va_list *ap, t_env *e)
 */
 int	directives(const char *restrict format, va_list *ap, t_env *e)
 {
-	get_flags(format, e);
-	if (ft_isdigit(format[e->index]) && format[e->index])
+	if (!get_flags(format, e))
+		e->index++;
+	else if (ft_isdigit(format[e->index]) && format[e->index])
 	{
 		e->field_width = ft_atoi(&format[e->index]);
 		e->index += ft_strlen(ft_itoa(e->field_width));
@@ -116,9 +117,10 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 //	VVV
 	else if (!ft_strchr(e->conversions, format[e->index]))
 	{
-		if (!ft_strcmp(e->os, "linux"))
-			ft_putstr(&format[e->index - 1]);
-		else
+//		if (!ft_strcmp(e->os, "linux"))
+//			ft_putstr(&format[e->index - 1]);
+//		else
+
 //			ft_putendl_fd("\nError : invalid conversion identifier", 2);
 //		exit(1);
 		{
@@ -184,6 +186,8 @@ int	ft_printf(const char *restrict format, ...)
 			{
 				directives(format, &ap, &e);
 				convlen = convlen + get_max(e.outputlen, e.field_width);
+//				printf("'\noutputlen = %d, field width = %d\n",
+//						e.outputlen, e.field_width);
 				ft_printf_reinit(&e);
 			}
 			else
@@ -194,5 +198,6 @@ int	ft_printf(const char *restrict format, ...)
 	va_end(ap);
 //	ft_putstr(format);
 //	ft_putendl("|");
+//	printf("'\nstep = %d, convlen = %d\n", step, convlen);
 	return (step + convlen);
 }

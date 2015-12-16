@@ -9,10 +9,15 @@ elif [ $OS_NAME = "Darwin" ]; then
 	CC=clang
 fi
 if [ $1 = "noflag" ]; then
-	FLAGS=
+	FLAGS=""
 else
 	FLAGS="-Wall -Werror -Wextra"
 fi
+
+if [ $CC = "gcc" ]; then
+	FLAGS="$FLAGS -std=c99"
+fi
+
 echo -e "\n\033[033m>>> OS detected : $OS_NAME\033[0m"
 echo -e "\n\033[033m>>> Running fclean.sh :\033[0m\n"
 ./fclean.sh

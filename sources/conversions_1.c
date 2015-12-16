@@ -178,7 +178,6 @@ void	convert_xX(va_list *ap, t_env *e)
 
 	if (!e->neg)
 		manage_field_width(e);
-
 	if (e->alt && !e->param->i && e->p_conv)
 		print_null_ptr(e);
 	if (e->neg && e->alt && ft_strchr("xX", e->conversion) && !e->zero

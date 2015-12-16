@@ -155,13 +155,50 @@ void	compare_lenmods(char *str, void *arg, char *type)
 
 void	compare_fieldw_precision(char *str, void *arg, char *type)
 {
-	visu_compare(ft_strjoin("%10.5", str), arg, type);
-	visu_compare(ft_strjoin("%010.5", str), arg, type);
-	visu_compare(ft_strjoin("%10", str), arg, type);
-	visu_compare(ft_strjoin("%-10", str), arg, type);
-	visu_compare(ft_strjoin("%010", str), arg, type); 
-	visu_compare(ft_strjoin("%-10.5", str), arg, type);
-	visu_compare(ft_strjoin("%-010.5", str), arg, type);
+//	WIP : pour mettre le flag avant le field width et precision (si present)
+	int		i;
+	char	**testid;\
+	char	*flag;
+	char	*remain;
+
+	testid = (char**)malloc(sizeof(char*) * 7);
+	testid[0] = ft_strdup("10.5");
+	testid[1] = ft_strdup("010.5");
+	testid[2] = ft_strdup("10");
+	testid[3] = ft_strdup("-10");
+	testid[4] = ft_strdup("010");
+	testid[5] = ft_strdup("-10.5");
+	testid[6] = ft_strdup("-010.5");
+	if (ft_strchr("#0- +", str[0]))
+	{
+		flag = ft_strnew(2);
+		flag[0] = str[0];
+		flag[1] = '\0';
+		i = 0;
+		while (i < 7)
+		{
+			testid[i] = ft_strjoin(flag, testid[i]);
+			testid[i] = ft_strjoin("%", testid[i]);
+			i++;
+		}
+		remain = &str[1];
+	}
+	else
+		remain = str;
+
+	i = 0;
+	while (i < 7)
+	{
+		visu_compare(ft_strjoin(testid[i], remain), arg, type);
+		i++;
+	}
+	i = 0;
+	while (i < 7)
+	{
+		ft_strdel(&testid[i]);
+		i++;
+	}
+	free(testid);
 }
 
 void	compare_flags_on_int(char *str)
@@ -251,14 +288,16 @@ int	main(void)
 	
 	ft_putstr("=================================================\n");
 
-	int	j;
-	long 	k;
+	int				j;
+	long 			k;
 	unsigned long	ulong;
-	int	*ptrj;
-	char	*str2;
+	int				*ptrj;
+	char			*str2;
 
 	j = 12;
 	ptrj = &j;
+	(void)ptrj;
+	(void)str2;
 
 
 //	visu_compare("4567 |%-10]5d| plip\n", ptrj, "int");
@@ -279,7 +318,12 @@ int	main(void)
 	visu_compare("%p", &k, "int");
 	visu_compare("%p", &j, "int*");
 	compare_fieldw_precision("#p", &j, "int");
+//	visu_compare("%#10.5p", &j, "int");
+//	visu_compare("%10.5#p", &j, "int");
 	visu_compare("%%", NULL, "none");
+	visu_compare("%-10p", &j, "int");
+
+/*	
 	visu_compare("% Zoooo", NULL, "none");
 	
 	k = LONG_MAX;
@@ -310,6 +354,8 @@ int	main(void)
 	ft_print_memory(&wc, sizeof(wint_t));
 
 	printf("wchar_t = %d\n", (int)wc);
+
+*/
 
 	ft_putendl("============= END OF TESTS =================");
 

@@ -12,6 +12,9 @@ NAME = run_tests.out
 
 FLAGS = -Wall -Werror -Wextra
 
+ifeq ($(CC),gcc)
+	FLAGS = $(FLAGS) -std=c99
+
 SRCS = pft_main.c pft_gears.c pft_interface.c pft_random_gens.c \
 	   test_sequences.c pft_list.c pft_test_functions.c
 

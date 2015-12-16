@@ -12,6 +12,8 @@
 
 #include "ft_printf.h"
 
+#include <stdio.h>
+
 int		manage_field_width(t_env *e)
 {
 	int	i;
@@ -27,6 +29,7 @@ int		manage_field_width(t_env *e)
 		ft_putstr(e->xX_prefix);
 	else if (e->p_conv && !e->param->i && e->zero)
 		print_null_ptr(e);
+//	printf("\noutputlen = %d, precision = %d\n", e->outputlen, e->precision);
 	while (i && i - get_max(e->outputlen, e->precision) > 0)
 	{
 		ft_putchar(e->spacer);

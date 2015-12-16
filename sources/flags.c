@@ -61,9 +61,22 @@ int		manage_flags(int ispos, t_env *e)
 	}
 	if (e->alt)
 	{
-		if ((e->conversion == 'x' || e->conversion == 'X')
-				&& (e->param && e->p_conv))
-			e->outputlen += 2;
+//		if ((e->conversion == 'x' || e->conversion == 'X')
+//				&& (e->param && e->p_conv))
+//			e->outputlen += 2;
+//
+//		Le test suivant remplace celui place en commentaire ci-dessus.
+//		(raccourcit le print pour %-10p, mais trop court d'un char).
+		if (e->conversion == 'x' || e->conversion == 'X')
+		{
+			if (e->p_conv)
+			{
+				if (e->param->i)
+					e->outputlen += ft_strlen(e->xX_prefix);
+				else
+					e->outputlen += ft_strlen(NULL_PTR);
+			}
+		}
 		else if (e->conversion == 'o')
 		{
 			e->precisflag = 1;

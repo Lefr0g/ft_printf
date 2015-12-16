@@ -27,6 +27,10 @@ NAME = libftprintf.a
 
 FLAGS = -Wall -Werror -Wextra
 
+ifeq ($(CC),gcc)
+	FLAGS += -std=c99
+endif
+
 PRINTHDRS = ft_printf.h
 
 PRINTINCLUDIR = includes/

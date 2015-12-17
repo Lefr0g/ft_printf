@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/17 17:07:15 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/17 17:18:42 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ int		manage_precision(void *value, int isneg, t_env *e)
 		}
 		else
 		{
-			if (!ft_strcmp(e->os, "linux") && e->param->i)
-				ft_putchar(' ');
-			else
+			if (ft_strcmp("linux", e->os))
 				ft_putchar('|');
 			i--;
 		}

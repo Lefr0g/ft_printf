@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 19:34:39 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/14 16:37:10 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/17 18:15:10 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ void	manage_print_all(t_env *e)
 	}
 	else if (e->conversion == 'x')
 	{
-		if (!e->param->i && e->alt && e->p_conv)
+//		First case (below) is to be replaced with a call to 's' conversion.
+		if (!e->param->i && e->alt && e->p_conv && !ft_strcmp("linux", e->os))
 			print_null_ptr(e);
-		else	
+		else
 			ft_puthex_ull(e->param->ull, "min");
 	}
 	else if (e->conversion == 'X')

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/14 18:46:26 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/17 17:43:20 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -317,14 +317,16 @@ int	main(void)
 //	visu_compare("%s", NULL, "char*");
 	visu_compare("%p", &k, "int");
 	visu_compare("%p", &j, "int*");
+	visu_compare("%10.5p", &j, "int");
 	compare_fieldw_precision("#p", &j, "int");
 //	visu_compare("%#10.5p", &j, "int");
 //	visu_compare("%10.5#p", &j, "int");
-	visu_compare("%%", NULL, "none");
-	visu_compare("%-10p", &j, "int");
-	visu_compare("%p", &j, "int");
-	visu_compare("%10p", &j, "int");
-	visu_compare("%010p", &j, "int");
+
+//	visu_compare("%%", NULL, "none");
+//	visu_compare("%-10p", &j, "int");
+//	visu_compare("%p", &j, "int");
+//	visu_compare("%10p", &j, "int");
+//	visu_compare("%010p", &j, "int");
 
 /*	
 	visu_compare("% Zoooo", NULL, "none");

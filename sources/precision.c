@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/17 17:23:43 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/17 18:18:58 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,18 @@ int		manage_field_width(t_env *e)
 		ft_putchar('-');
 		e->param->i = -e->param->i;
 	}
-	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer == '0'
-			&& e->param->i)
+	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer == '0')
 		ft_putstr(e->xX_prefix);
-	else if (e->p_conv && !e->param->i && e->zero)
+	else if (e->p_conv && !e->param->i && e->zero && !ft_strcmp("linux", e->os))
 		print_null_ptr(e);
-//	printf("\noutputlen = %d, precision = %d\n", e->outputlen, e->precision);
+
+//	printf("'\noutputlen = %d, precision = %d\n'", e->outputlen, e->precision);
 	while (i && i - get_max(e->outputlen, e->precision) > 0)
 	{
 		ft_putchar(e->spacer);
 		i--;
 	}
-	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer != '0'
-			&& e->param->i)
+	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer != '0')
 		ft_putstr(e->xX_prefix);
 	return (0);
 }
@@ -59,7 +58,7 @@ int		manage_precision(void *value, int isneg, t_env *e)
 		else
 		{
 			if (ft_strcmp("linux", e->os))
-				ft_putchar('|');
+				ft_putchar('0');
 			else if (!ft_strcmp("linux", e->os) && !e->param->i)
 				ft_putchar(' ');
 			i--;

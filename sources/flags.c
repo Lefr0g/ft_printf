@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/17 16:58:39 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/17 17:52:27 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,11 @@ int		manage_flags(int ispos, t_env *e)
 		{
 			if (e->p_conv)
 			{
-				if (e->param->i)
+//				if (e->param->i)
+				if (!ft_strcmp("darwin", e->os))
 					e->outputlen += ft_strlen(e->xX_prefix);
-				else
-					e->outputlen += ft_strlen(NULL_PTR);
+//				else
+//					e->outputlen += ft_strlen(NULL_PTR);
 			}
 		}
 		else if (e->conversion == 'o')

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/14 14:44:07 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/17 18:18:05 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ void	convert_xX(va_list *ap, t_env *e)
 		ft_strcpy(e->xX_prefix, "0x");
 	else
 		ft_strcpy(e->xX_prefix, "0X");
-	if (e->param->i)
+	if (!(!ft_strcmp("linux", e->os) && !e->param->i))
 		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
 
 	if (e->precision > e->outputlen)
@@ -180,10 +180,10 @@ void	convert_xX(va_list *ap, t_env *e)
 
 	if (!e->neg)
 		manage_field_width(e);
-	if (e->alt && !e->param->i && e->p_conv)
+	if (e->alt && !e->param->i && e->p_conv && !ft_strcmp("linux", e->os))
 		print_null_ptr(e);
-	if (e->neg && e->alt && ft_strchr("xX", e->conversion) && !e->zero
-			&& e->param->i)
+
+	if (e->neg && e->alt && ft_strchr("xX", e->conversion) && !e->zero)
 		ft_putstr(e->xX_prefix);
 
 	manage_precision(&(e->param->u), 0, e);

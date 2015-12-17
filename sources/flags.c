@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/07 12:42:25 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/17 16:58:39 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		manage_flags(int ispos, t_env *e)
 //	printf("precisflag = %d\n", e->precisflag);
 	if (e->zero)
 	{
-		if (!e->param->i)
+		if (!ft_strcmp("linux", e->os) && !e->param->i)
 			e->zero = 0;
 		else
 		{

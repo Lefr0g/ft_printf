@@ -184,8 +184,10 @@ void	convert_xX(va_list *ap, t_env *e)
 		print_null_ptr(e);
 
 	if (e->neg && e->alt && ft_strchr("xX", e->conversion) && !e->zero)
-		ft_putstr(e->xX_prefix);
-
+	{
+		if (!(!ft_strcmp("linux", e->os) && !e->param->i))
+			ft_putstr(e->xX_prefix);
+	}
 	manage_precision(&(e->param->u), 0, e);
 
 //	printf("Precision = %d\n", e->precision);

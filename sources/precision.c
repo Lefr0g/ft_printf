@@ -36,7 +36,10 @@ int		manage_field_width(t_env *e)
 		i--;
 	}
 	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer != '0')
-		ft_putstr(e->xX_prefix);
+	{
+		if (!(!ft_strcmp("linux", e->os) && !e->param->i))
+			ft_putstr(e->xX_prefix);
+	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/17 18:18:05 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/18 16:43:34 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,13 +214,16 @@ void	convert_sS(va_list *ap, t_env *e)
 	{
 //		if (e->plus)
 //			ft_putendl_fd("\nError : '+' flag used with s conversion", 2);
-		str = (char*)va_arg(*ap, char*);
-		if (str)
-			e->param->s = ft_strdup(str);
-		else
-			e->param->s = ft_strdup("(null)");
+		if (ap)
+		{
+			str = (char*)va_arg(*ap, char*);
+			if (str)
+				e->param->s = ft_strdup(str);
+			else
+				e->param->s = ft_strdup("(null)");
+		}
 		if (!e->param->s)
-			ft_putendl_fd("\nError : string copy failed", 2);
+			ft_putendl_fd("\nError : no string to be printed", 2);
 		e->outputlen = ft_strlen(e->param->s);
 		if (e->outputlen < e->field_width)
 			manage_field_width(e);

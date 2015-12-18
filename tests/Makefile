@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: amulin <amulin@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2015/12/18 15:59:21 by amulin            #+#    #+#              #
+#    Updated: 2015/12/18 15:59:32 by amulin           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # OS detection (Linux / OSX)
 #
 OS_NAME = $(shell uname -s)
@@ -14,6 +26,7 @@ FLAGS = -Wall -Werror -Wextra
 
 ifeq ($(CC),gcc)
 	FLAGS = $(FLAGS) -std=c99
+endif
 
 SRCS = pft_main.c pft_gears.c pft_interface.c pft_random_gens.c \
 	   test_sequences.c pft_list.c pft_test_functions.c

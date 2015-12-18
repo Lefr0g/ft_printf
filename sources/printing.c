@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 19:34:39 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/18 16:45:31 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/18 18:31:16 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,29 +47,9 @@ void	manage_print_all(t_env *e)
 			ft_putoctal(e->param->ull);
 	}
 	else if (e->conversion == 'x')
-	{
-/*
-//		First case (below) is to be replaced with a call to 's' conversion.
-		if (!e->param->i && e->alt && e->p_conv && !ft_strcmp("linux", e->os))
-//			print_null_ptr(e);
-		{
-			e->conversion = 's';
-			e->mod[0] = '\0';
-			e->param->s = ft_strdup(NULL_PTR);
-			convert_sS(NULL, e);
-			return;
-		}
-		else
-*/
-			ft_puthex_ull(e->param->ull, "min");
-	}
+		ft_puthex_ull(e->param->ull, "min");
 	else if (e->conversion == 'X')
-	{
-		if (!e->param->i && e->alt && e->p_conv)
-			print_null_ptr(e);
-		else
-			ft_puthex_ull(e->param->ull, "maj");
-	}
+		ft_puthex_ull(e->param->ull, "maj");
 }
 
 void	print_null_ptr(t_env *e)

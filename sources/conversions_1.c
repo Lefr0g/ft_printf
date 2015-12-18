@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/18 17:30:20 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/18 18:50:19 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,8 @@ void	convert_xX(va_list *ap, t_env *e)
 			e->outputlen = e->precision;
 			e->precision = e->outputlen - buf;
 		}
+		else if (e->precisflag && !e->precision)
+			e->outputlen--;
 		else
 			e->precisflag = 0;
 
@@ -179,26 +181,26 @@ void	convert_xX(va_list *ap, t_env *e)
 
 		if (!e->neg)
 			manage_field_width(e);
-//		if (e->alt && !e->param->i && e->p_conv && !ft_strcmp("linux", e->os))
-//			print_null_ptr(e);
 
 		if (e->neg && e->alt && ft_strchr("xX", e->conversion) && !e->zero)
 		{
 			ft_putstr(e->xX_prefix);
-			e->outputlen += 2;
+			e->outputlen += ft_strlen(e->xX_prefix);
 		}
 		manage_precision(&(e->param->u), 0, e);
 
 //		printf("Precision = %d\n", e->precision);
 //		printf("Outpulen = %d\n", e->outputlen);
-
-		manage_print_all(e);
+		
+		if (!(e->precisflag && !e->precision))
+			manage_print_all(e);
 	
 		if (e->neg)
 			manage_field_width(e);
 	}
 	else
 	{
+//		ft_putstr("||check||");
 		e->conversion = 's';
 		e->mod[0] = '\0';
 		e->param->s = ft_strdup(NULL_PTR);

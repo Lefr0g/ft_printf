@@ -48,6 +48,7 @@ void	manage_print_all(t_env *e)
 	}
 	else if (e->conversion == 'x')
 	{
+/*
 //		First case (below) is to be replaced with a call to 's' conversion.
 		if (!e->param->i && e->alt && e->p_conv && !ft_strcmp("linux", e->os))
 //			print_null_ptr(e);
@@ -59,6 +60,7 @@ void	manage_print_all(t_env *e)
 			return;
 		}
 		else
+*/
 			ft_puthex_ull(e->param->ull, "min");
 	}
 	else if (e->conversion == 'X')

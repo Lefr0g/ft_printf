@@ -164,40 +164,49 @@ void	convert_xX(va_list *ap, t_env *e)
 	else
 		ft_strcpy(e->xX_prefix, "0X");
 	if (!(!ft_strcmp("linux", e->os) && !e->param->i))
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
-
-	if (e->precision > e->outputlen)
 	{
-		buf = e->outputlen;
-		e->outputlen = e->precision;
-		e->precision = e->outputlen - buf;
+		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
+		if (e->p_conv)
+			e->outputlen += ft_strlen(e->xX_prefix);
+
+		if (e->precision > e->outputlen)
+		{
+			buf = e->outputlen;
+			e->outputlen = e->precision;
+			e->precision = e->outputlen - buf;
+		}
+		else
+			e->precisflag = 0;
+
+		manage_flags(0, e);
+
+		if (!e->neg)
+			manage_field_width(e);
+//		if (e->alt && !e->param->i && e->p_conv && !ft_strcmp("linux", e->os))
+//			print_null_ptr(e);
+
+		if (e->neg && e->alt && ft_strchr("xX", e->conversion) && !e->zero)
+		{
+			ft_putstr(e->xX_prefix);
+			e->outputlen += 2;
+		}
+		manage_precision(&(e->param->u), 0, e);
+
+//		printf("Precision = %d\n", e->precision);
+//		printf("Outpulen = %d\n", e->outputlen);
+
+		manage_print_all(e);
+	
+		if (e->neg)
+			manage_field_width(e);
 	}
 	else
-		e->precisflag = 0;
-
-
-	manage_flags(0, e);
-
-	if (!e->neg)
-		manage_field_width(e);
-	if (e->alt && !e->param->i && e->p_conv && !ft_strcmp("linux", e->os))
-		print_null_ptr(e);
-
-	if (e->neg && e->alt && ft_strchr("xX", e->conversion) && !e->zero)
 	{
-		if (!(!ft_strcmp("linux", e->os) && !e->param->i))
-			ft_putstr(e->xX_prefix);
+		e->conversion = 's';
+		e->mod[0] = '\0';
+		e->param->s = ft_strdup(NULL_PTR);
+		convert_sS(NULL, e);
 	}
-	manage_precision(&(e->param->u), 0, e);
-
-//	printf("Precision = %d\n", e->precision);
-//	printf("Outpulen = %d\n", e->outputlen);
-
-
-	manage_print_all(e);
-	
-	if (e->neg)
-		manage_field_width(e);
 }
 
 void	convert_sS(va_list *ap, t_env *e)
@@ -225,10 +234,15 @@ void	convert_sS(va_list *ap, t_env *e)
 		if (!e->param->s)
 			ft_putendl_fd("\nError : no string to be printed", 2);
 		e->outputlen = ft_strlen(e->param->s);
-		if (e->outputlen < e->field_width)
+
+//		if (e->outputlen < e->field_width)
+		if (!e->neg)
 			manage_field_width(e);
+
 		if (e->precisflag)
 			e->param->s = manage_precision_s(e->param->s, e);
 		ft_putstr(e->param->s);
+		if (e->neg)
+			manage_field_width(e);
 	}
 }

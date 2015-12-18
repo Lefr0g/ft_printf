@@ -72,10 +72,10 @@ int		manage_precision(void *value, int isneg, t_env *e)
 		}
 		else
 		{
-			if (ft_strcmp("linux", e->os))
-				ft_putchar('0');
-			else if (!ft_strcmp("linux", e->os) && !e->param->i)
+			if (!ft_strcmp("linux", e->os) && !e->param->i)
 				ft_putchar(' ');
+			else
+				ft_putchar('0');
 			i--;
 		}
 	}

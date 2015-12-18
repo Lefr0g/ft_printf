@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/18 16:43:34 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/18 17:30:20 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,9 +166,6 @@ void	convert_xX(va_list *ap, t_env *e)
 	if (!(!ft_strcmp("linux", e->os) && !e->param->i))
 	{
 		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
-		if (e->p_conv)
-			e->outputlen += ft_strlen(e->xX_prefix);
-
 		if (e->precision > e->outputlen)
 		{
 			buf = e->outputlen;

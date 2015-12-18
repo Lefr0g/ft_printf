@@ -198,12 +198,17 @@ void	convert_xX(va_list *ap, t_env *e)
 		if (e->neg)
 			manage_field_width(e);
 	}
+//	else if (!ft_strcmp("linux", e->os) && !e->param->i)
+//	{
+//	}
 	else
 	{
 //		ft_putstr("||check||");
 		e->conversion = 's';
 		e->mod[0] = '\0';
 		e->param->s = ft_strdup(NULL_PTR);
+		if (e->precisflag && !e->precision)
+			ft_putstr(NULL_PTR);
 		convert_sS(NULL, e);
 	}
 }

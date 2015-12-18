@@ -321,7 +321,11 @@ int	main(void)
 	visu_compare("%p", NULL, "int*");
 	visu_compare("%.p", NULL, "int*");
 	visu_compare("%.0p", NULL, "int*");
+
+	j = 1234;
+	visu_compare("%2.9p", &j, "int");
 	
+	j = 0;
 	visu_compare("%10.5p", &j, "int");
 	compare_fieldw_precision("#p", &j, "int");
 	visu_compare("%p", &(ft_printf), "int");

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/18 17:28:17 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/22 16:10:56 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,12 @@ int	get_flags(const char *restrict format, t_env *e)
 		e->neg = 1;
 	}
 	else if (format[e->index] == ' ')
-		e->space = 1;
+	{
+		if (!e->plus)
+			e->space = 1;
+		else
+			e->space = 0;
+	}
 	else if (format[e->index] == '+')
 	{
 		if (e->space)
@@ -78,7 +83,10 @@ int		manage_flags(int ispos, t_env *e)
 			|| e->conversion == 'p'))
 	{
 		if (ispos)
+		{
+			ft_putchar('+');
 			e->outputlen++;
+		}
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/18 18:50:19 by amulin           ###   ########.fr       */
+/*   Updated: 2015/12/22 16:11:58 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	convert_di(va_list *ap, t_env *e)
 //	printf("Precision = %d\n", e->precision);
 //	printf("Outpulen = %d\n", e->outputlen);
 	
-	manage_flags((e->param->i > 0), e);
+	manage_flags((e->param->i >= 0), e);
 	
 	if (!e->neg)
 		manage_field_width(e);

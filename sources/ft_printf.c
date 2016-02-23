@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/11 15:44:05 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/23 17:11:17 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,14 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 		e->conversion = format[e->index];
 		convert(ap, e);
 	}
+	else if (ft_isalpha(format[e->index]) 
+			&& !ft_strchr(e->conversions, format[e->index]) 
+			&& !ft_strchr(e->lenmods, format[e->index]))
+	{
+		manage_field_width(e);
+		ft_putchar(format[e->index]);
+		e->outputlen++;
+	}
 	else
 		directives(format, ap, e);
 	return (e->index);
@@ -186,8 +194,10 @@ int	ft_printf(const char *restrict format, ...)
 			{
 				directives(format, &ap, &e);
 				convlen = convlen + get_max(e.outputlen, e.field_width);
+
 //				printf("'\noutputlen = %d, field width = %d\n",
 //						e.outputlen, e.field_width);
+
 				ft_printf_reinit(&e);
 			}
 			else

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/14 12:49:27 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/23 16:50:42 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct	s_env
 	char		*os;
 	t_param		*param;
 	int			index;
+	char		*flags;
 	char		*lenmods;
 	char		*conversions;
 	int			alt;

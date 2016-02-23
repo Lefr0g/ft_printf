@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/22 15:57:45 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/23 17:07:26 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -372,6 +372,13 @@ int	main(void)
 
 */
 	visu_compare("%ll# +++-+-- h00012.3.5.28d", ptrj, "int");
+	j = 0;
+	visu_compare("{%3c}", &j, "char");
+	c = 'a';
+	visu_compare("%c", &c, "char");
+	visu_compare("%3c", &c, "char");
+	visu_compare("{%10R}", NULL, "none");
+	visu_compare("% Zoooo", NULL, "none");
 
 	ft_putendl("============= END OF TESTS =================");
 

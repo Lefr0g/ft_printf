@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 12:56:31 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/11 12:59:03 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/23 17:00:21 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	ft_printf_init(t_env *e)
 	ft_bzero(e->param, sizeof(unsigned long long));
 	e->index = 0;
 	e->lenmods = ft_strdup("hljz");
+	e->flags = ft_strdup("#0- +");
 	
 	e->os = ft_strdup(SYS_OS);
 	if (!ft_strcmp(e->os, "darwin"))

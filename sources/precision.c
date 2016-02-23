@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/18 17:49:46 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/23 16:42:18 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int		manage_field_width(t_env *e)
 	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer == ' '
 			&& i >= 2)
 		i -= ft_strlen(e->xX_prefix);
+
+	if (ft_strchr("cC", e->conversion) && i)
+		e->outputlen = 1;
 
 //	printf("'\noutputlen = %d, precision = %d\n'", e->outputlen, e->precision);
 	while (i && i - get_max(e->outputlen, e->precision) > 0)

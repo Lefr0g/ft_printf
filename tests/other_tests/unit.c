@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/02/23 17:07:26 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/23 18:23:03 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -380,8 +380,26 @@ int	main(void)
 	visu_compare("{%10R}", NULL, "none");
 	visu_compare("% Zoooo", NULL, "none");
 
+	ft_memcpy(ptrj, L"我是一只猫。", 7);
+	visu_compare("{%30S}", ptrj, "string");
+
+
+
 	ft_putendl("============= END OF TESTS =================");
 
+	ft_putchar('\n');
+	wchar_t	wchar;
+
+	printf("sizeof(char) = %d\n", sizeof(char));
+	printf("sizeof(wchar_t) = %d\n", sizeof(wchar_t));
+	ft_putstr("wchar_t test : ");
+	wchar = 0xB6;
+	ft_putwchar_t(wchar);
+	ft_putchar('\n');
+	ft_print_memory(&wchar, 4);
+	ft_putchar('\n');
+	
+	ft_putendl("================== END =====================");
 //	visu_compare("|%10d|", ptrj, "int");
 //	visu_compare("|%-10d|", ptrj, "int");
 

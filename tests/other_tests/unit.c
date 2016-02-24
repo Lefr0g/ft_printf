@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/02/23 18:23:03 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/24 17:59:09 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # include <stdio.h>
 # include <limits.h>
 # include <locale.h>
+# include <wchar.h>
+
 
 void	visu_compare(char *str, void *arg, char *type)
 {
@@ -337,8 +339,9 @@ int	main(void)
 //	visu_compare("%p", &j, "int");
 //	visu_compare("%10p", &j, "int");
 //	visu_compare("%010p", &j, "int");
-
-/*	
+/*
+	ft_putendl("=======================================");
+	
 	visu_compare("% Zoooo", NULL, "none");
 	
 	k = LONG_MAX;
@@ -370,6 +373,7 @@ int	main(void)
 
 	printf("wchar_t = %d\n", (int)wc);
 
+	ft_putendl("=======================================\n");
 */
 	visu_compare("%ll# +++-+-- h00012.3.5.28d", ptrj, "int");
 	j = 0;
@@ -379,26 +383,57 @@ int	main(void)
 	visu_compare("%3c", &c, "char");
 	visu_compare("{%10R}", NULL, "none");
 	visu_compare("% Zoooo", NULL, "none");
-
+/*
 	ft_memcpy(ptrj, L"我是一只猫。", 7);
 	visu_compare("{%30S}", ptrj, "string");
-
+*/
 
 
 	ft_putendl("============= END OF TESTS =================");
 
+//	setlocale(LC_CTYPE, "");
 	ft_putchar('\n');
 	wchar_t	wchar;
+	int		utf8;
 
 	printf("sizeof(char) = %d\n", sizeof(char));
 	printf("sizeof(wchar_t) = %d\n", sizeof(wchar_t));
-	ft_putstr("wchar_t test : ");
-	wchar = 0xB6;
+	
+	wchar = L'\x20AC';
+	printf("\nWorking with wchar_t, 20AC\n");
+	ft_putstr("put_wchar_t test : ");
 	ft_putwchar_t(wchar);
 	ft_putchar('\n');
 	ft_print_memory(&wchar, 4);
+	printf("printf : wchar = %lc\n", wchar);
 	ft_putchar('\n');
-	
+
+
+	utf8 = 0xAC82E2;  // Penser a inverser l'endianness !
+	printf("Working with int, value is UTF8 hex of the wchar_t, E282AC\n");
+	ft_putstr("put_wchar_t test : ");
+	ft_putwchar_t((wchar_t)utf8);
+	ft_putchar('\n');
+	ft_print_memory(&utf8, 4);
+//	printf("utf8 = %lc\n", utf8);
+	ft_putchar('\n');
+
+
+	wchar_t	text1[50] = L"G\xe9rard !";
+	printf("wchar_t* printf test : ");
+	i = printf("%ls\n", text1);
+	printf("printf returned %d\n", i);
+	ft_print_memory(text1, 50);
+
+	ft_putchar('\n');
+	wint_t	text2[50] = L"G\xe9rard !";
+	printf("wint_t* printf test : ");
+	i = printf("%ls\n", text2);
+	printf("printf returned %d\n", i);
+	ft_print_memory(text2, 50);
+
+	printf("\nG%lcrard !\n", L'\xe9');
+
 	ft_putendl("================== END =====================");
 //	visu_compare("|%10d|", ptrj, "int");
 //	visu_compare("|%-10d|", ptrj, "int");

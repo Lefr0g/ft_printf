@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 19:34:39 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/18 18:31:16 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/25 21:26:42 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 //
 // Rappel : le lenmod est gere automatiquement par l'union param
 //
+
 void	manage_print_all(t_env *e)
 {
 	if (e->conversion == 'c')
 	{
 		if (e->mod[0] == 'l' )
-			ft_putwchar_t(e->param->wc);
+			ft_putwchar(e->param->wc);
 //			ft_print_memory(&(e->param->wc), sizeof(wchar_t));
 		else
 			ft_putchar(e->param->uc);

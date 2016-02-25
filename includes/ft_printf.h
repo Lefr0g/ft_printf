@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/02/23 16:50:42 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/25 21:22:41 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,6 @@ int				get_max(int a, int b);
 void			ft_puthex(unsigned int n, char *mode);
 void			ft_puthex_ull(unsigned long long int n, char *mode);
 void			ft_putoctal(unsigned long n);
-
-void			ft_putwchar_t(wchar_t c);
 
 void			ft_putnbr_void(void *n, size_t size);
 void			ft_putnbr_short(short n);

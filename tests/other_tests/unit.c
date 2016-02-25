@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/02/24 17:59:09 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/25 21:31:16 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -394,28 +394,22 @@ int	main(void)
 //	setlocale(LC_CTYPE, "");
 	ft_putchar('\n');
 	wchar_t	wchar;
-	int		utf8;
 
 	printf("sizeof(char) = %d\n", sizeof(char));
 	printf("sizeof(wchar_t) = %d\n", sizeof(wchar_t));
 	
-	wchar = L'\x20AC';
+	wchar = 0x20AC;
+	wchar = 'c';
+	ft_printf("ft_printf test with wchar_t : %lc\n", wchar);
+	printf("printf test with wchar_t : %lc\n", wchar);
+
+/*
 	printf("\nWorking with wchar_t, 20AC\n");
 	ft_putstr("put_wchar_t test : ");
-	ft_putwchar_t(wchar);
+	ft_putwchar(wchar);
 	ft_putchar('\n');
 	ft_print_memory(&wchar, 4);
 	printf("printf : wchar = %lc\n", wchar);
-	ft_putchar('\n');
-
-
-	utf8 = 0xAC82E2;  // Penser a inverser l'endianness !
-	printf("Working with int, value is UTF8 hex of the wchar_t, E282AC\n");
-	ft_putstr("put_wchar_t test : ");
-	ft_putwchar_t((wchar_t)utf8);
-	ft_putchar('\n');
-	ft_print_memory(&utf8, 4);
-//	printf("utf8 = %lc\n", utf8);
 	ft_putchar('\n');
 
 
@@ -433,7 +427,7 @@ int	main(void)
 	ft_print_memory(text2, 50);
 
 	printf("\nG%lcrard !\n", L'\xe9');
-
+*/
 	ft_putendl("================== END =====================");
 //	visu_compare("|%10d|", ptrj, "int");
 //	visu_compare("|%-10d|", ptrj, "int");

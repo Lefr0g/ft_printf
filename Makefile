@@ -6,7 +6,7 @@
 #    By: amulin <amulin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/10 17:35:06 by amulin            #+#    #+#              #
-#    Updated: 2016/02/23 17:02:35 by amulin           ###   ########.fr        #
+#    Updated: 2016/02/25 21:28:11 by amulin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,7 @@ PRINTSRCS = ft_printf.c ft_puthex.c ft_puthex_ull.c ft_putnbr_ull.c \
 			ft_putoctal.c ft_printf_init.c ft_putnbr_ll.c \
 			ft_itoa_ll.c ft_itoa_ull.c \
 			printing.c conversions_1.c lenmods.c flags.c precision.c \
-			misc.c ft_putnbr_void.c ft_putnbr_short.c ft_putnbr_char.c \
-			ft_putwchar_t.c
+			misc.c ft_putnbr_void.c ft_putnbr_short.c ft_putnbr_char.c
 
 PRINTSRCDIR = sources/
 
@@ -62,7 +61,8 @@ LIBFTSRCS = ft_atoi.c ft_isdigit.c ft_itoa.c ft_putchar.c ft_putendl.c \
 			ft_strnequ.c ft_strncmp.c \
 			ft_isascii.c ft_isprint.c ft_strcpy.c ft_strnew.c ft_memalloc.c \
 			ft_bzero.c ft_memset.c ft_strchr.c ft_strncpy.c ft_memmove.c \
-			ft_memcpy.c ft_isalpha.c
+			ft_memcpy.c ft_isalpha.c \
+			ft_uni_to_utf8.c ft_putwchar.c
 
 LIBFTSRCDIR = libft/
 

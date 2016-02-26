@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/02/25 21:22:41 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/26 13:54:49 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef union	u_param
 	unsigned char		uc;
 	wchar_t				wc;
 	wint_t				wi;
+	wchar_t				*ws;
 	intmax_t			imax;
 	uintmax_t			uimax;
 	char				*s;

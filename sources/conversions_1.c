@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/02/23 16:36:01 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/26 16:17:34 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ void	convert_xX(va_list *ap, t_env *e)
 void	convert_sS(va_list *ap, t_env *e)
 {
 	char	*str;
+	wchar_t	*wstr;
 
 	if (e->conversion == 'S')
 	{
@@ -234,15 +235,28 @@ void	convert_sS(va_list *ap, t_env *e)
 //			ft_putendl_fd("\nError : '+' flag used with s conversion", 2);
 		if (ap)
 		{
-			str = (char*)va_arg(*ap, char*);
-			if (str)
-				e->param->s = ft_strdup(str);
+			if (e->mod[0] == 'l')
+			{
+				wstr = (wchar_t*)va_arg(*ap, wchar_t*);
+				if (wstr)
+					e->param->ws = (wchar_t*)ft_memalloc(ft_wstr_memsize(wstr) + 1);
+				if (wstr && e->param->ws)
+					ft_memcpy(e->param->ws, wstr, ft_wstr_memsize(wstr));
+//				ft_putchar('\n');
+//				ft_print_memory(e->param->ws, 4 * 6);
+//				ft_putchar('\n');
+			}
 			else
-				e->param->s = ft_strdup("(null)");
+			{
+				str = (char*)va_arg(*ap, char*);
+				if (str)
+					e->param->s = ft_strdup(str);
+				else
+					e->param->s = ft_strdup("(null)");
+			}
 		}
 		if (!e->param->s)
 			ft_putendl_fd("\nError : no string to be printed", 2);
-		e->outputlen = ft_strlen(e->param->s);
 
 //		if (e->outputlen < e->field_width)
 		if (!e->neg)
@@ -250,7 +264,7 @@ void	convert_sS(va_list *ap, t_env *e)
 
 		if (e->precisflag)
 			e->param->s = manage_precision_s(e->param->s, e);
-		ft_putstr(e->param->s);
+		manage_print_all(e);
 		if (e->neg)
 			manage_field_width(e);
 	}

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2016/02/23 17:11:17 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/26 15:43:57 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		convert(va_list *ap, t_env *e)
 	{
 		convert_cC(ap, e);
 	}
-	else if (e->conversion == 's')
+	else if (e->conversion == 's' || e->conversion == 'S')
 	{
 		convert_sS(ap, e);
 	}

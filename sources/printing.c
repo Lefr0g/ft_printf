@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 19:34:39 by amulin            #+#    #+#             */
-/*   Updated: 2016/02/25 21:26:42 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/26 16:07:15 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void	manage_print_all(t_env *e)
 {
 	if (e->conversion == 'c')
 	{
-		if (e->mod[0] == 'l' )
-			ft_putwchar(e->param->wc);
-//			ft_print_memory(&(e->param->wc), sizeof(wchar_t));
+		if (e->mod[0] == 'l')
+			e->outputlen += ft_putwchar(e->param->wc);
 		else
+		{
 			ft_putchar(e->param->uc);
-		e->outputlen++;
+			e->outputlen++;
+		}
 	}
 	else if (e->conversion == 'u')
 		ft_putnbr_ull(e->param->ull);
@@ -51,6 +52,16 @@ void	manage_print_all(t_env *e)
 		ft_puthex_ull(e->param->ull, "min");
 	else if (e->conversion == 'X')
 		ft_puthex_ull(e->param->ull, "maj");
+	else if (e->conversion == 's')
+	{
+		if (e->mod[0] == 'l')
+			e->outputlen += ft_putwstr(e->param->ws);
+		else
+		{
+			ft_putstr(e->param->s);
+			e->outputlen += ft_strlen(e->param->s);
+		}
+	}
 }
 
 void	print_null_ptr(t_env *e)

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/02/25 21:31:16 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/26 16:33:39 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,14 @@ void	visu_compare(char *str, void *arg, char *type)
 		fflush(stdout);
 		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
 		ftpf_out = ft_printf(str, *(wint_t*)arg);
+	}
+	else if (!ft_strcmp(type, "wchar_t*"))
+	{
+		ft_putstr("printf\t\t>>>\t'\033[32m");
+		pf_out = printf(str, (wchar_t*)arg);
+		fflush(stdout);
+		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
+		ftpf_out = ft_printf(str, (wchar_t*)arg);
 	}
 	else if (!ft_strcmp(type, "char"))
 	{
@@ -383,25 +391,55 @@ int	main(void)
 	visu_compare("%3c", &c, "char");
 	visu_compare("{%10R}", NULL, "none");
 	visu_compare("% Zoooo", NULL, "none");
+	
+	wchar_t	wchar;
+
+	wchar = 0x53ea;
+	visu_compare("%lc", &wchar, "wint_t");
+	
+	visu_compare("% Zoooo", NULL, "none");
+	
+	wchar_t	*wstr = L"我是一只猫。";
+
+
+
+	visu_compare("{%40S}", wstr, "wchar_t*");
+	visu_compare("{%-30S}", wstr, "wchar_t*");
+/*
+	printf("\noutside : wstr is at %p\n", &wstr);
+	visu_compare("{%S}", wstr, "wchar_t*");
+	ft_putchar('\n');
+	ft_print_memory(wstr, 4 * 6);
+	ft_putstr("\nThe first wchar is : ");
+	ft_puthex(wstr[0], "min");
+	ft_putchar('\n');
+*/
+
 /*
 	ft_memcpy(ptrj, L"我是一只猫。", 7);
 	visu_compare("{%30S}", ptrj, "string");
 */
 
+	ptrj = ft_strdup("Check hello");
+	visu_compare("{%30s}", ptrj, "char*");
 
 	ft_putendl("============= END OF TESTS =================");
 
 //	setlocale(LC_CTYPE, "");
 	ft_putchar('\n');
-	wchar_t	wchar;
 
 	printf("sizeof(char) = %d\n", sizeof(char));
 	printf("sizeof(wchar_t) = %d\n", sizeof(wchar_t));
 	
 	wchar = 0x20AC;
 	wchar = 'c';
+	wchar = 0x53ea;
+
 	ft_printf("ft_printf test with wchar_t : %lc\n", wchar);
 	printf("printf test with wchar_t : %lc\n", wchar);
+	ft_putstr("Output direct from ft_putwchar() : ");
+	ft_putwchar(wchar);
+	ft_putchar('\n');
 
 /*
 	printf("\nWorking with wchar_t, 20AC\n");

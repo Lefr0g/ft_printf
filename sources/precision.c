@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/02/23 16:42:18 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/26 16:27:09 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ int		manage_field_width(t_env *e)
 	if (ft_strchr("cC", e->conversion) && i)
 		e->outputlen = 1;
 
+	if (e->conversion == 's' && !e->neg)
+	{
+		if (e->mod[0] == 'l')
+			i -= ft_wstr_utf8len(e->param->ws);
+		else
+			i -= ft_strlen(e->param->s);
+	}
+
 //	printf("'\noutputlen = %d, precision = %d\n'", e->outputlen, e->precision);
 	while (i && i - get_max(e->outputlen, e->precision) > 0)
 	{
@@ -55,6 +63,7 @@ int		manage_field_width(t_env *e)
 			e->outputlen += ft_strlen(e->xX_prefix);
 		}
 	}
+
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/02/26 16:33:39 by amulin           ###   ########.fr       */
+/*   Updated: 2016/02/26 16:53:48 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,14 @@ void	visu_compare(char *str, void *arg, char *type)
 		fflush(stdout);
 		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
 		ftpf_out = ft_printf(str, *(wint_t*)arg);
+	}
+	else if (!ft_strcmp(type, "wint_t*"))
+	{
+		ft_putstr("printf\t\t>>>\t'\033[32m");
+		pf_out = printf(str, (wint_t*)arg);
+		fflush(stdout);
+		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
+		ftpf_out = ft_printf(str, (wint_t*)arg);
 	}
 	else if (!ft_strcmp(type, "wchar_t*"))
 	{
@@ -403,8 +411,8 @@ int	main(void)
 
 
 
-	visu_compare("{%40S}", wstr, "wchar_t*");
 	visu_compare("{%-30S}", wstr, "wchar_t*");
+	visu_compare("{%40S}", wstr, "wchar_t*");
 /*
 	printf("\noutside : wstr is at %p\n", &wstr);
 	visu_compare("{%S}", wstr, "wchar_t*");

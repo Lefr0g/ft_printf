@@ -409,10 +409,10 @@ int	main(void)
 	
 	wchar_t	*wstr = L"我是一只猫。";
 
-
-
 	visu_compare("{%-30S}", wstr, "wchar_t*");
 	visu_compare("{%40S}", wstr, "wchar_t*");
+	visu_compare("{%40S}", NULL, "wchar_t*");
+	visu_compare("%D", &j, "long");
 /*
 	printf("\noutside : wstr is at %p\n", &wstr);
 	visu_compare("{%S}", wstr, "wchar_t*");
@@ -432,7 +432,7 @@ int	main(void)
 	visu_compare("{%30s}", ptrj, "char*");
 
 	ft_putendl("============= END OF TESTS =================");
-
+/*
 //	setlocale(LC_CTYPE, "");
 	ft_putchar('\n');
 
@@ -448,7 +448,7 @@ int	main(void)
 	ft_putstr("Output direct from ft_putwchar() : ");
 	ft_putwchar(wchar);
 	ft_putchar('\n');
-
+*/
 /*
 	printf("\nWorking with wchar_t, 20AC\n");
 	ft_putstr("put_wchar_t test : ");

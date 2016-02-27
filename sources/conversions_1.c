@@ -239,7 +239,12 @@ void	convert_sS(va_list *ap, t_env *e)
 			{
 				wstr = (wchar_t*)va_arg(*ap, wchar_t*);
 				if (wstr)
-					e->param->ws = (wchar_t*)ft_memalloc(ft_wstr_memsize(wstr) + 1);
+					e->param->ws = (wchar_t*)ft_memalloc(ft_wstr_memsize(wstr) + 4);
+				else
+				{
+					e->mod[0] = 0;
+					e->param->s = ft_strdup("(null)");
+				}
 				if (wstr && e->param->ws)
 					ft_memcpy(e->param->ws, wstr, ft_wstr_memsize(wstr));
 //				ft_putchar('\n');

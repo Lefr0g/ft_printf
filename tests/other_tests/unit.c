@@ -412,7 +412,18 @@ int	main(void)
 	visu_compare("{%-30S}", wstr, "wchar_t*");
 	visu_compare("{%40S}", wstr, "wchar_t*");
 	visu_compare("{%40S}", NULL, "wchar_t*");
-	visu_compare("%D", &j, "long");
+
+	k = UINT_MAX + UINT_MAX;
+	k = -1L;
+	k = LONG_MAX;
+	visu_compare("%D", &k, "long");
+	k = LONG_MIN;
+	visu_compare("%D", &k, "long");
+	k = -34346544;
+	visu_compare("%D", &k, "long");
+	k = LONG_MIN + 2;
+	visu_compare("%D", &k, "long");
+
 /*
 	printf("\noutside : wstr is at %p\n", &wstr);
 	visu_compare("{%S}", wstr, "wchar_t*");

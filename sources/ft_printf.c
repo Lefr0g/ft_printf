@@ -25,9 +25,9 @@
 */
 int		convert(va_list *ap, t_env *e)
 {
-	if (e->conversion == 'd' || e->conversion == 'i')
+	if (e->conversion == 'd' || e->conversion == 'D' || e->conversion == 'i')
 	{
-		convert_di(ap, e);
+		convert_dDi(ap, e);
 	}
 	else if (e->conversion == 'u' || e->conversion == 'U')
 	{

@@ -12,12 +12,12 @@ static void	my_process(long long int n, char *result, int i,
 	size_t	index;
 
 	index = 0;
-//	if (n < 0)
-//	{
-//		result[index] = '-';
-//		index++;
-//		n = -n;
-//	}
+	if (n < 0)
+	{
+		result[index] = '-';
+		index++;
+		n = -n;
+	}
 	while (i > 0)
 	{
 		if (base == 16 && (n / i) > 9)
@@ -30,18 +30,21 @@ static void	my_process(long long int n, char *result, int i,
 	}
 	result[index] = '\0';
 }
-/*
-char		*my_exception(void)
+
+static char		*my_exception(long long int limit)
 {
 	char	*result;
 
-	result = ft_strnew(12);
+	result = ft_strnew(21);
 	if (!result)
 		return (NULL);
-	ft_strcpy(result, "-2147483648");
+	if (limit == LONG_MAX)
+		ft_strcpy(result, "9223372036854775807");
+	else
+		ft_strcpy(result, "-9223372036854775806");
 	return (result);
 }
-*/
+
 char		*ft_itoa_ll(long long int n, unsigned int base)
 {
 	size_t						j;
@@ -52,19 +55,31 @@ char		*ft_itoa_ll(long long int n, unsigned int base)
 	i = 1;
 	buf = n;
 	j = 1;
-//	if (buf == -2147483648LL)
-//		return (my_exception());
-//	if (buf < 0)
-//		buf = -buf;
+	if (buf == LONG_MAX || buf == LONG_MIN)
+		return (my_exception(buf));
+	if (buf < 0)
+	{
+		buf = -buf;
+		j++;
+	}
 	while (buf > base - 1)
 	{
 		buf = buf / base;
 		i = i * base;
 		j++;
 	}
+//	printf("\nft_itoa_ll() is allocating a %d wide table\n", (int)j + 1);
+//	ft_putchar('\n');
+//	ft_print_memory(&i, sizeof(long long));
+//	ft_putchar('\n');
 	result = ft_strnew(j + 1);
 	if (!result)
 		return (NULL);
+
+//	TODO
+//	Regler le probleme de i pour (par exemple) n == LONG_MIN + 2
+
+
 	my_process(n, result, i, base);
 	return (result);
 }

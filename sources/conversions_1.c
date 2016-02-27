@@ -14,47 +14,60 @@
 
 #include <stdio.h>
 
-void	convert_di(va_list *ap, t_env *e)
+void	convert_dDi(va_list *ap, t_env *e)
 {
 	int	buf;
 
-	manage_modifiers_di(ap, e);
-	e->outputlen = ft_strlen(ft_itoa(e->param->i));
-
-//	printf("Precision = %d\n", e->precision);
-//	printf("Outpulen = %d\n", e->outputlen);
-
-	if (e->precision > e->outputlen)
+	if (e->conversion == 'D')
 	{
-		buf = e->outputlen;
-		e->outputlen = e->precision;
-		if (e->param->i < 0)
-			e->outputlen++;
-		e->precision = e->outputlen - buf;
+		e->conversion = 'd';
+		e->mod[0] = 'l';
+		convert_dDi(ap, e);
 	}
 	else
-		e->precisflag = 0;
+	{
+		manage_modifiers_di(ap, e);
+		if (e->mod[0] == 'l' && e->conversion == 'd')
+			e->outputlen = ft_strlen(ft_itoa_ll(e->param->l, 10));
+		else
+			e->outputlen = ft_strlen(ft_itoa(e->param->i));
 
-//	printf("Field Width = %d\n", e->field_width);
-//	printf("\ne->neg = %d\n", e->neg);
-//	printf("\ne->zero = %d\n", e->zero);
-//	printf("Precision = %d\n", e->precision);
-//	printf("Outpulen = %d\n", e->outputlen);
+//		printf("\nft_itoa_ll = %s\n", ft_itoa_ll(e->param->l, 10));
+//		printf("Precision = %d\n", e->precision);
+//		printf("Outpulen = %d\n", e->outputlen);
+
+		if (e->precision > e->outputlen)
+		{
+			buf = e->outputlen;
+			e->outputlen = e->precision;
+			if (e->param->i < 0)
+				e->outputlen++;
+			e->precision = e->outputlen - buf;
+		}
+		else
+			e->precisflag = 0;
+
+//		printf("Field Width = %d\n", e->field_width);
+//		printf("\ne->neg = %d\n", e->neg);
+//		printf("\ne->zero = %d\n", e->zero);
+//		printf("Precision = %d\n", e->precision);
+//		printf("Outpulen = %d\n", e->outputlen);
 	
-	manage_flags((e->param->i >= 0), e);
+		manage_flags((e->param->i >= 0), e);
 	
-	if (!e->neg)
-		manage_field_width(e);
+		if (!e->neg)
+			manage_field_width(e);
 
-	manage_precision(&(e->param->i), (e->param->i < 0), e);
+		manage_precision(&(e->param->i), (e->param->i < 0), e);
 
-	if (e->plus && e->param->i > 0)
-		ft_putchar('+');
+		if (e->plus && e->param->i > 0)
+			ft_putchar('+');
 
-	manage_print_all(e);
+		manage_print_all(e);
 
-	if (e->neg)
-		manage_field_width(e);
+		if (e->neg)
+			manage_field_width(e);
+	}
 }
 
 void	convert_uU(va_list *ap, t_env *e)

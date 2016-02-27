@@ -14,16 +14,23 @@
 
 void ft_putnbr_ll(long long n)
 {
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-	}
-	if (n > 9)
-	{
-		ft_putnbr_ll(n / 10);
-		ft_putnbr_ll(n % 10);
-	}
+	if (n == LONG_MAX)
+		ft_putstr("9223372036854775807");
+	else if (n == LONG_MIN)
+		ft_putstr("-9223372036854775808");
 	else
-		ft_putchar(n + '0');
+	{
+		if (n < 0)
+		{
+			ft_putchar('-');
+			n = -n;
+		}
+		if (n > 9)
+		{
+			ft_putnbr_ll(n / 10);
+			ft_putnbr_ll(n % 10);
+		}
+		else
+			ft_putchar(n + '0');
+	}
 }

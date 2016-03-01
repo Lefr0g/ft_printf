@@ -27,10 +27,15 @@ void	convert_dDi(va_list *ap, t_env *e)
 	else
 	{
 		manage_modifiers_di(ap, e);
-		if (e->mod[0] == 'l' && e->conversion == 'd')
+		if (e->mod[0] == 'l')
 			e->outputlen = ft_strlen(ft_itoa_ll(e->param->l, 10));
+		else if (!ft_strcmp(e->mod, "h"))
+			e->outputlen = ft_strlen(ft_itoa(e->param->sh));
+		else if (!ft_strcmp(e->mod, "hh"))
+			e->outputlen = ft_strlen(ft_itoa(e->param->c));
 		else
 			e->outputlen = ft_strlen(ft_itoa(e->param->i));
+
 
 //		printf("\nft_itoa_ll = %s\n", ft_itoa_ll(e->param->l, 10));
 //		printf("Precision = %d\n", e->precision);
@@ -46,13 +51,13 @@ void	convert_dDi(va_list *ap, t_env *e)
 		}
 		else
 			e->precisflag = 0;
-
-//		printf("Field Width = %d\n", e->field_width);
-//		printf("\ne->neg = %d\n", e->neg);
-//		printf("\ne->zero = %d\n", e->zero);
-//		printf("Precision = %d\n", e->precision);
-//		printf("Outpulen = %d\n", e->outputlen);
-	
+/*
+		printf("Field Width = %d\n", e->field_width);
+		printf("\ne->neg = %d\n", e->neg);
+		printf("\ne->zero = %d\n", e->zero);
+		printf("Precision = %d\n", e->precision);
+		printf("Outpulen = %d\n", e->outputlen);
+*/	
 		manage_flags((e->param->i >= 0), e);
 	
 		if (!e->neg)

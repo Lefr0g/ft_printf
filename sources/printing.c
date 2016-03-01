@@ -35,9 +35,9 @@ void	manage_print_all(t_env *e)
 		if (!e->mod[0])
 			ft_putnbr(e->param->i);
 		else if (!ft_strcmp(e->mod, "h"))
-			ft_putnbr_short(e->param->sh);
+			ft_putnbr(e->param->sh);
 		else if (!ft_strcmp(e->mod, "hh"))
-			ft_putnbr_char(e->param->sc);
+			ft_putnbr(e->param->sc);
 		else
 			ft_putnbr_ll(e->param->ll);
 	}

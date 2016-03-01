@@ -193,7 +193,7 @@ int	ft_printf(const char *restrict format, ...)
 			if (format[e.index])
 			{
 				directives(format, &ap, &e);
-				convlen = convlen + get_max(e.outputlen, e.field_width);
+				convlen += get_max(e.outputlen, e.field_width);
 
 //				printf("'\noutputlen = %d, field width = %d\n",
 //						e.outputlen, e.field_width);

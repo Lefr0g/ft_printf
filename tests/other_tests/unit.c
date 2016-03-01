@@ -38,6 +38,14 @@ void	visu_compare(char *str, void *arg, char *type)
 		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
 		ftpf_out = ft_printf(str);
 	}
+	else if (!ft_strcmp(type, "short"))
+	{
+		ft_putstr("printf\t\t>>>\t'\033[32m");
+		pf_out = printf(str, *(short*)arg);
+		fflush(stdout);
+		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
+		ftpf_out = ft_printf(str, *(short*)arg);
+	}
 	else if (!ft_strcmp(type, "int"))
 	{
 		ft_putstr("printf\t\t>>>\t'\033[32m");
@@ -412,7 +420,19 @@ int	main(void)
 	visu_compare("{%-30S}", wstr, "wchar_t*");
 	visu_compare("{%40S}", wstr, "wchar_t*");
 	visu_compare("{%40S}", NULL, "wchar_t*");
+	
+	k = (long)INT_MAX + 1;
+	visu_compare("%li", &k, "long");
 
+	short	sh;
+	sh = SHRT_MIN;
+	visu_compare("%hd", &sh, "short");
+
+
+	c = CHAR_MIN;
+	visu_compare("%hhd", &c, "char");
+
+/*
 	k = UINT_MAX + UINT_MAX;
 	k = -1L;
 	k = LONG_MAX;
@@ -421,9 +441,23 @@ int	main(void)
 	visu_compare("%D", &k, "long");
 	k = -34346544;
 	visu_compare("%D", &k, "long");
-	k = LONG_MIN + 2;
-	visu_compare("%D", &k, "long");
-
+*/
+//
+/*	
+	long long ll = 1;
+	long long tmp = 10000000000000;
+	while ((tmp /= 10) > 1000000)
+	{
+		k = LONG_MIN / tmp;
+		printf("\t\t\t(long long)tmp = %lld\n", tmp);
+		printf("\t\t\t(int)tmp = %d\n", tmp);
+		printf("\t\t\tll_temoin = %lld\n", ll);
+		visu_compare("%D", &k, "long");
+		ll *= 10;
+	}
+*/
+	i = 42;
+//	visu_compare("{% +d}", &i, "int");
 /*
 	printf("\noutside : wstr is at %p\n", &wstr);
 	visu_compare("{%S}", wstr, "wchar_t*");
@@ -439,8 +473,8 @@ int	main(void)
 	visu_compare("{%30S}", ptrj, "string");
 */
 
-	ptrj = ft_strdup("Check hello");
-	visu_compare("{%30s}", ptrj, "char*");
+//	ptrj = ft_strdup("Check hello");
+//	visu_compare("{%30s}", ptrj, "char*");
 
 	ft_putendl("============= END OF TESTS =================");
 /*

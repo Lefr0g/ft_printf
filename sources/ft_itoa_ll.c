@@ -6,7 +6,7 @@
 
 #include "ft_printf.h"
 
-static void	my_process(long long int n, char *result, int i,
+static void	my_process(long long int n, char *result, long long int i,
 		unsigned int base)
 {
 	size_t	index;
@@ -40,7 +40,7 @@ static char		*my_exception(long long int limit)
 		return (NULL);
 	if (limit == LONG_MAX)
 		ft_strcpy(result, "9223372036854775807");
-	else
+	else if (limit == LONG_MIN)
 		ft_strcpy(result, "-9223372036854775806");
 	return (result);
 }
@@ -79,7 +79,9 @@ char		*ft_itoa_ll(long long int n, unsigned int base)
 //	TODO
 //	Regler le probleme de i pour (par exemple) n == LONG_MIN + 2
 
+//	printf("\ni = %lld\n", i);
 
 	my_process(n, result, i, base);
+//	printf("result = %s\n", result);
 	return (result);
 }

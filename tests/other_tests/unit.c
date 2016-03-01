@@ -431,6 +431,72 @@ int	main(void)
 
 	c = CHAR_MIN;
 	visu_compare("%hhd", &c, "char");
+	
+
+/*
+	unsigned char	uc;
+	uc = 0;
+	visu_compare("%hhx", &uc, "uchar");
+	uc = UCHAR_MAX + 42;
+	visu_compare("%hhx", &uc, "uchar");
+	uc = UCHAR_MAX;
+	visu_compare("%hhx", &uc, "uchar");
+
+	printf("\n\n");
+	printf("%hhx, %hhx", 0, UCHAR_MAX + 42);
+	printf("\n\n");
+	ft_printf("%hhx, %hhx", 0, UCHAR_MAX + 42);
+	printf("\n\n");
+*/
+
+	unsigned short	uc;
+
+	uc = 0;
+	visu_compare("%hhO", &uc, "uchar");
+	uc = UCHAR_MAX + 42;
+	visu_compare("%hhO", &uc, "uchar");
+	uc = UCHAR_MAX;
+	visu_compare("%hhO", &uc, "uchar");
+	uc = USHRT_MAX;
+	visu_compare("%hhO", &uc, "uchar");
+
+	printf("\n\n");
+	printf("%hhO, %hhO", 0, USHRT_MAX);
+	printf("\n\n");
+	ft_printf("%hhO, %hhO", 0, USHRT_MAX);
+	printf("\n\n");
+
+
+	printf("\n\n");
+	printf("%hhu, %hhu", 0, UCHAR_MAX + 42);
+	printf("\n\n");
+	ft_printf("%hhu, %hhu", 0, UCHAR_MAX + 42);
+	printf("\n\n");
+
+
+	printf("\n\n");
+	printf("%hhU, %hhU", 0, USHRT_MAX);
+	printf("\n\n");
+	ft_printf("%hhU, %hhU", 0, USHRT_MAX);
+	printf("\n\n");
+
+
+	ulong = 0L;
+	visu_compare("%D", &ulong, "u long");
+
+
+	printf("\n\n");
+	printf("%hhD, %hhD", 0, USHRT_MAX);
+	printf("\n\n");
+	ft_printf("%hhD, %hhD", 0, USHRT_MAX);
+	printf("\n\n");
+	
+	
+	printf("\n\n");
+	printf("%hD, %hD", 0, USHRT_MAX);
+	printf("\n\n");
+	ft_printf("%hD, %hD", 0, USHRT_MAX);
+	printf("\n\n");
 
 /*
 	k = UINT_MAX + UINT_MAX;

@@ -16,12 +16,12 @@ void	manage_modifiers_di(va_list *ap, t_env *e)
 {
 	if (!e->mod[0])
 		e->param->i = (int)va_arg(*ap, int);
+	else if (!ft_strcmp(e->mod, "l") || e->conversion == 'D')
+		e->param->l = (long)va_arg(*ap, long);
 	else if (!ft_strcmp(e->mod, "hh"))
 		e->param->sc = (int)va_arg(*ap, int);
 	else if (!ft_strcmp(e->mod, "h"))
 		e->param->sh = (int)va_arg(*ap, int);
-	else if (!ft_strcmp(e->mod, "l"))
-		e->param->l = (long)va_arg(*ap, long);
 	else if (!ft_strcmp(e->mod, "ll"))
 		e->param->ll = (long long)va_arg(*ap, long long);
 	else if (!ft_strcmp(e->mod, "j"))
@@ -32,16 +32,18 @@ void	manage_modifiers_di(va_list *ap, t_env *e)
 
 void	manage_modifiers_ouxX(va_list *ap, t_env *e)
 {
-	if (!e->mod[0] && !ft_strchr("xXp", e->conversion))
+//	if (!e->mod[0] && !ft_strchr("xXp", e->conversion))
+	if (!e->mod[0])
 		e->param->u = (unsigned int)va_arg(*ap, unsigned int);
+//		e->param->ull = (unsigned long long)va_arg(*ap, unsigned long long);
 	else if (ft_strchr("xXp", e->conversion))
 		e->param->ul = (unsigned long)va_arg(*ap, unsigned int*);
-	else if (!ft_strcmp(e->mod, "hh"))
-		e->param->uc = (unsigned int)va_arg(*ap, unsigned int);
-	else if (!ft_strcmp(e->mod, "h"))
-		e->param->ush = (unsigned int)va_arg(*ap, unsigned int);
-	else if (!ft_strcmp(e->mod, "l"))
+	else if (e->conversion == 'O' || e->conversion == 'U' || !ft_strcmp(e->mod, "l"))
 		e->param->ul = (unsigned long)va_arg(*ap, unsigned long);
+	else if (!ft_strcmp(e->mod, "hh"))
+		e->param->uc = (unsigned char)va_arg(*ap, unsigned int);
+	else if (!ft_strcmp(e->mod, "h"))
+		e->param->ush = (unsigned short)va_arg(*ap, unsigned int);
 	else if (!ft_strcmp(e->mod, "ll"))
 		e->param->ull = (unsigned long long)va_arg(*ap, unsigned long long);
 	else if (!ft_strcmp(e->mod, "j"))

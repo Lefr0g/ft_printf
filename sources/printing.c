@@ -28,7 +28,7 @@ void	manage_print_all(t_env *e)
 			e->outputlen++;
 		}
 	}
-	else if (e->conversion == 'u')
+	else if (e->conversion == 'u' || e->conversion == 'U')
 		ft_putnbr_ull(e->param->ull);
 	else if (e->conversion == 'd' || e->conversion == 'i')
 	{
@@ -41,17 +41,37 @@ void	manage_print_all(t_env *e)
 		else
 			ft_putnbr_ll(e->param->ll);
 	}
+	else if (e->conversion == 'D')
+		ft_putnbr_ll(e->param->ll);
 	else if (e->conversion == 'o')
 	{
-//		if (!e->mod[0])
-//			ft_putoctal(e->param->u);
-//		else if (!ft_strcmp(e->mod, "l"))
+		if (!ft_strcmp(e->mod, "h"))
+			ft_putoctal(e->param->ush);
+		else if (!ft_strcmp(e->mod, "hh"))
+			ft_putoctal(e->param->uc);
+		else
 			ft_putoctal(e->param->ull);
 	}
+	else if (e->conversion == 'O')
+		ft_putoctal(e->param->ul);
 	else if (e->conversion == 'x')
-		ft_puthex_ull(e->param->ull, "min");
+	{
+		if (!ft_strcmp(e->mod, "h"))
+			ft_puthex_ull(e->param->ush, "min");
+		else if (!ft_strcmp(e->mod, "hh"))
+			ft_puthex_ull(e->param->uc, "min");
+		else
+			ft_puthex_ull(e->param->ull, "min");
+	}
 	else if (e->conversion == 'X')
-		ft_puthex_ull(e->param->ull, "maj");
+	{
+		if (!ft_strcmp(e->mod, "h"))
+			ft_puthex_ull(e->param->ush, "maj");
+		else if (!ft_strcmp(e->mod, "hh"))
+			ft_puthex_ull(e->param->uc, "maj");
+		else
+			ft_puthex_ull(e->param->ull, "maj");
+	}
 	else if (e->conversion == 's')
 	{
 		if (e->mod[0] == 'l')

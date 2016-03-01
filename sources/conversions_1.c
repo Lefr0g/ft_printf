@@ -18,16 +18,16 @@ void	convert_dDi(va_list *ap, t_env *e)
 {
 	int	buf;
 
-	if (e->conversion == 'D')
+	if (e->conversion == 'D' && !e->mod[0])
 	{
-		e->conversion = 'd';
+//		e->conversion = 'd';
 		e->mod[0] = 'l';
 		convert_dDi(ap, e);
 	}
 	else
 	{
 		manage_modifiers_di(ap, e);
-		if (e->mod[0] == 'l')
+		if (e->mod[0] == 'l' || e->conversion == 'D')
 			e->outputlen = ft_strlen(ft_itoa_ll(e->param->l, 10));
 		else if (!ft_strcmp(e->mod, "h"))
 			e->outputlen = ft_strlen(ft_itoa(e->param->sh));
@@ -78,9 +78,9 @@ void	convert_dDi(va_list *ap, t_env *e)
 void	convert_uU(va_list *ap, t_env *e)
 {
 	int	buf;
-	if (e->conversion == 'U')
+	if (e->conversion == 'U' && !e->mod[0])
 	{
-		e->conversion = 'u';
+//		e->conversion = 'u';
 		e->mod[0] = 'l';
 		convert_uU(ap, e);
 	}
@@ -141,11 +141,12 @@ void	convert_cC(va_list *ap, t_env *e)
 void	convert_oO(va_list *ap, t_env *e)
 {
 	int	buf;
-
-	if (e->conversion == 'O')
+	
+	if (e->conversion == 'O' && !e->mod[0])
 	{
-		e->conversion = 'o';
-		e->mod[0] = 'l';
+//		e->conversion = 'o';
+		if (!e->mod[0])
+			e->mod[0] = 'l';
 		convert_oO(ap, e);
 	}
 	else
@@ -188,7 +189,12 @@ void	convert_xX(va_list *ap, t_env *e)
 		ft_strcpy(e->xX_prefix, "0X");
 	if (!(!ft_strcmp("linux", e->os) && !e->param->i))
 	{
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
+		if (!ft_strcmp(e->mod, "h"))
+			e->outputlen = ft_strlen(ft_itoa_ull(e->param->ush, 16));
+		else if (!ft_strcmp(e->mod, "hh"))
+			e->outputlen = ft_strlen(ft_itoa_ull(e->param->uc, 16));
+		else
+			e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
 		if (e->precision > e->outputlen)
 		{
 			buf = e->outputlen;

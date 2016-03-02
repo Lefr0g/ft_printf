@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/02 19:03:51 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/02 19:12:05 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,6 +306,7 @@ void	convert_sS(va_list *ap, t_env *e)
 		}
 		if (!e->param->s)
 			ft_putendl_fd("\nError : no string to be printed", 2);
+
 
 //		if (e->outputlen < e->field_width)
 		if (!e->neg)

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/02 18:47:12 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/02 19:03:51 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	convert_dDi(va_list *ap, t_env *e)
 		else if (e->precisflag && !e->param->i)
 			e->outputlen = 0;
 		else
-			e->precisflag = 0;
+			e->precision = 0;
 /*
 		printf("Field Width = %d\n", e->field_width);
 		printf("\ne->neg = %d\n", e->neg);
@@ -102,7 +102,7 @@ void	convert_uU(va_list *ap, t_env *e)
 		else if (e->precisflag && !e->param->u)
 			e->outputlen = 0;
 		else
-			e->precisflag = 0;
+			e->precision = 0;
 
 //		printf("Precision = %d\n", e->precision);
 //		printf("Outpulen = %d\n", e->outputlen);

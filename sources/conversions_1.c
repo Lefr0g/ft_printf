@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/02 17:25:16 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/02 17:47:58 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,16 @@ void	convert_oO(va_list *ap, t_env *e)
 	
 		if (!e->neg)
 			manage_field_width(e);
+
+/*
+		if (e->alt)
+		{
+				e->precision = 1;
+				e->outputlen++;
+		}
+*/
+
+//		printf("Precision = %d\n", e->precision);
 
 		manage_precision(&(e->param->u), 0, e);
 

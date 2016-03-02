@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/02 17:23:20 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/02 17:54:04 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -526,10 +526,20 @@ int	main(void)
 	visu_compare("%+d", &j, "int");
 	
 	ui = 42;
+	visu_compare("%o", &ui, "uint");
 	visu_compare("%#o", &ui, "uint");
 	ui = 0;
 	visu_compare("%#o", &ui, "uint");
+	visu_compare("%#.7o", &ui, "uint");
 	visu_compare("%o", &ui, "uint");
+	
+	ui = 42;
+	visu_compare("%O", &ui, "uint");
+	visu_compare("%#O", &ui, "uint");
+	ui = 0;
+	visu_compare("%#O", &ui, "uint");
+	visu_compare("%#.7O", &ui, "uint");
+	visu_compare("%O", &ui, "uint");
 
 	ui = 0;
 	visu_compare("%#x", &ui, "uint");

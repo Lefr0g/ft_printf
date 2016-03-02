@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/02 17:51:34 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/02 18:18:39 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int		manage_field_width(t_env *e)
 	}
 	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer != '0')
 	{
-		if (!(!ft_strcmp("linux", e->os) && !e->param->i))
+//		if (!(!ft_strcmp("linux", e->os) && !e->param->u))
+		if (e->param->u || e->p_conv)
 		{
 			ft_putstr(e->xX_prefix);
 			e->outputlen += ft_strlen(e->xX_prefix);

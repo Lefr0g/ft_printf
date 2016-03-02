@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/02 16:04:04 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/02 17:25:16 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,6 @@ void	convert_dDi(va_list *ap, t_env *e)
 			manage_field_width(e);
 
 		manage_precision(&(e->param->i), (e->param->i < 0), e);
-
-		if (e->plus && e->param->i > 0)
-			ft_putchar('+');
 
 //		printf("Precisflag = %d\n", e->precisflag);
 		

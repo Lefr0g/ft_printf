@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/02 15:59:26 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/02 17:23:20 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -522,6 +522,18 @@ int	main(void)
 	ll = LLONG_MIN;
 	visu_compare("%zi", &ll, "long long");
 
+	j = 42;
+	visu_compare("%+d", &j, "int");
+	
+	ui = 42;
+	visu_compare("%#o", &ui, "uint");
+	ui = 0;
+	visu_compare("%#o", &ui, "uint");
+	visu_compare("%o", &ui, "uint");
+
+	ui = 0;
+	visu_compare("%#x", &ui, "uint");
+	visu_compare("%p", &ui, "uint");
 
 /*
 	printf("\n\n");

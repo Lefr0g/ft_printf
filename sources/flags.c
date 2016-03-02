@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/02 17:54:37 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/02 18:48:16 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		manage_flags(int ispos, t_env *e)
 			e->zero = 0;
 		else
 		{
-			if (!e->neg && ft_strchr("diouxX", e->conversion))
+			if (!e->neg && ft_strchr("cdiouxX", e->conversion))
 				e->spacer = '0';
 			if (e->precisflag && ft_strchr("diouxX", e->conversion))
 			{
@@ -76,7 +76,6 @@ int		manage_flags(int ispos, t_env *e)
 		if (ft_strchr("oO", e->conversion) && e->param->u)
 		{
 			e->precisflag = 1;
-//			e->precision = ft_strlen(ft_itoa_ll(e->param->ull, 8)) + 1;
 			e->precision = 1;
 			e->outputlen++;
 		}

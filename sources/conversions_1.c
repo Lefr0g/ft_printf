@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/02 17:47:58 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/02 18:47:12 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,9 @@ void	convert_cC(va_list *ap, t_env *e)
 			e->param->wi = (wint_t)va_arg(*ap, wint_t);
 		else
 			e->param->i = (int)va_arg(*ap, int);
+//		
+		manage_flags(1, e);
+//		
 		if (!e->neg)
 			manage_field_width(e);
 		manage_print_all(e);

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/02/26 16:53:48 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/02 15:59:26 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,22 @@ void	visu_compare(char *str, void *arg, char *type)
 		fflush(stdout);
 		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
 		ftpf_out = ft_printf(str, *(unsigned long long*)arg);
+	}
+	else if (!ft_strcmp(type, "intmax_t"))
+	{
+		ft_putstr("printf\t\t>>>\t'\033[32m");
+		pf_out = printf(str, *(intmax_t*)arg);
+		fflush(stdout);
+		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
+		ftpf_out = ft_printf(str, *(intmax_t*)arg);
+	}
+	else if (!ft_strcmp(type, "uintmax_t"))
+	{
+		ft_putstr("printf\t\t>>>\t'\033[32m");
+		pf_out = printf(str, *(uintmax_t*)arg);
+		fflush(stdout);
+		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
+		ftpf_out = ft_printf(str, *(uintmax_t*)arg);
 	}
 	ft_putendl("\033[0m'");
 	if (pf_out == ftpf_out)
@@ -484,7 +500,30 @@ int	main(void)
 	ulong = 0L;
 	visu_compare("%D", &ulong, "u long");
 
+	intmax_t	imax;
 
+	imax = LLONG_MAX;
+	visu_compare("%jd", &imax, "intmax_t");
+	
+	j = 0;
+	visu_compare("%.d", &j, "int");
+	visu_compare("%.0d", &j, "int");
+	
+	unsigned int	ui;
+	ui = 0;
+	visu_compare("%.u", &ui, "uint");
+	visu_compare("%.0u", &ui, "uint");
+	
+	j = 9999;
+	visu_compare("%. d", &j, "int");
+
+	long long	ll;
+
+	ll = LLONG_MIN;
+	visu_compare("%zi", &ll, "long long");
+
+
+/*
 	printf("\n\n");
 	printf("%hhD, %hhD", 0, USHRT_MAX);
 	printf("\n\n");
@@ -497,6 +536,7 @@ int	main(void)
 	printf("\n\n");
 	ft_printf("%hD, %hD", 0, USHRT_MAX);
 	printf("\n\n");
+*/
 
 /*
 	k = UINT_MAX + UINT_MAX;

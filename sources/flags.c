@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/22 16:10:56 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/02 15:55:28 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ int		manage_flags(int ispos, t_env *e)
 			e->precisflag = 1;
 			e->precision = ft_strlen(ft_itoa_ll(e->param->ull, 8)) + 1;
 		}
+	}
+	if (e->space && ft_strchr("dDi", e->conversion) && e->param->i > 0)
+	{
+		ft_putchar(' ');
+		e->outputlen++;
 	}
 	if (e->plus && (e->conversion == 'd' || e->conversion == 'i' 
 			|| e->conversion == 'p'))

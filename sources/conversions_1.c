@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/02/26 16:17:34 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/02 16:04:04 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	convert_dDi(va_list *ap, t_env *e)
 		manage_modifiers_di(ap, e);
 		if (e->mod[0] == 'l' || e->conversion == 'D')
 			e->outputlen = ft_strlen(ft_itoa_ll(e->param->l, 10));
+		else if (!ft_strcmp(e->mod, "j") || !ft_strcmp(e->mod, "z"))
+			e->outputlen = ft_strlen(ft_itoa_ll(e->param->imax, 10));
 		else if (!ft_strcmp(e->mod, "h"))
 			e->outputlen = ft_strlen(ft_itoa(e->param->sh));
 		else if (!ft_strcmp(e->mod, "hh"))
@@ -41,7 +43,7 @@ void	convert_dDi(va_list *ap, t_env *e)
 //		printf("Precision = %d\n", e->precision);
 //		printf("Outpulen = %d\n", e->outputlen);
 
-		if (e->precision > e->outputlen)
+		if (e->precision > e->outputlen && e->param->i)
 		{
 			buf = e->outputlen;
 			e->outputlen = e->precision;
@@ -49,6 +51,8 @@ void	convert_dDi(va_list *ap, t_env *e)
 				e->outputlen++;
 			e->precision = e->outputlen - buf;
 		}
+		else if (e->precisflag && !e->param->i)
+			e->outputlen = 0;
 		else
 			e->precisflag = 0;
 /*
@@ -68,7 +72,10 @@ void	convert_dDi(va_list *ap, t_env *e)
 		if (e->plus && e->param->i > 0)
 			ft_putchar('+');
 
-		manage_print_all(e);
+//		printf("Precisflag = %d\n", e->precisflag);
+		
+		if (!(e->precisflag && !e->precision && !e->param->i))
+			manage_print_all(e);
 
 		if (e->neg)
 			manage_field_width(e);
@@ -89,12 +96,14 @@ void	convert_uU(va_list *ap, t_env *e)
 		manage_modifiers_ouxX(ap, e);
 
 		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 10));
-		if (e->precision > e->outputlen)
+		if (e->precision > e->outputlen && e->param->u)
 		{
 			buf = e->outputlen;
 			e->outputlen = e->precision;
 			e->precision = e->outputlen - buf;
 		}
+		else if (e->precisflag && !e->param->u)
+			e->outputlen = 0;
 		else
 			e->precisflag = 0;
 
@@ -108,7 +117,8 @@ void	convert_uU(va_list *ap, t_env *e)
 
 		manage_precision(&(e->param->u), 0, e);
 
-		manage_print_all(e);
+		if (!(e->precisflag && !e->precision && !e->param->i))
+			manage_print_all(e);
 		
 		if (e->neg)
 			manage_field_width(e);

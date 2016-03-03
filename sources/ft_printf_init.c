@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 12:56:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/02/23 17:00:21 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/03 15:18:17 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	ft_printf_init(t_env *e)
 	
 	e->os = ft_strdup(SYS_OS);
 	if (!ft_strcmp(e->os, "darwin"))
-		e->conversions = ft_strdup("sSpdDioOuUxXcC%");
+		e->conversions = ft_strdup("sSpdDioOuUxXcC");
 	else
-		e->conversions = ft_strdup("sSpdiouxXcC%");
+		e->conversions = ft_strdup("sSpdiouxXcC");
 	
 	e->alt = 0;
 	e->zero = 0;

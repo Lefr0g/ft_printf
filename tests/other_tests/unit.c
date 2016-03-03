@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/02 19:26:41 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/03 15:28:57 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -573,6 +573,28 @@ int	main(void)
 	visu_compare("{%-30S}", wstr, "wchar_t*");
 	visu_compare("{%30s}", str3, "char*");
 	visu_compare("{%-30s}", str3, "char*");
+	
+	ui = 0;
+	visu_compare("{%.o}", &ui, "uint");
+	visu_compare("{%.0o}", &ui, "uint");
+	visu_compare("{%-.2o}", &ui, "uint");
+	visu_compare("{%#o}", &ui, "uint");
+	visu_compare("{%#.o}", &ui, "uint");
+	visu_compare("{%#.0o}", &ui, "uint");
+	
+	ui= 424242;
+	visu_compare("{%.4o}", &ui, "uint");
+
+	unsigned long long	ull;
+
+	ull = 0;
+	visu_compare("{%.jo}", &ull, "u long long");
+	ull = ULLONG_MAX;
+	visu_compare("{%.jo}", &ull, "u long long");
+
+	visu_compare("{%05.%}", &ui, "uint");
+	visu_compare("{%.3%}", &ui, "uint");
+
 /*
 	printf("\n\n");
 	printf("%hhD, %hhD", 0, USHRT_MAX);

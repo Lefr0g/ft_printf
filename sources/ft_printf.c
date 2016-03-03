@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/02 15:05:48 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/03 15:29:27 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ int		convert(va_list *ap, t_env *e)
 		e->conversion = 'x';
 		convert_xX(ap, e);
 	}
-	else if (e->conversion == '%')
-	{
-		ft_putchar('%');
-		e->outputlen++;
-	}
+//	else if (e->conversion == '%')
+//	{
+//		ft_putchar('%');
+//		e->outputlen++;
+//	}
 	else
 		return (-1);
 	return (0);
@@ -124,6 +124,10 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 //			ft_putendl_fd("\nError : invalid conversion identifier", 2);
 //		exit(1);
 		{
+//			ft_putstr("CHECK");
+			manage_flags(1, e);
+			manage_field_width(e);
+//			manage_precision((void*)&format[e->index], e->neg, e);
 			ft_putchar(format[e->index]);
 			e->outputlen++;
 			return (e->index);
@@ -132,6 +136,7 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 
 	if (ft_strchr(e->conversions, format[e->index]))
 	{
+//		ft_putstr("CHECK");
 		e->conversion = format[e->index];
 		convert(ap, e);
 	}
@@ -139,12 +144,18 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 			&& !ft_strchr(e->conversions, format[e->index]) 
 			&& !ft_strchr(e->lenmods, format[e->index]))
 	{
+//		ft_putstr("CHECK");
+		manage_flags(1, e);
+		manage_precision((void*)&format[e->index], e->neg, e);
 		manage_field_width(e);
 		ft_putchar(format[e->index]);
 		e->outputlen++;
 	}
 	else
+	{
+//		ft_putstr("CHECK");
 		directives(format, ap, e);
+	}
 	return (e->index);
 }
 

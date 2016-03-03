@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/02 19:12:05 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/03 14:58:15 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,9 @@ void	convert_oO(va_list *ap, t_env *e)
 	{
 		manage_modifiers_ouxX(ap, e);
 
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 8));
+		if (e->param->u || !(e->precisflag && !e->precision) || e->alt)
+			e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 8));
+		
 		if (e->precision > e->outputlen)
 		{
 			buf = e->outputlen;
@@ -171,7 +173,8 @@ void	convert_oO(va_list *ap, t_env *e)
 			e->precision = e->outputlen - buf;
 		}
 		else
-			e->precisflag = 0;
+			e->precision = 0;
+//			e->precisflag = 0;
 
 		manage_flags(0, e);
 	
@@ -189,8 +192,10 @@ void	convert_oO(va_list *ap, t_env *e)
 //		printf("Precision = %d\n", e->precision);
 
 		manage_precision(&(e->param->u), 0, e);
-
-		manage_print_all(e);
+		
+//		if (e->param->ull || e->precisflag)
+		if (e->param->u || !(e->precisflag && !e->precision) || e->alt)
+			manage_print_all(e);
 			
 		if (e->neg)
 			manage_field_width(e);

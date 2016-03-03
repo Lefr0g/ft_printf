@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/03 16:44:33 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/03 16:53:24 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ int		manage_flags(int ispos, t_env *e)
 		{
 			if (!e->neg && ft_strchr("scdiouxX", e->conversion))
 				e->spacer = '0';
-			if (e->precisflag && e->precision && ft_strchr("diouxX", e->conversion))
+			if (e->precisflag && e->conversion &&
+					ft_strchr("diouxX", e->conversion))
 			{
 				e->zero = 0;
 				e->spacer = ' ';

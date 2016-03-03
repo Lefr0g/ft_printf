@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/03 14:58:15 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/03 16:39:40 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,9 @@ void	convert_oO(va_list *ap, t_env *e)
 
 		if (e->param->u || !(e->precisflag && !e->precision) || e->alt)
 			e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 8));
-		
+
+//		printf("Precision = %d, Outputlen = %d\n", e->precision, e->outputlen);
+
 		if (e->precision > e->outputlen)
 		{
 			buf = e->outputlen;
@@ -174,20 +176,18 @@ void	convert_oO(va_list *ap, t_env *e)
 		}
 		else
 			e->precision = 0;
-//			e->precisflag = 0;
 
 		manage_flags(0, e);
 	
 		if (!e->neg)
 			manage_field_width(e);
 
-/*
-		if (e->alt)
-		{
-				e->precision = 1;
-				e->outputlen++;
-		}
-*/
+
+//		if (e->alt && e->precision)
+//		{
+//			e->outputlen = e->precision;
+//		}
+
 
 //		printf("Precision = %d\n", e->precision);
 

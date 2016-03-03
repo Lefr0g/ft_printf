@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/03 15:29:27 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/03 15:44:51 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,12 +125,20 @@ int	directives(const char *restrict format, va_list *ap, t_env *e)
 //		exit(1);
 		{
 //			ft_putstr("CHECK");
-			manage_flags(1, e);
-			manage_field_width(e);
-//			manage_precision((void*)&format[e->index], e->neg, e);
-			ft_putchar(format[e->index]);
-			e->outputlen++;
-			return (e->index);
+			if (format[e->index] != '*')
+			{
+				manage_flags(1, e);
+				manage_field_width(e);
+//				manage_precision((void*)&format[e->index], e->neg, e);
+				ft_putchar(format[e->index]);
+				e->outputlen++;
+				return (e->index);
+			}
+			else
+			{
+				ft_printf_reinit(e);
+				e->index++;
+			}
 		}
 	}
 

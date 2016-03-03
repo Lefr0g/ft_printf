@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/03 15:28:57 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/03 16:44:17 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -594,6 +594,15 @@ int	main(void)
 
 	visu_compare("{%05.%}", &ui, "uint");
 	visu_compare("{%.3%}", &ui, "uint");
+	
+	j = 0;
+	visu_compare("{%3*d}", &j, "int");
+	visu_compare("{%3d*}", &j, "int");
+	visu_compare("{%*d}", &j, "int");
+	ui = 1;
+	visu_compare("{%#.3o}", &ui, "uint");
+	ui = 42;
+	visu_compare("{%#.o}", &ui, "uint");
 
 /*
 	printf("\n\n");

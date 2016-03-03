@@ -563,7 +563,16 @@ int	main(void)
 	visu_compare("{%05.s}", str3, "char*");
 	visu_compare("{%015s}", str3, "char*");
 	visu_compare("{%015.8s}", str3, "char*");
+	visu_compare("{%015s}", str3, "char*");
+	visu_compare("{%015.s}", str3, "char*");
+	visu_compare("{%015.1s}", str3, "char*");
+	visu_compare("{%15.s}", str3, "char*");
+	visu_compare("{%15s}", str3, "char*");
 
+	visu_compare("{%30S}", wstr, "wchar_t*");
+	visu_compare("{%-30S}", wstr, "wchar_t*");
+	visu_compare("{%30s}", str3, "char*");
+	visu_compare("{%-30s}", str3, "char*");
 /*
 	printf("\n\n");
 	printf("%hhD, %hhD", 0, USHRT_MAX);

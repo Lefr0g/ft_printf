@@ -62,7 +62,7 @@ int		manage_flags(int ispos, t_env *e)
 			e->zero = 0;
 		else
 		{
-			if (!e->neg && ft_strchr("cdiouxX", e->conversion))
+			if (!e->neg && ft_strchr("scdiouxX", e->conversion))
 				e->spacer = '0';
 			if (e->precisflag && ft_strchr("diouxX", e->conversion))
 			{

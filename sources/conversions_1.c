@@ -266,6 +266,7 @@ void	convert_sS(va_list *ap, t_env *e)
 {
 	char	*str;
 	wchar_t	*wstr;
+	int		tmp;
 
 	if (e->conversion == 'S')
 	{
@@ -308,14 +309,22 @@ void	convert_sS(va_list *ap, t_env *e)
 			ft_putendl_fd("\nError : no string to be printed", 2);
 
 
+		manage_flags(1, e);
+
 //		if (e->outputlen < e->field_width)
-		if (!e->neg)
-			manage_field_width(e);
 
 		if (e->precisflag)
 			e->param->s = manage_precision_s(e->param->s, e);
+		e->precision = 0;
+		if (!e->neg)
+			manage_field_width(e);
+
 		manage_print_all(e);
+
+		tmp = e->outputlen;
+		e->outputlen = 0;
 		if (e->neg)
 			manage_field_width(e);
+		e->outputlen = tmp;
 	}
 }

@@ -40,7 +40,8 @@ int		manage_field_width(t_env *e)
 	if (ft_strchr("cC", e->conversion) && i)
 		e->outputlen = 1;
 
-	if (e->conversion == 's' && !e->neg)
+//	if (e->conversion == 's' && !e->neg)
+	if (e->conversion == 's')
 	{
 		if (e->mod[0] == 'l')
 			i -= ft_wstr_utf8len(e->param->ws);
@@ -49,6 +50,8 @@ int		manage_field_width(t_env *e)
 	}
 
 //	printf("'\noutputlen = %d, precision = %d\n'", e->outputlen, e->precision);
+//	printf("'\noutputlen = %d, precision = %d, fw = %d, i = %d\n'",
+//			e->outputlen, e->precision, e->field_width, i);
 	while (i && i - get_max(e->outputlen, e->precision) > 0)
 	{
 		ft_putchar(e->spacer);
@@ -105,6 +108,7 @@ char	*manage_precision_s(char *str, t_env *e)
 	if (strlen > e->precision)
 	{
 		ft_strncpy(out, str, e->precision);
+		ft_strdel(&str);
 		return (out);
 	}
 	return (str);

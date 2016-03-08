@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_init.c                                   :+:      :+:    :+:   */
+/*   ftpf_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 12:56:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/03 15:18:17 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/08 19:40:55 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf_reinit(t_env *e)
+int	ftpf_reinit_env(t_env *e)
 {
 	ft_bzero(e->param, sizeof(unsigned long long));
 	e->alt = 0;
@@ -36,8 +36,9 @@ int	ft_printf_reinit(t_env *e)
 **	Detect system OS in order to avoid accepting OSX-only
 **	conversion in Linux
 */
-int	ft_printf_init(t_env *e)
+int	ftpf_init_env(t_env *e)
 {
+	ftpf_init_convfunctions_pointers(t_env *e);
 	e->param = (t_param*)malloc(sizeof(t_param));
 	ft_bzero(e->param, sizeof(unsigned long long));
 	e->index = 0;
@@ -69,4 +70,27 @@ int	ft_printf_init(t_env *e)
 			|| !e->mod || !e->xX_prefix)
 		return (1);
 	return (0);
+}
+
+/*
+**	This functions associates each conversion function to its ASCII value,
+**	for an easy callback.
+*/
+
+void	ftpf_init_convfunctions_pointers(t_env *e)
+{
+	convert_functions_table['d'] = &(convert_dDi);
+	convert_functions_table['D'] = &(convert_dDi);
+	convert_functions_table['i'] = &(convert_dDi);
+	convert_functions_table['u'] = &(convert_uU);
+	convert_functions_table['U'] = &(convert_uU);
+	convert_functions_table['c'] = &(convert_cC);
+	convert_functions_table['C'] = &(convert_cC);
+	convert_functions_table['s'] = &(convert_sS);
+	convert_functions_table['S'] = &(convert_sS);
+	convert_functions_table['o'] = &(convert_oO);
+	convert_functions_table['O'] = &(convert_oO);
+	convert_functions_table['x'] = &(convert_xX);
+	convert_functions_table['X'] = &(convert_xX);
+	convert_functions_table['p'] = &(convert_xX);
 }

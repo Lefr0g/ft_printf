@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/03 15:14:24 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/08 19:52:50 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,32 @@ typedef struct	s_env
 	char		*xX_prefix;
 	int			p_conv;
 	int			null_printed;
+	void		(*conversion_function)(va_list *ap, t_env *e);
+	void		(*conv_funct_table[128])(va_list *ap, struct s_env *e);
 }				t_env;
 
 int				ft_printf(const char *restrict format, ...);
 
-int				ft_printf_init(t_env *e);
-int				ft_printf_reinit(t_env *e);
-int				directives(const char *restrict format, va_list *ap, t_env *e);
-
 int				convert(va_list *ap, t_env *e);
+
+
+/*
+**	ftpf_init.c
+*/
+int				ftpf_init_env(t_env *e);
+int				ftpf_reinit_env(t_env *e);
+int				ftpf_init_convfunctions_pointers(t_env *e);
+
+/*
+**	ftpf_directives.c
+*/
+int				ftpf_directives(const char *restrict format, va_list *ap,
+		t_env *e);
+void			ftpf_get_precision(const char *restrict format, t_env *e);
+void			ftpf_get_lenmod(const char *restrict format, t_env *e);
+void			ftpf_directive_wrongchar_handler(const char *restrict format,
+		t_env *e);
+//void			(*ftpf_get_conv_funct(t_env *e, char conv))(va_list *ap, t_env *e);
 
 /*
 **	conversions_1.c

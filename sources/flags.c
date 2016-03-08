@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/03 16:53:24 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/08 18:17:23 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,23 @@ int	get_flags(const char *restrict format, t_env *e)
 	else if (format[e->index] == '0')
 		e->zero = 1;
 	else if (format[e->index] == '-')
-	{
-		e->zero = 0;
+//	{
+//		e->zero = 0;
 		e->neg = 1;
-	}
+//	}
 	else if (format[e->index] == ' ')
-	{
-		if (!e->plus)
+//	{
+//		if (!e->plus)
 			e->space = 1;
-		else
-			e->space = 0;
-	}
+//		else
+//			e->space = 0;
+//	}
 	else if (format[e->index] == '+')
-	{
-		if (e->space)
-			e->space = 0;
+//	{
+//		if (e->space)
+//			e->space = 0;
 		e->plus = 1;
-	}
+//	}
 	else
 		return (1);
 	return (0);
@@ -56,22 +56,6 @@ int	get_flags(const char *restrict format, t_env *e)
 int		manage_flags(int ispos, t_env *e)
 {
 //	printf("precisflag = %d\n", e->precisflag);
-	if (e->zero)
-	{
-		if (!ft_strcmp("linux", e->os) && !e->param->i)
-			e->zero = 0;
-		else
-		{
-			if (!e->neg && ft_strchr("scdiouxX", e->conversion))
-				e->spacer = '0';
-			if (e->precisflag && e->conversion &&
-					ft_strchr("diouxX", e->conversion))
-			{
-				e->zero = 0;
-				e->spacer = ' ';
-			}
-		}
-	}
 	if (e->alt)
 	{
 		if (ft_strchr("oO", e->conversion) && e->param->u && !e->precision)
@@ -80,20 +64,29 @@ int		manage_flags(int ispos, t_env *e)
 			e->precision = 1;
 			e->outputlen++;
 		}
+		if (ft_strchr("xX", e->conversion) && e->param->u)
+		{
+			ft_putstr(e->xX_prefix);
+			e->outpulen += 2;
+		}
 	}
-	if (e->space && ft_strchr("dDi", e->conversion) && e->param->i > 0)
+	if (e->zero && e->conversion != 'n' && !e->neg && !e->precisflag)
+	{
+//		if (!ft_strcmp("linux", e->os) && !e->param->i)
+//			e->zero = 0;
+//		else
+			e->spacer = '0';
+	}
+	if (e->space && ft_strchr("dDi", e->conversion) && e->param->i > 0
+			&& !e->plus)
 	{
 		ft_putchar(' ');
 		e->outputlen++;
 	}
-	if (e->plus && (e->conversion == 'd' || e->conversion == 'i' 
-			|| e->conversion == 'p'))
+	if (e->plus && ft_strchr("dDi", e->conversion) && e->param->i > 0)
 	{
-		if (ispos)
-		{
-			ft_putchar('+');
-			e->outputlen++;
-		}
+		ft_putchar('+');
+		e->outputlen++;
 	}
 	return (0);
 }

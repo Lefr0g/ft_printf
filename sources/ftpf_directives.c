@@ -25,22 +25,25 @@
 
 int		ftpf_directives(const char *restrict format, va_list *ap, t_env *e)
 {
-	if (!get_flags(format, e))
+	if (!ftpf_get_flags(format, e))
+	{
 		e->index++;
-	else if (ft_isdigit(format[e->index]))
+//		printf("Got flags !, index = %d\n", e->index);
+	}
+	if (ft_isdigit(format[e->index]) && format[e->index] != '0')
 	{
 		e->field_width = ft_atoi(&format[e->index]);
 		e->index += ft_strlen(ft_itoa(e->field_width));
 	}
-	else if (format[e->index] == '.')
+	if (format[e->index] == '.')
 		ftpf_get_precision(format, e);
-	else if (ft_strchr(e->lenmods, format[e->index]))
+	if (ft_strchr(e->lenmods, format[e->index]))
 		ftpf_get_lenmod(format, e);
-	else if (ft_strchr(e->conversions, format[e->index]))
+	if (ft_strchr(e->conversions, format[e->index]))
 	{
 		e->conversion = format[e->index];
 //		convert(ap, e);
-		e->conversion_function = e->conv_funct_table[conv];
+		e->conversion_function = e->conv_funct_table[e->conversion];
 		(*e->conversion_function)(ap, e);
 	}
 	else if (ft_isalpha(format[e->index])
@@ -78,7 +81,7 @@ void	ftpf_get_lenmod(const char *restrict format, t_env *e)
 
 void	ftpf_directive_wrongchar_handler(const char *restrict format, t_env *e)
 {
-	manage_flags(1, e);
+	ftpf_process_flags(e);
 	manage_precision((void*)&format[e->index], e->neg, e);
 	manage_field_width(e);
 	ft_putchar(format[e->index]);

@@ -38,10 +38,11 @@ PRINTINCLUDIR = includes/
 PRINTHEADERS = $(addprefix $(PRINTINCLUDIR), $(PRINTHDRS))
 
 PRINTSRCS = ft_printf.c ft_puthex.c ft_puthex_ull.c ft_putnbr_ull.c \
-			ft_putoctal.c ft_printf_init.c ft_putnbr_ll.c \
+			ft_putoctal.c ftpf_init.c ft_putnbr_ll.c \
 			ft_itoa_ll.c ft_itoa_ull.c \
-			printing.c conversions_1.c lenmods.c flags.c precision.c \
-			misc.c ft_putnbr_void.c ft_putnbr_short.c ft_putnbr_char.c
+			printing.c conversions_1.c lenmods.c ftpf_flags.c precision.c \
+			misc.c ft_putnbr_void.c ft_putnbr_short.c ft_putnbr_char.c \
+			ftpf_directives.c
 
 PRINTSRCDIR = sources/
 

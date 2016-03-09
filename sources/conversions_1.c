@@ -18,32 +18,26 @@ void	convert_dDi(va_list *ap, t_env *e)
 {
 	int	buf;
 
-	if (e->conversion == 'D' && !e->mod[0])
-	{
+	(void)ap;
+//	if (e->conversion == 'D' && !e->mod[0])
+//	{
 //		e->conversion = 'd';
-		e->mod[0] = 'l';
-		convert_dDi(ap, e);
-	}
-	else
+//		e->mod[0] = 'l';
+//		convert_dDi(ap, e);
+//	}
+//	else
 	{
 		manage_modifiers_di(ap, e);
-		if (e->mod[0] == 'l' || e->conversion == 'D')
-			e->outputlen = ft_strlen(ft_itoa_ll(e->param->l, 10));
-		else if (!ft_strcmp(e->mod, "j") || !ft_strcmp(e->mod, "z"))
-			e->outputlen = ft_strlen(ft_itoa_ll(e->param->imax, 10));
-		else if (!ft_strcmp(e->mod, "h"))
-			e->outputlen = ft_strlen(ft_itoa(e->param->sh));
-		else if (!ft_strcmp(e->mod, "hh"))
-			e->outputlen = ft_strlen(ft_itoa(e->param->c));
-		else
-			e->outputlen = ft_strlen(ft_itoa(e->param->i));
-
-
+	
 //		printf("\nft_itoa_ll = %s\n", ft_itoa_ll(e->param->l, 10));
-//		printf("Precision = %d\n", e->precision);
+//		printf("Precisflag = %d, precision = %d\n", e->precisflag, e->precision);
 //		printf("Outpulen = %d\n", e->outputlen);
 
-		if (e->precision > e->outputlen && e->param->i)
+//		printf("Spacer = %c, precisflag = %d\n", e->spacer, e->precisflag);
+		ftpf_process_flags(e);
+//		printf("Spacer = %c, precisflag = %d\n", e->spacer, e->precisflag);
+
+		if (e->precision > e->outputlen)
 		{
 			buf = e->outputlen;
 			e->outputlen = e->precision;
@@ -53,8 +47,8 @@ void	convert_dDi(va_list *ap, t_env *e)
 		}
 		else if (e->precisflag && !e->param->i)
 			e->outputlen = 0;
-		else
-			e->precision = 0;
+//		else
+//			e->precision = 0;
 /*
 		printf("Field Width = %d\n", e->field_width);
 		printf("\ne->neg = %d\n", e->neg);
@@ -62,14 +56,22 @@ void	convert_dDi(va_list *ap, t_env *e)
 		printf("Precision = %d\n", e->precision);
 		printf("Outpulen = %d\n", e->outputlen);
 */	
-		manage_flags((e->param->i >= 0), e);
-	
+		
+//		ftpf_apply_flags(e);	
+		
+		if (e->space && ft_strchr("dDi", e->conversion) && e->param->i >= 0
+				&& !e->plus)
+			ft_putchar(' ');
 		if (!e->neg)
 			manage_field_width(e);
 
+		if (e->plus && ft_strchr("dDi", e->conversion) && e->param->i >= 0)
+			ft_putchar('+');
+
+//		printf("Precisflag = %d, precision = %d\n", e->precisflag, e->precision);
+
 		manage_precision(&(e->param->i), (e->param->i < 0), e);
 
-//		printf("Precisflag = %d\n", e->precisflag);
 		
 		if (!(e->precisflag && !e->precision && !e->param->i))
 			manage_print_all(e);
@@ -107,7 +109,7 @@ void	convert_uU(va_list *ap, t_env *e)
 //		printf("Precision = %d\n", e->precision);
 //		printf("Outpulen = %d\n", e->outputlen);
 
-		manage_flags(1, e);
+		ftpf_process_flags(e);
 		
 		if (!e->neg)
 			manage_field_width(e);
@@ -138,7 +140,7 @@ void	convert_cC(va_list *ap, t_env *e)
 		else
 			e->param->i = (int)va_arg(*ap, int);
 //		
-		manage_flags(1, e);
+		ftpf_process_flags(e);
 //		
 		if (!e->neg)
 			manage_field_width(e);
@@ -177,7 +179,7 @@ void	convert_oO(va_list *ap, t_env *e)
 		else
 			e->precision = 0;
 
-		manage_flags(0, e);
+		ftpf_process_flags(e);
 	
 		if (!e->neg)
 			manage_field_width(e);
@@ -231,7 +233,7 @@ void	convert_xX(va_list *ap, t_env *e)
 		else
 			e->precisflag = 0;
 
-		manage_flags(0, e);
+		ftpf_process_flags(e);
 
 		if (!e->neg)
 			manage_field_width(e);
@@ -314,7 +316,7 @@ void	convert_sS(va_list *ap, t_env *e)
 			ft_putendl_fd("\nError : no string to be printed", 2);
 
 
-		manage_flags(1, e);
+		ftpf_process_flags(e);
 
 //		if (e->outputlen < e->field_width)
 

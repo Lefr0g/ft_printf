@@ -39,7 +39,7 @@ int	ft_printf(const char *restrict format, ...)
 
 	convlen = 0;
 	step = 0;
-	if (ft_printf_init(&e))
+	if (ftpf_init_env(&e))
 		return (-1);
 	va_start(ap, format);
 
@@ -61,7 +61,7 @@ int	ft_printf(const char *restrict format, ...)
 //				printf("'\noutputlen = %d, field width = %d\n",
 //						e.outputlen, e.field_width);
 
-				ft_printf_reinit(&e);
+				ftpf_reinit_env(&e);
 			}
 			else
 				return (step + convlen);

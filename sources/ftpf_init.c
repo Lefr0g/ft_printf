@@ -14,6 +14,7 @@
 
 int	ftpf_reinit_env(t_env *e)
 {
+	e->conversion_function = NULL;
 	ft_bzero(e->param, sizeof(unsigned long long));
 	e->alt = 0;
 	e->zero = 0;
@@ -38,7 +39,8 @@ int	ftpf_reinit_env(t_env *e)
 */
 int	ftpf_init_env(t_env *e)
 {
-	ftpf_init_convfunctions_pointers(t_env *e);
+	ftpf_init_convfunctions_pointers(e);
+	e->conversion_function = NULL;
 	e->param = (t_param*)malloc(sizeof(t_param));
 	ft_bzero(e->param, sizeof(unsigned long long));
 	e->index = 0;
@@ -79,18 +81,18 @@ int	ftpf_init_env(t_env *e)
 
 void	ftpf_init_convfunctions_pointers(t_env *e)
 {
-	convert_functions_table['d'] = &(convert_dDi);
-	convert_functions_table['D'] = &(convert_dDi);
-	convert_functions_table['i'] = &(convert_dDi);
-	convert_functions_table['u'] = &(convert_uU);
-	convert_functions_table['U'] = &(convert_uU);
-	convert_functions_table['c'] = &(convert_cC);
-	convert_functions_table['C'] = &(convert_cC);
-	convert_functions_table['s'] = &(convert_sS);
-	convert_functions_table['S'] = &(convert_sS);
-	convert_functions_table['o'] = &(convert_oO);
-	convert_functions_table['O'] = &(convert_oO);
-	convert_functions_table['x'] = &(convert_xX);
-	convert_functions_table['X'] = &(convert_xX);
-	convert_functions_table['p'] = &(convert_xX);
+	e->conv_funct_table['d'] = &(convert_dDi);
+	e->conv_funct_table['D'] = &(convert_dDi);
+	e->conv_funct_table['i'] = &(convert_dDi);
+	e->conv_funct_table['u'] = &(convert_uU);
+	e->conv_funct_table['U'] = &(convert_uU);
+	e->conv_funct_table['c'] = &(convert_cC);
+	e->conv_funct_table['C'] = &(convert_cC);
+	e->conv_funct_table['s'] = &(convert_sS);
+	e->conv_funct_table['S'] = &(convert_sS);
+	e->conv_funct_table['o'] = &(convert_oO);
+	e->conv_funct_table['O'] = &(convert_oO);
+	e->conv_funct_table['x'] = &(convert_xX);
+	e->conv_funct_table['X'] = &(convert_xX);
+	e->conv_funct_table['p'] = &(convert_xX);
 }

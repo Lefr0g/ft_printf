@@ -53,32 +53,32 @@ typedef union	u_param
 	char				*s;
 }				t_param;
 
-typedef struct	s_env
+typedef struct			s_env
 {
-	char		*os;
-	t_param		*param;
-	int			index;
-	char		*flags;
-	char		*lenmods;
-	char		*conversions;
-	int			alt;
-	int			zero;
-	int			neg;
-	int			space;
-	int			plus;
-	int			field_width;
-	int			precisflag;
-	int			precision;
-	int			outputlen;
-	char		*mod;
-	char		conversion;
-	char		spacer;
-	char		*xX_prefix;
-	int			p_conv;
-	int			null_printed;
-	void		(*conversion_function)(va_list *ap, t_env *e);
-	void		(*conv_funct_table[128])(va_list *ap, struct s_env *e);
-}				t_env;
+	char				*os;
+	t_param				*param;
+	int					index;
+	char				*flags;
+	char				*lenmods;
+	char				*conversions;
+	int					alt;
+	int					zero;
+	int					neg;
+	int					space;
+	int					plus;
+	int					field_width;
+	int					precisflag;
+	int					precision;
+	int					outputlen;
+	char				*mod;
+	unsigned char		conversion;
+	char				spacer;
+	char				*xX_prefix;
+	int					p_conv;
+	int					null_printed;
+	void				(*conversion_function)(va_list *ap, struct s_env *e);
+	void				(*conv_funct_table[128])(va_list *ap, struct s_env *e);
+}						t_env;
 
 int				ft_printf(const char *restrict format, ...);
 
@@ -90,7 +90,7 @@ int				convert(va_list *ap, t_env *e);
 */
 int				ftpf_init_env(t_env *e);
 int				ftpf_reinit_env(t_env *e);
-int				ftpf_init_convfunctions_pointers(t_env *e);
+void			ftpf_init_convfunctions_pointers(t_env *e);
 
 /*
 **	ftpf_directives.c
@@ -126,10 +126,11 @@ int				manage_precision(void *value, int isneg, t_env *e);
 char			*manage_precision_s(char *str, t_env *e);
 
 /*
-**	flags.c
+**	ftpf_flags.c
 */
-int				get_flags(const char *restrict format, t_env *e);
-int				manage_flags(int ispos, t_env *e);
+int				ftpf_get_flags(const char *restrict format, t_env *e);
+int				ftpf_process_flags(t_env *e);
+int				ftpf_apply_flags(t_env *e);
 
 int				manage_field_width(t_env *e);
 

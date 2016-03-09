@@ -20,7 +20,7 @@ int		manage_field_width(t_env *e)
 
 	i = e->field_width;
 	
-	if (e->zero && e->param->i < 0 && ft_strchr("di", e->conversion) && !e->neg)
+	if (e->zero && e->param->i < 0 && ft_strchr("dDi", e->conversion) && !e->neg)
 	{
 		ft_putchar('-');
 		e->param->i = -e->param->i;
@@ -54,8 +54,8 @@ int		manage_field_width(t_env *e)
 //			e->outputlen, e->precision, e->field_width, i);
 	while (i && i - get_max(e->outputlen, e->precision) > 0)
 	{
-		ft_putchar(e->spacer);
-//		ft_putchar('|');
+//		ft_putchar(e->spacer);
+		ft_putchar('f');
 		i--;
 	}
 	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer != '0')
@@ -91,7 +91,7 @@ int		manage_precision(void *value, int isneg, t_env *e)
 			if (!ft_strcmp("linux", e->os) && !e->param->i)
 				ft_putchar(' ');
 			else
-				ft_putchar('0');
+				ft_putchar('p');
 			i--;
 		}
 	}

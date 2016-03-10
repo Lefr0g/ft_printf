@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/03 16:39:32 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/10 15:02:36 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		manage_field_width(t_env *e)
 	i = e->field_width;
 	
 	if (e->zero && e->param->i < 0 && ft_strchr("dDi", e->conversion) && !e->neg)
+//	if (e->param->i < 0 && e->outputlen <= e->precision && ft_strchr("dDi", e->conversion))
 	{
 		ft_putchar('-');
 		e->param->i = -e->param->i;

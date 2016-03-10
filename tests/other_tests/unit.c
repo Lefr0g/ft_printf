@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/03 19:19:41 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/10 15:21:26 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -387,13 +387,38 @@ int	main(void)
 	visu_compare("{%03d}", &i, "int");
 	visu_compare("{% 03d}", &i, "int");
 
-	i = 0;	
-	visu_compare("{%03.2d}", &i, "int");
-	visu_compare("{%3.2d}", &i, "int");
-	i = -1;
+	ft_putstr("=================================================\n");
+	i = 42;	
+	visu_compare("{%7.3d}", &i, "int");
+//	visu_compare("{%7.2d}", &i, "int");
+//	visu_compare("{%7.1d}", &i, "int");
 	visu_compare("{%03.2d}", &i, "int");
 	visu_compare("{%3.2d}", &i, "int");
 	visu_compare("{%-3.2d}", &i, "int");
+	
+	ft_putstr("*************************************************\n");
+	i = 0;	
+	visu_compare("{%7.3d}", &i, "int");
+	visu_compare("{%03.2d}", &i, "int");
+	visu_compare("{%3.2d}", &i, "int");
+	visu_compare("{%-3.2d}", &i, "int");
+	
+	ft_putstr("*************************************************\n");
+	i = -1;
+	visu_compare("{%7.3d}", &i, "int");
+	visu_compare("{%03.2d}", &i, "int");
+	visu_compare("{%3.2d}", &i, "int");
+	visu_compare("{%-3.2d}", &i, "int");
+	
+	ft_putstr("*************************************************\n");
+	i = -10;
+	visu_compare("{%7.3d}", &i, "int");
+	visu_compare("{%03.2d}", &i, "int");
+	visu_compare("{%3.2d}", &i, "int");
+	visu_compare("{%-3.2d}", &i, "int");
+	
+	
+	ft_putstr("=================================================\n");
 	i = INT_MIN;
 	visu_compare("{%d}", &i, "int");
 	i = -42;

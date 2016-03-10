@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/03 16:39:40 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/10 15:27:57 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,15 @@ void	convert_dDi(va_list *ap, t_env *e)
 		manage_modifiers_di(ap, e);
 	
 //		printf("\nft_itoa_ll = %s\n", ft_itoa_ll(e->param->l, 10));
-//		printf("Precisflag = %d, precision = %d\n", e->precisflag, e->precision);
-//		printf("Outpulen = %d\n", e->outputlen);
 
 //		printf("Spacer = %c, precisflag = %d\n", e->spacer, e->precisflag);
 		ftpf_process_flags(e);
 //		printf("Spacer = %c, precisflag = %d\n", e->spacer, e->precisflag);
 
-		if (e->precision > e->outputlen)
+//		printf("Precisflag = %d, precision = %d\n", e->precisflag, e->precision);
+//		printf("Outpulen = %d\n", e->outputlen);
+
+		if (e->precision >= e->outputlen)
 		{
 			buf = e->outputlen;
 			e->outputlen = e->precision;
@@ -47,8 +48,8 @@ void	convert_dDi(va_list *ap, t_env *e)
 		}
 		else if (e->precisflag && !e->param->i)
 			e->outputlen = 0;
-//		else
-//			e->precision = 0;
+		else
+			e->precision = 0;
 /*
 		printf("Field Width = %d\n", e->field_width);
 		printf("\ne->neg = %d\n", e->neg);
@@ -62,6 +63,10 @@ void	convert_dDi(va_list *ap, t_env *e)
 		if (e->space && ft_strchr("dDi", e->conversion) && e->param->i >= 0
 				&& !e->plus)
 			ft_putchar(' ');
+
+//		printf("Precisflag = %d, precision = %d\n", e->precisflag, e->precision);
+//		printf("Outpulen = %d\n", e->outputlen);
+
 		if (!e->neg)
 			manage_field_width(e);
 

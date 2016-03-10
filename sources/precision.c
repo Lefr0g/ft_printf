@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/10 15:02:36 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/10 16:53:08 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int		manage_field_width(t_env *e)
 	int	i;
 
 	i = e->field_width;
-	
-	if (e->zero && e->param->i < 0 && ft_strchr("dDi", e->conversion) && !e->neg)
 //	if (e->param->i < 0 && e->outputlen <= e->precision && ft_strchr("dDi", e->conversion))
+	if (e->zero && e->param->i < 0 && ft_strchr("dDi", e->conversion) && !e->neg
+			&& e->outputlen <= e->precision)
 	{
-		ft_putchar('-');
+		ft_putchar('_');
 		e->param->i = -e->param->i;
 	}
 	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer == '0')
@@ -83,7 +83,8 @@ int		manage_precision(void *value, int isneg, t_env *e)
 	{
 		if (isneg)
 		{
-			ft_putchar('-');
+//			ft_putchar('-');
+			ft_putchar('=');
 			isneg = 0;
 			*(long long int*)value  = -*(long long int*)value;
 		}

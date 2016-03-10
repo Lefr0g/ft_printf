@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/10 16:16:29 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/10 16:58:32 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -429,23 +429,41 @@ void	dDi_tests(void)
 	visu_compare("{%3.2i}", &i, "int");
 	visu_compare("{%-3.2i}", &i, "int");
 	
+	i = INT_MAX;
+	printf("**************************** Value = %d\n", i);
+	visu_compare("{%d}", &i, "int");
+	visu_compare("{%18.14d}", &i, "int");
+	visu_compare("{%-18.14d}", &i, "int");	
 	
 	i = INT_MIN;
 	printf("**************************** Value = %d\n", i);
 	visu_compare("{%d}", &i, "int");
 	visu_compare("{%18.14d}", &i, "int");
+	visu_compare("{%-18.14d}", &i, "int");	
+	i = INT_MIN + 1;
+	printf("**************************** Value = %d\n", i);
+	visu_compare("{%d}", &i, "int");
+	visu_compare("{%18.14d}", &i, "int");
+	visu_compare("{%-18.14d}", &i, "int");
 	i = -42;
 	printf("**************************** Value = %d\n", i);
 	visu_compare("{%10d}", &i, "int");
 	
 	visu_compare("{%15.4d}", &i, "int");
 	visu_compare("{%18.14d}", &i, "int");
+	visu_compare("{%018.14d}", &i, "int");
 
 	ll = LLONG_MAX;
 	printf("**************************** Value = %lld\n", ll);
 	visu_compare("{%30.24lld}",&ll, "long long");
+	visu_compare("{%-30.24lld}",&ll, "long long");
+	visu_compare("{%0-30.24lld}",&ll, "long long");
 	
 	ll = LLONG_MIN;
+	printf("**************************** Value = %lld\n", ll);
+	visu_compare("{%30.24lld}",&ll, "long long");
+
+	ll = 0;
 	printf("**************************** Value = %lld\n", ll);
 	visu_compare("{%30.24lld}",&ll, "long long");
 

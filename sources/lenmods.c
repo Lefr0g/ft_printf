@@ -6,13 +6,13 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:00:44 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/08 18:56:52 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/10 16:29:14 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	manage_modifiers_di(va_list *ap, t_env *e)
+void	manage_modifiers_dDi(va_list *ap, t_env *e)
 {
 	if (!e->mod[0] && e->conversion != 'D')
 	{

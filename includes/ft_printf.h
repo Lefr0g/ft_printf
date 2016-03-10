@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/08 19:52:50 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/10 16:30:35 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void			convert_sS(va_list *ap, t_env *e);
 /*
 **	modifiers.c
 */
-void			manage_modifiers_di(va_list *ap, t_env *e);
+void			manage_modifiers_dDi(va_list *ap, t_env *e);
 void			manage_modifiers_ouxX(va_list *ap, t_env *e);
 
 /*

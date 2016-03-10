@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/10 15:27:57 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/10 16:42:28 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	convert_dDi(va_list *ap, t_env *e)
 //	}
 //	else
 	{
-		manage_modifiers_di(ap, e);
+		manage_modifiers_dDi(ap, e);
 	
 //		printf("\nft_itoa_ll = %s\n", ft_itoa_ll(e->param->l, 10));
 

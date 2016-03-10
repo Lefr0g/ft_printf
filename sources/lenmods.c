@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:00:44 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/10 16:29:14 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/10 18:06:58 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,36 +17,50 @@ void	manage_modifiers_dDi(va_list *ap, t_env *e)
 	if (!e->mod[0] && e->conversion != 'D')
 	{
 		e->param->i = (int)va_arg(*ap, int);
+		if (e->param->i < 0)
+			e->isneg = 1;
 		e->outputlen = ft_strlen(ft_itoa(e->param->i));
 	}
 	else if (!ft_strcmp(e->mod, "l") || e->conversion == 'D')
 	{
-		e->param->l = (long)va_arg(*ap, long);
+		e->param->l = (long)va_arg(*ap, long);	
+		if (e->param->l < 0)
+			e->isneg = 1;
 		e->outputlen = ft_strlen(ft_itoa_ll(e->param->l, 10));
 	}
 	else if (!ft_strcmp(e->mod, "hh"))
 	{
-		e->param->sc = (int)va_arg(*ap, int);
+		e->param->sc = (int)va_arg(*ap, int);	
+		if (e->param->sc < 0)
+			e->isneg = 1;
 		e->outputlen = ft_strlen(ft_itoa(e->param->c));
 	}
 	else if (!ft_strcmp(e->mod, "h"))
 	{
 		e->param->sh = (int)va_arg(*ap, int);
+		if (e->param->sh < 0)
+			e->isneg = 1;
 		e->outputlen = ft_strlen(ft_itoa(e->param->sh));
 	}
 	else if (!ft_strcmp(e->mod, "ll"))
 	{
 		e->param->ll = (long long)va_arg(*ap, long long);
+		if (e->param->ll < 0)
+			e->isneg = 1;
 		e->outputlen = ft_strlen(ft_itoa_ll(e->param->ll, 10));
 	}
 	else if (!ft_strcmp(e->mod, "j"))
 	{
 		e->param->imax = (intmax_t)va_arg(*ap, intmax_t);
+		if (e->param->imax < 0)
+			e->isneg = 1;
 		e->outputlen = ft_strlen(ft_itoa_ll(e->param->imax, 10));
 	}
 	else if (!ft_strcmp(e->mod, "z"))
 	{
 		e->param->l = (long)va_arg(*ap, long);
+		if (e->param->l < 0)
+			e->isneg = 1;
 		e->outputlen = ft_strlen(ft_itoa_ll(e->param->l, 10));
 	}
 }

@@ -6,7 +6,7 @@
 #    By: amulin <amulin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/10 17:35:06 by amulin            #+#    #+#              #
-#    Updated: 2016/02/26 16:43:46 by amulin           ###   ########.fr        #
+#    Updated: 2016/03/10 18:37:02 by amulin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ LIBFTSRCS = ft_atoi.c ft_isdigit.c ft_itoa.c ft_putchar.c ft_putendl.c \
 			ft_bzero.c ft_memset.c ft_strchr.c ft_strncpy.c ft_memmove.c \
 			ft_memcpy.c ft_isalpha.c ft_strdel.c \
 			ft_uni_to_utf8.c ft_putwchar.c ft_putwstr.c ft_wstr_memsize.c \
-			ft_wstr_utf8len.c
+			ft_wstr_utf8len.c ft_abs_ll.c
 
 LIBFTSRCDIR = libft/
 

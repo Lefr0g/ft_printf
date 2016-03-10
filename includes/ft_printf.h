@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/10 16:30:35 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/10 18:16:16 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct			s_env
 	int					null_printed;
 	void				(*conversion_function)(va_list *ap, struct s_env *e);
 	void				(*conv_funct_table[128])(va_list *ap, struct s_env *e);
+	int					isneg;
 }						t_env;
 
 int				ft_printf(const char *restrict format, ...);
@@ -122,7 +123,7 @@ void			manage_modifiers_ouxX(va_list *ap, t_env *e);
 /*
 **	precision.c
 */
-int				manage_precision(void *value, int isneg, t_env *e);
+int				manage_precision(void *value, t_env *e);
 char			*manage_precision_s(char *str, t_env *e);
 
 /*

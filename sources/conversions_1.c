@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/10 16:42:28 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/10 18:47:09 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	convert_dDi(va_list *ap, t_env *e)
 				e->outputlen++;
 			e->precision = e->outputlen - buf;
 		}
-		else if (e->precisflag && !e->param->i)
+		else if (e->precisflag && !e->param->ll)
 			e->outputlen = 0;
 		else
 			e->precision = 0;
@@ -60,7 +60,7 @@ void	convert_dDi(va_list *ap, t_env *e)
 		
 //		ftpf_apply_flags(e);	
 		
-		if (e->space && ft_strchr("dDi", e->conversion) && e->param->i >= 0
+		if (e->space && ft_strchr("dDi", e->conversion) && !e->isneg
 				&& !e->plus)
 			ft_putchar(' ');
 
@@ -70,16 +70,35 @@ void	convert_dDi(va_list *ap, t_env *e)
 		if (!e->neg)
 			manage_field_width(e);
 
-		if (e->plus && ft_strchr("dDi", e->conversion) && e->param->i >= 0)
+		if (e->plus && ft_strchr("dDi", e->conversion) && !e->isneg)
 			ft_putchar('+');
 
 //		printf("Precisflag = %d, precision = %d\n", e->precisflag, e->precision);
 
-		manage_precision(&(e->param->i), (e->param->i < 0), e);
+		manage_precision(&(e->param->ll), e);
 
-		
+//		Printing value on stdout :
+
 		if (!(e->precisflag && !e->precision && !e->param->i))
-			manage_print_all(e);
+		{
+			if (e->conversion == 'd' || e->conversion == 'i')
+			{
+				if (e->isneg)
+					ft_putchar('|');
+				if (!e->mod[0] && e->param->i != INT_MIN)
+					ft_putnbr_ll(ft_abs(e->param->i));
+				else if (!ft_strcmp(e->mod, "h"))
+					ft_putnbr(ft_abs(e->param->sh));
+				else if (!ft_strcmp(e->mod, "hh"))
+					ft_putnbr(ft_abs(e->param->sc));
+				else if (e->param->ll == LLONG_MIN)
+					ft_putstr("9223372036854775808");
+				else
+					ft_putnbr_ll(ft_abs_ll(e->param->ll));
+			}
+			else if (e->conversion == 'D')
+				ft_putnbr_ll(ft_abs_ll(e->param->ll));
+		}
 
 		if (e->neg)
 			manage_field_width(e);
@@ -119,7 +138,7 @@ void	convert_uU(va_list *ap, t_env *e)
 		if (!e->neg)
 			manage_field_width(e);
 
-		manage_precision(&(e->param->u), 0, e);
+		manage_precision(&(e->param->u), e);
 
 		if (!(e->precisflag && !e->precision && !e->param->i))
 			manage_print_all(e);
@@ -198,7 +217,7 @@ void	convert_oO(va_list *ap, t_env *e)
 
 //		printf("Precision = %d\n", e->precision);
 
-		manage_precision(&(e->param->u), 0, e);
+		manage_precision(&(e->param->u), e);
 		
 //		if (e->param->ull || e->precisflag)
 		if (e->param->u || !(e->precisflag && !e->precision) || e->alt)
@@ -248,7 +267,7 @@ void	convert_xX(va_list *ap, t_env *e)
 			ft_putstr(e->xX_prefix);
 			e->outputlen += ft_strlen(e->xX_prefix);
 		}
-		manage_precision(&(e->param->u), 0, e);
+		manage_precision(&(e->param->u), e);
 
 //		printf("Precision = %d\n", e->precision);
 //		printf("Outpulen = %d\n", e->outputlen);

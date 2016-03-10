@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/10 16:53:08 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/10 18:48:32 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,21 +72,20 @@ int		manage_field_width(t_env *e)
 	return (0);
 }
 
-int		manage_precision(void *value, int isneg, t_env *e)
+int		manage_precision(void *value, t_env *e)
 {
 	int	i;
 
+	(void)value;
 	if (!e->precisflag)
 		return (0);
 	i = e->precision;
 	while (i)
 	{
-		if (isneg)
+		if (e->isneg)
 		{
-//			ft_putchar('-');
 			ft_putchar('=');
-			isneg = 0;
-			*(long long int*)value  = -*(long long int*)value;
+			e->isneg = 0;
 		}
 		else
 		{

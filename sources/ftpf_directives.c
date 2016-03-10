@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 18:57:05 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/08 19:52:31 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/10 18:16:52 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ftpf_get_lenmod(const char *restrict format, t_env *e)
 void	ftpf_directive_wrongchar_handler(const char *restrict format, t_env *e)
 {
 	ftpf_process_flags(e);
-	manage_precision((void*)&format[e->index], e->neg, e);
+	manage_precision((void*)&format[e->index], e);
 	manage_field_width(e);
 	ft_putchar(format[e->index]);
 	e->outputlen++;

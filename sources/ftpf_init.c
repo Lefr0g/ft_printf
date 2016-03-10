@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 12:56:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/08 19:40:55 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/10 18:07:32 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	ftpf_reinit_env(t_env *e)
 	e->outputlen = 0;
 	e->p_conv = 0;
 	e->null_printed = 0;
+	e->isneg = 0;
 	return (0);
 }
 
@@ -68,6 +69,7 @@ int	ftpf_init_env(t_env *e)
 	e->xX_prefix = ft_strnew(3);
 	e->p_conv = 0;
 	e->null_printed = 0;
+	e->isneg = 0;
 	if (!e->param || !e->lenmods || !e->os || !e->conversions 
 			|| !e->mod || !e->xX_prefix)
 		return (1);

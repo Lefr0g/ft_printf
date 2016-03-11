@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/10 18:47:09 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/11 14:40:43 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	convert_dDi(va_list *ap, t_env *e)
 		{
 			buf = e->outputlen;
 			e->outputlen = e->precision;
-			if (e->param->i < 0)
+			if (e->isneg)
 				e->outputlen++;
 			e->precision = e->outputlen - buf;
 		}

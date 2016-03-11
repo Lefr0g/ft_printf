@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/11 14:40:43 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/11 15:38:49 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 void	convert_dDi(va_list *ap, t_env *e)
 {
 	int	buf;
+	int	noconv;
 
 	(void)ap;
 //	if (e->conversion == 'D' && !e->mod[0])
@@ -37,6 +38,11 @@ void	convert_dDi(va_list *ap, t_env *e)
 
 //		printf("Precisflag = %d, precision = %d\n", e->precisflag, e->precision);
 //		printf("Outpulen = %d\n", e->outputlen);
+
+
+		noconv = 0;
+		if (e->precisflag && !e->precision && !e->param->ll)
+			noconv = 1;
 
 		if (e->precision >= e->outputlen)
 		{
@@ -73,14 +79,17 @@ void	convert_dDi(va_list *ap, t_env *e)
 		if (e->plus && ft_strchr("dDi", e->conversion) && !e->isneg)
 			ft_putchar('+');
 
-//		printf("Precisflag = %d, precision = %d\n", e->precisflag, e->precision);
+//		printf("\nPrecisflag = %d, precision = %d\n", e->precisflag, e->precision);
 
 		manage_precision(&(e->param->ll), e);
 
+//		printf("Precisflag = %d, precision = %d\n", e->precisflag, e->precision);
+
 //		Printing value on stdout :
 
-		if (!(e->precisflag && !e->precision && !e->param->i))
+		if (!noconv)
 		{
+//			printf("CHECK\n");
 			if (e->conversion == 'd' || e->conversion == 'i')
 			{
 				if (e->isneg)

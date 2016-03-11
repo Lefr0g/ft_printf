@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/08 18:17:23 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/11 16:32:18 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ int		ftpf_process_flags(t_env *e)
 //		printf("CHECK\n");
 		e->spacer = 'o';
 	}
-	if (e->space && ft_strchr("dDi", e->conversion) && e->param->i >= 0
+	if (e->space && ft_strchr("dDi", e->conversion) && !e->isneg
 			&& !e->plus)
 		e->outputlen++;
-	if (e->plus && ft_strchr("dDi", e->conversion) && e->param->i >= 0)
+	if (e->plus && ft_strchr("dDi", e->conversion) && !e->isneg)
 		e->outputlen++;
 	return (0);
 }

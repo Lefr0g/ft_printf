@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/11 15:52:27 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/11 16:36:50 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,6 +283,7 @@ void	compare_flags_on_int(char *str)
 void	dDi_tests(void)
 {
 	char		c;
+	short		s;
 	int			i;
 	long		l;
 	long long	ll;
@@ -432,6 +433,33 @@ void	dDi_tests(void)
 	ll = 0;
 	printf("**************************** Value = %lld\n", ll);
 	visu_compare("{%30.24lld}",&ll, "long long");
+
+	ft_putendl("\033[33m-------------------------------------------------");	
+	ft_putendl("--------------------------------------- short (h)\033[0m\n");
+
+	s = 0;
+	printf("**************************** Value = %hd\n", s);
+	visu_compare("{%3.2hd}", &s, "short");
+	visu_compare("{% -3.2hd}", &s, "short");
+	visu_compare("{%07.3hd}", &s, "short");
+
+	s = -42;
+	printf("**************************** Value = %hd\n", s);
+	visu_compare("{%3.2hd}", &s, "short");
+	visu_compare("{% -3.2hd}", &s, "short");
+	visu_compare("{%07.3hd}", &s, "short");
+	
+	s = SHRT_MIN;
+	printf("**************************** Value = %hd\n", s);
+	visu_compare("{%3.2hhd}", &c, "char");
+	visu_compare("{% -3.2hhd}", &c, "char");
+	visu_compare("{%07.3hhd}", &c, "char");
+
+	s = SHRT_MAX;
+	printf("**************************** Value = %hd\n", s);
+	visu_compare("{%3.2hhd}", &c, "char");
+	visu_compare("{% -3.2hhd}", &c, "char");
+	visu_compare("{%07.3hhd}", &c, "char");	
 
 	ft_putendl("\033[33m-------------------------------------------------");	
 	ft_putendl("--------------------------------------- char (hh)\033[0m\n");

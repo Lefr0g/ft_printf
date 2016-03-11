@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/11 16:36:50 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/11 18:37:51 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,9 +307,9 @@ void	dDi_tests(void)
 	visu_compare("% 9d", &i, "int");
 	visu_compare("%3.7d", &i, "int");
 	visu_compare("%7.3d", &i, "int");
-	visu_compare("{%03.2d}", &i, "int");
-	visu_compare("{%3.2d}", &i, "int");
-	visu_compare("{%-3.2d}", &i, "int");
+	visu_compare("%03.2d", &i, "int");
+	visu_compare("%3.2d", &i, "int");
+	visu_compare("%-3.2d", &i, "int");
 	visu_compare("%-03.7d", &i, "int");
 	visu_compare("%-07.3d", &i, "int");
 
@@ -318,55 +318,55 @@ void	dDi_tests(void)
 	visu_compare("%d", &i, "int");
 	visu_compare("%+d", &i, "int");
 	visu_compare("% d", &i, "int");
-	visu_compare("{%7.3d}", &i, "int");
-	visu_compare("{%03.2d}", &i, "int");
-	visu_compare("{%3.2d}", &i, "int");
-	visu_compare("{%-3.2d}", &i, "int");
+	visu_compare("%7.3d", &i, "int");
+	visu_compare("%03.2d", &i, "int");
+	visu_compare("%3.2d", &i, "int");
+	visu_compare("%-3.2d", &i, "int");
 
 	i = -1;
 	printf("**************************** Value = %d\n", i);
-	visu_compare("{%7.3d}", &i, "int");
-	visu_compare("{%03.2d}", &i, "int");
-	visu_compare("{%3.2d}", &i, "int");
-	visu_compare("{%-3.2d}", &i, "int");
+	visu_compare("%7.3d", &i, "int");
+	visu_compare("%03.2d", &i, "int");
+	visu_compare("%3.2d", &i, "int");
+	visu_compare("%-3.2d", &i, "int");
 	
 	i = -10;
 	printf("**************************** Value = %d\n", i);
-	visu_compare("{%7.3d}", &i, "int");
-	visu_compare("{%03.2d}", &i, "int");
-	visu_compare("{%3.2d}", &i, "int");
-	visu_compare("{%-3.2d}", &i, "int");
+	visu_compare("%7.3d", &i, "int");
+	visu_compare("%03.2d", &i, "int");
+	visu_compare("%3.2d", &i, "int");
+	visu_compare("%-3.2d", &i, "int");
 	
 	printf("**************************** Value = %d\n", i);
-	visu_compare("{%7.3i}", &i, "int");
-	visu_compare("{%03.2i}", &i, "int");
-	visu_compare("{%3.2i}", &i, "int");
-	visu_compare("{%-3.2i}", &i, "int");
+	visu_compare("%7.3i", &i, "int");
+	visu_compare("%03.2i", &i, "int");
+	visu_compare("%3.2i", &i, "int");
+	visu_compare("%-3.2i", &i, "int");
 	
 	i = INT_MAX;
 	printf("**************************** Value = %d\n", i);
-	visu_compare("{%d}", &i, "int");
-	visu_compare("{%18.14d}", &i, "int");
-	visu_compare("{%-18.14d}", &i, "int");	
+	visu_compare("%d", &i, "int");
+	visu_compare("%18.14d", &i, "int");
+	visu_compare("%-18.14d", &i, "int");	
 	
 	i = INT_MIN;
 	printf("**************************** Value = %d\n", i);
-	visu_compare("{%d}", &i, "int");
-	visu_compare("{%18.14d}", &i, "int");
-	visu_compare("{%-18.14d}", &i, "int");	
+	visu_compare("%d", &i, "int");
+	visu_compare("%18.14d", &i, "int");
+	visu_compare("%-18.14d", &i, "int");	
 
 	i = INT_MIN + 1;
 	printf("**************************** Value = %d\n", i);
-	visu_compare("{%d}", &i, "int");
-	visu_compare("{%18.14d}", &i, "int");
-	visu_compare("{%-18.14d}", &i, "int");
+	visu_compare("%d", &i, "int");
+	visu_compare("%18.14d", &i, "int");
+	visu_compare("%-18.14d", &i, "int");
 
 	i = -42;
 	printf("**************************** Value = %d\n", i);
-	visu_compare("{%10d}", &i, "int");
-	visu_compare("{%15.4d}", &i, "int");
-	visu_compare("{%18.14d}", &i, "int");
-	visu_compare("{%018.14d}", &i, "int");
+	visu_compare("%10d", &i, "int");
+	visu_compare("%15.4d", &i, "int");
+	visu_compare("%18.14d", &i, "int");
+	visu_compare("%018.14d", &i, "int");
 	
 	ft_putendl("\033[33m-------------------------------------------------");	
 	ft_putendl("---------------------------------------- long (l)\033[0m\n");	
@@ -422,71 +422,71 @@ void	dDi_tests(void)
 
 	ll = LLONG_MAX;
 	printf("**************************** Value = %lld\n", ll);
-	visu_compare("{%30.24lld}",&ll, "long long");
-	visu_compare("{%-30.24lld}",&ll, "long long");
-	visu_compare("{%0-30.24lld}",&ll, "long long");
+	visu_compare("%30.24lld",&ll, "long long");
+	visu_compare("%-30.24lld",&ll, "long long");
+	visu_compare("%0-30.24lld",&ll, "long long");
 	
 	ll = LLONG_MIN;
 	printf("**************************** Value = %lld\n", ll);
-	visu_compare("{%30.24lld}",&ll, "long long");
+	visu_compare("%30.24lld",&ll, "long long");
 
 	ll = 0;
 	printf("**************************** Value = %lld\n", ll);
-	visu_compare("{%30.24lld}",&ll, "long long");
+	visu_compare("%30.24lld",&ll, "long long");
 
 	ft_putendl("\033[33m-------------------------------------------------");	
 	ft_putendl("--------------------------------------- short (h)\033[0m\n");
 
 	s = 0;
 	printf("**************************** Value = %hd\n", s);
-	visu_compare("{%3.2hd}", &s, "short");
-	visu_compare("{% -3.2hd}", &s, "short");
-	visu_compare("{%07.3hd}", &s, "short");
+	visu_compare("%3.2hd", &s, "short");
+	visu_compare("% -3.2hd", &s, "short");
+	visu_compare("%07.3hd", &s, "short");
 
 	s = -42;
 	printf("**************************** Value = %hd\n", s);
-	visu_compare("{%3.2hd}", &s, "short");
-	visu_compare("{% -3.2hd}", &s, "short");
-	visu_compare("{%07.3hd}", &s, "short");
+	visu_compare("%3.2hd", &s, "short");
+	visu_compare("% -3.2hd", &s, "short");
+	visu_compare("%07.3hd", &s, "short");
 	
 	s = SHRT_MIN;
 	printf("**************************** Value = %hd\n", s);
-	visu_compare("{%3.2hhd}", &c, "char");
-	visu_compare("{% -3.2hhd}", &c, "char");
-	visu_compare("{%07.3hhd}", &c, "char");
+	visu_compare("%3.2hd", &s, "short");
+	visu_compare("% -3.2hd", &s, "short");
+	visu_compare("%07.3hd", &s, "short");
 
 	s = SHRT_MAX;
 	printf("**************************** Value = %hd\n", s);
-	visu_compare("{%3.2hhd}", &c, "char");
-	visu_compare("{% -3.2hhd}", &c, "char");
-	visu_compare("{%07.3hhd}", &c, "char");	
+	visu_compare("%3.2hd", &s, "short");
+	visu_compare("% -3.2hd", &s, "short");
+	visu_compare("%07.3hd", &s, "short");
 
 	ft_putendl("\033[33m-------------------------------------------------");	
 	ft_putendl("--------------------------------------- char (hh)\033[0m\n");
 
 	c = 0;
 	printf("**************************** Value = %hhd\n", c);
-	visu_compare("{%3.2hhd}", &c, "char");
-	visu_compare("{% -3.2hhd}", &c, "char");
-	visu_compare("{%07.3hhd}", &c, "char");
+	visu_compare("%3.2hhd", &c, "char");
+	visu_compare("% -3.2hhd", &c, "char");
+	visu_compare("%07.3hhd", &c, "char");
 
 	c = -42;
 	printf("**************************** Value = %hhd\n", c);
-	visu_compare("{%3.2hhd}", &c, "char");
-	visu_compare("{% -3.2hhd}", &c, "char");
-	visu_compare("{%07.3hhd}", &c, "char");
+	visu_compare("%3.2hhd", &c, "char");
+	visu_compare("% -3.2hhd", &c, "char");
+	visu_compare("%07.3hhd", &c, "char");
 	
 	c = CHAR_MIN;
 	printf("**************************** Value = %hhd\n", c);
-	visu_compare("{%3.2hhd}", &c, "char");
-	visu_compare("{% -3.2hhd}", &c, "char");
-	visu_compare("{%07.3hhd}", &c, "char");	
+	visu_compare("%3.2hhd", &c, "char");
+	visu_compare("% -3.2hhd", &c, "char");
+	visu_compare("%07.3hhd", &c, "char");	
 
 	c = CHAR_MAX;
 	printf("**************************** Value = %hhd\n", c);
-	visu_compare("{%3.2hhd}", &c, "char");
-	visu_compare("{% -3.2hhd}", &c, "char");
-	visu_compare("{%07.3hhd}", &c, "char");
+	visu_compare("%3.2hhd", &c, "char");
+	visu_compare("% -3.2hhd", &c, "char");
+	visu_compare("%07.3hhd", &c, "char");
 
 	ft_putstr("\033[33m=================================================\n");
 	ft_putstr("=========== END OF dDi CONVERSION TESTS =========\n");
@@ -495,42 +495,96 @@ void	dDi_tests(void)
 
 void	oO_tests(void)
 {
-	unsigned int		ui;
-	unsigned long		ul;
-	unsigned long long	ull;
-
-	ui = 6324;
+	int		i;
+	long	l;
 
 	ft_putstr("\n\033[33m=================================================\n");
 	ft_putstr("========== STARTING oO CONVERSION TESTS =========\n");
 	ft_putstr("=================================================\033[0m\n");
 	
-	visu_compare("%d", &ui, "uint");
+	ft_putendl("\033[33m-------------------------------------------------");	
+	ft_putendl("------------------------------ no lenght modifier\033[0m\n");	
 	
-	ui = 42;
-	printf("**************************** Value = %u\n", ui);
-	visu_compare("%d", &ui, "uint");
+	i = 42;
+	printf("**************************** Value = %u\n", i);
+	visu_compare("%o", &i, "int");
 	
-	ui = 0;
-	printf("**************************** Value = %u\n", ui);
-	visu_compare("%d", &ui, "uint");
+	i = 0;
+	printf("**************************** Value = %u\n", i);
+	visu_compare("%o", &i, "int");
 	
-	ui = UINT_MAX;
-	printf("**************************** Value = %u\n", ui);
-	visu_compare("%d", &ui, "uint");
-	ui = 42;
-	printf("**************************** Value = %u\n", ui);
-	visu_compare("%0d", &ui, "uint");
-	visu_compare("%09d", &ui, "uint");
-	visu_compare("%+d", &ui, "uint");
-	visu_compare("%+ d", &ui, "uint");
-	visu_compare("%+9d", &ui, "uint");
-	visu_compare("%+ 9d", &ui, "uint");
-	visu_compare("% 9d", &ui, "uint");
-	visu_compare("%3.7d", &ui, "uint");
-	visu_compare("%7.3d", &ui, "uint");
-	visu_compare("%-03.7d", &ui, "uint");
-	visu_compare("%-07.3d", &ui, "uint");
+	i = INT_MAX;
+	printf("**************************** Value = %u\n", i);
+	visu_compare("%o", &i, "int");
+	i = 42;
+	printf("**************************** Value = %u\n", i);
+	visu_compare("%0o", &i, "int");
+	visu_compare("%09o", &i, "int");
+	visu_compare("%+o", &i, "int");
+	visu_compare("%+ o", &i, "int");
+	visu_compare("%+9o", &i, "int");
+	visu_compare("%+ 9o", &i, "int");
+	visu_compare("% 9o", &i, "int");
+	visu_compare("%3.7o", &i, "int");
+	visu_compare("%7.3o", &i, "int");
+	visu_compare("%-03.7o", &i, "int");
+	visu_compare("%-07.3o", &i, "int");
+
+	ft_putendl("\033[33m-------------------------------------------------");	
+	ft_putendl("---------------------------------------- long (l)\033[0m\n");	
+
+	l = LONG_MAX;
+	printf("**************************** Value = %ld\n", l);
+	visu_compare("%lo", &l, "long");
+	visu_compare("%O", &l, "long");
+	visu_compare("%30.24lo",&l, "long");
+	visu_compare("%-30.24lo",&l, "long");
+	visu_compare("%0-30.24lo",&l, "long");
+
+	l = LONG_MIN;
+	printf("**************************** Value = %ld\n", l);
+	visu_compare("%lo", &l, "long");
+	visu_compare("%O", &l, "long");
+	visu_compare("%30.24lo",&l, "long");
+	visu_compare("%-30.24lo",&l, "long");
+	visu_compare("%0-30.24lo",&l, "long");
+
+	l = 0;
+	printf("**************************** Value = %ld\n", l);
+	visu_compare("%lo", &l, "long");
+	visu_compare("%O", &l, "long");
+	visu_compare("%30.24lo",&l, "long");
+	visu_compare("%-30.24lo",&l, "long");
+	visu_compare("%0-30.24lo",&l, "long");
+
+	l = 42;
+	printf("**************************** Value = %ld\n", l);
+	visu_compare("%lo", &l, "long");
+	visu_compare("%O", &l, "long");
+	visu_compare("%30.24lo",&l, "long");
+	visu_compare("%-30.24lo",&l, "long");
+	visu_compare("%0-30.24lo",&l, "long");
+
+	visu_compare("%0lo", &l, "long");
+	visu_compare("%0O", &l, "long");
+	
+	visu_compare("%09lo", &l, "long");
+	visu_compare("%0O", &l, "long");
+
+	visu_compare("%+lo", &l, "long");
+	visu_compare("%+O", &l, "long");
+
+	visu_compare("%+9lo", &l, "long");
+	visu_compare("%+9O", &l, "long");
+
+	visu_compare("%+ 9lo", &l, "long");
+	visu_compare("%+ 9O", &l, "long");
+
+	visu_compare("% +9lo", &l, "long");
+	visu_compare("% +9O", &l, "long");
+
+	visu_compare("% 9lo", &l, "long");
+	visu_compare("% +9O", &l, "long");
 
 	ft_putstr("\033[33m=================================================\n");
 	ft_putstr("=========== END OF oO CONVERSION TESTS ==========\n");
@@ -554,7 +608,7 @@ int	main(void)
 	(void)str;
 
 	dDi_tests();
-//	oO_tests();
+	oO_tests();
 
 //	printf("%i\n", i);
 //	ft_printf("%i\n", i);
@@ -651,9 +705,7 @@ int	main(void)
 	
 	visu_compare("% Zoooo", NULL, "none");
 	
-	k = LONG_MAX;
-	visu_compare("%o", &k, "long");
-	visu_compare("%O", &k, "long");
+
 
 	ulong = ULONG_MAX / 2;
 	visu_compare("%u", &ulong, "u long");

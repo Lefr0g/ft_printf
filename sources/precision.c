@@ -6,13 +6,36 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/10 18:48:32 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/11 20:12:46 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-#include <stdio.h>
+/*
+**	This function modifies the 'raw' values of precision and outputlen
+**	to make them consistant with each other.
+**	These raw values must be processed in order to obtain the desired
+**	effect.
+*/
+
+void	ftpf_process_output_rules(t_env *e)
+{
+	int	buf;
+
+	if (e->precision >= e->outputlen)
+	{
+		buf = e->outputlen;
+		e->outputlen = e->precision;
+		if (e->isneg)
+			e->outputlen++;
+		e->precision = e->outputlen - buf;
+	}
+	else if (e->precisflag && !e->param->ll)
+		e->outputlen = 0;
+	else
+		e->precision = 0;
+}
 
 int		manage_field_width(t_env *e)
 {
@@ -20,12 +43,14 @@ int		manage_field_width(t_env *e)
 
 	i = e->field_width;
 //	if (e->param->i < 0 && e->outputlen <= e->precision && ft_strchr("dDi", e->conversion))
+/*
 	if (e->zero && e->param->i < 0 && ft_strchr("dDi", e->conversion) && !e->neg
 			&& e->outputlen <= e->precision)
 	{
 		ft_putchar('_');
 		e->param->i = -e->param->i;
 	}
+*/
 	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer == '0')
 	{
 		ft_putstr(e->xX_prefix);
@@ -55,8 +80,10 @@ int		manage_field_width(t_env *e)
 //			e->outputlen, e->precision, e->field_width, i);
 	while (i && i - get_max(e->outputlen, e->precision) > 0)
 	{
-//		ft_putchar(e->spacer);
-		ft_putchar('f');
+		if (DEBUG_MODE)
+			ft_putchar('f');
+		else
+			ft_putchar(e->spacer);
 		i--;
 	}
 	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer != '0')
@@ -84,7 +111,7 @@ int		manage_precision(void *value, t_env *e)
 	{
 		if (e->isneg)
 		{
-			ft_putchar('=');
+			ft_putchar(PRECIS_MINUS);
 			e->isneg = 0;
 		}
 		else
@@ -92,7 +119,7 @@ int		manage_precision(void *value, t_env *e)
 			if (!ft_strcmp("linux", e->os) && !e->param->i)
 				ft_putchar(' ');
 			else
-				ft_putchar('p');
+				ft_putchar(PRECIS_ZERO);
 			i--;
 		}
 	}

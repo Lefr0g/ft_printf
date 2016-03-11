@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/10 18:16:16 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/11 20:24:43 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@
 # else
 #  define SYS_OS "unknown"
 #  define NULL_PTR "0x0"
+# endif
+
+# define DEBUG_MODE	0
+
+# if DEBUG_MODE == 1
+#  define PRECIS_ZERO 'p'
+#  define PRECIS_MINUS '='
+#  define CONV_MINUS '|'
+#  define FLAG_0_SPACER 'o'
+# else
+#  define PRECIS_ZERO '0'
+#  define PRECIS_MINUS '-'
+#  define CONV_MINUS '-'
+#  define FLAG_0_SPACER '0'
 # endif
 
 # include <stdarg.h>
@@ -79,6 +93,7 @@ typedef struct			s_env
 	void				(*conversion_function)(va_list *ap, struct s_env *e);
 	void				(*conv_funct_table[128])(va_list *ap, struct s_env *e);
 	int					isneg;
+	int					noconv;
 }						t_env;
 
 int				ft_printf(const char *restrict format, ...);
@@ -107,12 +122,15 @@ void			ftpf_directive_wrongchar_handler(const char *restrict format,
 /*
 **	conversions_1.c
 */
-void			convert_dDi(va_list *ap, t_env *e);
+void			ftpf_convert_dDi(va_list *ap, t_env *e);
 void			convert_uU(va_list *ap, t_env *e);
 void			convert_cC(va_list *ap, t_env *e);
 void			convert_oO(va_list *ap, t_env *e);
 void			convert_xX(va_list *ap, t_env *e);
 void			convert_sS(va_list *ap, t_env *e);
+
+void			ftpf_process_output_rules(t_env *e);
+void			ftpf_write_dDi_param(t_env *e);
 
 /*
 **	modifiers.c
@@ -125,6 +143,7 @@ void			manage_modifiers_ouxX(va_list *ap, t_env *e);
 */
 int				manage_precision(void *value, t_env *e);
 char			*manage_precision_s(char *str, t_env *e);
+int				manage_field_width(t_env *e);
 
 /*
 **	ftpf_flags.c
@@ -133,7 +152,6 @@ int				ftpf_get_flags(const char *restrict format, t_env *e);
 int				ftpf_process_flags(t_env *e);
 int				ftpf_apply_flags(t_env *e);
 
-int				manage_field_width(t_env *e);
 
 /*
 **	printing.c

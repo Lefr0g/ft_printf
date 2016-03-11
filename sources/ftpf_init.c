@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 12:56:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/10 18:07:32 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/11 19:46:40 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	ftpf_reinit_env(t_env *e)
 	e->p_conv = 0;
 	e->null_printed = 0;
 	e->isneg = 0;
+	e->noconv = 0;
 	return (0);
 }
 
@@ -70,6 +71,7 @@ int	ftpf_init_env(t_env *e)
 	e->p_conv = 0;
 	e->null_printed = 0;
 	e->isneg = 0;
+	e->noconv = 0;
 	if (!e->param || !e->lenmods || !e->os || !e->conversions 
 			|| !e->mod || !e->xX_prefix)
 		return (1);
@@ -83,9 +85,9 @@ int	ftpf_init_env(t_env *e)
 
 void	ftpf_init_convfunctions_pointers(t_env *e)
 {
-	e->conv_funct_table['d'] = &(convert_dDi);
-	e->conv_funct_table['D'] = &(convert_dDi);
-	e->conv_funct_table['i'] = &(convert_dDi);
+	e->conv_funct_table['d'] = &(ftpf_convert_dDi);
+	e->conv_funct_table['D'] = &(ftpf_convert_dDi);
+	e->conv_funct_table['i'] = &(ftpf_convert_dDi);
 	e->conv_funct_table['u'] = &(convert_uU);
 	e->conv_funct_table['U'] = &(convert_uU);
 	e->conv_funct_table['c'] = &(convert_cC);

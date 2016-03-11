@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/11 18:37:51 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/11 20:25:25 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -312,6 +312,7 @@ void	dDi_tests(void)
 	visu_compare("%-3.2d", &i, "int");
 	visu_compare("%-03.7d", &i, "int");
 	visu_compare("%-07.3d", &i, "int");
+	visu_compare("%.4d", &i, "int");
 
 	i = 0;
 	printf("**************************** Value = %d\n", i);
@@ -353,7 +354,8 @@ void	dDi_tests(void)
 	printf("**************************** Value = %d\n", i);
 	visu_compare("%d", &i, "int");
 	visu_compare("%18.14d", &i, "int");
-	visu_compare("%-18.14d", &i, "int");	
+	visu_compare("%-18.14d", &i, "int");
+	visu_compare("%0.15d",&i, "int");
 
 	i = INT_MIN + 1;
 	printf("**************************** Value = %d\n", i);
@@ -429,6 +431,7 @@ void	dDi_tests(void)
 	ll = LLONG_MIN;
 	printf("**************************** Value = %lld\n", ll);
 	visu_compare("%30.24lld",&ll, "long long");
+	visu_compare("%0.23lld",&ll, "long long");
 
 	ll = 0;
 	printf("**************************** Value = %lld\n", ll);
@@ -608,7 +611,7 @@ int	main(void)
 	(void)str;
 
 	dDi_tests();
-	oO_tests();
+//	oO_tests();
 
 //	printf("%i\n", i);
 //	ft_printf("%i\n", i);

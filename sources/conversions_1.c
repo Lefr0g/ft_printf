@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/11 15:38:49 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/11 20:14:06 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,104 +14,47 @@
 
 #include <stdio.h>
 
-void	convert_dDi(va_list *ap, t_env *e)
+void	ftpf_write_dDi_param(t_env *e)
 {
-	int	buf;
-	int	noconv;
-
-	(void)ap;
-//	if (e->conversion == 'D' && !e->mod[0])
-//	{
-//		e->conversion = 'd';
-//		e->mod[0] = 'l';
-//		convert_dDi(ap, e);
-//	}
-//	else
+	if (!e->noconv)
 	{
-		manage_modifiers_dDi(ap, e);
-	
-//		printf("\nft_itoa_ll = %s\n", ft_itoa_ll(e->param->l, 10));
-
-//		printf("Spacer = %c, precisflag = %d\n", e->spacer, e->precisflag);
-		ftpf_process_flags(e);
-//		printf("Spacer = %c, precisflag = %d\n", e->spacer, e->precisflag);
-
-//		printf("Precisflag = %d, precision = %d\n", e->precisflag, e->precision);
-//		printf("Outpulen = %d\n", e->outputlen);
-
-
-		noconv = 0;
-		if (e->precisflag && !e->precision && !e->param->ll)
-			noconv = 1;
-
-		if (e->precision >= e->outputlen)
+		if (e->conversion == 'd' || e->conversion == 'i')
 		{
-			buf = e->outputlen;
-			e->outputlen = e->precision;
 			if (e->isneg)
-				e->outputlen++;
-			e->precision = e->outputlen - buf;
-		}
-		else if (e->precisflag && !e->param->ll)
-			e->outputlen = 0;
-		else
-			e->precision = 0;
-/*
-		printf("Field Width = %d\n", e->field_width);
-		printf("\ne->neg = %d\n", e->neg);
-		printf("\ne->zero = %d\n", e->zero);
-		printf("Precision = %d\n", e->precision);
-		printf("Outpulen = %d\n", e->outputlen);
-*/	
-		
-//		ftpf_apply_flags(e);	
-		
-		if (e->space && ft_strchr("dDi", e->conversion) && !e->isneg
-				&& !e->plus)
-			ft_putchar(' ');
-
-//		printf("Precisflag = %d, precision = %d\n", e->precisflag, e->precision);
-//		printf("Outpulen = %d\n", e->outputlen);
-
-		if (!e->neg)
-			manage_field_width(e);
-
-		if (e->plus && ft_strchr("dDi", e->conversion) && !e->isneg)
-			ft_putchar('+');
-
-//		printf("\nPrecisflag = %d, precision = %d\n", e->precisflag, e->precision);
-
-		manage_precision(&(e->param->ll), e);
-
-//		printf("Precisflag = %d, precision = %d\n", e->precisflag, e->precision);
-
-//		Printing value on stdout :
-
-		if (!noconv)
-		{
-//			printf("CHECK\n");
-			if (e->conversion == 'd' || e->conversion == 'i')
-			{
-				if (e->isneg)
-					ft_putchar('|');
-				if (!e->mod[0] && e->param->i != INT_MIN)
-					ft_putnbr_ll(ft_abs(e->param->i));
-				else if (!ft_strcmp(e->mod, "h"))
-					ft_putnbr(ft_abs(e->param->sh));
-				else if (!ft_strcmp(e->mod, "hh"))
-					ft_putnbr(ft_abs(e->param->sc));
-				else if (e->param->ll == LLONG_MIN)
-					ft_putstr("9223372036854775808");
-				else
-					ft_putnbr_ll(ft_abs_ll(e->param->ll));
-			}
-			else if (e->conversion == 'D')
+				ft_putchar(CONV_MINUS);
+			if (!e->mod[0] && e->param->i != INT_MIN)
+				ft_putnbr_ll(ft_abs(e->param->i));
+			else if (!ft_strcmp(e->mod, "h"))
+				ft_putnbr(ft_abs(e->param->sh));
+			else if (!ft_strcmp(e->mod, "hh"))
+				ft_putnbr(ft_abs(e->param->sc));
+			else if (e->param->ll == LLONG_MIN)
+				ft_putstr("9223372036854775808");
+			else
 				ft_putnbr_ll(ft_abs_ll(e->param->ll));
 		}
-
-		if (e->neg)
-			manage_field_width(e);
+		else if (e->conversion == 'D')
+			ft_putnbr_ll(ft_abs_ll(e->param->ll));
 	}
+}
+
+void	ftpf_convert_dDi(va_list *ap, t_env *e)
+{
+	manage_modifiers_dDi(ap, e);
+	ftpf_process_flags(e);
+	if (e->precisflag && !e->precision && !e->param->ll)
+		e->noconv = 1;
+	ftpf_process_output_rules(e);
+	if (e->space && ft_strchr("dDi", e->conversion) && !e->isneg && !e->plus)
+		ft_putchar(' ');
+	if (!e->neg)
+		manage_field_width(e);
+	if (e->plus && ft_strchr("dDi", e->conversion) && !e->isneg)
+		ft_putchar('+');
+	manage_precision(&(e->param->ll), e);
+	ftpf_write_dDi_param(e);
+	if (e->neg)
+		manage_field_width(e);
 }
 
 void	convert_uU(va_list *ap, t_env *e)

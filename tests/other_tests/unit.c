@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/14 19:01:40 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/14 19:36:01 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -501,8 +501,9 @@ void	dDi_tests(void)
 
 void	oO_tests(void)
 {
-	int		i;
-	long	l;
+	unsigned char	uc;
+	int				i;
+	long			l;
 
 	ft_putstr("\n\033[33m=================================================\n");
 	ft_putstr("========== STARTING oO CONVERSION TESTS =========\n");
@@ -592,6 +593,36 @@ void	oO_tests(void)
 	visu_compare("% 9lo", &l, "long");
 	visu_compare("% +9O", &l, "long");
 
+	ft_putendl("\033[33m-------------------------------------------------");	
+	ft_putendl("-------------------------------------- uchar (hh)\033[0m\n");
+
+	uc = 0;
+	printf("**************************** Value = %hhd\n", uc);
+	visu_compare("%5.2hho", &uc, "uchar");
+	visu_compare("% -5.2hho", &uc, "uchar");
+	visu_compare("%07.3hho", &uc, "uchar");
+	visu_compare("% -7.4hho", &uc, "uchar");
+	visu_compare("%-7.4hho", &uc, "uchar");
+	visu_compare("%7.0hho", &uc, "uchar");
+
+	uc = -42;
+	printf("**************************** Value = %hhd\n", uc);
+	visu_compare("%5.3hho", &uc, "uchar");
+	visu_compare("% -5.3hho", &uc, "uchar");
+	visu_compare("%07.3hho", &uc, "uchar");
+	
+	uc = CHAR_MIN;
+	printf("**************************** Value = %hhd\n", uc);
+	visu_compare("%3.2hho", &uc, "uchar");
+	visu_compare("% -3.2hho", &uc, "uchar");
+	visu_compare("%07.3hho", &uc, "uchar");	
+
+	uc = CHAR_MAX;
+	printf("**************************** Value = %hhd\n", uc);
+	visu_compare("%3.2hho", &uc, "uchar");
+	visu_compare("% -3.2hho", &uc, "uchar");
+	visu_compare("%07.3hho", &uc, "uchar");
+
 	ft_putstr("\033[33m=================================================\n");
 	ft_putstr("=========== END OF oO CONVERSION TESTS ==========\n");
 	ft_putstr("=================================================\033[0m\n");
@@ -614,7 +645,7 @@ int	main(void)
 	(void)str;
 
 	dDi_tests();
-//	oO_tests();
+	oO_tests();
 
 //	printf("%i\n", i);
 //	ft_printf("%i\n", i);

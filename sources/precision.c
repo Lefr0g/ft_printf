@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/14 19:20:03 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/14 19:28:35 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,6 @@ int		manage_precision(void *value, t_env *e)
 	if (!e->precisflag)
 		return (0);
 	i = e->precision;
-//	printf("value = %d\n", *(int*)value);
-/*
-	if (!(*(int*)(value)) && e->space)
-	{
-		i++;
-		e->outputlen++;
-	}
-*/
 	while (i)
 	{
 		if (e->isneg)

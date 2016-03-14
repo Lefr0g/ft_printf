@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/11 20:14:06 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/14 19:17:28 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void	ftpf_write_dDi_param(t_env *e)
 void	ftpf_convert_dDi(va_list *ap, t_env *e)
 {
 	manage_modifiers_dDi(ap, e);
+//	printf("outputlen = %d\n", e->outputlen);
 	ftpf_process_flags(e);
+//	printf("outputlen = %d\n", e->outputlen);
 	if (e->precisflag && !e->precision && !e->param->ll)
 		e->noconv = 1;
 	ftpf_process_output_rules(e);

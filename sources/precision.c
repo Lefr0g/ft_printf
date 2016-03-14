@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/11 20:12:46 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/14 19:20:03 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	ftpf_process_output_rules(t_env *e)
 {
 	int	buf;
 
+//	printf("precision = %d, outputlen = %d\n", e->precision, e->outputlen);
+//	printf("isneg = %d\n", e->isneg);
 	if (e->precision >= e->outputlen)
 	{
 		buf = e->outputlen;
@@ -30,6 +32,7 @@ void	ftpf_process_output_rules(t_env *e)
 		if (e->isneg)
 			e->outputlen++;
 		e->precision = e->outputlen - buf;
+//		printf("precision = %d\n", e->precision);
 	}
 	else if (e->precisflag && !e->param->ll)
 		e->outputlen = 0;
@@ -103,10 +106,17 @@ int		manage_precision(void *value, t_env *e)
 {
 	int	i;
 
-	(void)value;
 	if (!e->precisflag)
 		return (0);
 	i = e->precision;
+//	printf("value = %d\n", *(int*)value);
+/*
+	if (!(*(int*)(value)) && e->space)
+	{
+		i++;
+		e->outputlen++;
+	}
+*/
 	while (i)
 	{
 		if (e->isneg)
@@ -116,7 +126,7 @@ int		manage_precision(void *value, t_env *e)
 		}
 		else
 		{
-			if (!ft_strcmp("linux", e->os) && !e->param->i)
+			if (!ft_strcmp("linux", e->os) && !value)
 				ft_putchar(' ');
 			else
 				ft_putchar(PRECIS_ZERO);

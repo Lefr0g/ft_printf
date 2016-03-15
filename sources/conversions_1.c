@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/14 19:17:28 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/15 16:18:11 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@
 
 void	ftpf_write_dDi_param(t_env *e)
 {
-	if (!e->noconv)
+	if (e->isneg)
+		ft_putchar(CONV_MINUS);
+	if (e->param->ll == LLONG_MIN)
+		ft_putstr("9223372036854775808");
+	else
 	{
 		if (e->conversion == 'd' || e->conversion == 'i')
 		{
-			if (e->isneg)
-				ft_putchar(CONV_MINUS);
 			if (!e->mod[0] && e->param->i != INT_MIN)
 				ft_putnbr_ll(ft_abs(e->param->i));
 			else if (!ft_strcmp(e->mod, "h"))
 				ft_putnbr(ft_abs(e->param->sh));
 			else if (!ft_strcmp(e->mod, "hh"))
 				ft_putnbr(ft_abs(e->param->sc));
-			else if (e->param->ll == LLONG_MIN)
-				ft_putstr("9223372036854775808");
 			else
 				ft_putnbr_ll(ft_abs_ll(e->param->ll));
 		}
@@ -54,7 +54,8 @@ void	ftpf_convert_dDi(va_list *ap, t_env *e)
 	if (e->plus && ft_strchr("dDi", e->conversion) && !e->isneg)
 		ft_putchar('+');
 	manage_precision(&(e->param->ll), e);
-	ftpf_write_dDi_param(e);
+	if (!e->noconv)
+		ftpf_write_dDi_param(e);
 	if (e->neg)
 		manage_field_width(e);
 }

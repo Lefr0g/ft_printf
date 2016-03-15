@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 18:57:05 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/11 20:24:56 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/15 16:06:11 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ int		ftpf_directives(const char *restrict format, va_list *ap, t_env *e)
 		e->conversion_function = e->conv_funct_table[e->conversion];
 		(*e->conversion_function)(ap, e);
 	}
-	else if (ft_isalpha(format[e->index])
+	else if (
+//			ft_isascii(format[e->index]) &&
+			!ft_strchr(e->flags, format[e->index])
 			&& !ft_strchr(e->conversions, format[e->index])
 			&& !ft_strchr(e->lenmods, format[e->index]))
 		ftpf_directive_wrongchar_handler(format, e);

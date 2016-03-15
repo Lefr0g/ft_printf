@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/14 19:36:01 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/15 16:15:35 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -373,7 +373,7 @@ void	dDi_tests(void)
 	ft_putendl("\033[33m-------------------------------------------------");	
 	ft_putendl("---------------------------------------- long (l)\033[0m\n");	
 
-	l = 42;
+	l = 42L;
 	printf("**************************** Value = %ld\n", l);
 	visu_compare("%ld", &l, "long");
 	visu_compare("%D", &l, "long");
@@ -397,6 +397,10 @@ void	dDi_tests(void)
 
 	visu_compare("% 9ld", &l, "long");
 	visu_compare("% +9D", &l, "long");
+
+	l = -42L;
+	printf("**************************** Value = %ld\n", l);
+	visu_compare("%D", &l, "long");
 	
 	l = 0;
 	printf("**************************** Value = %ld\n", l);
@@ -628,6 +632,25 @@ void	oO_tests(void)
 	ft_putstr("=================================================\033[0m\n");
 }
 
+void	wild_tests(void)
+{
+	int				i;
+
+	ft_putstr("\n\033[33m=================================================\n");
+	ft_putstr("=========== STARTING * WILDCARD TESTS ===========\n");
+	ft_putstr("=================================================\033[0m\n");
+
+	i = 42;
+	printf("**************************** Value = %d\n", i);
+	visu_compare("%xd", &i, "int");
+	visu_compare("%*d", &i, "int");
+	
+	ft_putstr("\033[33m=================================================\n");
+	ft_putstr("============ END OF * WIDLCARD TESTS ============\n");
+	ft_putstr("=================================================\033[0m\n");
+
+}
+	
 int	main(void)
 {
 	char	c;
@@ -645,7 +668,8 @@ int	main(void)
 	(void)str;
 
 	dDi_tests();
-	oO_tests();
+//	oO_tests();
+	wild_tests();
 
 //	printf("%i\n", i);
 //	ft_printf("%i\n", i);

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/15 18:15:10 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/15 18:47:42 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -646,6 +646,7 @@ void	xXp_tests(void)
 	visu_compare("%x", &i, "int");
 	visu_compare("%#x", &i, "int");
 	visu_compare("%#16x", &i, "int");
+	visu_compare("%#16.10x", &i, "int");
 	visu_compare("%-#x", &i, "int");
 	visu_compare("%0#x", &i, "int");
 	visu_compare("%-0#x", &i, "int");
@@ -655,6 +656,7 @@ void	xXp_tests(void)
 	printf("**************************** Value = %d\n", i);
 	visu_compare("%x", &i, "int");
 	visu_compare("%#16x", &i, "int");
+	visu_compare("%#16.10x", &i, "int");
 	visu_compare("%-#x", &i, "int");
 	visu_compare("%0#x", &i, "int");
 	visu_compare("%-0#x", &i, "int");

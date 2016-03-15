@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/14 19:19:15 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/15 18:38:01 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,14 @@ int		ftpf_process_flags(t_env *e)
 			e->precision = 1;
 			e->outputlen++;
 		}
-		if (ft_strchr("xX", e->conversion) && e->param->u)
+		if (ft_strchr("xXp", e->conversion) && e->param->u)
+		{
+			if (ft_strchr("xp", e->conversion))
+				ft_strcpy(e->xX_prefix, "0x");
+			else
+				ft_strcpy(e->xX_prefix, "0X");
 			e->outputlen += 2;
+		}
 	}
 //	printf("PROCESS FLAG : zero = %d, conversion = %c, precisflag = %d\n",
 //			e->zero, e->conversion, e->precisflag);
@@ -115,7 +121,8 @@ int		ftpf_apply_flags(t_env *e)
 	{
 		if (ft_strchr("oO", e->conversion) && e->param->u && !e->precision)
 			(void)e;
-		if (ft_strchr("xX", e->conversion) && e->param->u)
+		if (((ft_strchr("xX", e->conversion) && e->alt) || e->conversion == 'p')
+				&& e->param->u)
 			ft_putstr(e->xX_prefix);
 	}
 //	if (e->space && ft_strchr("dDi", e->conversion) && e->param->i >= 0

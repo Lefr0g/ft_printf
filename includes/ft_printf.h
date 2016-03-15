@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/15 18:18:54 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/15 18:29:34 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #  define NULL_PTR "0x0"
 # endif
 
-# define DEBUG_MODE	0
+# define DEBUG_MODE	1
 
 # if DEBUG_MODE == 1
 #  define PRECIS_ZERO 'p'

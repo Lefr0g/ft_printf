@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/14 19:28:35 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/15 18:57:33 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,6 @@ int		manage_field_width(t_env *e)
 		e->param->i = -e->param->i;
 	}
 */
-	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer == '0')
-	{
-		ft_putstr(e->xX_prefix);
-		e->outputlen += ft_strlen(e->xX_prefix);
-	}
-	else if (e->p_conv && !e->param->i && e->zero && !ft_strcmp("linux", e->os))
-		print_null_ptr(e);
 
 	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer == ' '
 			&& i >= 2)
@@ -78,25 +71,15 @@ int		manage_field_width(t_env *e)
 			i -= ft_strlen(e->param->s);
 	}
 
-//	printf("'\noutputlen = %d, precision = %d\n'", e->outputlen, e->precision);
 //	printf("'\noutputlen = %d, precision = %d, fw = %d, i = %d\n'",
 //			e->outputlen, e->precision, e->field_width, i);
 	while (i && i - get_max(e->outputlen, e->precision) > 0)
 	{
 		if (DEBUG_MODE)
-			ft_putchar('f');
+			ft_putchar('w');
 		else
 			ft_putchar(e->spacer);
 		i--;
-	}
-	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer != '0')
-	{
-//		if (!(!ft_strcmp("linux", e->os) && !e->param->u))
-		if (e->param->u || e->p_conv)
-		{
-			ft_putstr(e->xX_prefix);
-			e->outputlen += ft_strlen(e->xX_prefix);
-		}
 	}
 
 	return (0);

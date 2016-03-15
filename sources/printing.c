@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 19:34:39 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/10 18:22:13 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/15 16:48:00 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,6 @@ void	manage_print_all(t_env *e)
 	}
 	else if (e->conversion == 'O')
 		ft_putoctal(e->param->ul);
-	else if (e->conversion == 'x')
-	{
-		if (!ft_strcmp(e->mod, "h"))
-			ft_puthex_ull(e->param->ush, "min");
-		else if (!ft_strcmp(e->mod, "hh"))
-			ft_puthex_ull(e->param->uc, "min");
-		else
-			ft_puthex_ull(e->param->ull, "min");
-	}
-	else if (e->conversion == 'X')
-	{
-		if (!ft_strcmp(e->mod, "h"))
-			ft_puthex_ull(e->param->ush, "maj");
-		else if (!ft_strcmp(e->mod, "hh"))
-			ft_puthex_ull(e->param->uc, "maj");
-		else
-			ft_puthex_ull(e->param->ull, "maj");
-	}
 	else if (e->conversion == 's')
 	{
 		if (e->mod[0] == 'l')

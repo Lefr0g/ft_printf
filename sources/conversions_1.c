@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/15 16:18:11 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/15 18:20:53 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	ftpf_convert_dDi(va_list *ap, t_env *e)
 	if (e->precisflag && !e->precision && !e->param->ll)
 		e->noconv = 1;
 	ftpf_process_output_rules(e);
-	if (e->space && ft_strchr("dDi", e->conversion) && !e->isneg && !e->plus)
+	if (e->space && !e->isneg && !e->plus)
 		ft_putchar(' ');
 	if (!e->neg)
 		manage_field_width(e);
-	if (e->plus && ft_strchr("dDi", e->conversion) && !e->isneg)
+	if (e->plus && !e->isneg)
 		ft_putchar('+');
 	manage_precision(&(e->param->ll), e);
 	if (!e->noconv)
@@ -183,24 +183,69 @@ void	convert_oO(va_list *ap, t_env *e)
 	}
 }
 
+void	ftpf_write_xXp_param(t_env *e)
+{
+	if (e->conversion == 'x' || e->conversion == 'p')
+	{
+		if (!ft_strcmp(e->mod, "h"))
+			ft_puthex_ull(e->param->ush, "min");
+		else if (!ft_strcmp(e->mod, "hh"))
+			ft_puthex_ull(e->param->uc, "min");
+		else
+			ft_puthex_ull(e->param->ull, "min");
+	}
+	else if (e->conversion == 'X')
+	{
+		if (!ft_strcmp(e->mod, "h"))
+			ft_puthex_ull(e->param->ush, "maj");
+		else if (!ft_strcmp(e->mod, "hh"))
+			ft_puthex_ull(e->param->uc, "maj");
+		else
+			ft_puthex_ull(e->param->ull, "maj");
+	}
+}
+
+
+void	ftpf_convert_xXp(va_list *ap, t_env *e)
+{
+	manage_modifiers_xXp(ap, e);
+//	printf("outputlen = %d\n", e->outputlen);
+	ftpf_process_flags(e);
+//	printf("outputlen = %d\n", e->outputlen);
+	if (e->precisflag && !e->precision && !e->param->ll)
+		e->noconv = 1;
+	ftpf_process_output_rules(e);
+	if (e->space && ft_strchr("xXp", e->conversion) && !e->isneg && !e->plus)
+		ft_putchar(' ');
+	if (!e->neg)
+		manage_field_width(e);
+	if (e->plus && ft_strchr("xXp", e->conversion) && !e->isneg)
+		ft_putchar('+');
+	manage_precision(&(e->param->ll), e);
+	if (!e->noconv)
+		ftpf_write_xXp_param(e);
+	if (e->neg)
+		manage_field_width(e);
+}
+
+//	LEGACY
 void	convert_xX(va_list *ap, t_env *e)
 {
 	int	buf;
 
-	manage_modifiers_ouxX(ap, e);
+	(void)buf;
+	(void)ap;
 
-	if (e->conversion == 'x')
+	manage_modifiers_xXp(ap, e);
+
+	if (ft_strchr("xp", e->conversion))
 		ft_strcpy(e->xX_prefix, "0x");
 	else
 		ft_strcpy(e->xX_prefix, "0X");
 	if (!(!ft_strcmp("linux", e->os) && !e->param->i))
 	{
-		if (!ft_strcmp(e->mod, "h"))
-			e->outputlen = ft_strlen(ft_itoa_ull(e->param->ush, 16));
-		else if (!ft_strcmp(e->mod, "hh"))
-			e->outputlen = ft_strlen(ft_itoa_ull(e->param->uc, 16));
-		else
-			e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
+//		ftpf_process_output_rules(e);
+///*
 		if (e->precision > e->outputlen)
 		{
 			buf = e->outputlen;
@@ -211,24 +256,27 @@ void	convert_xX(va_list *ap, t_env *e)
 			e->outputlen--;
 		else
 			e->precisflag = 0;
-
+//*/
 		ftpf_process_flags(e);
 
 		if (!e->neg)
 			manage_field_width(e);
 
-		if (e->neg && e->alt && ft_strchr("xX", e->conversion) && !e->zero)
+/*
+//		if (e->neg && e->alt && ft_strchr("xX", e->conversion) && !e->zero)
+		if (e->alt || e->conversion == 'p')
 		{
 			ft_putstr(e->xX_prefix);
 			e->outputlen += ft_strlen(e->xX_prefix);
 		}
+*/
 		manage_precision(&(e->param->u), e);
 
 //		printf("Precision = %d\n", e->precision);
 //		printf("Outpulen = %d\n", e->outputlen);
 		
-		if (!(e->precisflag && !e->precision))
-			manage_print_all(e);
+//		if (!(e->precisflag && !e->precision))
+			ftpf_write_xXp_param(e);
 	
 		if (e->neg)
 			manage_field_width(e);

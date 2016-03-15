@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:00:44 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/10 18:06:58 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/15 17:13:25 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,27 @@ void	manage_modifiers_dDi(va_list *ap, t_env *e)
 	}
 }
 
+void	manage_modifiers_xXp(va_list *ap, t_env *e)
+{
+	if (!ft_strcmp(e->mod, "hh"))
+	{
+		e->param->uc = (unsigned char)va_arg(*ap, unsigned int);
+		e->outputlen = ft_strlen(ft_itoa_ull(e->param->uc, 16));
+	}
+	else if (!ft_strcmp(e->mod, "h"))
+	{
+		e->param->ush = (unsigned short)va_arg(*ap, unsigned int);
+		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ush, 16));
+	}
+	else
+	{
+		e->param->ul = (unsigned long)va_arg(*ap, unsigned int*);
+		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
+	}
+}
+	
+	
+//	LEGACY
 void	manage_modifiers_ouxX(va_list *ap, t_env *e)
 {
 //	if (!e->mod[0] && !ft_strchr("xXp", e->conversion))

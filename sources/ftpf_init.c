@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 12:56:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/11 19:46:40 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/15 18:18:18 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,10 @@ void	ftpf_init_convfunctions_pointers(t_env *e)
 	e->conv_funct_table['S'] = &(convert_sS);
 	e->conv_funct_table['o'] = &(convert_oO);
 	e->conv_funct_table['O'] = &(convert_oO);
-	e->conv_funct_table['x'] = &(convert_xX);
-	e->conv_funct_table['X'] = &(convert_xX);
-	e->conv_funct_table['p'] = &(convert_xX);
+//	e->conv_funct_table['x'] = &(convert_xX);
+//	e->conv_funct_table['X'] = &(convert_xX);
+//	e->conv_funct_table['p'] = &(convert_xX);
+	e->conv_funct_table['x'] = &(ftpf_convert_xXp);
+	e->conv_funct_table['X'] = &(ftpf_convert_xXp);
+	e->conv_funct_table['p'] = &(ftpf_convert_xXp);
 }

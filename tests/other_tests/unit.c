@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/15 16:15:35 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/15 18:15:10 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void	visu_compare(char *str, void *arg, char *type)
 	}
 	ft_putendl("\033[0m'");
 	if (pf_out == ftpf_out)
-		printf("Both functions return %d\n", pf_out);
+		printf("[ \033[32mOK\033[0m ] Both functions return %d\n", pf_out);
 	else
 		printf("[ \033[33mWARNING\033[0m ] ft_printf() returns \033[33m%d\033[0m instead of \033[33m%d\033[0m.\n", ftpf_out, pf_out);
 	ft_putchar('\n');
@@ -632,6 +632,40 @@ void	oO_tests(void)
 	ft_putstr("=================================================\033[0m\n");
 }
 
+void	xXp_tests(void)
+{
+	int				i;
+	long			l;
+
+	ft_putstr("\n\033[33m=================================================\n");
+	ft_putstr("========== STARTING xXp CONVERSION TESTS ========\n");
+	ft_putstr("=================================================\033[0m\n");
+
+	i = 42;
+	printf("**************************** Value = %d\n", i);
+	visu_compare("%x", &i, "int");
+	visu_compare("%#x", &i, "int");
+	visu_compare("%#16x", &i, "int");
+	visu_compare("%-#x", &i, "int");
+	visu_compare("%0#x", &i, "int");
+	visu_compare("%-0#x", &i, "int");
+	visu_compare("%p", &i, "int");
+
+	i = -42;
+	printf("**************************** Value = %d\n", i);
+	visu_compare("%x", &i, "int");
+	visu_compare("%#16x", &i, "int");
+	visu_compare("%-#x", &i, "int");
+	visu_compare("%0#x", &i, "int");
+	visu_compare("%-0#x", &i, "int");
+	visu_compare("%p", &i, "int");
+
+	ft_putstr("\033[33m=================================================\n");
+	ft_putstr("=========== END OF xXp CONVERSION TESTS =========\n");
+	ft_putstr("=================================================\033[0m\n");
+
+}
+
 void	wild_tests(void)
 {
 	int				i;
@@ -642,7 +676,7 @@ void	wild_tests(void)
 
 	i = 42;
 	printf("**************************** Value = %d\n", i);
-	visu_compare("%xd", &i, "int");
+	visu_compare("%:d", &i, "int");
 	visu_compare("%*d", &i, "int");
 	
 	ft_putstr("\033[33m=================================================\n");
@@ -668,6 +702,7 @@ int	main(void)
 	(void)str;
 
 	dDi_tests();
+	xXp_tests();
 //	oO_tests();
 	wild_tests();
 

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 16:38:18 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/16 20:23:37 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	ftpf_convert_dDi(va_list *ap, t_env *e)
 {
 	manage_modifiers_dDi(ap, e);
 //	printf("outputlen = %d\n", e->outputlen);
-	ftpf_process_flags(e);
 //	printf("outputlen = %d\n", e->outputlen);
 	if (e->precisflag && !e->precision && !e->param->ll)
 		e->noconv = 1;
+	ftpf_process_flags(e);
 	ftpf_process_output_rules(e);
 	if (e->space && !e->isneg && !e->plus)
 		ft_putchar(' ');
@@ -53,7 +53,9 @@ void	ftpf_convert_dDi(va_list *ap, t_env *e)
 		manage_field_width(e);
 	if (e->plus && !e->isneg && !e->zero)
 		ft_putchar('+');
-	manage_precision(&(e->param->ll), e);
+//	printf("precisflag = %d, precision = %d\n", e->precisflag, e->precision);
+	if (!e->noconv)
+		manage_precision(&(e->param->ll), e);
 	if (!e->noconv)
 		ftpf_write_dDi_param(e);
 	if (e->neg)

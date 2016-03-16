@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 16:41:03 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/16 20:17:42 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,6 +326,7 @@ void	dDi_tests(void)
 	visu_compare("%-3.2d", &i, "int");
 	visu_compare("%+03d", &i, "int");
 	visu_compare("%+03.d", &i, "int");
+	visu_compare("%06.3d", &i, "int");
 	visu_compare("%+06.3d", &i, "int");
 	visu_compare("%+0d", &i, "int");
 
@@ -721,9 +722,9 @@ int	main(void)
 	(void)str;
 
 	dDi_tests();
-	xXp_tests();
+//	xXp_tests();
 //	oO_tests();
-	wild_tests();
+//	wild_tests();
 
 //	printf("%i\n", i);
 //	ft_printf("%i\n", i);

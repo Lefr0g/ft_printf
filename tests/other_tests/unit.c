@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 21:35:32 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/16 21:47:58 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -503,6 +503,7 @@ void	dDi_tests(void)
 	c = 42;
 	printf("**************************** Value = %hhd\n", c);
 	visu_compare("%5.3hhd", &c, "char");
+	printf("\033[31m********************************************* CHECK\033[0m\n");
 	visu_compare("% -5.3hhd", &c, "char");
 	visu_compare("%07.3hhd", &c, "char");
 	visu_compare("%+07.3hhd", &c, "char");

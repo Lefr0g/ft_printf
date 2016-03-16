@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 21:19:13 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/16 22:11:36 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ void	ftpf_process_output_rules(t_env *e)
 		e->outputlen = 0;
 	else
 		e->precision = 0;
+//	if (e->space && e->precisflag && e->param->ll)
+//	{
+//		e->precision++;
+//		e->field_width--;
+//	}
 }
 
 int		manage_field_width(t_env *e)
@@ -110,6 +115,7 @@ int		manage_precision(void *value, t_env *e)
 	}
 	if (!e->precisflag || e->noconv)
 		return (0);
+
 	i = e->precision;
 	while (i)
 	{
@@ -118,11 +124,6 @@ int		manage_precision(void *value, t_env *e)
 			ft_putchar(PRECIS_MINUS);
 			e->isneg = 0;
 		}
-//		else if (e->plus)
-//		{
-//			ft_putchar(PRECIS_PLUS);
-//			e->plus = 0;
-//		}
 		else
 		{
 			if (!ft_strcmp("linux", e->os) && !value)

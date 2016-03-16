@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 21:43:25 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/16 22:14:07 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,10 @@ int		ftpf_process_flags(t_env *e)
 			&& !e->plus)
 	{
 		e->outputlen++;
-		if (!e->param->ll)
+//		printf("precision = %d, fw = %d\n", e->precision, e->field_width);
+
+//		if (!e->param->ll)
+		if (!e->isneg)
 			e->precision++;
 	}
 	if (e->plus && ft_strchr("dDi", e->conversion))

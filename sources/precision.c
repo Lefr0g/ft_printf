@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 16:38:11 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/16 21:19:13 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,6 @@ int		manage_field_width(t_env *e)
 
 	i = e->field_width;
 
-	if (e->plus && !e->isneg && e->zero && !e->precision)
-	{
-		ft_putchar(FW_PLUS);
-	}
 	if (e->zero && e->isneg && !e->precision)
 	{
 		ft_putchar(FW_MINUS);
@@ -105,8 +101,14 @@ int		manage_field_width(t_env *e)
 int		manage_precision(void *value, t_env *e)
 {
 	int	i;
-
-	if (!e->precisflag)
+	
+//	printf("plus = %d, isneg = %d\n", e->plus, e->isneg);
+	if (e->plus && !e->isneg)
+	{
+		ft_putchar(PRECIS_PLUS);
+		e->plus = 0;
+	}
+	if (!e->precisflag || e->noconv)
 		return (0);
 	i = e->precision;
 	while (i)
@@ -116,6 +118,11 @@ int		manage_precision(void *value, t_env *e)
 			ft_putchar(PRECIS_MINUS);
 			e->isneg = 0;
 		}
+//		else if (e->plus)
+//		{
+//			ft_putchar(PRECIS_PLUS);
+//			e->plus = 0;
+//		}
 		else
 		{
 			if (!ft_strcmp("linux", e->os) && !value)

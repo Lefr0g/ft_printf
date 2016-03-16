@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 20:23:37 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/16 21:42:25 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,22 @@ void	ftpf_convert_dDi(va_list *ap, t_env *e)
 	ftpf_process_output_rules(e);
 	if (e->space && !e->isneg && !e->plus)
 		ft_putchar(' ');
+//	printf("plus = %d, isneg = %d, zero = %d, precisflag = %d\n", e->plus,
+//			e->isneg, e->zero, e->precisflag);
+	if (e->plus && !e->isneg && e->zero && !e->precisflag)
+	{
+		ft_putchar('+');
+		e->plus = 0;
+	}
+	if (e->isneg && e->zero && !e->precisflag)
+	{
+		ft_putchar('-');
+		e->isneg = 0;
+	}
 	if (!e->neg)
 		manage_field_width(e);
-	if (e->plus && !e->isneg && !e->zero)
-		ft_putchar('+');
 //	printf("precisflag = %d, precision = %d\n", e->precisflag, e->precision);
-	if (!e->noconv)
-		manage_precision(&(e->param->ll), e);
+	manage_precision(&(e->param->ll), e);
 	if (!e->noconv)
 		ftpf_write_dDi_param(e);
 	if (e->neg)

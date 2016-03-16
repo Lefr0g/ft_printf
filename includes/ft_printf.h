@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 19:35:37 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/16 20:37:06 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 # if DEBUG_MODE == 1
 #  define PRECIS_ZERO 'p'
+#  define PRECIS_PLUS '.'
 #  define PRECIS_MINUS '='
 #  define CONV_MINUS '|'
 #  define FW_PLUS '*'
@@ -35,6 +36,7 @@
 #  define FLAG_0_SPACER 'o'
 # else
 #  define PRECIS_ZERO '0'
+#  define PRECIS_PLUS '+'
 #  define PRECIS_MINUS '-'
 #  define CONV_MINUS '-'
 #  define FW_PLUS '+'

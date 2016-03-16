@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/15 18:57:33 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/16 16:04:12 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 void	ftpf_process_output_rules(t_env *e)
 {
 	int	buf;
+
+
+	if (((ft_strchr("xX", e->conversion) && e->alt) || e->conversion == 'p')
+			&& e->param->ll)
+		e->precision += 2;
 
 //	printf("precision = %d, outputlen = %d\n", e->precision, e->outputlen);
 //	printf("isneg = %d\n", e->isneg);
@@ -55,9 +60,9 @@ int		manage_field_width(t_env *e)
 	}
 */
 
-	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer == ' '
-			&& i >= 2)
-		i -= ft_strlen(e->xX_prefix);
+//	if (ft_strchr("xX", e->conversion) && e->alt && !e->neg && e->spacer == ' '
+//			&& i >= 2)
+//		i -= ft_strlen(e->xX_prefix);
 
 	if (ft_strchr("cC", e->conversion) && i)
 		e->outputlen = 1;

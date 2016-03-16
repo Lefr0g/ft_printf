@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/15 19:01:12 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/16 15:56:40 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,8 @@ void	ftpf_write_xXp_param(t_env *e)
 void	ftpf_convert_xXp(va_list *ap, t_env *e)
 {
 	manage_modifiers_xXp(ap, e);
-//	printf("outputlen = %d\n", e->outputlen);
+//	printf("Precision = %d, Outputlen = %d, Fw = %d\n", e->precision, e->outputlen,
+//			e->field_width);
 	ftpf_process_flags(e);
 	if (e->conversion == 'p')
 	{

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 16:04:12 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/16 16:38:11 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,19 @@ int		manage_field_width(t_env *e)
 {
 	int	i;
 
+
 	i = e->field_width;
+
+	if (e->plus && !e->isneg && e->zero && !e->precision)
+	{
+		ft_putchar(FW_PLUS);
+	}
+	if (e->zero && e->isneg && !e->precision)
+	{
+		ft_putchar(FW_MINUS);
+		e->isneg = !e->isneg;
+	}
+
 //	if (e->param->i < 0 && e->outputlen <= e->precision && ft_strchr("dDi", e->conversion))
 /*
 	if (e->zero && e->param->i < 0 && ft_strchr("dDi", e->conversion) && !e->neg

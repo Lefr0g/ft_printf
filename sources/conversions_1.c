@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 15:56:40 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/16 16:38:18 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ftpf_convert_dDi(va_list *ap, t_env *e)
 		ft_putchar(' ');
 	if (!e->neg)
 		manage_field_width(e);
-	if (e->plus && !e->isneg)
+	if (e->plus && !e->isneg && !e->zero)
 		ft_putchar('+');
 	manage_precision(&(e->param->ll), e);
 	if (!e->noconv)

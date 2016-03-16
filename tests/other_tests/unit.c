@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 16:02:45 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/16 16:41:03 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -313,6 +313,7 @@ void	dDi_tests(void)
 	visu_compare("%-03.7d", &i, "int");
 	visu_compare("%-07.3d", &i, "int");
 	visu_compare("%.4d", &i, "int");
+	visu_compare("%+05d", &i, "int");
 
 	i = 0;
 	printf("**************************** Value = %d\n", i);
@@ -323,6 +324,10 @@ void	dDi_tests(void)
 	visu_compare("%03.2d", &i, "int");
 	visu_compare("%3.2d", &i, "int");
 	visu_compare("%-3.2d", &i, "int");
+	visu_compare("%+03d", &i, "int");
+	visu_compare("%+03.d", &i, "int");
+	visu_compare("%+06.3d", &i, "int");
+	visu_compare("%+0d", &i, "int");
 
 	i = -1;
 	printf("**************************** Value = %d\n", i);
@@ -330,6 +335,7 @@ void	dDi_tests(void)
 	visu_compare("%03.2d", &i, "int");
 	visu_compare("%3.2d", &i, "int");
 	visu_compare("%-3.2d", &i, "int");
+	visu_compare("%+03d", &i, "int");
 	
 	i = -10;
 	printf("**************************** Value = %d\n", i);

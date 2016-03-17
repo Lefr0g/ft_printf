@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 17:04:21 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 18:08:21 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -663,6 +663,7 @@ void	xXp_tests(void)
 	char			c;
 	int				i;
 	long			l;
+	long long		ll;
 
 	ft_putstr("\n\033[33m=================================================\n");
 	ft_putstr("========== STARTING xXp CONVERSION TESTS ========\n");
@@ -771,6 +772,36 @@ void	xXp_tests(void)
 	visu_compare("% -3.2hhp", &c, "char");
 	visu_compare("%07.3hhp", &c, "char");
 
+	ft_putendl("\033[33m-------------------------------------------------");	
+	ft_putendl("---------------------------------- long long (ll)\033[0m\n");
+
+	ll = LLONG_MIN;
+	printf("**************************** Value = %lld\n", ll);
+	visu_compare("%llx", &ll, "long long");
+	visu_compare("%#llx", &ll, "long long");
+	visu_compare("%#llx", &ll, "long long");
+	visu_compare("%#llp", &ll, "long long");
+	visu_compare("%#llx", &ll, "long long");
+	visu_compare("%#llp", &ll, "long long");
+	visu_compare("%#16llx", &ll, "long long");
+	visu_compare("%#16.10llx", &ll, "long long");
+	visu_compare("%-#llx", &ll, "long long");
+	visu_compare("%0#llx", &ll, "long long");
+	visu_compare("%-0#llx", &ll, "long long");
+
+	ll = LLONG_MAX;
+	printf("**************************** Value = %lld\n", ll);
+	visu_compare("%llx", &ll, "long long");
+	visu_compare("%#llx", &ll, "long long");
+	visu_compare("%#llx", &ll, "long long");
+	visu_compare("%#llp", &ll, "long long");
+	visu_compare("%#llx", &ll, "long long");
+	visu_compare("%#llp", &ll, "long long");
+	visu_compare("%#16llx", &ll, "long long");
+	visu_compare("%#16.10llx", &ll, "long long");
+	visu_compare("%-#llx", &ll, "long long");
+	visu_compare("%0#llx", &ll, "long long");
+	visu_compare("%-0#llx", &ll, "long long");
 	ft_putstr("\033[33m=================================================\n");
 	ft_putstr("=========== END OF xXp CONVERSION TESTS =========\n");
 	ft_putstr("=================================================\033[0m\n");
@@ -795,7 +826,35 @@ void	wild_tests(void)
 	ft_putstr("=================================================\033[0m\n");
 
 }
+
+void	escape_tests(void)
+{
+	int				i;
+
+	ft_putstr("\n\033[33m=================================================\n");
+	ft_putstr("============= STARTING ESCAPE TESTS =============\n");
+	ft_putstr("=================================================\033[0m\n");
+
+	i = 0;
+	printf("**************************** Value = %d\n", i);
+	visu_compare("% Zoooo", &i, "int");
+	visu_compare("% Zoooo", NULL, "none");
+	visu_compare("%Zoooo", NULL, "none");
+	visu_compare("%0.Zoooo", NULL, "none");
+	visu_compare("%020.10Zoooo", NULL, "none");
+	visu_compare("%-020.10Zoooo", NULL, "none");
+	visu_compare("%0-20.10Zoooo", NULL, "none");
+	visu_compare("% 20.10Zoooo", NULL, "none");
+	visu_compare("%-20.10Zoooo", NULL, "none");
+	visu_compare("%-20.Zoooo", NULL, "none");
 	
+	ft_putstr("\033[33m=================================================\n");
+	ft_putstr("============== END OF ESCAPE TESTS ==============\n");
+	ft_putstr("=================================================\033[0m\n");
+
+}
+
+
 int	main(void)
 {
 	char	c;
@@ -815,10 +874,11 @@ int	main(void)
 
 	(void)str;
 
-	dDi_tests();
-	xXp_tests();
-//	oO_tests();
+//	dDi_tests();
+//	xXp_tests();
+	oO_tests();
 //	wild_tests();
+	escape_tests();
 
 
 
@@ -882,7 +942,6 @@ int	main(void)
 /*
 	ft_putendl("=======================================");
 	
-	visu_compare("% Zoooo", NULL, "none");
 	
 
 

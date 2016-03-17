@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 18:57:05 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/15 16:06:11 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 18:03:57 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@
 int		ftpf_directives(const char *restrict format, va_list *ap, t_env *e)
 {
 	if (!ftpf_get_flags(format, e))
-	{
 		e->index++;
-//		printf("Got flags !, index = %d\n", e->index);
-	}
 	if (ft_isdigit(format[e->index]) && format[e->index] != '0')
 	{
 		e->field_width = ft_atoi(&format[e->index]);
@@ -84,10 +81,19 @@ void	ftpf_get_lenmod(const char *restrict format, t_env *e)
 void	ftpf_directive_wrongchar_handler(const char *restrict format, t_env *e)
 {
 	ftpf_process_flags(e);
-	manage_precision((void*)&format[e->index], e);
-	manage_field_width(e);
+	e->precision = 0;
+	ftpf_process_output_rules(e);
+	if (!e->neg)
+		manage_field_width(e);
+//	manage_precision((void*)&format[e->index], e);
+	manage_precision(NULL, e);
 	ft_putchar(format[e->index]);
+	if (e->neg)
+		manage_field_width(e);
+
 	e->outputlen++;
+//	printf("outputlen = %d, precision = %d, fw = %d\n", e->outputlen, e->precision,
+//			e->field_width);
 }
 
 /*

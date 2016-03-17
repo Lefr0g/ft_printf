@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:00:44 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 12:50:22 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 19:11:20 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	manage_modifiers_dDi(va_list *ap, t_env *e)
 		e->param->sc = (int)va_arg(*ap, int);	
 		if (e->param->sc < 0)
 			e->isneg = 1;
-		e->outputlen = ft_strlen(ft_itoa(e->param->c));
+		e->outputlen = ft_strlen(ft_itoa(e->param->sc));
 	}
 	else if (!ft_strcmp(e->mod, "h"))
 	{
@@ -89,8 +89,42 @@ void	manage_modifiers_xXp(va_list *ap, t_env *e)
 		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
 	}
 }
+
+void	manage_modifiers_cC(va_list *ap, t_env *e)
+{
+	if (!ft_strcmp(e->mod, "l"))
+		e->param->wi = (wint_t)va_arg(*ap, wint_t);
+	else
+		e->param->i = (int)va_arg(*ap, int);
+}
 	
+void	manage_modifiers_sS(va_list *ap, t_env *e)
+{
+	char	*str;
+	wchar_t	*wstr;
 	
+	if (e->mod[0] == 'l')
+	{
+		wstr = (wchar_t*)va_arg(*ap, wchar_t*);
+		if (wstr)
+			e->param->ws = (wchar_t*)ft_memalloc(ft_wstr_memsize(wstr) + 4);
+		else
+		{
+			e->mod[0] = 0;
+			e->param->s = ft_strdup("(null)");
+		}
+		if (wstr && e->param->ws)
+			ft_memcpy(e->param->ws, wstr, ft_wstr_memsize(wstr));
+	}
+	else
+	{
+		str = (char*)va_arg(*ap, char*);
+		if (str)
+			e->param->s = ft_strdup(str);
+		else
+			e->param->s = ft_strdup("(null)");
+	}
+}
 //	LEGACY
 void	manage_modifiers_ouxX(va_list *ap, t_env *e)
 {

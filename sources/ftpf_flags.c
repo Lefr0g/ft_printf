@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 18:07:47 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 18:38:37 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ int		ftpf_process_flags(t_env *e)
 //	if (e->zero && !e->neg &&
 //			!(ft_strchr("dDiouxX", e->conversion) && e->precisflag))
 	if (e->zero && !e->neg && ((ft_strchr("dDiouxXp", e->conversion)
-					&& !e->precisflag) || !e->conversion))
+					&& !e->precisflag) || !e->conversion
+				|| ft_strchr("cC", e->conversion)))
 	{
 //		printf("CHECK\n");
 		e->spacer = FLAG_0_SPACER;

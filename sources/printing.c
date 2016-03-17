@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 19:34:39 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/15 16:48:00 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 19:06:15 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,7 @@
 
 void	manage_print_all(t_env *e)
 {
-	if (e->conversion == 'c')
-	{
-		if (e->mod[0] == 'l')
-			e->outputlen += ft_putwchar(e->param->wc);
-		else
-		{
-			ft_putchar(e->param->uc);
-			e->outputlen++;
-		}
-	}
-	else if (e->conversion == 'u' || e->conversion == 'U')
+	if (e->conversion == 'u' || e->conversion == 'U')
 		ft_putnbr_ull(e->param->ull);
 	else if (e->conversion == 'o')
 	{
@@ -41,16 +31,6 @@ void	manage_print_all(t_env *e)
 	}
 	else if (e->conversion == 'O')
 		ft_putoctal(e->param->ul);
-	else if (e->conversion == 's')
-	{
-		if (e->mod[0] == 'l')
-			e->outputlen += ft_putwstr(e->param->ws);
-		else
-		{
-			ft_putstr(e->param->s);
-			e->outputlen += ft_strlen(e->param->s);
-		}
-	}
 }
 
 void	print_null_ptr(t_env *e)

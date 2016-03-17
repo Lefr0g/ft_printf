@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 18:08:21 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 19:10:05 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -808,6 +808,74 @@ void	xXp_tests(void)
 
 }
 
+void	cC_tests(void)
+{
+	char		c;
+	wint_t			wi;
+
+	ft_putstr("\n\033[33m=================================================\n");
+	ft_putstr("========== STARTING cC CONVERSION TESTS =========\n");
+	ft_putstr("=================================================\033[0m\n");
+
+	c = 'A';
+	printf("**************************** Value = %c\n", c);
+	visu_compare("%c", &c, "char");
+	visu_compare("%10c", &c, "char");
+	visu_compare("%.10c", &c, "char");
+	visu_compare("%10.5c", &c, "char");
+	visu_compare("% 10.5c", &c, "char");
+	visu_compare("%-10.5c", &c, "char");
+	visu_compare("%010.5c", &c, "char");
+	visu_compare("%#10.5c", &c, "char");
+	visu_compare("%hhc", &c, "char");
+	visu_compare("%lc", &c, "char");
+	
+	wi = L'\xe9';
+	printf("**************************** Value = %C\n", wi);
+	visu_compare("%C", &wi, "wint_t");
+	visu_compare("%lc", &wi, "wint_t");
+	visu_compare("%llc", &wi, "wint_t");
+	visu_compare("%hhc", &wi, "wint_t");
+
+	ft_putstr("\033[33m=================================================\n");
+	ft_putstr("=========== END OF cC CONVERSION TESTS ==========\n");
+	ft_putstr("=================================================\033[0m\n");
+
+}
+
+void	sS_tests(void)
+{
+	int		*ptrj;
+	char	*str3 = "Hello yop!";
+	wchar_t	*wstr = L"我是一只猫。";
+
+	ft_putstr("\n\033[33m=================================================\n");
+	ft_putstr("========== STARTING sS CONVERSION TESTS =========\n");
+	ft_putstr("=================================================\033[0m\n");
+
+	visu_compare("{%s}", str3, "char*");
+	visu_compare("{%05.s}", str3, "char*");
+	visu_compare("{%015s}", str3, "char*");
+	visu_compare("{%015.8s}", str3, "char*");
+	visu_compare("{%015s}", str3, "char*");
+	visu_compare("{%015.s}", str3, "char*");
+	visu_compare("{%015.1s}", str3, "char*");
+	visu_compare("{%15.s}", str3, "char*");
+	visu_compare("{%15s}", str3, "char*");
+
+	visu_compare("{%30S}", wstr, "wchar_t*");
+	visu_compare("{%-30S}", wstr, "wchar_t*");
+	visu_compare("{%30s}", str3, "char*");
+	visu_compare("{%-30s}", str3, "char*");
+
+	ft_memcpy(ptrj, L"我是一只猫。", 7);
+	visu_compare("{%30S}", ptrj, "string");
+
+	ft_putstr("\033[33m=================================================\n");
+	ft_putstr("=========== END OF sS CONVERSION TESTS ==========\n");
+	ft_putstr("=================================================\033[0m\n");
+}
+
 void	wild_tests(void)
 {
 	int				i;
@@ -844,10 +912,11 @@ void	escape_tests(void)
 	visu_compare("%020.10Zoooo", NULL, "none");
 	visu_compare("%-020.10Zoooo", NULL, "none");
 	visu_compare("%0-20.10Zoooo", NULL, "none");
+	visu_compare("%#0-20.10Zoooo", NULL, "none");
 	visu_compare("% 20.10Zoooo", NULL, "none");
 	visu_compare("%-20.10Zoooo", NULL, "none");
 	visu_compare("%-20.Zoooo", NULL, "none");
-	
+
 	ft_putstr("\033[33m=================================================\n");
 	ft_putstr("============== END OF ESCAPE TESTS ==============\n");
 	ft_putstr("=================================================\033[0m\n");
@@ -876,9 +945,11 @@ int	main(void)
 
 //	dDi_tests();
 //	xXp_tests();
-	oO_tests();
+//	oO_tests();
+//	cC_tests();
+	sS_tests();
 //	wild_tests();
-	escape_tests();
+//	escape_tests();
 
 
 
@@ -950,15 +1021,7 @@ int	main(void)
 	visu_compare("%U", &ulong, "u long");
 	
 	c = 'f';
-	wc = L'\xe9';
-	ft_putendl("%c with c as char :");
-	visu_compare("%c", &c, "char");
-	
-	ft_putendl("%C with wc as wint_t :");
-	visu_compare("%C", &wc, "wint_t");
-	
-	ft_putendl("%C with wc as char :");
-	visu_compare("%C", &wc, "char");
+
 	
 	c = 'f';
 	wc = L'\xe9';
@@ -1117,21 +1180,6 @@ int	main(void)
 	i = 424242;
 	visu_compare("{%.4d}", &i, "int");
 	
-	char	*str3 = "Hello yop!";
-	visu_compare("{%s}", str3, "char*");
-	visu_compare("{%05.s}", str3, "char*");
-	visu_compare("{%015s}", str3, "char*");
-	visu_compare("{%015.8s}", str3, "char*");
-	visu_compare("{%015s}", str3, "char*");
-	visu_compare("{%015.s}", str3, "char*");
-	visu_compare("{%015.1s}", str3, "char*");
-	visu_compare("{%15.s}", str3, "char*");
-	visu_compare("{%15s}", str3, "char*");
-
-	visu_compare("{%30S}", wstr, "wchar_t*");
-	visu_compare("{%-30S}", wstr, "wchar_t*");
-	visu_compare("{%30s}", str3, "char*");
-	visu_compare("{%-30s}", str3, "char*");
 	
 	ui = 0;
 	visu_compare("{%.o}", &ui, "uint");

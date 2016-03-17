@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 12:56:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 12:50:53 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 19:02:53 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,12 @@ void	ftpf_init_convfunctions_pointers(t_env *e)
 	e->conv_funct_table['i'] = &(ftpf_convert_dDi);
 	e->conv_funct_table['u'] = &(convert_uU);
 	e->conv_funct_table['U'] = &(convert_uU);
-	e->conv_funct_table['c'] = &(convert_cC);
-	e->conv_funct_table['C'] = &(convert_cC);
-	e->conv_funct_table['s'] = &(convert_sS);
-	e->conv_funct_table['S'] = &(convert_sS);
+	e->conv_funct_table['c'] = &(ftpf_convert_cC);
+	e->conv_funct_table['C'] = &(ftpf_convert_cC);
+	e->conv_funct_table['s'] = &(ftpf_convert_sS);
+	e->conv_funct_table['S'] = &(ftpf_convert_sS);
 	e->conv_funct_table['o'] = &(convert_oO);
 	e->conv_funct_table['O'] = &(convert_oO);
-//	e->conv_funct_table['x'] = &(convert_xX);
-//	e->conv_funct_table['X'] = &(convert_xX);
-//	e->conv_funct_table['p'] = &(convert_xX);
 	e->conv_funct_table['x'] = &(ftpf_convert_xXp);
 	e->conv_funct_table['X'] = &(ftpf_convert_xXp);
 	e->conv_funct_table['p'] = &(ftpf_convert_xXp);

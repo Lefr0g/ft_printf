@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 17:08:47 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 19:07:21 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,31 +116,26 @@ void	convert_uU(va_list *ap, t_env *e)
 	}
 }
 
-void	convert_cC(va_list *ap, t_env *e)
+void	ftpf_convert_cC(va_list *ap, t_env *e)
 {
-	if (e->conversion == 'C')
-	{
-		e->conversion = 'c';
-		e->mod[0] = 'l';
-		convert_cC(ap, e);
-	}
+	manage_modifiers_cC(ap, e);
+	ftpf_process_flags(e);
+	e->precision = 0;
+	ftpf_process_output_rules(e);
+	if (!e->neg)
+		manage_field_width(e);
+
+	if (!ft_strcmp(e->mod, "l") || e->conversion == 'C')
+		e->outputlen += ft_putwchar(e->param->wc);
 	else
 	{
-//		e->outputlen = 1;
-		if (e->mod[0] == 'l')
-			e->param->wi = (wint_t)va_arg(*ap, wint_t);
-		else
-			e->param->i = (int)va_arg(*ap, int);
-//		
-		ftpf_process_flags(e);
-//		
-		if (!e->neg)
-			manage_field_width(e);
-		manage_print_all(e);
-		if (e->neg)
-			manage_field_width(e);
+		ft_putchar(e->param->uc);
+		e->outputlen++;
 	}
+	if (e->neg)
+		manage_field_width(e);
 }
+
 
 void	convert_oO(va_list *ap, t_env *e)
 {
@@ -225,15 +220,9 @@ void	ftpf_convert_xXp(va_list *ap, t_env *e)
 //	printf("Precision = %d, Outputlen = %d, Fw = %d\n", e->precision, e->outputlen,
 //			e->field_width);
 	ftpf_process_flags(e);
-//	printf("outputlen = %d\n", e->outputlen);
-
-//	if (e->precisflag && !e->precision && !e->param->ll)
-//		e->noconv = 1;
 	if (e->precisflag && !e->precision && e->isnull)
 		e->noconv = 1;
 	ftpf_process_output_rules(e);
-//	if (e->space && ft_strchr("xXp", e->conversion) && !e->isneg && !e->plus)
-//		ft_putchar(' ');
 	if (!e->neg)
 		manage_field_width(e);
 
@@ -242,8 +231,6 @@ void	ftpf_convert_xXp(va_list *ap, t_env *e)
 	if ((ft_strchr("xX", e->conversion) && e->alt && !e->isnull)
 			|| e->conversion == 'p')
 		ft_putstr(e->xX_prefix);
-//	printf("precisflag = %d, precision = %d, outputlen = %d\n", e->precisflag,
-//			e->precision, e->outputlen);
 	manage_precision(&(e->param->ll), e);
 	if (!e->noconv)
 		ftpf_write_xXp_param(e);
@@ -253,74 +240,27 @@ void	ftpf_convert_xXp(va_list *ap, t_env *e)
 		e->outputlen += 2;
 }
 
-//	LEGACY
-void	convert_xX(va_list *ap, t_env *e)
+void	ftpf_convert_sS(va_list *ap, t_env *e)
 {
-	int	buf;
+	manage_modifiers_sS(ap, e);
+	ftpf_process_flags(e);
+	e->precision = 0;
+	ftpf_process_output_rules(e);
+	if (!e->neg)
+		manage_field_width(e);
 
-	(void)buf;
-	(void)ap;
-
-	manage_modifiers_xXp(ap, e);
-
-	if (ft_strchr("xp", e->conversion))
-		ft_strcpy(e->xX_prefix, "0x");
-	else
-		ft_strcpy(e->xX_prefix, "0X");
-	if (!(!ft_strcmp("linux", e->os) && !e->param->i))
-	{
-//		ftpf_process_output_rules(e);
-///*
-		if (e->precision > e->outputlen)
-		{
-			buf = e->outputlen;
-			e->outputlen = e->precision;
-			e->precision = e->outputlen - buf;
-		}
-		else if (e->precisflag && !e->precision)
-			e->outputlen--;
-		else
-			e->precisflag = 0;
-//*/
-		ftpf_process_flags(e);
-
-		if (!e->neg)
-			manage_field_width(e);
-
-/*
-//		if (e->neg && e->alt && ft_strchr("xX", e->conversion) && !e->zero)
-		if (e->alt || e->conversion == 'p')
-		{
-			ft_putstr(e->xX_prefix);
-			e->outputlen += ft_strlen(e->xX_prefix);
-		}
-*/
-		manage_precision(&(e->param->u), e);
-
-//		printf("Precision = %d\n", e->precision);
-//		printf("Outpulen = %d\n", e->outputlen);
-		
-//		if (!(e->precisflag && !e->precision))
-			ftpf_write_xXp_param(e);
-	
-		if (e->neg)
-			manage_field_width(e);
-	}
-//	else if (!ft_strcmp("linux", e->os) && !e->param->i)
-//	{
-//	}
+	if (!ft_strcmp(e->mod, "l") || e->conversion == 'C')
+		e->outputlen += ft_putwstr(e->param->ws);
 	else
 	{
-//		ft_putstr("||check||");
-		e->conversion = 's';
-		e->mod[0] = '\0';
-		e->param->s = ft_strdup(NULL_PTR);
-		if (e->precisflag && !e->precision)
-			ft_putstr(NULL_PTR);
-		convert_sS(NULL, e);
+		ft_putstr(e->param->s);
+		e->outputlen += ft_strlen(e->param->s);
 	}
+	if (e->neg)
+		manage_field_width(e);
 }
 
+//	LEGACY
 void	convert_sS(va_list *ap, t_env *e)
 {
 	char	*str;

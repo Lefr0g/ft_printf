@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:00:44 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 21:25:46 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 12:26:05 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,18 @@ void	manage_modifiers_dDi(va_list *ap, t_env *e)
 
 void	manage_modifiers_xXp(va_list *ap, t_env *e)
 {
-	if (!ft_strcmp(e->mod, "hh"))
+	if (ft_strchr("xX", e->conversion) && e->mod[0] == 'h')
 	{
-		e->param->uc = (unsigned char)va_arg(*ap, unsigned int);
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->uc, 16));
-	}
-	else if (!ft_strcmp(e->mod, "h"))
-	{
-		e->param->ush = (unsigned short)va_arg(*ap, unsigned int);
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ush, 16));
+		if (!ft_strcmp(e->mod, "hh"))
+		{
+			e->param->uc = (unsigned char)va_arg(*ap, unsigned int);
+			e->outputlen = ft_strlen(ft_itoa_ull(e->param->uc, 16));
+		}
+		else if (!ft_strcmp(e->mod, "h"))
+		{
+			e->param->ush = (unsigned short)va_arg(*ap, unsigned int);
+			e->outputlen = ft_strlen(ft_itoa_ull(e->param->ush, 16));
+		}
 	}
 	else
 	{

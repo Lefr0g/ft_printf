@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 12:02:44 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 12:13:51 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int		ftpf_process_flags(t_env *e)
 			e->precision = 1;
 			e->outputlen++;
 		}
-		if (ft_strchr("xXp", e->conversion) && e->param->u)
+		if (ft_strchr("xX", e->conversion) && e->param->u)
 		{
 			if (ft_strchr("xp", e->conversion))
 				ft_strcpy(e->xX_prefix, "0x");

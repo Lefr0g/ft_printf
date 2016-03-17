@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 11:59:40 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 12:22:51 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -325,7 +325,7 @@ void	dDi_tests(void)
 	visu_compare("%03.2d", &i, "int");
 	visu_compare("%3.2d", &i, "int");
 	visu_compare("%-3.2d", &i, "int");
-	printf("\033[31m********************************************* CHECK\033[0m\n");
+//	printf("\033[31m********************************************* CHECK\033[0m\n");
 	visu_compare("%0-3d", &i, "int");
 	visu_compare("%+03d", &i, "int");
 	visu_compare("%+03.d", &i, "int");
@@ -502,7 +502,6 @@ void	dDi_tests(void)
 	c = 42;
 	printf("**************************** Value = %hhd\n", c);
 	visu_compare("%5.3hhd", &c, "char");
-	printf("\033[31m********************************************* CHECK\033[0m\n");
 	visu_compare("% -5.3hhd", &c, "char");
 	visu_compare("%07.3hhd", &c, "char");
 	visu_compare("%+07.3hhd", &c, "char");
@@ -658,6 +657,7 @@ void	oO_tests(void)
 
 void	xXp_tests(void)
 {
+	char			c;
 	int				i;
 	long			l;
 
@@ -669,12 +669,21 @@ void	xXp_tests(void)
 	printf("**************************** Value = %d\n", i);
 	visu_compare("%x", &i, "int");
 	visu_compare("%#x", &i, "int");
+	visu_compare("%#lx", &i, "int");
+	visu_compare("%p", &i, "int");
 	visu_compare("%#16x", &i, "int");
 	visu_compare("%#16.10x", &i, "int");
 	visu_compare("%-#x", &i, "int");
 	visu_compare("%0#x", &i, "int");
 	visu_compare("%-0#x", &i, "int");
+	printf("****************************\n");
 	visu_compare("%p", &i, "int");
+	visu_compare("%#p", &i, "int");
+	visu_compare("%#16p", &i, "int");
+	visu_compare("%#16.10p", &i, "int");
+	visu_compare("%-#p", &i, "int");
+	visu_compare("%0#p", &i, "int");
+	visu_compare("%-0#p", &i, "int");
 
 	i = 0;
 	printf("**************************** Value = %d\n", i);
@@ -685,7 +694,6 @@ void	xXp_tests(void)
 	visu_compare("%-#x", &i, "int");
 	visu_compare("%0#x", &i, "int");
 	visu_compare("%-0#x", &i, "int");
-	visu_compare("%p", &i, "int");
 
 	i = -42;
 	printf("**************************** Value = %d\n", i);
@@ -695,7 +703,54 @@ void	xXp_tests(void)
 	visu_compare("%-#x", &i, "int");
 	visu_compare("%0#x", &i, "int");
 	visu_compare("%-0#x", &i, "int");
-	visu_compare("%p", &i, "int");
+	
+	i = INT_MIN;
+	printf("**************************** Value = %d\n", i);
+	visu_compare("%x", &i, "int");
+	visu_compare("%#x", &i, "int");
+	visu_compare("%#lx", &i, "int");
+	visu_compare("%#p", &i, "int");
+	visu_compare("%#hhx", &i, "int");
+	visu_compare("%#hhp", &i, "int");
+	visu_compare("%#16x", &i, "int");
+	visu_compare("%#16.10x", &i, "int");
+	visu_compare("%-#x", &i, "int");
+	visu_compare("%0#x", &i, "int");
+	visu_compare("%-0#x", &i, "int");
+
+	ft_putendl("\033[33m-------------------------------------------------");	
+	ft_putendl("--------------------------------------- char (hh)\033[0m\n");
+
+	c = 0;
+	printf("**************************** Value = %hhd\n", c);
+	visu_compare("%5.2hhp", &c, "char");
+	visu_compare("%5.2p", &c, "char");
+	visu_compare("% -5.2hhp", &c, "char");
+	visu_compare("%07.3hhp", &c, "char");
+	visu_compare("% -7.4hhp", &c, "char");
+	visu_compare("%-7.4hhp", &c, "char");
+	visu_compare("%7.0hhp", &c, "char");
+
+	c = -42;
+	printf("**************************** Value = %hhd\n", c);
+	visu_compare("%5.3hhp", &c, "char");
+	visu_compare("%5.2p", &c, "char");
+	visu_compare("% -5.3hhp", &c, "char");
+	visu_compare("%07.3hhp", &c, "char");
+	
+	c = CHAR_MIN;
+	printf("**************************** Value = %hhd\n", c);
+	visu_compare("%3.2hhp", &c, "char");
+	visu_compare("%3.2p", &c, "char");
+	visu_compare("% -3.2hhp", &c, "char");
+	visu_compare("%07.3hhp", &c, "char");	
+
+	c = CHAR_MAX;
+	printf("**************************** Value = %hhd\n", c);
+	visu_compare("%3.2hhp", &c, "char");
+	visu_compare("%3.2p", &c, "char");
+	visu_compare("% -3.2hhp", &c, "char");
+	visu_compare("%07.3hhp", &c, "char");
 
 	ft_putstr("\033[33m=================================================\n");
 	ft_putstr("=========== END OF xXp CONVERSION TESTS =========\n");
@@ -731,7 +786,10 @@ int	main(void)
 	ft_putstr("\033[34m=================================================\n");
 	ft_putstr("============ STARTING ALL UNIT TESTS  ===========\n");
 	ft_putstr("=================================================\033[0m\n\n");
-	
+
+
+//	printf("\033[31m********************************************* CHECK\033[0m\n");
+
 	setlocale(LC_ALL, "");
 	c = 'D';
 	str = ft_strdup("String test OK");

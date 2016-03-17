@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 22:06:12 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 12:30:52 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,11 +198,11 @@ void	convert_oO(va_list *ap, t_env *e)
 
 void	ftpf_write_xXp_param(t_env *e)
 {
-	if (e->conversion == 'x' || e->conversion == 'p')
+	if (ft_strchr("xp", e->conversion))
 	{
-		if (!ft_strcmp(e->mod, "h"))
+		if (e->conversion == 'x' && !ft_strcmp(e->mod, "h"))
 			ft_puthex_ull(e->param->ush, "min");
-		else if (!ft_strcmp(e->mod, "hh"))
+		else if (e->conversion == 'x' && !ft_strcmp(e->mod, "hh"))
 			ft_puthex_ull(e->param->uc, "min");
 		else
 			ft_puthex_ull(e->param->ull, "min");
@@ -234,8 +234,8 @@ void	ftpf_convert_xXp(va_list *ap, t_env *e)
 	if (e->precisflag && !e->precision && !e->param->ll)
 		e->noconv = 1;
 	ftpf_process_output_rules(e);
-	if (e->space && ft_strchr("xXp", e->conversion) && !e->isneg && !e->plus)
-		ft_putchar(' ');
+//	if (e->space && ft_strchr("xXp", e->conversion) && !e->isneg && !e->plus)
+//		ft_putchar(' ');
 	if (!e->neg)
 		manage_field_width(e);
 	if (e->plus && ft_strchr("xXp", e->conversion) && !e->isneg)

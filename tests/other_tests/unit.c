@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 19:10:05 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 19:47:25 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -863,13 +863,14 @@ void	sS_tests(void)
 	visu_compare("{%15.s}", str3, "char*");
 	visu_compare("{%15s}", str3, "char*");
 
+	visu_compare("{%S}", wstr, "wchar_t*");
 	visu_compare("{%30S}", wstr, "wchar_t*");
 	visu_compare("{%-30S}", wstr, "wchar_t*");
 	visu_compare("{%30s}", str3, "char*");
 	visu_compare("{%-30s}", str3, "char*");
 
-	ft_memcpy(ptrj, L"我是一只猫。", 7);
-	visu_compare("{%30S}", ptrj, "string");
+//	ft_memcpy(ptrj, L"我是一只猫。", 7);
+//	visu_compare("{%30S}", ptrj, "string");
 
 	ft_putstr("\033[33m=================================================\n");
 	ft_putstr("=========== END OF sS CONVERSION TESTS ==========\n");

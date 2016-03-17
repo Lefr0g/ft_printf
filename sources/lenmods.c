@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:00:44 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 19:11:20 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 19:52:43 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	manage_modifiers_sS(va_list *ap, t_env *e)
 	char	*str;
 	wchar_t	*wstr;
 	
-	if (e->mod[0] == 'l')
+	if (!ft_strcmp(e->mod, "l") || e->conversion == 'S')
 	{
 		wstr = (wchar_t*)va_arg(*ap, wchar_t*);
 		if (wstr)
@@ -125,6 +125,7 @@ void	manage_modifiers_sS(va_list *ap, t_env *e)
 			e->param->s = ft_strdup("(null)");
 	}
 }
+
 //	LEGACY
 void	manage_modifiers_ouxX(va_list *ap, t_env *e)
 {

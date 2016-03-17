@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 19:07:21 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 19:47:44 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,7 +249,7 @@ void	ftpf_convert_sS(va_list *ap, t_env *e)
 	if (!e->neg)
 		manage_field_width(e);
 
-	if (!ft_strcmp(e->mod, "l") || e->conversion == 'C')
+	if (!ft_strcmp(e->mod, "l") || e->conversion == 'S')
 		e->outputlen += ft_putwstr(e->param->ws);
 	else
 	{

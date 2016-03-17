@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 22:13:16 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 11:59:40 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -325,6 +325,8 @@ void	dDi_tests(void)
 	visu_compare("%03.2d", &i, "int");
 	visu_compare("%3.2d", &i, "int");
 	visu_compare("%-3.2d", &i, "int");
+	printf("\033[31m********************************************* CHECK\033[0m\n");
+	visu_compare("%0-3d", &i, "int");
 	visu_compare("%+03d", &i, "int");
 	visu_compare("%+03.d", &i, "int");
 	visu_compare("%06.3d", &i, "int");
@@ -337,11 +339,9 @@ void	dDi_tests(void)
 	visu_compare("%03.2d", &i, "int");
 	visu_compare("%3.2d", &i, "int");
 	visu_compare("%-3.2d", &i, "int");
-	printf("\033[31m********************************************* CHECK\033[0m\n");
 	visu_compare("%+03d", &i, "int");
 	visu_compare("%03d", &i, "int");
 	visu_compare("%3d", &i, "int");
-	printf("\033[31m*********************************************\033[0m\n");
 	visu_compare("%+06.3d", &i, "int");
 	visu_compare("%+05.d", &i, "int");
 	
@@ -357,7 +357,6 @@ void	dDi_tests(void)
 	visu_compare("%3.2i", &i, "int");
 	visu_compare("%-3.2i", &i, "int");
 	visu_compare("%+06.3d", &i, "int");
-	printf("\033[31m********************************************* CHECK\033[0m\n");
 	visu_compare("%+05d", &i, "int");
 	visu_compare("%05d", &i, "int");
 	visu_compare("%+05.d", &i, "int");
@@ -740,42 +739,11 @@ int	main(void)
 	(void)str;
 
 	dDi_tests();
-//	xXp_tests();
+	xXp_tests();
 //	oO_tests();
 //	wild_tests();
 
-//	printf("%i\n", i);
-//	ft_printf("%i\n", i);
-/*	
-	visu_compare("%d", &i, "int");
-	visu_compare("%5d", &i, "int");
-	visu_compare("%.5d", &i, "int");
-	visu_compare("%0d", &i, "int");
-	visu_compare("%05d", &i, "int");
-	visu_compare("%+d", &i, "int");
-	visu_compare("%+5d", &i, "int");
 
-	ft_putstr("=================================================\n");
-	(void)str;
-	(void)c;
-
-	visu_compare("%i", &i, "int");
-	visu_compare("%5i", &i, "int");
-	visu_compare("%.5i", &i, "int");
-	visu_compare("%0i", &i, "int");
-	visu_compare("%05i", &i, "int");
-	visu_compare("%+i", &i, "int");
-	visu_compare("%+5i", &i, "int");
-	
-	visu_compare("%x", &i, "int");
-	visu_compare("%llx", &i, "int");
-	visu_compare("%#x", &i, "int");
-	visu_compare("%0x", &i, "int");
-	i = 0;
-	visu_compare("%x", &i, "int");
-	visu_compare("%#x", &i, "int");
-	visu_compare("%0x", &i, "int");
-	*/
 
 
 //	ft_putstr("=================================================\n");

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 22:11:36 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 16:50:49 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@ void	ftpf_process_output_rules(t_env *e)
 	int	buf;
 
 
-	if (((ft_strchr("xX", e->conversion) && e->alt) || e->conversion == 'p')
-			&& e->param->ll)
+	if ((ft_strchr("xX", e->conversion) && e->alt && !e->isnull))
 		e->precision += 2;
+	if (e->conversion == 'p')
+	{
+		e->precision += 2;
+	}
 
 //	printf("precision = %d, outputlen = %d\n", e->precision, e->outputlen);
 //	printf("isneg = %d\n", e->isneg);
@@ -108,7 +111,7 @@ int		manage_precision(void *value, t_env *e)
 	int	i;
 	
 //	printf("plus = %d, isneg = %d\n", e->plus, e->isneg);
-	if (e->plus && !e->isneg)
+	if (ft_strchr("dDi", e->conversion) && e->plus && !e->isneg)
 	{
 		ft_putchar(PRECIS_PLUS);
 		e->plus = 0;

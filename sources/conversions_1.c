@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 12:30:52 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 17:08:47 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,28 +225,32 @@ void	ftpf_convert_xXp(va_list *ap, t_env *e)
 //	printf("Precision = %d, Outputlen = %d, Fw = %d\n", e->precision, e->outputlen,
 //			e->field_width);
 	ftpf_process_flags(e);
-	if (e->conversion == 'p')
-	{
-		ft_strcpy(e->xX_prefix, "0x");
-		e->outputlen += 2;
-	}
 //	printf("outputlen = %d\n", e->outputlen);
-	if (e->precisflag && !e->precision && !e->param->ll)
+
+//	if (e->precisflag && !e->precision && !e->param->ll)
+//		e->noconv = 1;
+	if (e->precisflag && !e->precision && e->isnull)
 		e->noconv = 1;
 	ftpf_process_output_rules(e);
 //	if (e->space && ft_strchr("xXp", e->conversion) && !e->isneg && !e->plus)
 //		ft_putchar(' ');
 	if (!e->neg)
 		manage_field_width(e);
-	if (e->plus && ft_strchr("xXp", e->conversion) && !e->isneg)
-		ft_putchar('+');
-	if ((ft_strchr("xX", e->conversion) && e->alt) || e->conversion == 'p')
+
+//	printf("conversion = %c, alt = %d, xX_prefix = %s\n", e->conversion, e->alt,
+//			e->xX_prefix);
+	if ((ft_strchr("xX", e->conversion) && e->alt && !e->isnull)
+			|| e->conversion == 'p')
 		ft_putstr(e->xX_prefix);
+//	printf("precisflag = %d, precision = %d, outputlen = %d\n", e->precisflag,
+//			e->precision, e->outputlen);
 	manage_precision(&(e->param->ll), e);
 	if (!e->noconv)
 		ftpf_write_xXp_param(e);
 	if (e->neg)
 		manage_field_width(e);
+	if (e->noconv && e->conversion == 'p' && !e->outputlen)
+		e->outputlen += 2;
 }
 
 //	LEGACY

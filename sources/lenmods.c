@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:00:44 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 12:26:05 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 12:50:22 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,21 @@ void	manage_modifiers_xXp(va_list *ap, t_env *e)
 	{
 		if (!ft_strcmp(e->mod, "hh"))
 		{
-			e->param->uc = (unsigned char)va_arg(*ap, unsigned int);
+			if (!(e->param->uc = (unsigned char)va_arg(*ap, unsigned int)))
+				e->isnull = 1;
 			e->outputlen = ft_strlen(ft_itoa_ull(e->param->uc, 16));
 		}
 		else if (!ft_strcmp(e->mod, "h"))
 		{
-			e->param->ush = (unsigned short)va_arg(*ap, unsigned int);
+			if (!(e->param->ush = (unsigned short)va_arg(*ap, unsigned int)))
+				e->isnull = 1;
 			e->outputlen = ft_strlen(ft_itoa_ull(e->param->ush, 16));
 		}
 	}
 	else
 	{
-		e->param->ul = (unsigned long)va_arg(*ap, unsigned int*);
+		if (!(e->param->ul = (unsigned long)va_arg(*ap, unsigned int*)))
+			e->isnull = 1;
 		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
 	}
 }

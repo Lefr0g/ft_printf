@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/16 22:14:33 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/17 13:33:51 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct			s_env
 	void				(*conversion_function)(va_list *ap, struct s_env *e);
 	void				(*conv_funct_table[128])(va_list *ap, struct s_env *e);
 	int					isneg;
+	int					isnull;
 	int					noconv;
 }						t_env;
 

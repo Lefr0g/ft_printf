@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/18 20:38:19 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/18 21:04:32 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -682,6 +682,8 @@ void	xXp_tests(void)
 	visu_compare("%-0#x", &i, "int");
 	printf("****************************\n");
 	visu_compare("%p", &i, "int");
+	visu_compare("%20p", &i, "int");
+	visu_compare("%020p", &i, "int");
 	visu_compare("%#p", &i, "int");
 	visu_compare("%#16p", &i, "int");
 	visu_compare("%#16.10p", &i, "int");
@@ -742,7 +744,12 @@ void	xXp_tests(void)
 	visu_compare("%5.2hhp", &c, "char");
 	visu_compare("%5.2p", &c, "char");
 	visu_compare("% -5.2hhp", &c, "char");
-//	printf("\033[31m********************************************* CHECK\033[0m\n");
+	printf("\033[31m********************************************* CHECK\033[0m\n");
+	visu_compare("%0p", &c, "char");
+	visu_compare("%5p", &c, "char");
+	visu_compare("%05p", &c, "char");
+	visu_compare("%05.p", &c, "char");
+	visu_compare("%05.2p", &c, "char");
 	visu_compare("%07.3hhp", &c, "char");
 	visu_compare("% -7.4hhp", &c, "char");
 	visu_compare("%-7.4hhp", &c, "char");
@@ -999,12 +1006,12 @@ int	main(void)
 	(void)str;
 
 //	dDi_tests();
-//	xXp_tests();
+	xXp_tests();
 //	oO_tests();
-	cC_tests();
-	sS_tests();
+//	cC_tests();
+//	sS_tests();
 //	wild_tests();
-	escape_tests();
+//	escape_tests();
 
 
 

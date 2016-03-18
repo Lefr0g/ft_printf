@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/18 20:05:43 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/18 20:54:03 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ftpf_process_output_rules(t_env *e)
 
 //	printf("precision = %d, outputlen = %d\n", e->precision, e->outputlen);
 //	printf("isneg = %d\n", e->isneg);
-	if (e->precision >= e->outputlen)
+	if (e->conversion && e->precision >= e->outputlen)
 	{
 		buf = e->outputlen;
 		e->outputlen = e->precision;

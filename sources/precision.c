@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 18:02:32 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/18 20:05:43 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ftpf_process_output_rules(t_env *e)
 		e->precision = e->outputlen - buf;
 //		printf("precision = %d\n", e->precision);
 	}
-	else if (e->precisflag && !e->param->ll)
+	else if (e->precisflag && !e->param->ll && !ft_strchr("cC", e->conversion))
 		e->outputlen = 0;
 	else
 		e->precision = 0;
@@ -80,17 +80,8 @@ int		manage_field_width(t_env *e)
 //			&& i >= 2)
 //		i -= ft_strlen(e->xX_prefix);
 
-	if (ft_strchr("cC", e->conversion) && i)
-		e->outputlen = 1;
-
-//	if (e->conversion == 's' && !e->neg)
-	if (e->conversion == 's')
-	{
-		if (e->mod[0] == 'l')
-			i -= ft_wstr_utf8len(e->param->ws);
-		else
-			i -= ft_strlen(e->param->s);
-	}
+//	if (ft_strchr("cC", e->conversion) && i)
+//		e->outputlen = 1;
 
 //	printf("'\noutputlen = %d, precision = %d, fw = %d, i = %d\n'",
 //			e->outputlen, e->precision, e->field_width, i);

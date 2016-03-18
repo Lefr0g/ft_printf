@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 19:47:44 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/18 20:20:53 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	convert_uU(va_list *ap, t_env *e)
 
 void	ftpf_convert_cC(va_list *ap, t_env *e)
 {
+//	printf("CHECK\n");
 	manage_modifiers_cC(ap, e);
 	ftpf_process_flags(e);
 	e->precision = 0;
@@ -126,12 +127,10 @@ void	ftpf_convert_cC(va_list *ap, t_env *e)
 		manage_field_width(e);
 
 	if (!ft_strcmp(e->mod, "l") || e->conversion == 'C')
-		e->outputlen += ft_putwchar(e->param->wc);
+		ft_putwchar(e->param->wc);
 	else
-	{
 		ft_putchar(e->param->uc);
-		e->outputlen++;
-	}
+
 	if (e->neg)
 		manage_field_width(e);
 }
@@ -249,13 +248,13 @@ void	ftpf_convert_sS(va_list *ap, t_env *e)
 	if (!e->neg)
 		manage_field_width(e);
 
-	if (!ft_strcmp(e->mod, "l") || e->conversion == 'S')
-		e->outputlen += ft_putwstr(e->param->ws);
+
+//	printf("spacer = '%c'\n", e->spacer);
+
+	if ((!ft_strcmp(e->mod, "l") || e->conversion == 'S') && !(e->isnull))
+		ft_putwstr(e->param->ws);
 	else
-	{
 		ft_putstr(e->param->s);
-		e->outputlen += ft_strlen(e->param->s);
-	}
 	if (e->neg)
 		manage_field_width(e);
 }

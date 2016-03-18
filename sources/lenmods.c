@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:00:44 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/18 18:01:00 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/18 20:32:42 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,31 @@ void	manage_modifiers_xXp(va_list *ap, t_env *e)
 
 void	manage_modifiers_cC(va_list *ap, t_env *e)
 {
-	if (!ft_strcmp(e->mod, "l"))
+	if (!ft_strcmp(e->mod, "l") || e->conversion == 'C')
+	{
 		e->param->wi = (wint_t)va_arg(*ap, wint_t);
+		e->outputlen += ft_wchar_utf8len(e->param->wi);
+	}
 	else
+	{
 		e->param->i = (int)va_arg(*ap, int);
+		e->outputlen++;
+	}
 }
 
-
+void	ftpf_sS_nullexception(t_env *e)
+{
+	e->mod[0] = 0;
+	if (!e->precisflag)
+		e->param->s = ft_strdup("(null)");
+	else
+	{
+		e->param->s = ft_strnew(6);
+		ft_strncpy(e->param->s, "(null)", e->precision);
+	}
+	e->isnull = 1;
+	e->outputlen += ft_strlen(e->param->s);
+}
 
 void	manage_modifiers_sS(va_list *ap, t_env *e)
 {
@@ -111,20 +129,14 @@ void	manage_modifiers_sS(va_list *ap, t_env *e)
 		if (wstr)
 			e->param->ws = (wchar_t*)ft_memalloc(ft_wstr_memsize(wstr) + 4);
 		else
-		{
-			e->mod[0] = 0;
-			e->param->s = ft_strdup("(null)");
-		}
+			ftpf_sS_nullexception(e);
 		if (wstr && e->param->ws)
 		{
 			if (!e->precisflag)
 				ft_wcsncpy(e->param->ws, wstr, ft_wcslen(wstr));
-//				ft_memcpy(e->param->ws, wstr, ft_wstr_memsize(wstr));
 			else
 				ft_utf8ncpy(e->param->ws, wstr, e->precision);
-//				ft_memcpy(e->param->ws, wstr, e->precision * 4);
-//			if (e->precisflag)
-//				e->param->ws[e->precision] = '\0';
+			e->outputlen += ft_wstr_utf8len(e->param->ws);
 		}
 	}
 	else
@@ -135,9 +147,10 @@ void	manage_modifiers_sS(va_list *ap, t_env *e)
 			e->param->s = ft_strdup(str);
 			if (e->precisflag)
 				e->param->s[e->precision] = '\0';
+			e->outputlen += ft_strlen(e->param->s);
 		}
 		else
-			e->param->s = ft_strdup("(null)");
+			ftpf_sS_nullexception(e);
 	}
 }
 

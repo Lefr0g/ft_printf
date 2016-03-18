@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/18 19:02:05 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/18 20:23:05 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -829,6 +829,11 @@ void	cC_tests(void)
 	visu_compare("%#10.5c", &c, "char");
 	visu_compare("%hhc", &c, "char");
 	visu_compare("%lc", &c, "char");
+
+	c = 0;
+	printf("**************************** Value = %c\n", c);
+	visu_compare("%c", &c, "char");
+	visu_compare("%.c", &c, "char");
 	
 	wi = L'\xe9';
 	printf("**************************** Value = %C\n", wi);
@@ -854,7 +859,7 @@ void	sS_tests(void)
 
 	wstr4 = ft_memalloc(50);
 
-
+/*
 	ft_print_memory(wstr, ft_wstr_memsize(wstr));
 	ft_putchar('\n');
 	ft_print_memory(&wstr[1], ft_wstr_memsize(wstr));
@@ -878,11 +883,12 @@ void	sS_tests(void)
 	printf("\nwstring = %S\n", wstr4);
 	ft_print_memory(wstr4, 30);
 	ft_putchar('\n');
-
+*/
 	ft_putstr("\n\033[33m=================================================\n");
 	ft_putstr("========== STARTING sS CONVERSION TESTS =========\n");
 	ft_putstr("=================================================\033[0m\n");
-/*
+
+	printf("**************************** Value = %s\n", str3);
 	visu_compare("{%s}", str3, "char*");
 	visu_compare("{%05.s}", str3, "char*");
 	visu_compare("{%015s}", str3, "char*");
@@ -892,13 +898,22 @@ void	sS_tests(void)
 	visu_compare("{%015.1s}", str3, "char*");
 	visu_compare("{%15.s}", str3, "char*");
 	visu_compare("{%15s}", str3, "char*");
+
+	printf("**************************** Value = %s\n", NULL);
+	visu_compare("{% s}", NULL, "char*");
+	visu_compare("{%0s}", NULL, "char*");
+	visu_compare("{%0.s}", NULL, "char*");
+	visu_compare("{%05.s}", NULL, "char*");	
+	visu_compare("{%04.s}", NULL, "char*");	
+	visu_compare("{%04.2s}", NULL, "char*");	
+	visu_compare("{% S}", NULL, "wchar_t*");
+
+	printf("**************************** Value = %S\n", wstr);
+	visu_compare("{%S}", wstr, "wchar_t*");
 	visu_compare("{%30s}", str3, "char*");
 	visu_compare("{%-30s}", str3, "char*");
-*/
-
-	visu_compare("{%S}", wstr, "wchar_t*");
-//	visu_compare("{%30S}", wstr, "wchar_t*");
-//	visu_compare("{%-30S}", wstr, "wchar_t*");
+	visu_compare("{%30S}", wstr, "wchar_t*");
+	visu_compare("{%-30S}", wstr, "wchar_t*");
 	visu_compare("{%0.1S}", wstr, "wchar_t*");
 	visu_compare("{%0.2S}", wstr, "wchar_t*");
 	visu_compare("{%0.3S}", wstr, "wchar_t*");
@@ -909,9 +924,6 @@ void	sS_tests(void)
 	visu_compare("{%0.8S}", wstr, "wchar_t*");
 	visu_compare("{%0.25S}", wstr3, "wchar_t*");
 	visu_compare("{%0.28S}", wstr3, "wchar_t*");
-
-//	ft_memcpy(ptrj, L"我是一只猫。", 7);
-//	visu_compare("{%30S}", ptrj, "string");
 
 	ft_putstr("\033[33m=================================================\n");
 	ft_putstr("=========== END OF sS CONVERSION TESTS ==========\n");

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 19:05:16 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/18 20:31:03 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ void			ftpf_convert_xXp(va_list *ap, t_env *e);
 void			ftpf_convert_cC(va_list *ap, t_env *e);
 void			ftpf_convert_sS(va_list *ap, t_env *e);
 
+void			ftpf_sS_nullexception(t_env *e);
 
 void			convert_uU(va_list *ap, t_env *e);
 void			convert_cC(va_list *ap, t_env *e);

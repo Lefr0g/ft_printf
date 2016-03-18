@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/18 21:04:32 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/18 21:33:29 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1005,8 +1005,14 @@ int	main(void)
 
 	(void)str;
 
+
+	ft_printf("%x\n", 4294967296);
+	ft_putchar('\n');
+	printf("%x\n", 4294967296);
+	ft_putchar('\n');
+
 //	dDi_tests();
-	xXp_tests();
+//	xXp_tests();
 //	oO_tests();
 //	cC_tests();
 //	sS_tests();

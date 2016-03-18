@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/18 21:13:02 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/18 21:36:24 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,8 @@ void	ftpf_write_xXp_param(t_env *e)
 			ft_puthex_ull(e->param->ush, "min");
 		else if (e->conversion == 'x' && !ft_strcmp(e->mod, "hh"))
 			ft_puthex_ull(e->param->uc, "min");
+		else if (e->conversion == 'x' && !e->mod)
+			ft_puthex_ull(e->param->u, "min");
 		else
 			ft_puthex_ull(e->param->ull, "min");
 	}
@@ -207,6 +209,8 @@ void	ftpf_write_xXp_param(t_env *e)
 			ft_puthex_ull(e->param->ush, "maj");
 		else if (!ft_strcmp(e->mod, "hh"))
 			ft_puthex_ull(e->param->uc, "maj");
+		else if (!e->mod)
+			ft_puthex_ull(e->param->u, "maj");
 		else
 			ft_puthex_ull(e->param->ull, "maj");
 	}

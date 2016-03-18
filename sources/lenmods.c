@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:00:44 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 19:52:43 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/18 18:01:00 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,9 @@ void	manage_modifiers_cC(va_list *ap, t_env *e)
 	else
 		e->param->i = (int)va_arg(*ap, int);
 }
-	
+
+
+
 void	manage_modifiers_sS(va_list *ap, t_env *e)
 {
 	char	*str;
@@ -114,13 +116,26 @@ void	manage_modifiers_sS(va_list *ap, t_env *e)
 			e->param->s = ft_strdup("(null)");
 		}
 		if (wstr && e->param->ws)
-			ft_memcpy(e->param->ws, wstr, ft_wstr_memsize(wstr));
+		{
+			if (!e->precisflag)
+				ft_wcsncpy(e->param->ws, wstr, ft_wcslen(wstr));
+//				ft_memcpy(e->param->ws, wstr, ft_wstr_memsize(wstr));
+			else
+				ft_utf8ncpy(e->param->ws, wstr, e->precision);
+//				ft_memcpy(e->param->ws, wstr, e->precision * 4);
+//			if (e->precisflag)
+//				e->param->ws[e->precision] = '\0';
+		}
 	}
 	else
 	{
 		str = (char*)va_arg(*ap, char*);
 		if (str)
+		{
 			e->param->s = ft_strdup(str);
+			if (e->precisflag)
+				e->param->s[e->precision] = '\0';
+		}
 		else
 			e->param->s = ft_strdup("(null)");
 	}

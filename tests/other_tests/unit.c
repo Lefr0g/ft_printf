@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 19:47:25 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/18 19:02:05 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -847,12 +847,42 @@ void	sS_tests(void)
 {
 	int		*ptrj;
 	char	*str3 = "Hello yop!";
-	wchar_t	*wstr = L"我是一只猫。";
+	wchar_t	*wstr = L"er我是ty一只猫。er5";
+	wchar_t	*wstr2 = L"er我是ty一只猫。er5d";
+	wchar_t	*wstr3 = L"er我是ty一只猫。er5是";
+	wchar_t	*wstr4;
+
+	wstr4 = ft_memalloc(50);
+
+
+	ft_print_memory(wstr, ft_wstr_memsize(wstr));
+	ft_putchar('\n');
+	ft_print_memory(&wstr[1], ft_wstr_memsize(wstr));
+	ft_putchar('\n');
+	ft_print_memory(wstr, ft_wstr_utf8len(wstr));
+	ft_putchar('\n');
+	printf("wstr width = %d,\tstring = %S\n", ft_wstr_utf8len(wstr), wstr);
+	printf("wstr2 width = %d,\tstring = %S\n", ft_wstr_utf8len(wstr2), wstr2);
+	printf("wstr3 width = %d,\tstring = %S\n", ft_wstr_utf8len(wstr3), wstr3);
+	printf("wstr3 wcslen = %d,\tstring = %S\n", ft_wcslen(wstr3), wstr3);
+	printf("wstr3 wstr_memsize = %d,\tstring = %S\n", ft_wstr_memsize(wstr3), wstr3);
+	printf("wstr3 utf8len = %d,\tstring = %S\n", ft_wstr_utf8len(wstr3), wstr3);
+
+
+	ft_putchar('\n');
+	ft_print_memory(wstr4, 30);
+	ft_putchar('\n');
+
+	ft_utf8ncpy(wstr4, wstr2, 4);
+
+	printf("\nwstring = %S\n", wstr4);
+	ft_print_memory(wstr4, 30);
+	ft_putchar('\n');
 
 	ft_putstr("\n\033[33m=================================================\n");
 	ft_putstr("========== STARTING sS CONVERSION TESTS =========\n");
 	ft_putstr("=================================================\033[0m\n");
-
+/*
 	visu_compare("{%s}", str3, "char*");
 	visu_compare("{%05.s}", str3, "char*");
 	visu_compare("{%015s}", str3, "char*");
@@ -862,12 +892,23 @@ void	sS_tests(void)
 	visu_compare("{%015.1s}", str3, "char*");
 	visu_compare("{%15.s}", str3, "char*");
 	visu_compare("{%15s}", str3, "char*");
-
-	visu_compare("{%S}", wstr, "wchar_t*");
-	visu_compare("{%30S}", wstr, "wchar_t*");
-	visu_compare("{%-30S}", wstr, "wchar_t*");
 	visu_compare("{%30s}", str3, "char*");
 	visu_compare("{%-30s}", str3, "char*");
+*/
+
+	visu_compare("{%S}", wstr, "wchar_t*");
+//	visu_compare("{%30S}", wstr, "wchar_t*");
+//	visu_compare("{%-30S}", wstr, "wchar_t*");
+	visu_compare("{%0.1S}", wstr, "wchar_t*");
+	visu_compare("{%0.2S}", wstr, "wchar_t*");
+	visu_compare("{%0.3S}", wstr, "wchar_t*");
+	visu_compare("{%0.4S}", wstr, "wchar_t*");
+	visu_compare("{%0.5S}", wstr, "wchar_t*");
+	visu_compare("{%0.6S}", wstr, "wchar_t*");
+	visu_compare("{%0.7S}", wstr, "wchar_t*");
+	visu_compare("{%0.8S}", wstr, "wchar_t*");
+	visu_compare("{%0.25S}", wstr3, "wchar_t*");
+	visu_compare("{%0.28S}", wstr3, "wchar_t*");
 
 //	ft_memcpy(ptrj, L"我是一只猫。", 7);
 //	visu_compare("{%30S}", ptrj, "string");

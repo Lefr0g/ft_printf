@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/18 21:36:24 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/18 22:06:27 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,12 @@ void	ftpf_write_dDi_param(t_env *e)
 void	ftpf_convert_dDi(va_list *ap, t_env *e)
 {
 	manage_modifiers_dDi(ap, e);
-//	printf("outputlen = %d\n", e->outputlen);
 	if (e->precisflag && !e->precision && !e->param->ll)
 		e->noconv = 1;
 	ftpf_process_flags(e);
 	ftpf_process_output_rules(e);
 	if (e->space && !e->isneg && !e->plus)
 		ft_putchar(' ');
-//	printf("plus = %d, isneg = %d, zero = %d, precisflag = %d\n", e->plus,
-//			e->isneg, e->zero, e->precisflag);
-
-//	printf("outputlen = %d, precision = %d, fw = %d\n", e->outputlen,
-//			e->precision, e->field_width);
 	if (e->plus && !e->isneg && e->zero && !e->precisflag)
 	{
 		ft_putchar('+');
@@ -65,7 +59,6 @@ void	ftpf_convert_dDi(va_list *ap, t_env *e)
 	}
 	if (!e->neg)
 		manage_field_width(e);
-//	printf("precisflag = %d, precision = %d\n", e->precisflag, e->precision);
 	manage_precision(&(e->param->ll), e);
 	if (!e->noconv)
 		ftpf_write_dDi_param(e);
@@ -170,13 +163,6 @@ void	convert_oO(va_list *ap, t_env *e)
 		if (!e->neg)
 			manage_field_width(e);
 
-
-//		if (e->alt && e->precision)
-//		{
-//			e->outputlen = e->precision;
-//		}
-
-
 //		printf("Precision = %d\n", e->precision);
 
 		manage_precision(&(e->param->u), e);
@@ -257,82 +243,10 @@ void	ftpf_convert_sS(va_list *ap, t_env *e)
 	ftpf_process_output_rules(e);
 	if (!e->neg)
 		manage_field_width(e);
-
-
-//	printf("spacer = '%c'\n", e->spacer);
-
 	if ((!ft_strcmp(e->mod, "l") || e->conversion == 'S') && !(e->isnull))
 		ft_putwstr(e->param->ws);
 	else
 		ft_putstr(e->param->s);
 	if (e->neg)
 		manage_field_width(e);
-}
-
-//	LEGACY
-void	convert_sS(va_list *ap, t_env *e)
-{
-	char	*str;
-	wchar_t	*wstr;
-	int		tmp;
-
-	if (e->conversion == 'S')
-	{
-		e->conversion = 's';
-		e->mod[0] = 'l';
-		convert_sS(ap, e);
-	}
-	else
-	{
-//		if (e->plus)
-//			ft_putendl_fd("\nError : '+' flag used with s conversion", 2);
-		if (ap)
-		{
-			if (e->mod[0] == 'l')
-			{
-				wstr = (wchar_t*)va_arg(*ap, wchar_t*);
-				if (wstr)
-					e->param->ws = (wchar_t*)ft_memalloc(ft_wstr_memsize(wstr) + 4);
-				else
-				{
-					e->mod[0] = 0;
-					e->param->s = ft_strdup("(null)");
-				}
-				if (wstr && e->param->ws)
-					ft_memcpy(e->param->ws, wstr, ft_wstr_memsize(wstr));
-//				ft_putchar('\n');
-//				ft_print_memory(e->param->ws, 4 * 6);
-//				ft_putchar('\n');
-			}
-			else
-			{
-				str = (char*)va_arg(*ap, char*);
-				if (str)
-					e->param->s = ft_strdup(str);
-				else
-					e->param->s = ft_strdup("(null)");
-			}
-		}
-		if (!e->param->s)
-			ft_putendl_fd("\nError : no string to be printed", 2);
-
-
-		ftpf_process_flags(e);
-
-//		if (e->outputlen < e->field_width)
-
-		if (e->precisflag)
-			e->param->s = manage_precision_s(e->param->s, e);
-		e->precision = 0;
-		if (!e->neg)
-			manage_field_width(e);
-
-		manage_print_all(e);
-
-		tmp = e->outputlen;
-		e->outputlen = 0;
-		if (e->neg)
-			manage_field_width(e);
-		e->outputlen = tmp;
-	}
 }

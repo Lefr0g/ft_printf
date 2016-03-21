@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:00:44 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/18 21:30:11 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/21 21:08:19 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	manage_modifiers_xXp(va_list *ap, t_env *e)
 	}
 	else
 	{
-		if (!e->mod[0])
+		if (ft_strchr("xX", e->conversion) && !e->mod[0])
 		{
 			if (!(e->param->u = (unsigned int)va_arg(*ap, unsigned int*)))
 				e->isnull = 1;

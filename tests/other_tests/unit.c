@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/18 21:33:29 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/21 21:05:37 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -694,6 +694,8 @@ void	xXp_tests(void)
 //	printf("\033[31m********************************************* CHECK\033[0m\n");
 	visu_compare("% pl", &i, "int");
 	visu_compare("%+p", &i, "int");
+	printf("\033[31m********************************************* CHECK\033[0m\n");
+	visu_compare("%-13p", &i, "int*");
 
 	i = 0;
 	printf("**************************** Value = %d\n", i);
@@ -750,11 +752,12 @@ void	xXp_tests(void)
 	visu_compare("%05p", &c, "char");
 	visu_compare("%05.p", &c, "char");
 	visu_compare("%05.2p", &c, "char");
+
+
 	visu_compare("%07.3hhp", &c, "char");
 	visu_compare("% -7.4hhp", &c, "char");
 	visu_compare("%-7.4hhp", &c, "char");
 	visu_compare("%7.1hhp", &c, "char");
-//	printf("\033[31m********************************************* CHECK\033[0m\n");
 	visu_compare("%7.0hhp", &c, "char");
 	visu_compare("%-7hhp", &c, "char");
 

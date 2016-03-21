@@ -1005,14 +1005,32 @@ int	main(void)
 
 	(void)str;
 
+	int				i;
+	unsigned int	ui;
+/*
+	i = 4294967296;
+	ui = 4294967296;
+
+	i = INT_MAX;
+	ui = UINT_MAX;
+
+	printf("int = %d, uint = %d\n", sizeof(int), sizeof(unsigned int));
+
+	ft_print_memory(&i, sizeof(int));
+	ft_putchar('\n');
+	ft_print_memory(&ui, sizeof(unsigned int));
+	ft_putchar('\n');
 
 	ft_printf("%x\n", 4294967296);
 	ft_putchar('\n');
 	printf("%x\n", 4294967296);
 	ft_putchar('\n');
+*/
+
+
 
 //	dDi_tests();
-//	xXp_tests();
+	xXp_tests();
 //	oO_tests();
 //	cC_tests();
 //	sS_tests();

@@ -84,7 +84,7 @@ void	manage_modifiers_xXp(va_list *ap, t_env *e)
 	}
 	else
 	{
-		if (!e->mod)
+		if (!e->mod[0])
 		{
 			if (!(e->param->u = (unsigned int)va_arg(*ap, unsigned int*)))
 				e->isnull = 1;

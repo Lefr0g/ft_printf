@@ -184,7 +184,7 @@ void	ftpf_write_xXp_param(t_env *e)
 			ft_puthex_ull(e->param->ush, "min");
 		else if (e->conversion == 'x' && !ft_strcmp(e->mod, "hh"))
 			ft_puthex_ull(e->param->uc, "min");
-		else if (e->conversion == 'x' && !e->mod)
+		else if (e->conversion == 'x' && !e->mod[0])
 			ft_puthex_ull(e->param->u, "min");
 		else
 			ft_puthex_ull(e->param->ull, "min");
@@ -195,7 +195,7 @@ void	ftpf_write_xXp_param(t_env *e)
 			ft_puthex_ull(e->param->ush, "maj");
 		else if (!ft_strcmp(e->mod, "hh"))
 			ft_puthex_ull(e->param->uc, "maj");
-		else if (!e->mod)
+		else if (!e->mod[0])
 			ft_puthex_ull(e->param->u, "maj");
 		else
 			ft_puthex_ull(e->param->ull, "maj");

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/21 21:05:37 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/21 21:17:50 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -981,6 +981,8 @@ void	escape_tests(void)
 	visu_compare("%-20.10Zoooo", NULL, "none");
 	visu_compare("%-20.Zoooo", NULL, "none");
 	visu_compare("{%10R}", NULL, "none");
+	visu_compare("%", NULL, "none");
+
 
 	ft_putstr("\033[33m=================================================\n");
 	ft_putstr("============== END OF ESCAPE TESTS ==============\n");
@@ -1033,12 +1035,12 @@ int	main(void)
 
 
 //	dDi_tests();
-	xXp_tests();
+//	xXp_tests();
 //	oO_tests();
 //	cC_tests();
 //	sS_tests();
 //	wild_tests();
-//	escape_tests();
+	escape_tests();
 
 
 

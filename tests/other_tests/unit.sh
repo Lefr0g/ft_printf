@@ -24,6 +24,6 @@ echo -e "\n\033[033m>>> Running fclean.sh :\033[0m\n"
 echo -e "\n\033[033m>>> Compiling unit.c :\033[0m\n"
 make -C ../../
 make -C ../../libft/
-$CC $FLAGS -I ../../includes/ unit.c -L ../../libft -lft -L ../../ -lftprintf -o unit.out
+$CC -g $FLAGS -I ../../includes/ unit.c -L ../../libft -lft -L ../../ -lftprintf -o unit.out
 echo -e "\n\033[033m>>> Running unit.out :\033[0m\n"
 ./unit.out

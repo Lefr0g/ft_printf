@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/18 21:11:20 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/21 21:48:49 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int				convert(va_list *ap, t_env *e);
 int				ftpf_init_env(t_env *e);
 int				ftpf_reinit_env(t_env *e);
 void			ftpf_init_convfunctions_pointers(t_env *e);
+void			ftpf_free_all(t_env *e);
 
 /*
 **	ftpf_directives.c

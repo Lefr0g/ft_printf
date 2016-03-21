@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 12:56:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 19:02:53 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/21 23:02:56 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,8 @@ int	ftpf_init_env(t_env *e)
 	e->isneg = 0;
 	e->isnull = 0;
 	e->noconv = 0;
-	if (!e->param || !e->lenmods || !e->os || !e->conversions 
-			|| !e->mod || !e->xX_prefix)
-		return (1);
-	return (0);
+	return (!e->param || !e->lenmods || !e->os || !e->conversions 
+			|| !e->mod || !e->xX_prefix);
 }
 
 /*
@@ -101,4 +99,15 @@ void	ftpf_init_convfunctions_pointers(t_env *e)
 	e->conv_funct_table['x'] = &(ftpf_convert_xXp);
 	e->conv_funct_table['X'] = &(ftpf_convert_xXp);
 	e->conv_funct_table['p'] = &(ftpf_convert_xXp);
+}
+
+void	ftpf_free_all(t_env *e)
+{
+	ft_memdel((void**)&e->conversions);
+	ft_memdel((void**)&e->lenmods);
+	ft_memdel((void**)&e->flags);
+	ft_memdel((void**)&e->os);
+//	ft_memdel((void**)&e->param);
+	ft_memdel((void**)&e->mod);
+	ft_memdel((void**)&e->xX_prefix);
 }

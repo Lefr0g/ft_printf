@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/18 20:54:03 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/21 22:21:58 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ int		manage_precision(void *value, t_env *e)
 	return (0);
 }
 
+/*
 char	*manage_precision_s(char *str, t_env *e)
 {
 	char	*out;
@@ -145,3 +146,4 @@ char	*manage_precision_s(char *str, t_env *e)
 	}
 	return (str);
 }
+*/

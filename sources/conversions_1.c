@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/18 22:06:27 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/21 23:10:11 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	ftpf_convert_dDi(va_list *ap, t_env *e)
 		ftpf_write_dDi_param(e);
 	if (e->neg)
 		manage_field_width(e);
+	free(&e->param->ll);
 }
 
 void	convert_uU(va_list *ap, t_env *e)
@@ -126,6 +127,7 @@ void	ftpf_convert_cC(va_list *ap, t_env *e)
 
 	if (e->neg)
 		manage_field_width(e);
+	free(&e->param->wc);
 }
 
 
@@ -233,6 +235,7 @@ void	ftpf_convert_xXp(va_list *ap, t_env *e)
 		manage_field_width(e);
 	if (e->noconv && e->conversion == 'p' && !e->outputlen)
 		e->outputlen += 2;
+	free(&e->param->ull);
 }
 
 void	ftpf_convert_sS(va_list *ap, t_env *e)
@@ -244,9 +247,16 @@ void	ftpf_convert_sS(va_list *ap, t_env *e)
 	if (!e->neg)
 		manage_field_width(e);
 	if ((!ft_strcmp(e->mod, "l") || e->conversion == 'S') && !(e->isnull))
+	{
 		ft_putwstr(e->param->ws);
+//		ft_memdel((void**)&e->param->ws);
+	}
 	else
+	{
 		ft_putstr(e->param->s);
+//		ft_memdel((void**)&e->param->s);
+	}
 	if (e->neg)
 		manage_field_width(e);
+	free(&e->param->ull);
 }

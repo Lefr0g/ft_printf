@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/17 17:31:37 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/21 22:40:41 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,11 @@ int	ft_printf(const char *restrict format, ...)
 				ftpf_reinit_env(&e);
 			}
 			else
+			{
+//				va_end(ap);
+				ftpf_free_all(&e);
 				return (step + convlen);
+			}
 		}
 		e.index++;
 	}
@@ -72,5 +76,6 @@ int	ft_printf(const char *restrict format, ...)
 //	ft_putstr(format);
 //	ft_putendl("|");
 //	printf("'\nstep = %d, convlen = %d\n", step, convlen);
+	ftpf_free_all(&e);
 	return (step + convlen);
 }

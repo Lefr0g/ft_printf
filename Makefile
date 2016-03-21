@@ -6,7 +6,7 @@
 #    By: amulin <amulin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/10 17:35:06 by amulin            #+#    #+#              #
-#    Updated: 2016/03/18 19:28:45 by amulin           ###   ########.fr        #
+#    Updated: 2016/03/21 22:28:42 by amulin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@
 # OS detection (Linux / OSX)
 
 OS_NAME = $(shell uname -s)
+
 ifeq ($(OS_NAME),Linux)
 	CC = gcc
 endif
@@ -62,6 +63,7 @@ LIBFTSRCS = ft_atoi.c ft_isdigit.c ft_itoa.c ft_putchar.c ft_putendl.c \
 			ft_strnequ.c ft_strncmp.c \
 			ft_isascii.c ft_isprint.c ft_strcpy.c ft_strnew.c ft_memalloc.c \
 			ft_bzero.c ft_memset.c ft_strchr.c ft_strncpy.c ft_memmove.c \
+			ft_memdel.c \
 			ft_memcpy.c ft_isalpha.c ft_strdel.c \
 			ft_uni_to_utf8.c ft_putwchar.c ft_putwstr.c ft_wstr_memsize.c \
 			ft_wchar_utf8len.c ft_wstr_utf8len.c ft_wcslen.c ft_wcsncpy.c \
@@ -86,7 +88,7 @@ $(NAME): $(OBJECTS)
 	ar rcs $(NAME) $(OBJECTS)
 
 $(OBJECTS): $(SOURCES) $(HEADERS) $(LIBFT)
-	$(CC) $(FLAGS) -c $(SOURCES) -I $(PRINTINCLUDIR) -I $(LIBFTINCLUDIR)
+	$(CC) -g $(FLAGS) -c $(SOURCES) -I $(PRINTINCLUDIR) -I $(LIBFTINCLUDIR)
 
 clean:
 	rm -f $(OBJECTS)

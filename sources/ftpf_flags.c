@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/18 19:44:48 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/22 17:38:52 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,13 @@ int		ftpf_process_flags(t_env *e)
 {
 	if (e->alt || e->conversion == 'p')
 	{
-		if (ft_strchr("oO", e->conversion) && e->param->u && !e->precision)
+		if (ft_strchr("oO", e->conversion))
 		{
+			if (e->param->ul && !e->precision)
+				e->precision = e->outputlen + 1;
+			else if (!e->precision)
+				e->precision++;
 			e->precisflag = 1;
-			e->precision = 1;
-			e->outputlen++;
 		}
 		if (ft_strchr("xX", e->conversion))
 		{

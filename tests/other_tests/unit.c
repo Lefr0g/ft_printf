@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/21 21:17:50 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/22 17:25:46 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -545,16 +545,8 @@ void	oO_tests(void)
 	i = 42;
 	printf("**************************** Value = %u\n", i);
 	visu_compare("%o", &i, "int");
-	
-	i = 0;
-	printf("**************************** Value = %u\n", i);
-	visu_compare("%o", &i, "int");
-	
-	i = INT_MAX;
-	printf("**************************** Value = %u\n", i);
-	visu_compare("%o", &i, "int");
-	i = 42;
-	printf("**************************** Value = %u\n", i);
+	visu_compare("%#o", &i, "int");
+	visu_compare("%#.o", &i, "int");
 	visu_compare("%0o", &i, "int");
 	visu_compare("%09o", &i, "int");
 	visu_compare("%+o", &i, "int");
@@ -566,6 +558,24 @@ void	oO_tests(void)
 	visu_compare("%7.3o", &i, "int");
 	visu_compare("%-03.7o", &i, "int");
 	visu_compare("%-07.3o", &i, "int");
+	
+	i = 0;
+	printf("**************************** Value = %u\n", i);
+	visu_compare("%o", &i, "int");
+	visu_compare("%#o", &i, "int");
+	visu_compare("%#.o", &i, "int");
+	visu_compare("%#1.o", &i, "int");
+	visu_compare("%#.0o", &i, "int");
+	visu_compare("%#2.0o", &i, "int");
+	
+	i = 1;
+	printf("**************************** Value = %u\n", i);
+	visu_compare("%#.3o", &i, "int");
+	
+	i = INT_MAX;
+	printf("**************************** Value = %u\n", i);
+	visu_compare("%o", &i, "int");
+	visu_compare("%#o", &i, "int");
 
 	ft_putendl("\033[33m-------------------------------------------------");	
 	ft_putendl("---------------------------------------- long (l)\033[0m\n");	
@@ -590,6 +600,7 @@ void	oO_tests(void)
 	printf("**************************** Value = %ld\n", l);
 	visu_compare("%lo", &l, "long");
 	visu_compare("%O", &l, "long");
+	visu_compare("%#.O", &l, "long");
 	visu_compare("%30.24lo",&l, "long");
 	visu_compare("%-30.24lo",&l, "long");
 	visu_compare("%0-30.24lo",&l, "long");
@@ -655,6 +666,120 @@ void	oO_tests(void)
 
 	ft_putstr("\033[33m=================================================\n");
 	ft_putstr("=========== END OF oO CONVERSION TESTS ==========\n");
+	ft_putstr("=================================================\033[0m\n");
+}
+
+void	uU_tests(void)
+{
+	unsigned char	uc;
+	int				i;
+	unsigned int	ui;
+	unsigned long	ul;
+
+	ft_putstr("\n\033[33m=================================================\n");
+	ft_putstr("========== STARTING uU CONVERSION TESTS =========\n");
+	ft_putstr("=================================================\033[0m\n");
+	
+	ft_putendl("\033[33m-------------------------------------------------");	
+	ft_putendl("------------------------------ no lenght modifier\033[0m\n");	
+	
+	ui = 42;
+	printf("**************************** Value = %u\n", ui);
+	visu_compare("%u", &ui, "uint");
+	visu_compare("%0u", &ui, "uint");
+	visu_compare("%09u", &ui, "uint");
+	visu_compare("%+u", &ui, "uint");
+	visu_compare("%+ u", &ui, "uint");
+	visu_compare("%+9u", &ui, "uint");
+	visu_compare("%+ 9u", &ui, "uint");
+	visu_compare("% 9u", &ui, "uint");
+	visu_compare("%3.7u", &ui, "uint");
+	visu_compare("%7.3u", &ui, "uint");
+	visu_compare("%-03.7u", &ui, "uint");
+	visu_compare("%-07.3u", &ui, "uint");
+	
+	ui = 0;
+	printf("**************************** Value = %u\n", ui);
+	visu_compare("%u", &ui, "uint");
+	
+	ui = UINT_MAX;
+	printf("**************************** Value = %u\n", ui);
+	visu_compare("%u", &ui, "uint");
+
+	ft_putendl("\033[33m-------------------------------------------------");	
+	ft_putendl("---------------------------------------- long (l)\033[0m\n");	
+
+	ul = ULONG_MAX;
+	printf("**************************** Value = %lu\n", ul);
+	visu_compare("%lu", &ul, "u long");
+	visu_compare("%lU", &ul, "u long");
+	visu_compare("%30.24lu",&ul, "u long");
+	visu_compare("%-30.24lu",&ul, "u long");
+	visu_compare("%0-30.24lu",&ul, "u long");
+
+	ul = 0;
+	printf("**************************** Value = %ld\n", ul);
+	visu_compare("%lu", &ul, "u long");
+	visu_compare("%U", &ul, "u long");
+	visu_compare("%30.24lu",&ul, "u long");
+	visu_compare("%-30.24lu",&ul, "u long");
+	visu_compare("%0-30.24lu",&ul, "u long");
+
+	ul = 42;
+	printf("**************************** Value = %ld\n", ul);
+	visu_compare("%lu", &ul, "u long");
+	visu_compare("%U", &ul, "u long");
+	visu_compare("%30.24lu",&ul, "u long");
+	visu_compare("%-30.24lu",&ul, "u long");
+	visu_compare("%0-30.24lu",&ul, "u long");
+
+	visu_compare("%0lu", &ul, "u long");
+	visu_compare("%0U", &ul, "u long");
+	
+	visu_compare("%09lu", &ul, "u long");
+	visu_compare("%0U", &ul, "u long");
+
+	visu_compare("%+lu", &ul, "u long");
+	visu_compare("%+U", &ul, "u long");
+
+	visu_compare("%+9lu", &ul, "u long");
+	visu_compare("%+9U", &ul, "u long");
+
+	visu_compare("%+ 9lu", &ul, "u long");
+	visu_compare("%+ 9U", &ul, "u long");
+
+	visu_compare("% +9lu", &ul, "u long");
+	visu_compare("% +9U", &ul, "u long");
+
+	visu_compare("% 9lu", &ul, "u long");
+	visu_compare("% +9U", &ul, "u long");
+
+	ft_putendl("\033[33m-------------------------------------------------");	
+	ft_putendl("-------------------------------------- uchar (hh)\033[0m\n");
+
+	uc = 0;
+	printf("**************************** Value = %hhd\n", uc);
+	visu_compare("%5.2hhu", &uc, "uchar");
+	visu_compare("% -5.2hhu", &uc, "uchar");
+	visu_compare("%07.3hhu", &uc, "uchar");
+	visu_compare("% -7.4hhu", &uc, "uchar");
+	visu_compare("%-7.4hhu", &uc, "uchar");
+	visu_compare("%7.0hhu", &uc, "uchar");
+
+	uc = -42;
+	printf("**************************** Value = %hhd\n", uc);
+	visu_compare("%5.3hhu", &uc, "uchar");
+	visu_compare("% -5.3hhu", &uc, "uchar");
+	visu_compare("%07.3hhu", &uc, "uchar");
+	
+	uc = UCHAR_MAX;
+	printf("**************************** Value = %hhd\n", uc);
+	visu_compare("%3.2hhu", &uc, "uchar");
+	visu_compare("% -3.2hhu", &uc, "uchar");
+	visu_compare("%07.3hhu", &uc, "uchar");
+
+	ft_putstr("\033[33m=================================================\n");
+	ft_putstr("=========== END OF uU CONVERSION TESTS ==========\n");
 	ft_putstr("=================================================\033[0m\n");
 }
 
@@ -1035,12 +1160,13 @@ int	main(void)
 
 
 //	dDi_tests();
+//	uU_tests();
+	oO_tests();
 //	xXp_tests();
-//	oO_tests();
 //	cC_tests();
 //	sS_tests();
 //	wild_tests();
-	escape_tests();
+//	escape_tests();
 
 
 

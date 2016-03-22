@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/21 23:10:11 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/22 17:24:16 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,61 @@ void	ftpf_convert_dDi(va_list *ap, t_env *e)
 		ftpf_write_dDi_param(e);
 	if (e->neg)
 		manage_field_width(e);
-	free(&e->param->ll);
+//	free(&e->param->ll);
 }
 
+
+void	ftpf_convert_uU(va_list *ap, t_env *e)
+{
+	manage_modifiers_uU(ap, e);
+	if (e->precisflag && !e->precision && !e->param->ull)
+		e->noconv = 1;
+	ftpf_process_flags(e);
+	ftpf_process_output_rules(e);
+	if (!e->neg)
+		manage_field_width(e);
+	manage_precision(&(e->param->ull), e);
+	if (!e->noconv)
+		ft_putnbr_ull(e->param->ull);
+//		ftpf_write_dDi_param(e);
+	if (e->neg)
+		manage_field_width(e);
+//	free(&e->param->ull);
+}
+
+void	ftpf_write_oO_param(t_env *e)
+{
+	if (e->conversion == 'o')
+	{
+		if (!ft_strcmp(e->mod, "h"))
+			ft_putoctal(e->param->ush);
+		else if (!ft_strcmp(e->mod, "hh"))
+			ft_putoctal(e->param->uc);
+		else
+			ft_putoctal(e->param->ull);
+	}
+	else if (e->conversion == 'O')
+		ft_putoctal(e->param->ul);
+}
+
+void	ftpf_convert_oO(va_list *ap, t_env *e)
+{
+	manage_modifiers_oO(ap, e);
+	if (e->precisflag && !e->precision && !e->param->ull && !e->alt)
+		e->noconv = 1;
+	ftpf_process_flags(e);
+	ftpf_process_output_rules(e);
+	if (!e->neg)
+		manage_field_width(e);
+	manage_precision(&(e->param->ull), e);
+	if (!e->noconv)
+		ftpf_write_oO_param(e);
+	if (e->neg)
+		manage_field_width(e);
+//	free(&e->param->ull);
+}
+
+//	LEGACY
 void	convert_uU(va_list *ap, t_env *e)
 {
 	int	buf;
@@ -127,10 +179,11 @@ void	ftpf_convert_cC(va_list *ap, t_env *e)
 
 	if (e->neg)
 		manage_field_width(e);
-	free(&e->param->wc);
+//	free(&e->param->wc);
 }
 
 
+//	LEGACY
 void	convert_oO(va_list *ap, t_env *e)
 {
 	int	buf;
@@ -235,7 +288,7 @@ void	ftpf_convert_xXp(va_list *ap, t_env *e)
 		manage_field_width(e);
 	if (e->noconv && e->conversion == 'p' && !e->outputlen)
 		e->outputlen += 2;
-	free(&e->param->ull);
+//	free(&e->param->ull);
 }
 
 void	ftpf_convert_sS(va_list *ap, t_env *e)
@@ -258,5 +311,5 @@ void	ftpf_convert_sS(va_list *ap, t_env *e)
 	}
 	if (e->neg)
 		manage_field_width(e);
-	free(&e->param->ull);
+//	free(&e->param->ull);
 }

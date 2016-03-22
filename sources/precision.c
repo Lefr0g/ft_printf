@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/21 22:21:58 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/22 17:09:27 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,20 @@ void	ftpf_process_output_rules(t_env *e)
 
 	if ((ft_strchr("xX", e->conversion) && e->alt && !e->isnull))
 		e->precision += 2;
+
+
 	if (e->conversion == 'p')
 	{
 		e->precision += 2;
 	}
+
+/*	if (ft_strchr("oO", e->conversion) && e->alt && e->param->ull)
+	{
+//		ft_putstr("CHECK");
+		e->precisflag = 1;
+		e->precision++;
+	}
+*/
 
 //	printf("precision = %d, outputlen = %d\n", e->precision, e->outputlen);
 //	printf("isneg = %d\n", e->isneg);
@@ -51,6 +61,7 @@ void	ftpf_process_output_rules(t_env *e)
 //		e->precision++;
 //		e->field_width--;
 //	}
+
 }
 
 int		manage_field_width(t_env *e)

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/21 21:48:49 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/22 16:26:44 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,8 @@ void			ftpf_directive_wrongchar_handler(const char *restrict format,
 **	conversions_1.c
 */
 void			ftpf_convert_dDi(va_list *ap, t_env *e);
+void			ftpf_convert_uU(va_list *ap, t_env *e);
+void			ftpf_convert_oO(va_list *ap, t_env *e);
 void			ftpf_convert_xXp(va_list *ap, t_env *e);
 void			ftpf_convert_cC(va_list *ap, t_env *e);
 void			ftpf_convert_sS(va_list *ap, t_env *e);
@@ -145,12 +147,15 @@ void			convert_sS(va_list *ap, t_env *e);
 
 void			ftpf_process_output_rules(t_env *e);
 void			ftpf_write_dDi_param(t_env *e);
+void			ftpf_write_oO_param(t_env *e);
 void			ftpf_write_xXp_param(t_env *e);
 
 /*
 **	modifiers.c
 */
 void			manage_modifiers_dDi(va_list *ap, t_env *e);
+void			manage_modifiers_uU(va_list *ap, t_env *e);
+void			manage_modifiers_oO(va_list *ap, t_env *e);
 void			manage_modifiers_xXp(va_list *ap, t_env *e);
 void			manage_modifiers_cC(va_list *ap, t_env *e);
 void			manage_modifiers_sS(va_list *ap, t_env *e);

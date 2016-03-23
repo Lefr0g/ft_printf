@@ -1,15 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
+/*   ft_itoa_ll.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/23 19:13:21 by amulin            #+#    #+#             */
+/*   Updated: 2016/03/23 19:36:46 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	my_process(long long int n, char *result, long long int i,
+static void		my_process(long long int n, char *result, long long int i,
 		unsigned int base)
 {
-	size_t	index;
+	size_t			index;
 
 	index = 0;
 	if (n < 0)
@@ -33,7 +39,7 @@ static void	my_process(long long int n, char *result, long long int i,
 
 static char		*my_exception(long long int limit)
 {
-	char	*result;
+	char			*result;
 
 	result = ft_strnew(21);
 	if (!result)
@@ -45,12 +51,12 @@ static char		*my_exception(long long int limit)
 	return (result);
 }
 
-char		*ft_itoa_ll(long long int n, unsigned int base)
+char			*ft_itoa_ll(long long int n, unsigned int base)
 {
-	size_t						j;
-	long long int				i;
-	long long int				buf;
-	char						*result;
+	size_t			j;
+	long long int	i;
+	long long int	buf;
+	char			*result;
 
 	i = 1;
 	buf = n;
@@ -58,30 +64,16 @@ char		*ft_itoa_ll(long long int n, unsigned int base)
 	if (buf == LONG_MAX || buf == LONG_MIN)
 		return (my_exception(buf));
 	if (buf < 0)
-	{
 		buf = -buf;
-		j++;
-	}
 	while (buf > base - 1)
 	{
 		buf = buf / base;
 		i = i * base;
 		j++;
 	}
-//	printf("\nft_itoa_ll() is allocating a %d wide table\n", (int)j + 1);
-//	ft_putchar('\n');
-//	ft_print_memory(&i, sizeof(long long));
-//	ft_putchar('\n');
-	result = ft_strnew(j + 1);
+	result = ft_strnew(j + 2);
 	if (!result)
 		return (NULL);
-
-//	TODO
-//	Regler le probleme de i pour (par exemple) n == LONG_MIN + 2
-
-//	printf("\ni = %lld\n", i);
-
 	my_process(n, result, i, base);
-//	printf("result = %s\n", result);
 	return (result);
 }

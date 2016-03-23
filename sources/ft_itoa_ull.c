@@ -1,6 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
+/*   ft_itoa_ull.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/23 19:04:03 by amulin            #+#    #+#             */
+/*   Updated: 2016/03/23 19:04:22 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -12,12 +18,6 @@ static void	my_process(unsigned long long n, char *result, unsigned long long i,
 	size_t	index;
 
 	index = 0;
-//	if (n < 0)
-//	{
-//		result[index] = '-';
-//		index++;
-//		n = -n;
-//	}
 	while (i > 0)
 	{
 		if (base == 16 && (n / i) > 9)
@@ -30,32 +30,17 @@ static void	my_process(unsigned long long n, char *result, unsigned long long i,
 	}
 	result[index] = '\0';
 }
-/*
-char		*my_exception(void)
-{
-	char	*result;
 
-	result = ft_strnew(12);
-	if (!result)
-		return (NULL);
-	ft_strcpy(result, "-2147483648");
-	return (result);
-}
-*/
 char		*ft_itoa_ull(unsigned long long int n, unsigned int base)
 {
-	size_t						j;
+	size_t							j;
 	unsigned long long				i;
 	unsigned long long				buf;
-	char						*result;
+	char							*result;
 
 	i = 1;
 	buf = n;
 	j = 1;
-//	if (buf == -2147483648LL)
-//		return (my_exception());
-//	if (buf < 0)
-//		buf = -buf;
 	while (buf > base - 1)
 	{
 		buf = buf / base;

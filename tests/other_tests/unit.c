@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 18:21:05 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 19:12:32 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -450,12 +450,19 @@ void	dDi_tests(void)
 
 	ll = LLONG_MAX;
 	printf("**************************** Value = %lld\n", ll);
+	visu_compare("%lld",&ll, "long long");
 	visu_compare("%30.24lld",&ll, "long long");
 	visu_compare("%-30.24lld",&ll, "long long");
 	visu_compare("%0-30.24lld",&ll, "long long");
 	
 	ll = LLONG_MIN;
 	printf("**************************** Value = %lld\n", ll);
+	visu_compare("%30.24lld",&ll, "long long");
+	visu_compare("%0.23lld",&ll, "long long");
+
+	ll = LLONG_MIN + 2;
+	printf("**************************** Value = %lld\n", ll);
+	visu_compare("%lld",&ll, "long long");
 	visu_compare("%30.24lld",&ll, "long long");
 	visu_compare("%0.23lld",&ll, "long long");
 
@@ -1178,12 +1185,12 @@ int	main(void)
 	setlocale(LC_ALL, "");
 
 
-//	dDi_tests();
+	dDi_tests();
 //	uU_tests();
 //	oO_tests();
 //	xXp_tests();
 //	cC_tests();
-	sS_tests();
+//	sS_tests();
 //	wild_tests();
 //	escape_tests();
 //	bin_tests();

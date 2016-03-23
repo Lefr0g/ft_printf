@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 16:53:24 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 19:00:08 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,9 @@ typedef struct			s_env
 }						t_env;
 
 int				ft_printf(const char *restrict format, ...);
+void			ftpf_conversion_call(t_env *e, const char *restrict format,
+		va_list *ap, int *convlen);
+
 
 int				convert(va_list *ap, t_env *e);
 

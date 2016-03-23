@@ -6,13 +6,13 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/05 11:30:24 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/03 14:27:04 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 19:47:22 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void ft_putnbr_ll(long long n)
+void	ft_putnbr_ll(long long n)
 {
 	if (n == LONG_MAX)
 		ft_putstr("9223372036854775807");

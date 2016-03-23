@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:09:13 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/22 17:09:27 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 19:58:47 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int		manage_field_width(t_env *e)
 
 //	printf("'\noutputlen = %d, precision = %d, fw = %d, i = %d\n'",
 //			e->outputlen, e->precision, e->field_width, i);
-	while (i && i - get_max(e->outputlen, e->precision) > 0)
+	while (i && i - ft_getmax(e->outputlen, e->precision) > 0)
 	{
 		if (DEBUG_MODE)
 			ft_putchar('w');

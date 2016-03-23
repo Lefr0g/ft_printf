@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 19:01:20 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 19:59:20 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ftpf_conversion_call(t_env *e, const char *restrict format,
 	if (format[e->index])
 	{
 		ftpf_directives(format, ap, e);
-		*convlen += get_max(e->outputlen, e->field_width);
+		*convlen += ft_getmax(e->outputlen, e->field_width);
 		ftpf_reinit_env(e);
 	}
 	else

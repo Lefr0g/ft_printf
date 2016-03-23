@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 19:00:08 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 20:41:06 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int				convert(va_list *ap, t_env *e);
 **	ftpf_init.c
 */
 int				ftpf_init_env(t_env *e);
+void			ftpf_init_mallocs(t_env *e);
 int				ftpf_reinit_env(t_env *e);
 void			ftpf_init_convfunctions_pointers(t_env *e);
 void			ftpf_free_all(t_env *e);
@@ -124,9 +125,11 @@ void			ftpf_free_all(t_env *e);
 */
 int				ftpf_directives(const char *restrict format, va_list *ap,
 		t_env *e);
+void			ftpf_directives_action(const char *restrict f, va_list *ap,
+		t_env *e);
 void			ftpf_get_precision(const char *restrict format, t_env *e);
 void			ftpf_get_lenmod(const char *restrict format, t_env *e);
-void			ftpf_directive_wrongchar_handler(const char *restrict format,
+void			ftpf_wrongchar_handler(const char *restrict format,
 		t_env *e);
 //void			(*ftpf_get_conv_funct(t_env *e, char conv))(va_list *ap, t_env *e);
 
@@ -179,7 +182,8 @@ int				manage_field_width(t_env *e);
 */
 int				ftpf_get_flags(const char *restrict format, t_env *e);
 int				ftpf_process_flags(t_env *e);
-int				ftpf_apply_flags(t_env *e);
+void			ftpf_process_flag_alt(t_env *e);
+void			ftpf_process_flag_plus(t_env *e);
 
 
 /*
@@ -188,22 +192,13 @@ int				ftpf_apply_flags(t_env *e);
 void			manage_print_all(t_env *e);
 void			print_null_ptr(t_env *e);
 
-
-/*
-**	misc.c
-*/
-int				get_max(int a, int b);
-
 /*
 **	others
 */
-void			ft_puthex(unsigned int n, char *mode);
-void			ft_puthex_ull(unsigned long long int n, char *mode);
-void			ft_putoctal(unsigned long n);
 
-void			ft_putnbr_void(void *n, size_t size);
-void			ft_putnbr_short(short n);
-void			ft_putnbr_char(signed char n);
+int				ft_getmax(int a, int b);
+void			ft_puthex_ull(unsigned long long int n, char *mode);
+void			ft_putoctal(unsigned long long n);
 void			ft_putnbr_ull(unsigned long long int n);
 void			ft_putnbr_ll(long long n);
 char			*ft_itoa_ll(long long int n, unsigned int base);

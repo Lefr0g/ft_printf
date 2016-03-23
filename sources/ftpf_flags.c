@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/22 17:38:52 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 20:34:39 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,23 @@
 */
 
 /*
-**	get_flags() sets the env parameters according to the given flags, and 
+**	get_flags() sets the env parameters according to the given flags, and
 **	increments the format[] index upon success.
 **	Called from the directive() function.
 */
 
-int	ftpf_get_flags(const char *restrict format, t_env *e)
+int		ftpf_get_flags(const char *restrict format, t_env *e)
 {
 	if (format[e->index] == '#')
 		e->alt = 1;
 	else if (format[e->index] == '0')
 		e->zero = 1;
 	else if (format[e->index] == '-')
-//	{
-//		e->zero = 0;
 		e->neg = 1;
-//	}
 	else if (format[e->index] == ' ')
-//	{
-//		if (!e->plus)
-			e->space = 1;
-//		else
-//			e->space = 0;
-//	}
+		e->space = 1;
 	else if (format[e->index] == '+')
-//	{
-//		if (e->space)
-//			e->space = 0;
 		e->plus = 1;
-//	}
 	else
 		return (1);
 	return (0);
@@ -71,95 +59,59 @@ int	ftpf_get_flags(const char *restrict format, t_env *e)
 int		ftpf_process_flags(t_env *e)
 {
 	if (e->alt || e->conversion == 'p')
-	{
-		if (ft_strchr("oO", e->conversion))
-		{
-			if (e->param->ul && !e->precision)
-				e->precision = e->outputlen + 1;
-			else if (!e->precision)
-				e->precision++;
-			e->precisflag = 1;
-		}
-		if (ft_strchr("xX", e->conversion))
-		{
-			if (e->conversion == 'x')
-				ft_strcpy(e->xX_prefix, "0x");
-			else if (e->conversion == 'X')
-				ft_strcpy(e->xX_prefix, "0X");
-			if (!e->isnull)
-				e->outputlen += 2;
-		}
-		else if (e->conversion == 'p')
-		{
-			ft_strcpy(e->xX_prefix, "0x");
-			e->outputlen += 2;
-		}
-	}
-//	printf("PROCESS FLAG : zero = %d, conversion = %c, precisflag = %d\n",
-//			e->zero, e->conversion, e->precisflag);
-
-
-//	if (e->zero && !e->neg &&
-//			!(ft_strchr("dDiouxX", e->conversion) && e->precisflag))
-
-//	printf("zero = %d, neg = %d, conversion = %c\n", e->zero, e->neg, e->conversion);
+		ftpf_process_flag_alt(e);
 	if (e->zero && !e->neg && ((ft_strchr("dDiouxXp", e->conversion)
 					&& !e->precisflag) || !e->conversion
 				|| ft_strchr("cCsS", e->conversion)))
-	{
-//		printf("CHECK\n");
 		e->spacer = FLAG_0_SPACER;
-	}
 	if (e->zero && e->isneg && e->precisflag)
 		e->zero = 0;
-
-	if (e->space && e->conversion && ft_strchr("dDi", e->conversion) && !e->isneg
-			&& !e->plus)
+	if (e->space && e->conversion && ft_strchr("dDi", e->conversion)
+			&& !e->isneg && !e->plus)
 	{
 		e->outputlen++;
-//		printf("precision = %d, fw = %d\n", e->precision, e->field_width);
-
-//		if (!e->param->ll)
 		if (!e->isneg)
 			e->precision++;
 	}
 	if (e->plus && ft_strchr("dDi", e->conversion))
-	{
-		if (!e->isneg)
-		{
-			e->outputlen++;
-//			if (e->precisflag && !e->noconv)
-			if (e->precisflag)
-				e->precision++;
-		}
-		else
-			e->plus = 0;
-	}
+		ftpf_process_flag_plus(e);
 	return (0);
 }
 
-
-
-/*
-**	ftpf_apply_flags() writes the effect of the flags on stdout.
-**	TODO : Remove this function as each condition is conversion-specific
-*/
-
-int		ftpf_apply_flags(t_env *e)
+void	ftpf_process_flag_alt(t_env *e)
 {
-//	printf("precisflag = %d\n", e->precisflag);
-	if (e->alt)
+	if (ft_strchr("oO", e->conversion))
 	{
-		if (ft_strchr("oO", e->conversion) && e->param->u && !e->precision)
-			(void)e;
-		if (((ft_strchr("xX", e->conversion) && e->alt) || e->conversion == 'p')
-				&& e->param->u)
-			ft_putstr(e->xX_prefix);
+		if (e->param->ul && !e->precision)
+			e->precision = e->outputlen + 1;
+		else if (!e->precision)
+			e->precision++;
+		e->precisflag = 1;
 	}
-//	if (e->space && ft_strchr("dDi", e->conversion) && e->param->i >= 0
-//			&& !e->plus)
-//		ft_putchar(' ');
-//	if (e->plus && ft_strchr("dDi", e->conversion) && e->param->i >= 0)
-//		ft_putchar('+');
-	return (0);
+	if (ft_strchr("xX", e->conversion))
+	{
+		if (e->conversion == 'x')
+			ft_strcpy(e->xX_prefix, "0x");
+		else if (e->conversion == 'X')
+			ft_strcpy(e->xX_prefix, "0X");
+		if (!e->isnull)
+			e->outputlen += 2;
+	}
+	else if (e->conversion == 'p')
+	{
+		ft_strcpy(e->xX_prefix, "0x");
+		e->outputlen += 2;
+	}
+}
+
+void	ftpf_process_flag_plus(t_env *e)
+{
+	if (!e->isneg)
+	{
+		e->outputlen++;
+		if (e->precisflag)
+			e->precision++;
+	}
+	else
+		e->plus = 0;
 }

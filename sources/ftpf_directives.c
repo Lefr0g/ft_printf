@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 18:57:05 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 18:11:35 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 20:21:19 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,24 @@ int		ftpf_directives(const char *restrict format, va_list *ap, t_env *e)
 		ftpf_get_precision(format, e);
 	if (ft_strchr(e->lenmods, format[e->index]))
 		ftpf_get_lenmod(format, e);
-	if (ft_strchr(e->conversions, format[e->index]))
+	ftpf_directives_action(format, ap, e);
+	return (e->index);
+}
+
+void	ftpf_directives_action(const char *restrict f, va_list *ap, t_env *e)
+{
+	if (ft_strchr(e->conversions, f[e->index]))
 	{
-		e->conversion = format[e->index];
-//		convert(ap, e);
+		e->conversion = f[e->index];
 		e->conversion_function = e->conv_funct_table[e->conversion];
 		(*e->conversion_function)(ap, e);
 	}
-	else if (
-//			ft_isascii(format[e->index]) &&
-			!ft_strchr(e->flags, format[e->index])
-			&& !ft_strchr(e->conversions, format[e->index])
-			&& !ft_strchr(e->lenmods, format[e->index]))
-		ftpf_directive_wrongchar_handler(format, e);
+	else if (!ft_strchr(e->flags, f[e->index])
+			&& !ft_strchr(e->conversions, f[e->index])
+			&& !ft_strchr(e->lenmods, f[e->index]))
+		ftpf_wrongchar_handler(f, e);
 	else
-		ftpf_directives(format, ap, e);
-	return (e->index);
+		ftpf_directives(f, ap, e);
 }
 
 void	ftpf_get_precision(const char *restrict format, t_env *e)
@@ -86,7 +88,7 @@ void	ftpf_get_lenmod(const char *restrict format, t_env *e)
 	e->index++;
 }
 
-void	ftpf_directive_wrongchar_handler(const char *restrict format, t_env *e)
+void	ftpf_wrongchar_handler(const char *restrict format, t_env *e)
 {
 	ftpf_process_flags(e);
 	e->precision = 0;
@@ -94,21 +96,8 @@ void	ftpf_directive_wrongchar_handler(const char *restrict format, t_env *e)
 	ftpf_process_output_rules(e);
 	if (!e->neg)
 		manage_field_width(e);
-//	manage_precision((void*)&format[e->index], e);
 	manage_precision(NULL, e);
 	ft_putwchar(format[e->index]);
 	if (e->neg)
 		manage_field_width(e);
-
-//	e->outputlen++;
-
-//	printf("outputlen = %d, precision = %d, fw = %d\n", e->outputlen, e->precision,
-//			e->field_width);
 }
-
-/*
-void	(*ftpf_get_conv_func(t_env *e, char conv))(va_list *ap, t_env *e)
-{
-	e->conversion_function = e->conv_funct_table[conv];
-}
-*/

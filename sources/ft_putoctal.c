@@ -6,13 +6,13 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 14:34:32 by amulin            #+#    #+#             */
-/*   Updated: 2015/12/11 14:34:33 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 19:53:25 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void ft_putoctal(unsigned long n)
+void	ft_putoctal(unsigned long long n)
 {
 	if (n > 7)
 	{

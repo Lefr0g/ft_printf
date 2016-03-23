@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/22 17:25:46 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 16:39:28 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1115,6 +1115,56 @@ void	escape_tests(void)
 
 }
 
+void	bin_tests(void)
+{
+	short			sh;
+	int				i;
+	long long		ll;
+	unsigned int	ui;
+
+	ft_putstr("\n\033[33m=================================================\n");
+	ft_putstr("============= STARTING BINARY TESTS =============\n");
+	ft_putstr("=================================================\033[0m\n");
+
+	i = 0;
+	printf("**************************** Value = %d\n", i);
+	visu_compare("%b", &i, "int");
+
+	ll = LLONG_MAX;
+	printf("**************************** Value = %d\n", i);
+	visu_compare("%llb", &ll, "long long");
+	
+	i = INT_MAX;
+	printf("**************************** Value = %d\n", i);
+	visu_compare("%b", &i, "int");
+	visu_compare("%b", &i, "int");
+
+	i = INT_MIN;
+	printf("**************************** Value = %d\n", i);
+	visu_compare("%b", &i, "int");
+
+	i = 42;
+	printf("**************************** Value = %d\n", i);
+	visu_compare("%b", &i, "int");
+	
+	i = -42;
+	printf("**************************** Value = %d\n", i);
+	visu_compare("%b", &i, "int");
+
+	ui = UINT_MAX;
+	printf("**************************** Value = %u\n", ui);
+	visu_compare("%b", &ui, "uint");
+
+	sh = SHRT_MAX;
+	printf("**************************** Value = %u\n", ui);
+	visu_compare("%hb", &sh, "short");
+
+
+	ft_putstr("\033[33m=================================================\n");
+	ft_putstr("============== END OF BINARY TESTS ==============\n");
+	ft_putstr("=================================================\033[0m\n");
+
+}
 
 int	main(void)
 {
@@ -1161,14 +1211,21 @@ int	main(void)
 
 //	dDi_tests();
 //	uU_tests();
-	oO_tests();
+//	oO_tests();
 //	xXp_tests();
 //	cC_tests();
 //	sS_tests();
 //	wild_tests();
 //	escape_tests();
 
+	bin_tests();
 
+	i = 42;
+	i = INT_MAX;
+	ft_putbin(i, sizeof(int));
+	ft_putchar('\n');
+	ft_print_memory(&i, sizeof(int));
+	ft_putchar('\n');
 
 
 //	ft_putstr("=================================================\n");

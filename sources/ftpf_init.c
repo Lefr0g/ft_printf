@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 12:56:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/22 16:47:34 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 15:09:54 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int	ftpf_init_env(t_env *e)
 	
 	e->os = ft_strdup(SYS_OS);
 	if (!ft_strcmp(e->os, "darwin"))
-		e->conversions = ft_strdup("sSpdDioOuUxXcC");
+		e->conversions = ft_strdup("sSpdDioOuUxXcCb");
 	else
-		e->conversions = ft_strdup("sSpdiouxXcC");
+		e->conversions = ft_strdup("sSpdiouxXcCb");
 	
 	e->alt = 0;
 	e->zero = 0;
@@ -95,12 +95,11 @@ void	ftpf_init_convfunctions_pointers(t_env *e)
 	e->conv_funct_table['s'] = &(ftpf_convert_sS);
 	e->conv_funct_table['S'] = &(ftpf_convert_sS);
 	e->conv_funct_table['o'] = &(ftpf_convert_oO);
-//	e->conv_funct_table['o'] = &(convert_oO);
 	e->conv_funct_table['O'] = &(ftpf_convert_oO);
-//	e->conv_funct_table['O'] = &(convert_oO);
 	e->conv_funct_table['x'] = &(ftpf_convert_xXp);
 	e->conv_funct_table['X'] = &(ftpf_convert_xXp);
 	e->conv_funct_table['p'] = &(ftpf_convert_xXp);
+	e->conv_funct_table['b'] = &(ftpf_convert_b);
 }
 
 void	ftpf_free_all(t_env *e)

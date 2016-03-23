@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 12:56:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 20:42:18 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 21:06:18 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,20 +91,20 @@ void	ftpf_init_mallocs(t_env *e)
 
 void	ftpf_init_convfunctions_pointers(t_env *e)
 {
-	e->conv_funct_table['d'] = &(ftpf_convert_dDi);
-	e->conv_funct_table['D'] = &(ftpf_convert_dDi);
-	e->conv_funct_table['i'] = &(ftpf_convert_dDi);
-	e->conv_funct_table['u'] = &(ftpf_convert_uU);
-	e->conv_funct_table['U'] = &(ftpf_convert_uU);
-	e->conv_funct_table['c'] = &(ftpf_convert_cC);
-	e->conv_funct_table['C'] = &(ftpf_convert_cC);
-	e->conv_funct_table['s'] = &(ftpf_convert_sS);
-	e->conv_funct_table['S'] = &(ftpf_convert_sS);
-	e->conv_funct_table['o'] = &(ftpf_convert_oO);
-	e->conv_funct_table['O'] = &(ftpf_convert_oO);
-	e->conv_funct_table['x'] = &(ftpf_convert_xXp);
-	e->conv_funct_table['X'] = &(ftpf_convert_xXp);
-	e->conv_funct_table['p'] = &(ftpf_convert_xXp);
+	e->conv_funct_table['d'] = &(ftpf_convert_di);
+	e->conv_funct_table['D'] = &(ftpf_convert_di);
+	e->conv_funct_table['i'] = &(ftpf_convert_di);
+	e->conv_funct_table['u'] = &(ftpf_convert_u);
+	e->conv_funct_table['U'] = &(ftpf_convert_u);
+	e->conv_funct_table['c'] = &(ftpf_convert_c);
+	e->conv_funct_table['C'] = &(ftpf_convert_c);
+	e->conv_funct_table['s'] = &(ftpf_convert_s);
+	e->conv_funct_table['S'] = &(ftpf_convert_s);
+	e->conv_funct_table['o'] = &(ftpf_convert_o);
+	e->conv_funct_table['O'] = &(ftpf_convert_o);
+	e->conv_funct_table['x'] = &(ftpf_convert_xp);
+	e->conv_funct_table['X'] = &(ftpf_convert_xp);
+	e->conv_funct_table['p'] = &(ftpf_convert_xp);
 	e->conv_funct_table['b'] = &(ftpf_convert_b);
 }
 

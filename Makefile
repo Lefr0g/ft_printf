@@ -6,7 +6,7 @@
 #    By: amulin <amulin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/10 17:35:06 by amulin            #+#    #+#              #
-#    Updated: 2016/03/23 19:57:51 by amulin           ###   ########.fr        #
+#    Updated: 2016/03/23 21:26:22 by amulin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,9 @@ PRINTHEADERS = $(addprefix $(PRINTINCLUDIR), $(PRINTHDRS))
 PRINTSRCS = ft_printf.c ft_puthex_ull.c ft_putnbr_ull.c \
 			ft_putoctal.c ftpf_init.c ft_putnbr_ll.c \
 			ft_itoa_ll.c ft_itoa_ull.c \
-			printing.c conversions_1.c lenmods.c ftpf_flags.c precision.c \
+			lenmods.c ftpf_flags.c ftpf_output_rules.c \
+			ftpf_text_conversions.c ftpf_signed_conversions.c \
+			ftpf_unsigned_conversions.c ftpf_bonus_conversions.c \
 			ft_getmax.c \
 			ftpf_directives.c
 

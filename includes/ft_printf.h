@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 20:41:06 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 21:20:22 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,26 +136,20 @@ void			ftpf_wrongchar_handler(const char *restrict format,
 /*
 **	conversions_1.c
 */
-void			ftpf_convert_dDi(va_list *ap, t_env *e);
-void			ftpf_convert_uU(va_list *ap, t_env *e);
-void			ftpf_convert_oO(va_list *ap, t_env *e);
-void			ftpf_convert_xXp(va_list *ap, t_env *e);
-void			ftpf_convert_cC(va_list *ap, t_env *e);
-void			ftpf_convert_sS(va_list *ap, t_env *e);
+void			ftpf_convert_di(va_list *ap, t_env *e);
+void			ftpf_convert_u(va_list *ap, t_env *e);
+void			ftpf_convert_o(va_list *ap, t_env *e);
+void			ftpf_convert_xp(va_list *ap, t_env *e);
+void			ftpf_convert_c(va_list *ap, t_env *e);
+void			ftpf_convert_s(va_list *ap, t_env *e);
 void			ftpf_convert_b(va_list *ap, t_env *e);
 
 void			ftpf_sS_nullexception(t_env *e);
 
-void			convert_uU(va_list *ap, t_env *e);
-void			convert_cC(va_list *ap, t_env *e);
-void			convert_oO(va_list *ap, t_env *e);
-void			convert_xX(va_list *ap, t_env *e);
-void			convert_sS(va_list *ap, t_env *e);
-
 void			ftpf_process_output_rules(t_env *e);
-void			ftpf_write_dDi_param(t_env *e);
-void			ftpf_write_oO_param(t_env *e);
-void			ftpf_write_xXp_param(t_env *e);
+void			ftpf_write_di_param(t_env *e);
+void			ftpf_write_o_param(t_env *e);
+void			ftpf_write_xp_param(t_env *e);
 
 /*
 **	modifiers.c
@@ -171,11 +165,11 @@ void			manage_modifiers_sS(va_list *ap, t_env *e);
 void			manage_modifiers_ouxX(va_list *ap, t_env *e);
 
 /*
-**	precision.c
+**	ftpf_precision.c
 */
-int				manage_precision(void *value, t_env *e);
+int				ftpf_manage_precision(void *value, t_env *e);
 char			*manage_precision_s(char *str, t_env *e);
-int				manage_field_width(t_env *e);
+int				ftpf_manage_field_width(t_env *e);
 
 /*
 **	ftpf_flags.c

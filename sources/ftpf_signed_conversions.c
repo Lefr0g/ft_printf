@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 20:46:36 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 21:21:30 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 21:33:58 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ftpf_write_di_param(t_env *e)
 
 void	ftpf_convert_di(va_list *ap, t_env *e)
 {
-	manage_modifiers_dDi(ap, e);
+	ftpf_manage_lenmod_di(ap, e);
 	if (e->precisflag && !e->precision && !e->param->ll)
 		e->noconv = 1;
 	ftpf_process_flags(e);

@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 20:49:04 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 21:22:43 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 21:40:12 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ftpf_convert_u(va_list *ap, t_env *e)
 {
-	manage_modifiers_uU(ap, e);
+	ftpf_manage_lenmod_u(ap, e);
 	if (e->precisflag && !e->precision && !e->param->ull)
 		e->noconv = 1;
 	ftpf_process_flags(e);
@@ -45,7 +45,7 @@ void	ftpf_write_o_param(t_env *e)
 
 void	ftpf_convert_o(va_list *ap, t_env *e)
 {
-	manage_modifiers_oO(ap, e);
+	ftpf_manage_lenmod_o(ap, e);
 	if (e->precisflag && !e->precision && !e->param->ull && !e->alt)
 		e->noconv = 1;
 	ftpf_process_flags(e);
@@ -61,7 +61,7 @@ void	ftpf_convert_o(va_list *ap, t_env *e)
 
 void	ftpf_convert_xp(va_list *ap, t_env *e)
 {
-	manage_modifiers_xXp(ap, e);
+	ftpf_manage_lenmod_xp(ap, e);
 	ftpf_process_flags(e);
 	if (e->precisflag && !e->precision && e->isnull)
 		e->noconv = 1;

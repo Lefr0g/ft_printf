@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 21:20:22 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 22:17:16 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,6 @@ void			ftpf_convert_c(va_list *ap, t_env *e);
 void			ftpf_convert_s(va_list *ap, t_env *e);
 void			ftpf_convert_b(va_list *ap, t_env *e);
 
-void			ftpf_sS_nullexception(t_env *e);
 
 void			ftpf_process_output_rules(t_env *e);
 void			ftpf_write_di_param(t_env *e);
@@ -152,14 +151,28 @@ void			ftpf_write_o_param(t_env *e);
 void			ftpf_write_xp_param(t_env *e);
 
 /*
-**	modifiers.c
+**	ftpf_lenmods_signed.c
 */
-void			manage_modifiers_dDi(va_list *ap, t_env *e);
-void			manage_modifiers_uU(va_list *ap, t_env *e);
-void			manage_modifiers_oO(va_list *ap, t_env *e);
-void			manage_modifiers_xXp(va_list *ap, t_env *e);
-void			manage_modifiers_cC(va_list *ap, t_env *e);
-void			manage_modifiers_sS(va_list *ap, t_env *e);
+void			ftpf_manage_lenmod_di(va_list *ap, t_env *e);
+void			ftpf_manage_lenmod_di_sub(va_list *ap, t_env *e, char **ret);
+
+/*
+**	ftpf_lenmods_text.c
+*/
+void			ftpf_manage_lenmod_c(va_list *ap, t_env *e);
+void			ftpf_manage_lenmod_s(va_list *ap, t_env *e);
+void			ftpf_manage_lenmod_s_wide(va_list *ap, t_env *e);
+void			ftpf_s_nullexception(t_env *e);
+
+/*
+**	ftpf_lenmods_unsigned.c
+*/
+void			ftpf_manage_lenmod_u(va_list *ap, t_env *e);
+void			ftpf_manage_lenmod_u_sub(va_list *ap, t_env *e, char **ret);
+void			ftpf_manage_lenmod_o(va_list *ap, t_env *e);
+void			ftpf_manage_lenmod_o_sub(va_list *ap, t_env *e, char **ret);
+void			ftpf_manage_lenmod_xp(va_list *ap, t_env *e);
+void			ftpf_manage_lenmod_xp_sub(va_list *ap, t_env *e, char **ret);
 
 //	LEGACY
 void			manage_modifiers_ouxX(va_list *ap, t_env *e);

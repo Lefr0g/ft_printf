@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 21:23:15 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 21:37:25 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ftpf_convert_c(va_list *ap, t_env *e)
 {
-	manage_modifiers_cC(ap, e);
+	ftpf_manage_lenmod_c(ap, e);
 	ftpf_process_flags(e);
 	e->precision = 0;
 	ftpf_process_output_rules(e);
@@ -30,7 +30,7 @@ void	ftpf_convert_c(va_list *ap, t_env *e)
 
 void	ftpf_convert_s(va_list *ap, t_env *e)
 {
-	manage_modifiers_sS(ap, e);
+	ftpf_manage_lenmod_s(ap, e);
 	ftpf_process_flags(e);
 	e->precision = 0;
 	ftpf_process_output_rules(e);

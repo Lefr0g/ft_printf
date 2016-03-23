@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:00:44 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/22 16:22:22 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 18:17:19 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,150 +14,171 @@
 
 void	manage_modifiers_dDi(va_list *ap, t_env *e)
 {
+	char	*itoa_ret;
+
+	itoa_ret = NULL;
 	if (!e->mod[0] && e->conversion != 'D')
 	{
 		e->param->i = (int)va_arg(*ap, int);
 		if (e->param->i < 0)
 			e->isneg = 1;
-		e->outputlen = ft_strlen(ft_itoa(e->param->i));
+		itoa_ret = ft_itoa(e->param->i);
 	}
 	else if (!ft_strcmp(e->mod, "l") || e->conversion == 'D')
 	{
 		e->param->l = (long)va_arg(*ap, long);	
 		if (e->param->l < 0)
 			e->isneg = 1;
-		e->outputlen = ft_strlen(ft_itoa_ll(e->param->l, 10));
+		itoa_ret = ft_itoa_ll(e->param->l, 10);
 	}
 	else if (!ft_strcmp(e->mod, "hh"))
 	{
 		e->param->sc = (int)va_arg(*ap, int);	
 		if (e->param->sc < 0)
 			e->isneg = 1;
-		e->outputlen = ft_strlen(ft_itoa(e->param->sc));
+		itoa_ret = ft_itoa(e->param->sc);
 	}
 	else if (!ft_strcmp(e->mod, "h"))
 	{
 		e->param->sh = (int)va_arg(*ap, int);
 		if (e->param->sh < 0)
 			e->isneg = 1;
-		e->outputlen = ft_strlen(ft_itoa(e->param->sh));
+		itoa_ret = ft_itoa(e->param->sh);
 	}
 	else if (!ft_strcmp(e->mod, "ll"))
 	{
 		e->param->ll = (long long)va_arg(*ap, long long);
 		if (e->param->ll < 0)
 			e->isneg = 1;
-		e->outputlen = ft_strlen(ft_itoa_ll(e->param->ll, 10));
+		itoa_ret = ft_itoa_ll(e->param->ll, 10);
 	}
 	else if (!ft_strcmp(e->mod, "j"))
 	{
 		e->param->imax = (intmax_t)va_arg(*ap, intmax_t);
 		if (e->param->imax < 0)
 			e->isneg = 1;
-		e->outputlen = ft_strlen(ft_itoa_ll(e->param->imax, 10));
+		itoa_ret = ft_itoa_ll(e->param->imax, 10);
 	}
 	else if (!ft_strcmp(e->mod, "z"))
 	{
 		e->param->l = (long)va_arg(*ap, long);
 		if (e->param->l < 0)
 			e->isneg = 1;
-		e->outputlen = ft_strlen(ft_itoa_ll(e->param->l, 10));
+		itoa_ret = ft_itoa_ll(e->param->l, 10);
 	}
+	e->outputlen = ft_strlen(itoa_ret);
+	if (itoa_ret)
+		ft_strdel(&itoa_ret);
 }
 
 void	manage_modifiers_uU(va_list *ap, t_env *e)
 {
+	char	*itoa_ret;
+
+	itoa_ret = NULL;
 	if (!e->mod[0] && e->conversion != 'U')
 	{
 		e->param->u = (unsigned int)va_arg(*ap, unsigned int);
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->u, 10));
+		itoa_ret = ft_itoa_ull(e->param->u, 10);
 	}
 	else if (!ft_strcmp(e->mod, "l") || e->conversion == 'U')
 	{
 		e->param->ul = (unsigned long)va_arg(*ap, unsigned long);	
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 10));
+		itoa_ret = ft_itoa_ull(e->param->ul, 10);
 	}
 	else if (!ft_strcmp(e->mod, "hh"))
 	{
 		e->param->uc = (unsigned int)va_arg(*ap, unsigned int);	
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->uc, 10));
+		itoa_ret = ft_itoa_ull(e->param->uc, 10);
 	}
 	else if (!ft_strcmp(e->mod, "h"))
 	{
 		e->param->ush = (unsigned int)va_arg(*ap, unsigned int);
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ush, 10));
+		itoa_ret = ft_itoa_ull(e->param->ush, 10);
 	}
 	else if (!ft_strcmp(e->mod, "ll"))
 	{
 		e->param->ull = (unsigned long long)va_arg(*ap, unsigned long long);
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ull, 10));
+		itoa_ret = ft_itoa_ull(e->param->ull, 10);
 	}
 	else if (!ft_strcmp(e->mod, "j"))
 	{
 		e->param->imax = (uintmax_t)va_arg(*ap, uintmax_t);
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->imax, 10));
+		itoa_ret = ft_itoa_ull(e->param->imax, 10);
 	}
 	else if (!ft_strcmp(e->mod, "z"))
 	{
 		e->param->ul = (unsigned long)va_arg(*ap, unsigned long);
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 10));
+		itoa_ret = ft_itoa_ull(e->param->ul, 10);
 	}
+	e->outputlen = ft_strlen(itoa_ret);
+	if (itoa_ret)
+		ft_strdel(&itoa_ret);
 }
 
 void	manage_modifiers_oO(va_list *ap, t_env *e)
-{
+{	
+	char	*itoa_ret;
+
+	itoa_ret = NULL;
 	if (!e->mod[0] && e->conversion != 'O')
 	{
 		e->param->u = (unsigned int)va_arg(*ap, unsigned int);
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->u, 8));
+		itoa_ret = ft_itoa_ull(e->param->u, 8);
 	}
 	else if (!ft_strcmp(e->mod, "l") || e->conversion == 'O')
 	{
 		e->param->ul = (unsigned long)va_arg(*ap, unsigned long);	
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 8));
+		itoa_ret = ft_itoa_ull(e->param->ul, 8);
 	}
 	else if (!ft_strcmp(e->mod, "hh"))
 	{
 		e->param->uc = (unsigned int)va_arg(*ap, unsigned int);	
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->uc, 8));
+		itoa_ret = ft_itoa_ull(e->param->uc, 8);
 	}
 	else if (!ft_strcmp(e->mod, "h"))
 	{
 		e->param->ush = (unsigned int)va_arg(*ap, unsigned int);
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ush, 8));
+		itoa_ret = ft_itoa_ull(e->param->ush, 8);
 	}
 	else if (!ft_strcmp(e->mod, "ll"))
 	{
 		e->param->ull = (unsigned long long)va_arg(*ap, unsigned long long);
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ull, 8));
+		itoa_ret = ft_itoa_ull(e->param->ull, 8);
 	}
 	else if (!ft_strcmp(e->mod, "j"))
 	{
 		e->param->imax = (uintmax_t)va_arg(*ap, uintmax_t);
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->imax, 8));
+		itoa_ret = ft_itoa_ull(e->param->imax, 8);
 	}
 	else if (!ft_strcmp(e->mod, "z"))
 	{
 		e->param->ul = (unsigned long)va_arg(*ap, unsigned long);
-		e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 8));
+		itoa_ret = ft_itoa_ull(e->param->ul, 8);
 	}
+	e->outputlen = ft_strlen(itoa_ret);
+	if (itoa_ret)
+		ft_strdel(&itoa_ret);
 }
 
 void	manage_modifiers_xXp(va_list *ap, t_env *e)
 {
+	char	*itoa_ret;
+
+	itoa_ret = NULL;
 	if (ft_strchr("xX", e->conversion) && e->mod[0] == 'h')
 	{
 		if (!ft_strcmp(e->mod, "hh"))
 		{
 			if (!(e->param->uc = (unsigned char)va_arg(*ap, unsigned int)))
 				e->isnull = 1;
-			e->outputlen = ft_strlen(ft_itoa_ull(e->param->uc, 16));
+			itoa_ret = ft_itoa_ull(e->param->uc, 16);
 		}
 		else if (!ft_strcmp(e->mod, "h"))
 		{
 			if (!(e->param->ush = (unsigned short)va_arg(*ap, unsigned int)))
 				e->isnull = 1;
-			e->outputlen = ft_strlen(ft_itoa_ull(e->param->ush, 16));
+			itoa_ret = ft_itoa_ull(e->param->ush, 16);
 		}
 	}
 	else
@@ -166,15 +187,18 @@ void	manage_modifiers_xXp(va_list *ap, t_env *e)
 		{
 			if (!(e->param->u = (unsigned int)va_arg(*ap, unsigned int*)))
 				e->isnull = 1;
-			e->outputlen = ft_strlen(ft_itoa_ull(e->param->u, 16));
+			itoa_ret = ft_itoa_ull(e->param->u, 16);
 		}
 		else
 		{
 			if (!(e->param->ul = (unsigned long)va_arg(*ap, unsigned int*)))
 				e->isnull = 1;
-			e->outputlen = ft_strlen(ft_itoa_ull(e->param->ul, 16));
+			itoa_ret = ft_itoa_ull(e->param->ul, 16);
 		}
 	}
+	e->outputlen = ft_strlen(itoa_ret);
+	if (itoa_ret)
+		ft_strdel(&itoa_ret);
 }
 
 void	manage_modifiers_cC(va_list *ap, t_env *e)

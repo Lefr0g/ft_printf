@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 16:39:28 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 18:21:05 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -990,9 +990,9 @@ void	sS_tests(void)
 	wchar_t	*wstr = L"er我是ty一只猫。er5";
 	wchar_t	*wstr2 = L"er我是ty一只猫。er5d";
 	wchar_t	*wstr3 = L"er我是ty一只猫。er5是";
-	wchar_t	*wstr4;
+//	wchar_t	*wstr4;
 
-	wstr4 = ft_memalloc(50);
+//	wstr4 = ft_memalloc(50);
 
 /*
 	ft_print_memory(wstr, ft_wstr_memsize(wstr));
@@ -1168,10 +1168,6 @@ void	bin_tests(void)
 
 int	main(void)
 {
-	char	c;
-	wint_t	wc;
-	char	*str;
-
 	ft_putstr("\033[34m=================================================\n");
 	ft_putstr("============ STARTING ALL UNIT TESTS  ===========\n");
 	ft_putstr("=================================================\033[0m\n\n");
@@ -1180,13 +1176,19 @@ int	main(void)
 //	printf("\033[31m********************************************* CHECK\033[0m\n");
 
 	setlocale(LC_ALL, "");
-	c = 'D';
-	str = ft_strdup("String test OK");
 
-	(void)str;
 
-	int				i;
-	unsigned int	ui;
+//	dDi_tests();
+//	uU_tests();
+//	oO_tests();
+//	xXp_tests();
+//	cC_tests();
+	sS_tests();
+//	wild_tests();
+//	escape_tests();
+//	bin_tests();
+
+
 /*
 	i = 4294967296;
 	ui = 4294967296;
@@ -1209,24 +1211,15 @@ int	main(void)
 
 
 
-//	dDi_tests();
-//	uU_tests();
-//	oO_tests();
-//	xXp_tests();
-//	cC_tests();
-//	sS_tests();
-//	wild_tests();
-//	escape_tests();
 
-	bin_tests();
-
+/*
 	i = 42;
 	i = INT_MAX;
 	ft_putbin(i, sizeof(int));
 	ft_putchar('\n');
 	ft_print_memory(&i, sizeof(int));
 	ft_putchar('\n');
-
+*/
 
 //	ft_putstr("=================================================\n");
 
@@ -1234,27 +1227,15 @@ int	main(void)
 //	compare_flags_on_int("p");
 	
 
-	int				j;
-	long 			k;
-	unsigned long	ulong;
-	int				*ptrj;
-	char			*str2;
-
-	j = 12;
-	ptrj = &j;
-	(void)ptrj;
-	(void)str2;
-
 
 //	visu_compare("4567 |%-10]5d| plip\n", ptrj, "int");
 
 //	printf("4567 |%-10]5d| plip\n", 12);
 //	printf("4567 |%10]5d| plip\n", 12);
-	k = -12;
 
 //	compare_flags_on_int("p");
 
-	str2 = ft_strdup("printf\t\t>>>\t'\033[32mThis is a simple string test.\033[0m'\n");
+//	str2 = ft_strdup("printf\t\t>>>\t'\033[32mThis is a simple string test.\033[0m'\n");
 
 /*	
 	j = 0;

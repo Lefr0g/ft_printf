@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 18:57:05 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/18 20:49:51 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/23 18:11:35 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,16 @@
 
 int		ftpf_directives(const char *restrict format, va_list *ap, t_env *e)
 {
+	char	*itoa_ret;
+
 	if (!ftpf_get_flags(format, e))
 		e->index++;
 	if (ft_isdigit(format[e->index]) && format[e->index] != '0')
 	{
 		e->field_width = ft_atoi(&format[e->index]);
-		e->index += ft_strlen(ft_itoa(e->field_width));
+		itoa_ret = ft_itoa(e->field_width);
+		e->index += ft_strlen(itoa_ret);
+		ft_strdel(&itoa_ret);
 	}
 	if (format[e->index] == '.')
 		ftpf_get_precision(format, e);
@@ -56,11 +60,15 @@ int		ftpf_directives(const char *restrict format, va_list *ap, t_env *e)
 
 void	ftpf_get_precision(const char *restrict format, t_env *e)
 {
+	char	*itoa_ret;
+
 	e->precisflag = 1;
 	if (ft_isdigit(format[e->index + 1]))
 	{
 		e->precision = ft_atoi(&format[e->index + 1]);
-		e->index += ft_strlen(ft_itoa(e->precision));
+		itoa_ret = ft_itoa(e->precision);
+		e->index += ft_strlen(itoa_ret);
+		ft_strdel(&itoa_ret);
 	}
 	else
 		e->precision = 0;

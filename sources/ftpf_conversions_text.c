@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:49:12 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 21:37:25 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/24 19:36:17 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ void	ftpf_convert_c(va_list *ap, t_env *e)
 		ft_putchar(e->param->uc);
 	if (e->neg)
 		ftpf_manage_field_width(e);
+	if (e->error)
+	{
+		e->outputlen = -1;
+		e->field_width = -1;
+	}
 }
 
 void	ftpf_convert_s(va_list *ap, t_env *e)

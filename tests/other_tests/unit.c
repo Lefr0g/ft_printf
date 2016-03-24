@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/24 16:05:46 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/24 19:49:13 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,22 @@ void	visu_compare(char *str, void *arg, char *type)
 		fflush(stdout);
 		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
 		ftpf_out = ft_printf(str, *(uintmax_t*)arg);
+	}
+	else if (!ft_strcmp(type, "float"))
+	{
+		ft_putstr("printf\t\t>>>\t'\033[32m");
+		pf_out = printf(str, *(float*)arg);
+		fflush(stdout);
+		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
+		ftpf_out = ft_printf(str, *(float*)arg);
+	}
+	else if (!ft_strcmp(type, "double"))
+	{
+		ft_putstr("printf\t\t>>>\t'\033[32m");
+		pf_out = printf(str, *(double*)arg);
+		fflush(stdout);
+		ft_putstr("\033[0m'\nft_printf\t>>>\t'\033[36m");
+		ftpf_out = ft_printf(str, *(double*)arg);
 	}
 	ft_putendl("\033[0m'");
 	if (pf_out == ftpf_out)
@@ -952,7 +968,7 @@ void	xXp_tests(void)
 
 void	cC_tests(void)
 {
-	char		c;
+	char			c;
 	wint_t			wi;
 
 	ft_putstr("\n\033[33m=================================================\n");
@@ -973,16 +989,66 @@ void	cC_tests(void)
 	visu_compare("%lc", &c, "char");
 
 	c = 0;
-	printf("**************************** Value = %c\n", c);
+	ft_putbin((char)c, sizeof(char));
+	ft_putchar('\n');
+	printf("**************************** Value = %hhd\n", c);
 	visu_compare("%c", &c, "char");
 	visu_compare("%.c", &c, "char");
 	
+	c = CHAR_MIN;
+	ft_putbin((char)c, sizeof(char));
+	ft_putchar('\n');
+	printf("**************************** Value = %hd\n", c);
+	visu_compare("%c", &c, "char");
+	visu_compare("%.c", &c, "char");
+
+	/*
+	c = 200;
+	ft_putbin((char)c, sizeof(char));
+	ft_putchar('\n');
+	printf("**************************** Value = %hd\n", c);
+	visu_compare("%c", &c, "char");
+	visu_compare("%.c", &c, "char");
+*/
+
 	wi = L'\xe9';
-	printf("**************************** Value = %C\n", wi);
+	ft_putbin((wint_t)wi, sizeof(wint_t));
+	ft_putchar('\n');
+	printf("**************************** Value = %d (%C)\n", wi, wi);
 	visu_compare("%C", &wi, "wint_t");
 	visu_compare("%lc", &wi, "wint_t");
 	visu_compare("%llc", &wi, "wint_t");
 	visu_compare("%hhc", &wi, "wint_t");
+
+	wi = 0xD7FF;
+	ft_putbin((wint_t)wi, sizeof(wint_t));
+	ft_putchar('\n');
+	printf("**************************** Value = %d\n", wi);
+	visu_compare("%C", &wi, "wint_t");
+	visu_compare("%lc", &wi, "wint_t");
+	visu_compare("%llc", &wi, "wint_t");
+	visu_compare("%hhc", &wi, "wint_t");
+
+	wi = 0xD800;
+	ft_putbin((wint_t)wi, sizeof(wint_t));
+	ft_putchar('\n');
+	printf("**************************** Value = %d\n", wi);
+	visu_compare("%C", &wi, "wint_t");
+	visu_compare("%lc", &wi, "wint_t");
+	visu_compare("%llc", &wi, "wint_t");
+	visu_compare("%hhc", &wi, "wint_t");
+
+
+	wi = -1;
+	ft_putbin((wint_t)wi, sizeof(wint_t));
+	ft_putchar('\n');
+	printf("**************************** Value = %d\n", wi);
+	visu_compare("%C", &wi, "wint_t");
+	visu_compare("%lc", &wi, "wint_t");
+	visu_compare("%llc", &wi, "wint_t");
+	visu_compare("%hhc", &wi, "wint_t");
+
+
 
 	ft_putstr("\033[33m=================================================\n");
 	ft_putstr("=========== END OF cC CONVERSION TESTS ==========\n");
@@ -1069,6 +1135,41 @@ void	sS_tests(void)
 
 	ft_putstr("\033[33m=================================================\n");
 	ft_putstr("=========== END OF sS CONVERSION TESTS ==========\n");
+	ft_putstr("=================================================\033[0m\n");
+}
+
+void	fF_tests(void)
+{
+	float	flt;
+	double	dbl;
+
+	ft_putstr("\n\033[33m=================================================\n");
+	ft_putstr("========== STARTING fF CONVERSION TESTS =========\n");
+	ft_putstr("=================================================\033[0m\n");
+
+	ft_putchar('\n');
+	flt = 42.6543;
+	ft_print_memory(&flt, sizeof(float));
+	ft_putbin(flt, sizeof(float));
+	ft_putchar('\n');
+	printf("******************** Value (float) = %f\n", flt);
+	visu_compare("%f", &flt, "float");
+	visu_compare("%f", &flt, "double");
+	visu_compare("%F", &flt, "float");
+	visu_compare("%F", &flt, "double");
+
+	dbl = 42.6543;
+	ft_print_memory(&flt, sizeof(double));
+	ft_putbin(dbl, sizeof(double));
+	ft_putchar('\n');
+	printf("******************** Value (double) = %f\n", flt);
+	visu_compare("%f", &dbl, "float");
+	visu_compare("%f", &dbl, "double");
+	visu_compare("%F", &dbl, "float");
+	visu_compare("%F", &dbl, "double");
+
+	ft_putstr("\033[33m=================================================\n");
+	ft_putstr("=========== END OF fF CONVERSION TESTS ==========\n");
 	ft_putstr("=================================================\033[0m\n");
 }
 
@@ -1211,16 +1312,17 @@ int	main(void)
 
 //	printf("\033[31m********************************************* CHECK\033[0m\n");
 
-//	setlocale(LC_ALL, "");
+	setlocale(LC_ALL, "");
 
 
 //	dDi_tests();
 //	uU_tests();
 //	oO_tests();
 //	xXp_tests();
-//	cC_tests();
-//	sS_tests();
-	wild_tests();
+	sS_tests();
+	cC_tests();
+//	fF_tests();
+//	wild_tests();
 //	escape_tests();
 //	bin_tests();
 

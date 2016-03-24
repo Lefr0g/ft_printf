@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/24 16:23:03 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/24 19:40:17 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct	s_env
 	int					isneg;
 	int					isnull;
 	int					noconv;
+	int					error;
 }				t_env;
 
 int				ft_printf(const char *restrict format, ...);

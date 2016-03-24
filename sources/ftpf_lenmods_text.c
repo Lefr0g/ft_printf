@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 21:55:05 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 21:58:56 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/24 19:48:03 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,21 @@
 
 void	ftpf_manage_lenmod_c(va_list *ap, t_env *e)
 {
+	int	len;
+
 	if (!ft_strcmp(e->mod, "l") || e->conversion == 'C')
 	{
 		e->param->wi = (wint_t)va_arg(*ap, wint_t);
-		e->outputlen += ft_wchar_utf8len(e->param->wi);
+		if (!(len = ft_wchar_utf8len(e->param->wi)))
+			e->error = 1;
+		else
+			e->outputlen += len;
 	}
 	else
 	{
 		e->param->i = (int)va_arg(*ap, int);
+		if (!(e->param->i < 0) && !ft_wchar_utf8len(e->param->wi))
+			e->error = 1;
 		e->outputlen++;
 	}
 }

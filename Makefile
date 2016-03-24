@@ -6,7 +6,7 @@
 #    By: amulin <amulin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/10 17:35:06 by amulin            #+#    #+#              #
-#    Updated: 2016/03/24 12:50:01 by amulin           ###   ########.fr        #
+#    Updated: 2016/03/24 14:30:02 by amulin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,15 +38,12 @@ PRINTINCLUDIR = includes/
 
 PRINTHEADERS = $(addprefix $(PRINTINCLUDIR), $(PRINTHDRS))
 
-PRINTSRCS = ft_printf.c ft_puthex_ull.c ft_putnbr_ull.c \
-			ft_putoctal.c ftpf_init.c ft_putnbr_ll.c \
-			ft_itoa_ll.c ft_itoa_ull.c \
+PRINTSRCS = ft_printf.c ftpf_init.c \
 			ftpf_lenmods_signed.c ftpf_lenmods_unsigned.c \
 			ftpf_lenmods_text.c ftpf_lenmods_xp.c \
 			ftpf_flags.c ftpf_output_rules.c \
 			ftpf_conversions_text.c ftpf_conversions_signed.c \
 			ftpf_conversions_unsigned.c ftpf_conversions_bonus.c \
-			ft_getmax.c \
 			ftpf_directives.c
 
 PRINTSRCDIR = sources/
@@ -72,6 +69,8 @@ LIBFTSRCS = ft_atoi.c ft_isdigit.c ft_itoa.c ft_putchar.c ft_putendl.c \
 			ft_uni_to_utf8.c ft_putwchar.c ft_putwstr.c ft_wstr_memsize.c \
 			ft_wchar_utf8len.c ft_wstr_utf8len.c ft_wcslen.c ft_wcsncpy.c \
 			ft_utf8ncpy.c \
+			ft_getmax.c ft_itoa_ll.c ft_itoa_ull.c ft_putnbr_ll.c \
+			ft_putnbr_ull.c ft_puthex_ull.c ft_putoctal.c \
 			ft_abs.c ft_abs_ll.c ft_putbin.c \
 
 LIBFTSRCDIR = libft/

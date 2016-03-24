@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/24 12:57:29 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/24 14:26:47 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,17 +207,5 @@ void			ftpf_process_flag_plus(t_env *e);
 */
 void			manage_print_all(t_env *e);
 void			print_null_ptr(t_env *e);
-
-/*
-**	others
-*/
-int				ft_getmax(int a, int b);
-void			ft_puthex_ull(unsigned long long int n, char *mode);
-void			ft_putoctal(unsigned long long n);
-void			ft_putnbr_ull(unsigned long long int n);
-void			ft_putnbr_ll(long long n);
-char			*ft_itoa_ll(long long int n, unsigned int base);
-char			*ft_itoa_ull(unsigned long long n, unsigned int base);
-
 
 #endif

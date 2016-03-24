@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 19:12:32 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/24 14:30:44 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1189,13 +1189,24 @@ int	main(void)
 //	uU_tests();
 //	oO_tests();
 //	xXp_tests();
-//	cC_tests();
-//	sS_tests();
+	cC_tests();
+	sS_tests();
 //	wild_tests();
 //	escape_tests();
 //	bin_tests();
 
+	
+//	printf("%s", 1);
+//	ft_printf("%s", 1);
 
+//	ft_printf("%c%c%c%c", NULL);
+}
+
+
+
+
+//	OLD STUFF
+//
 /*
 	i = 4294967296;
 	ui = 4294967296;
@@ -1551,9 +1562,6 @@ int	main(void)
 //	ptrj = ft_strdup("Check hello");
 //	visu_compare("{%30s}", ptrj, "char*");
 
-	ft_putstr("\n\033[34m=================================================\n");
-	ft_putendl("================= END OF TESTS ==================");
-	ft_putstr("=================================================\033[0m\n");
 
 /*
 //	setlocale(LC_CTYPE, "");
@@ -1597,10 +1605,6 @@ int	main(void)
 
 	printf("\nG%lcrard !\n", L'\xe9');
 */
-
-
-
-	ft_putendl("===================== END =======================");
 
 	
 //	visu_compare("|%10d|", ptrj, "int");
@@ -1680,5 +1684,3 @@ int	main(void)
 
 //	visu_compare("%#5x", &i, "int");
 */
-	return (0);
-}

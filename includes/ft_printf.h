@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/24 14:26:47 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/24 16:23:03 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef union	u_param
 	char				*s;
 }				t_param;
 
-typedef struct			s_env
+typedef struct	s_env
 {
 	char				*os;
 	t_param				*param;
@@ -93,7 +93,7 @@ typedef struct			s_env
 	char				*mod;
 	unsigned char		conversion;
 	char				spacer;
-	char				*xX_prefix;
+	char				*x_prefix;
 	int					p_conv;
 	int					null_printed;
 	void				(*conversion_function)(va_list *ap, struct s_env *e);
@@ -101,15 +101,11 @@ typedef struct			s_env
 	int					isneg;
 	int					isnull;
 	int					noconv;
-}						t_env;
+}				t_env;
 
 int				ft_printf(const char *restrict format, ...);
 void			ftpf_conversion_call(t_env *e, const char *restrict format,
 		va_list *ap, int *convlen);
-
-
-int				convert(va_list *ap, t_env *e);
-
 
 /*
 **	ftpf_init.c
@@ -127,11 +123,12 @@ int				ftpf_directives(const char *restrict format, va_list *ap,
 		t_env *e);
 void			ftpf_directives_action(const char *restrict f, va_list *ap,
 		t_env *e);
-void			ftpf_get_precision(const char *restrict format, t_env *e);
-void			ftpf_get_lenmod(const char *restrict format, t_env *e);
+void			ftpf_get_precision(const char *restrict format, va_list *ap,
+		t_env *e);
 void			ftpf_wrongchar_handler(const char *restrict format,
 		t_env *e);
-//void			(*ftpf_get_conv_funct(t_env *e, char conv))(va_list *ap, t_env *e);
+void			ftpf_get_field_width(const char *restrict format, va_list *ap,
+		t_env *e);
 
 /*
 **	ftpf_conversions_signed.c

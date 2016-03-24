@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 18:57:05 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 21:24:14 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/24 16:16:20 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,29 @@
 
 int		ftpf_directives(const char *restrict format, va_list *ap, t_env *e)
 {
-	char	*itoa_ret;
-
 	if (!ftpf_get_flags(format, e))
 		e->index++;
+	ftpf_get_field_width(format, ap, e);
+	if (format[e->index] == '.')
+		ftpf_get_precision(format, ap, e);
+	if (ft_strchr(e->lenmods, format[e->index]))
+	{
+		e->mod[0] = format[e->index];
+		if (format[e->index] == format[e->index + 1])
+		{
+			e->mod[1] = format[e->index + 1];
+			e->index++;
+		}
+		e->index++;
+	}
+	ftpf_directives_action(format, ap, e);
+	return (e->index);
+}
+
+void	ftpf_get_field_width(const char *restrict format, va_list *ap, t_env *e)
+{
+	char	*itoa_ret;
+
 	if (ft_isdigit(format[e->index]) && format[e->index] != '0')
 	{
 		e->field_width = ft_atoi(&format[e->index]);
@@ -36,12 +55,16 @@ int		ftpf_directives(const char *restrict format, va_list *ap, t_env *e)
 		e->index += ft_strlen(itoa_ret);
 		ft_strdel(&itoa_ret);
 	}
-	if (format[e->index] == '.')
-		ftpf_get_precision(format, e);
-	if (ft_strchr(e->lenmods, format[e->index]))
-		ftpf_get_lenmod(format, e);
-	ftpf_directives_action(format, ap, e);
-	return (e->index);
+	else if (format[e->index] == '*')
+	{
+		e->field_width = (int)va_arg(*ap, int);
+		if (e->field_width < 0)
+		{
+			e->neg = 1;
+			e->field_width = -e->field_width;
+		}
+		e->index++;
+	}
 }
 
 void	ftpf_directives_action(const char *restrict f, va_list *ap, t_env *e)
@@ -52,7 +75,8 @@ void	ftpf_directives_action(const char *restrict f, va_list *ap, t_env *e)
 		e->conversion_function = e->conv_funct_table[e->conversion];
 		(*e->conversion_function)(ap, e);
 	}
-	else if (!ft_strchr(e->flags, f[e->index])
+	else if (!ft_isdigit(f[e->index]) && f[e->index] != '*'
+			&& !ft_strchr(e->flags, f[e->index])
 			&& !ft_strchr(e->conversions, f[e->index])
 			&& !ft_strchr(e->lenmods, f[e->index]))
 		ftpf_wrongchar_handler(f, e);
@@ -60,7 +84,7 @@ void	ftpf_directives_action(const char *restrict f, va_list *ap, t_env *e)
 		ftpf_directives(f, ap, e);
 }
 
-void	ftpf_get_precision(const char *restrict format, t_env *e)
+void	ftpf_get_precision(const char *restrict format, va_list *ap, t_env *e)
 {
 	char	*itoa_ret;
 
@@ -72,19 +96,18 @@ void	ftpf_get_precision(const char *restrict format, t_env *e)
 		e->index += ft_strlen(itoa_ret);
 		ft_strdel(&itoa_ret);
 	}
-	else
-		e->precision = 0;
-	e->index++;
-}
-
-void	ftpf_get_lenmod(const char *restrict format, t_env *e)
-{
-	e->mod[0] = format[e->index];
-	if (format[e->index] == format[e->index + 1])
+	else if (format[e->index + 1] == '*')
 	{
-		e->mod[1] = format[e->index + 1];
+		e->precision = (int)va_arg(*ap, int);
+		if (e->precision < 0)
+		{
+			e->precision = 0;
+			e->precisflag = 0;
+		}
 		e->index++;
 	}
+	else
+		e->precision = 0;
 	e->index++;
 }
 

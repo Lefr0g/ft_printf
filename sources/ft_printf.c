@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:30 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 19:59:20 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/24 16:22:48 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,6 @@
 **		3/ Once the entire format string has been parsed, va_end() is called,
 **		   and the function ends.
 */
-
-void	ftpf_conversion_call(t_env *e, const char *restrict format,
-		va_list *ap, int *convlen)
-{
-	e->index++;
-	if (format[e->index])
-	{
-		ftpf_directives(format, ap, e);
-		*convlen += ft_getmax(e->outputlen, e->field_width);
-		ftpf_reinit_env(e);
-	}
-	else
-	{
-		while (format[e->index + 1])
-			e->index++;
-	}
-}
 
 int		ft_printf(const char *restrict format, ...)
 {
@@ -75,4 +58,21 @@ int		ft_printf(const char *restrict format, ...)
 	va_end(ap);
 	ftpf_free_all(&e);
 	return (step + convlen);
+}
+
+void	ftpf_conversion_call(t_env *e, const char *restrict format,
+		va_list *ap, int *convlen)
+{
+	e->index++;
+	if (format[e->index])
+	{
+		ftpf_directives(format, ap, e);
+		*convlen += ft_getmax(e->outputlen, e->field_width);
+		ftpf_reinit_env(e);
+	}
+	else
+	{
+		while (format[e->index + 1])
+			e->index++;
+	}
 }

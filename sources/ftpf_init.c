@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 12:56:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 21:06:18 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/24 16:19:02 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		ftpf_init_env(t_env *e)
 	e->isnull = 0;
 	e->noconv = 0;
 	return (!e->param || !e->lenmods || !e->os || !e->conversions
-			|| !e->mod || !e->xX_prefix);
+			|| !e->mod || !e->x_prefix);
 }
 
 void	ftpf_init_mallocs(t_env *e)
@@ -81,7 +81,7 @@ void	ftpf_init_mallocs(t_env *e)
 	e->param = (t_param*)malloc(sizeof(t_param));
 	ft_bzero(e->param, sizeof(unsigned long long));
 	e->mod = ft_strnew(3);
-	e->xX_prefix = ft_strnew(3);
+	e->x_prefix = ft_strnew(3);
 }
 
 /*
@@ -116,5 +116,5 @@ void	ftpf_free_all(t_env *e)
 	ft_memdel((void**)&e->os);
 	ft_memdel((void**)&e->param);
 	ft_memdel((void**)&e->mod);
-	ft_memdel((void**)&e->xX_prefix);
+	ft_memdel((void**)&e->x_prefix);
 }

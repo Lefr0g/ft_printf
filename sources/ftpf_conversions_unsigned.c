@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 20:49:04 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 21:40:12 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/24 16:18:15 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ void	ftpf_convert_xp(va_list *ap, t_env *e)
 	ftpf_process_output_rules(e);
 	if (e->zero && !e->precisflag && ((ft_strchr("xX", e->conversion)
 					&& e->alt && !e->isnull) || e->conversion == 'p'))
-		ft_putstr(e->xX_prefix);
+		ft_putstr(e->x_prefix);
 	if (!e->neg)
 		ftpf_manage_field_width(e);
 	if ((!e->zero || e->precisflag) && ((ft_strchr("xX", e->conversion)
 					&& e->alt && !e->isnull) || e->conversion == 'p'))
-		ft_putstr(e->xX_prefix);
+		ft_putstr(e->x_prefix);
 	ftpf_manage_precision(&(e->param->ll), e);
 	if (!e->noconv)
 		ftpf_write_xp_param(e);

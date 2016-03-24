@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/24 14:30:44 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/24 16:05:46 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1074,6 +1074,8 @@ void	sS_tests(void)
 
 void	wild_tests(void)
 {
+	int				precision;
+	int				field_width;
 	int				i;
 
 	ft_putstr("\n\033[33m=================================================\n");
@@ -1084,6 +1086,33 @@ void	wild_tests(void)
 	printf("**************************** Value = %d\n", i);
 	visu_compare("%:d", &i, "int");
 	visu_compare("%*d", &i, "int");
+	visu_compare("%.*d", &i, "int");
+
+	printf("i = '%*.*d'\n", 6, 3, i);
+	ft_putchar('\n');
+
+	printf("{%.*s}\n", -5, "42");
+	ft_printf("{%.*s}\n", -5, "42");
+
+	ft_putchar('\n');
+
+	printf("*3d (5, 0) : {%*3d}\n", 5, 0);
+	ft_printf("*3d (5, 0) : {%*3d}\n", 5, 0);
+
+	printf("3*d (5, 0) : {%3*d}\n", 0, 0);
+	ft_printf("3*d (5, 0) : {%3*d}\n", 0, 0);
+
+	printf("*d (0, 0) : {%*d}\n", 0, 0);
+	ft_printf("*d (0, 0) : {%*d}\n", 0, 0);
+
+	printf("3d (0) : {%3d}\n", 0);
+	ft_printf("3d (0) : {%3d}\n", 0);
+
+	printf("*5d (5, 0) : {%*5d}\n", 5, 0);
+	ft_printf("*5d (5, 0) : {%*5d}\n", 5, 0);
+
+	ft_putchar('\n');
+	ft_printf("{%*3d}\n", 0, 0);
 	
 	ft_putstr("\033[33m=================================================\n");
 	ft_putstr("============ END OF * WIDLCARD TESTS ============\n");
@@ -1182,16 +1211,16 @@ int	main(void)
 
 //	printf("\033[31m********************************************* CHECK\033[0m\n");
 
-	setlocale(LC_ALL, "");
+//	setlocale(LC_ALL, "");
 
 
-	dDi_tests();
+//	dDi_tests();
 //	uU_tests();
 //	oO_tests();
 //	xXp_tests();
-	cC_tests();
-	sS_tests();
-//	wild_tests();
+//	cC_tests();
+//	sS_tests();
+	wild_tests();
 //	escape_tests();
 //	bin_tests();
 

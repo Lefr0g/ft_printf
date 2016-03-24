@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 20:34:39 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/24 16:18:38 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,15 @@ void	ftpf_process_flag_alt(t_env *e)
 	if (ft_strchr("xX", e->conversion))
 	{
 		if (e->conversion == 'x')
-			ft_strcpy(e->xX_prefix, "0x");
+			ft_strcpy(e->x_prefix, "0x");
 		else if (e->conversion == 'X')
-			ft_strcpy(e->xX_prefix, "0X");
+			ft_strcpy(e->x_prefix, "0X");
 		if (!e->isnull)
 			e->outputlen += 2;
 	}
 	else if (e->conversion == 'p')
 	{
-		ft_strcpy(e->xX_prefix, "0x");
+		ft_strcpy(e->x_prefix, "0x");
 		e->outputlen += 2;
 	}
 }

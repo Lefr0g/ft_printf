@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/23 22:17:16 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/24 12:57:29 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,21 +134,37 @@ void			ftpf_wrongchar_handler(const char *restrict format,
 //void			(*ftpf_get_conv_funct(t_env *e, char conv))(va_list *ap, t_env *e);
 
 /*
-**	conversions_1.c
+**	ftpf_conversions_signed.c
 */
 void			ftpf_convert_di(va_list *ap, t_env *e);
+void			ftpf_write_di_param(t_env *e);
+
+/*
+**	ftpf_conversions_unsigned.c
+*/
 void			ftpf_convert_u(va_list *ap, t_env *e);
 void			ftpf_convert_o(va_list *ap, t_env *e);
 void			ftpf_convert_xp(va_list *ap, t_env *e);
-void			ftpf_convert_c(va_list *ap, t_env *e);
-void			ftpf_convert_s(va_list *ap, t_env *e);
-void			ftpf_convert_b(va_list *ap, t_env *e);
-
-
-void			ftpf_process_output_rules(t_env *e);
-void			ftpf_write_di_param(t_env *e);
 void			ftpf_write_o_param(t_env *e);
 void			ftpf_write_xp_param(t_env *e);
+
+/*
+**	ftpf_conversions_text.c
+*/
+void			ftpf_convert_c(va_list *ap, t_env *e);
+void			ftpf_convert_s(va_list *ap, t_env *e);
+
+/*
+**	ftpf_conversions_bonus.c
+*/
+void			ftpf_convert_b(va_list *ap, t_env *e);
+
+/*
+**	ftpf_output_rules.c
+*/
+void			ftpf_process_output_rules(t_env *e);
+int				ftpf_manage_precision(void *value, t_env *e);
+int				ftpf_manage_field_width(t_env *e);
 
 /*
 **	ftpf_lenmods_signed.c
@@ -171,18 +187,12 @@ void			ftpf_manage_lenmod_u(va_list *ap, t_env *e);
 void			ftpf_manage_lenmod_u_sub(va_list *ap, t_env *e, char **ret);
 void			ftpf_manage_lenmod_o(va_list *ap, t_env *e);
 void			ftpf_manage_lenmod_o_sub(va_list *ap, t_env *e, char **ret);
-void			ftpf_manage_lenmod_xp(va_list *ap, t_env *e);
-void			ftpf_manage_lenmod_xp_sub(va_list *ap, t_env *e, char **ret);
-
-//	LEGACY
-void			manage_modifiers_ouxX(va_list *ap, t_env *e);
 
 /*
-**	ftpf_precision.c
+**	ftpf_lenmods_xp.c
 */
-int				ftpf_manage_precision(void *value, t_env *e);
-char			*manage_precision_s(char *str, t_env *e);
-int				ftpf_manage_field_width(t_env *e);
+void			ftpf_manage_lenmod_xp(va_list *ap, t_env *e);
+void			ftpf_manage_lenmod_xp_sub(va_list *ap, t_env *e, char **ret);
 
 /*
 **	ftpf_flags.c
@@ -191,7 +201,6 @@ int				ftpf_get_flags(const char *restrict format, t_env *e);
 int				ftpf_process_flags(t_env *e);
 void			ftpf_process_flag_alt(t_env *e);
 void			ftpf_process_flag_plus(t_env *e);
-
 
 /*
 **	printing.c
@@ -202,7 +211,6 @@ void			print_null_ptr(t_env *e);
 /*
 **	others
 */
-
 int				ft_getmax(int a, int b);
 void			ft_puthex_ull(unsigned long long int n, char *mode);
 void			ft_putoctal(unsigned long long n);

@@ -6,7 +6,7 @@
 #    By: amulin <amulin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/10 17:35:06 by amulin            #+#    #+#              #
-#    Updated: 2016/03/23 22:17:51 by amulin           ###   ########.fr        #
+#    Updated: 2016/03/24 12:50:01 by amulin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,8 @@ PRINTSRCS = ft_printf.c ft_puthex_ull.c ft_putnbr_ull.c \
 			ftpf_lenmods_signed.c ftpf_lenmods_unsigned.c \
 			ftpf_lenmods_text.c ftpf_lenmods_xp.c \
 			ftpf_flags.c ftpf_output_rules.c \
-			ftpf_text_conversions.c ftpf_signed_conversions.c \
-			ftpf_unsigned_conversions.c ftpf_bonus_conversions.c \
+			ftpf_conversions_text.c ftpf_conversions_signed.c \
+			ftpf_conversions_unsigned.c ftpf_conversions_bonus.c \
 			ft_getmax.c \
 			ftpf_directives.c
 

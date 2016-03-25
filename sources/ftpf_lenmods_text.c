@@ -12,6 +12,9 @@
 
 #include "ft_printf.h"
 
+
+//		BUG MALLOC / FREE TO CHECK
+//
 void	ftpf_manage_lenmod_c(va_list *ap, t_env *e)
 {
 	int	len;
@@ -26,8 +29,8 @@ void	ftpf_manage_lenmod_c(va_list *ap, t_env *e)
 	}
 	else
 	{
-		e->param->i = (int)va_arg(*ap, int);
-		if (!(e->param->i < 0) && !ft_wchar_utf8len(e->param->wi))
+		e->param->c = (char)va_arg(*ap, int);
+		if (!(e->param->c < 0) && !ft_wchar_utf8len(e->param->wi))
 			e->error = 1;
 		e->outputlen++;
 	}

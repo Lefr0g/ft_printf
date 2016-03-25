@@ -1001,15 +1001,17 @@ void	cC_tests(void)
 	printf("**************************** Value = %hd\n", c);
 	visu_compare("%c", &c, "char");
 	visu_compare("%.c", &c, "char");
+	visu_compare("%llc", &c, "char");
+	visu_compare("%hhc", &c, "char");
 
-	/*
-	c = 200;
+	c = -1;
 	ft_putbin((char)c, sizeof(char));
 	ft_putchar('\n');
 	printf("**************************** Value = %hd\n", c);
 	visu_compare("%c", &c, "char");
 	visu_compare("%.c", &c, "char");
-*/
+	visu_compare("%llc", &c, "char");
+	visu_compare("%hhc", &c, "char");
 
 	wi = L'\xe9';
 	ft_putbin((wint_t)wi, sizeof(wint_t));

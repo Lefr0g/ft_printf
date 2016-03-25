@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:16:31 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/24 19:49:13 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/25 18:33:22 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -988,6 +988,46 @@ void	cC_tests(void)
 	visu_compare("%hhc", &c, "char");
 	visu_compare("%lc", &c, "char");
 
+
+
+
+	wi = L'\xe9';
+	ft_putbin((wint_t)wi, sizeof(wint_t));
+	ft_putchar('\n');
+	printf("**************************** Value = %d (%C)\n", wi, wi);
+	visu_compare("%C", &wi, "wint_t");
+	visu_compare("%lc", &wi, "wint_t");
+	visu_compare("%llc", &wi, "wint_t");
+	visu_compare("%hhc", &wi, "wint_t");
+
+	wi = -1;
+	ft_putbin((wint_t)wi, sizeof(wint_t));
+	ft_putchar('\n');
+	printf("**************************** Value = %d\n", wi);
+	visu_compare("%C", &wi, "wint_t");
+	visu_compare("%lc", &wi, "wint_t");
+	visu_compare("%llc", &wi, "wint_t");
+	visu_compare("%hhc", &wi, "wint_t");
+
+
+	wi = 0xD7FF;
+	ft_putbin((wint_t)wi, sizeof(wint_t));
+	ft_putchar('\n');
+	printf("**************************** Value = %d\n", wi);
+	visu_compare("%C", &wi, "wint_t");
+	visu_compare("%lc", &wi, "wint_t");
+	visu_compare("%llc", &wi, "wint_t");
+	visu_compare("%hhc", &wi, "wint_t");
+
+	wi = 0xD800;
+	ft_putbin((wint_t)wi, sizeof(wint_t));
+	ft_putchar('\n');
+	printf("**************************** Value = %d\n", wi);
+	visu_compare("%C", &wi, "wint_t");
+	visu_compare("%lc", &wi, "wint_t");
+	visu_compare("%llc", &wi, "wint_t");
+	visu_compare("%hhc", &wi, "wint_t");
+
 	c = 0;
 	ft_putbin((char)c, sizeof(char));
 	ft_putchar('\n');
@@ -1012,34 +1052,6 @@ void	cC_tests(void)
 	visu_compare("%.c", &c, "char");
 	visu_compare("%llc", &c, "char");
 	visu_compare("%hhc", &c, "char");
-
-	wi = L'\xe9';
-	ft_putbin((wint_t)wi, sizeof(wint_t));
-	ft_putchar('\n');
-	printf("**************************** Value = %d (%C)\n", wi, wi);
-	visu_compare("%C", &wi, "wint_t");
-	visu_compare("%lc", &wi, "wint_t");
-	visu_compare("%llc", &wi, "wint_t");
-	visu_compare("%hhc", &wi, "wint_t");
-
-	wi = 0xD7FF;
-	ft_putbin((wint_t)wi, sizeof(wint_t));
-	ft_putchar('\n');
-	printf("**************************** Value = %d\n", wi);
-	visu_compare("%C", &wi, "wint_t");
-	visu_compare("%lc", &wi, "wint_t");
-	visu_compare("%llc", &wi, "wint_t");
-	visu_compare("%hhc", &wi, "wint_t");
-
-	wi = 0xD800;
-	ft_putbin((wint_t)wi, sizeof(wint_t));
-	ft_putchar('\n');
-	printf("**************************** Value = %d\n", wi);
-	visu_compare("%C", &wi, "wint_t");
-	visu_compare("%lc", &wi, "wint_t");
-	visu_compare("%llc", &wi, "wint_t");
-	visu_compare("%hhc", &wi, "wint_t");
-
 
 	wi = -1;
 	ft_putbin((wint_t)wi, sizeof(wint_t));
@@ -1314,21 +1326,45 @@ int	main(void)
 
 //	printf("\033[31m********************************************* CHECK\033[0m\n");
 
-	setlocale(LC_ALL, "");
+//	setlocale(LC_ALL, "");
 
 
 //	dDi_tests();
 //	uU_tests();
 //	oO_tests();
 //	xXp_tests();
-	sS_tests();
-	cC_tests();
+//	sS_tests();
+//	cC_tests();
 //	fF_tests();
 //	wild_tests();
 //	escape_tests();
 //	bin_tests();
 
+/*
+	int		ret;
+	char	c;
+
+	c = -128;
+	ret = printf("%lc\n", c);
+	ft_printf("ret = %d\n", ret);
 	
+	ret = printf("blabla\n");
+	ft_printf("ret = %d\n", ret);
+*/
+	int		ret;
+	char	   c;
+
+	c = -128;
+	ret = printf("%lc\n", c);
+	ft_putstr("ret = ");
+	ft_putnbr(ret);
+	ft_putchar('\n');
+
+	ret = printf("blabla\n");
+	ft_putstr("ret = ");
+	ft_putnbr(ret);
+	ft_putchar('\n');
+
 //	printf("%s", 1);
 //	ft_printf("%s", 1);
 

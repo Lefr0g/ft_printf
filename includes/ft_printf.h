@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/26 18:09:44 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/26 18:18:46 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 #  define FLAG_0_SPACER '0'
 # endif
 
-# include "linkto_libft.h"
+# include "libft.h"
 # include <stdarg.h>
 
 typedef union	u_param

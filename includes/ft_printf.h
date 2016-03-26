@@ -6,7 +6,7 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/05 11:46:15 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/24 19:40:17 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/26 18:09:44 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,8 @@
 #  define FLAG_0_SPACER '0'
 # endif
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
 # include "linkto_libft.h"
-# include <wchar.h>
-# include <inttypes.h>
+# include <stdarg.h>
 
 typedef union	u_param
 {
@@ -199,11 +195,5 @@ int				ftpf_get_flags(const char *restrict format, t_env *e);
 int				ftpf_process_flags(t_env *e);
 void			ftpf_process_flag_alt(t_env *e);
 void			ftpf_process_flag_plus(t_env *e);
-
-/*
-**	printing.c
-*/
-void			manage_print_all(t_env *e);
-void			print_null_ptr(t_env *e);
 
 #endif

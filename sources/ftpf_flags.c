@@ -6,13 +6,11 @@
 /*   By: amulin <amulin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:53:24 by amulin            #+#    #+#             */
-/*   Updated: 2016/03/24 16:18:38 by amulin           ###   ########.fr       */
+/*   Updated: 2016/03/28 20:39:29 by amulin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-#include <stdio.h>
 
 /*
 **	Flags are managed in a 3-steps process :
